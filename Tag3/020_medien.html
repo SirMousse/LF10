@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Medien in HTML</title>
+        <style>
+            .bild{
+                width: 250px;
+                height: auto;
+            }
+        </style>
+
+
+    </head>
+    
+    <body>
+        <header>
+            <h1>Medien in HTML: Bilder, Audio und Videos</h1>
+
+            <p>
+                Mit HTML kannst du verschiedene Medien in deine Webseite einbauen: Bilder, Audio-Dateien (z.B. Musik) und Videos.
+                Diese Medien machen Inhalte anschaulicher und verständlicher.
+            </p>
+        </header>
+
+        <main>
+            <section>
+                <h2>1. Bilder einbinden (&lt;img&gt;)</h2>
+
+                <h3>Variante 1: Standard Bild</h3>
+                <img src="./img/cat.png" alt="Das ist eine rote Katze mit grünen Augen die an den Pfoten von einer Person (im Hintergrund) gehalten wird.">
+
+                <h3>Variante 2: Bilder mit fester Breite</h3>
+                <img src="./img/rabbit.png" alt="Das ist ein weißes Kaninchen mit roten Augen was im Gras sitzt und niedlich aussieht." width="350">
+
+                <h3>Variante 3: Bild mit CSS Klasse</h3>
+                <img src="./img/bird.png" alt="Das ist ein Nymphensittich, der auf einen Zweig sitzt und zur Seite schaut." class="bild">
+
+                <h3>Variante 4: Klickbare Bilder</h3>
+                <a href="https://tierschutz-berlin.de/Tierheim/gelaende/?gad_source=1&gad_campaignid=21041739063&gclid=Cj0KCQjw4PPNBhD8ARIsAMo-icw7DWSt-IkZ6ec3KR0D2yVNqvUrJBbNm24_gVChD3HjCIDPij-zpV0aAiKWEALw_wcB" 
+                target="_blank" rel="noopener noreferrer">
+                    <img src="./img/dog.png" alt="Das ist ein Welpe mit großen braunen Augen, der ein neues Zuhause sucht.">
+                </a>
+
+                <h3>Variante 5: Bilder mit Beschriftung (&lt;figure&gt;)</h3>
+                <figure>
+                    <img src="./img/fish.png" alt="Das ist ein gelb/ oranger Goldfisch der im Wasser schwimmt!">
+                    <figcaption>
+                        Abbildung 1: Das ist ein Goldfisch der ins Wochenende schwimmen möchte!
+                    </figcaption>
+                </figure>
+
+                <h3>Variante 6: Bilder aus dem Web</h3>
+                <img src="https://www.reptilienkosmos.de/documents/category/949/landschildkroeten-Testudo-hermanni-330x230px.jpg" 
+                alt="Das ist eine Landschildkröte die noch jung ist und alle vier von sich gestreckt hat.">
+
+                <h3>Variante 7: Responsives Bild</h3>
+                <img src="./img/rat.png" 
+                alt="Das ist der Meister der Ninja Turtles, wie er sich seinen Feierabend Snack schmecken lässt." style="max-width: 100%; height: auto;">
+            </section>
+        </main>
+    </body>
+</html>
