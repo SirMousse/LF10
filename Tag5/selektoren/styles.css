@@ -1,0 +1,14 @@
+/*Universalselektor*/
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box; /* box-sizing bestimmt , wie die Größe eines Elements berechnet wird | border-box = Inhalt wird automatisch kleiner (200px)*/
+    margin: 0;
+    padding: 0;
+}
+
+/*Elementselektor*/
+body{
+    background: linear-gradient(to bottom, #eef4ff, #f8fbff);
+    color: #1f2937;
+}
