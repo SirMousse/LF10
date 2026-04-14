@@ -92,22 +92,66 @@
 
                 }
             }
+
+            // 6. Hilfsfunktion: sicher ins HTML zurückschreiben (wiederbefüllen)
+            function old($value) {
+                return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');           // htmlspecialchars() -> wandelt die HTML-Zeichen um | ENT_QUOTES -> auch ' und " werden sicher gemacht | UTF-8 -> Zeichensatz
+            }
             ?>
 
-            <form action="">
+            <!-- Fehler prüfen und anzeigen -->
+            <?php if (!empty($errors)): ?>
+                <section aria-label="Fehlermeldung">
+                    <h2>Bitte korrigieren:</h2>
+                    <ul>
+                        <?php foreach ($errors as $e): ?>                                   <!-- geht durch jeden Fehler im Array durch und speichert die aktuellen Fehler in $e-->
+                        <li><?php echo htmlspecialchars($e, ENT_QUOTES, 'UTF-8'); ?></li>   <!-- Jeder Fehler wird als einzelner Listenpunkt angezeigt-->
+                        <?php endforeach; ?>                                                <!-- Schleife wird beendet! -->
+                    </ul>
+                </section>
+            <?php endif;?>      <!-- Beendet die if Anweisung in HTML -->
+
+            <form action="./020_formular.php" method="post" novalidate> <!-- novalidate -> OHNE novalidate kann der Browser mich am absenden hindern und meine PHP Fehlerliste sehe ich auch nicht-->
                 <fieldset>
                     <legend>Deine Angaben</legend>
 
                     <div>
                         <label for="email">E-Mail</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email"
+                            autocomplete="email"
+                            required
+                            value="<?php echo old($values['email']); ?>"            
+                            >       <!--$values['email'] -> das ist der Wert, den der Nutzer eingegeben hat (Bsp. mousse@gmail.com) 
+                                        old($values['email']) -> ruft unsere Hilfsfunktion auf => Ergebnis: macht den Wert sicher und verhindert XSS
+                                        echo old($values['email']); -> gibt den Wert in HTML aus -->
                     </div>
-
+                    
                     <div>
                         <label for="age">Alter</label>
+                        <input 
+                            type="text" 
+                            name="age" 
+                            id="age"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            required
+                            value="<?php echo old($values['age']); ?>"
+                            >       <!-- inputmode -> nur Anzeige (Tastur) ist gemeint -->
                     </div>
 
                     <div>
                         <label for="msg">Nachricht</label>
+                        <textarea 
+                            name="msg" 
+                            id="msg"
+                            placeholder="Bitte schreibe hier deine Nachricht an uns!"
+                            rows="6"
+                            minlength="10"
+                            required
+                            ><?php echo old($values['msg']); ?></textarea>
                     </div>
 
                     <button type="submit">Absenden</button>
