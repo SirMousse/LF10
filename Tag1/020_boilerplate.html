@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- Der DOCTYPE sagt dem Browser: "Das ist eine HTML Seite" -->
+
+<html lang="de">
+<!-- <html> ist das Wurzelelement der Seite.
+    Wurzelelement = das oberste HTML-Element, das ALLE anderen Elemente umschließt.
+    -> Also alles was zur Webseite gehört (<head>, <body>, <Inhalte, etc.) liegen alle innerhalb des <html>
+    
+    lang steht für language (dt. Sprache) 
+    de = Deutsch
+    en = Englisch-->
+
+    <head>
+        <!-- <head> enthält die Metadaten, sowie den Titel = Infos die nicht sichtbar sind bzw. die die Seite enthält-->
+
+        <meta charset="UTF-8">
+        <!-- Legt die Zeichencodierung fest UTF-8 -> Umlaute und Sonderzeichen können korrekt angezeigt werden (ä,ö,ü, ß, € etc.)-->
+
+        <meta name="viewport" content="width=divice-width, initiale-scale=1.0">
+        <!-- Sorgt dafür, dass die Seite auf dem Handy und Tablet richtig skaliert wird (Responsive Design)
+            width=width-device -> Pass das Foto/ Bild an meinen Bildschirm an
+            
+            1.0 bedeutet 100% Zoom (Standartgröße)
+            0.5 bedeutet 50% Zoom (alles kleiner)
+            2.0 bedeutet 200% Zoom (alles größer) -> NICHT empfohlen-->
+
+        <!-- Meta Tag ist Optional-->
+        <meta name="description" content="Kurzer Beschreibung eurer Webseite, um was handelt es sich">
+        <!-- Beschreibung für die Suchmaschine-->
+
+        <title>Boilerplate</title>
+        <!-- Titel der Seite -> erscheint im Browser Tab und natürlich auch un den Google Suchergebnissen.-->
+    </head>
+
+    <body>
+    <!-- <body> enthält ALLES was auf der Webseite sichtbar ist-->
+        
+        <header>
+        <!-- Kopfbereich der Seite und enthält z.B.: Logo, Überschrift, Navigation, Login und Anmeldung-->
+            <h1>Hallo HTML</h1>
+            <!-- <h1> ist eine Überschrift (Hauptüberschrift)-->    
+        </header>
+
+        <main>
+        <!-- Hauptteil der Seite-->
+            <p>Hier begint die eigentliche Webseite (alles was ihr an Inhalten habt)!</p>
+            <!-- <p> steht für Paragraph-->    
+        </main>
+
+        <footer>
+        <!-- Fußbereich der Seite und der enthält z.B.: Copyrights, Links, Kontakte etc.-->
+            <p>&copy; 2026 mein Name </p> 
+            <!-- © wird durch &copy; dargestellt oder durch die numerische Variante &#169; -->
+        </footer>
+    </body>
+</html>
