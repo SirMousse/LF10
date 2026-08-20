@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tabellen in HTML</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Tabellen in HTML</h1>
+
+            <p>Tabellen helfen uns dabei, Daten übersichtlicher in Zeilen und Spalten darzustellen. <br>
+            Die wichtigsten Bausteine sind:</p>
+
+            <ul>
+                <li><strong>&lt;table&gt;</strong> = die Tabelle (Rahmen/Container)</li>
+                <li><strong>&lt;tr&gt;</strong> = eine Tabellenzeile (Table Row)</li>
+                <li><strong>&lt;td&gt;</strong> = Datenzellen (Table Data)</li>
+                <li><strong>&lt;th&gt;</strong> = eine Überschrift für eine Zelle (Table Header)</li>
+            </ul>
+        </header>
+
+        <main>
+            <section>
+                <h2>1. Einfache Tabelle</h2>
+
+                <table border="2">
+                    <caption>Beispiel: Tiere</caption>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Art</th>
+                        <th>Zähne</th>
+                    </tr>
+                    <tr>
+                        <td>Hund</td>
+                        <td>Säugetier</td>
+                        <td>42</td>
+                    </tr>
+                    <tr>
+                        <td>Katze</td>
+                        <td>Säugetier</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>Maus</td>
+                        <td>Säugetier</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>Spatz</td>
+                        <td>Vogel</td>
+                        <td>0</td>
+                    </tr>
+
+                </table>
+            </section>
+
+            <section>
+                <h2>2. Tabellen mit Kopf-, Körper- und Fußbereich</h2>
+
+                <dl>
+                    <dt>&lt;thead&gt; = Kopfbereich (Table Head)</dt>
+                    <dd>Hier steht die Überschrift der Tabelle (Spaltennamen).</dd>
+
+                    <dt>&lt;tbody&gt; = Hauptteil (Table Body)</dt>
+                    <dd>Hier stehen die eigentlichen Daten, also die Informationen, die angezeigt werden sollen.</dd>
+
+                    <dt>&lt;tfoot&gt; = Fußbereich (Table Foot)</dt>
+                    <dd>Hier steht die Zusammenfassung drin bzw. ergänzende Informationen, zu unserer Tabelle.
+                        Bsp.: Summe, Fazit oder ein Hinweis.
+                    </dd>
+                </dl>
+
+                <table border="1">
+                    <caption>Einkaufsliste von Yoda:</caption>
+
+                    <thead>
+                        <tr>
+                            <th>Produkt</th>
+                            <th>Preis</th>
+                            <th>Menge</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Apfel</td>
+                            <td>0,50€</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Brot</td>
+                            <td>2,00€</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td>Summe</td>
+                            <td colspan="2">9,00€</td>
+                        </tr>
+                    </tfoot>
+
+
+                    <dl>
+                        <dt>colspan = über mehrere Spalten verteilt (eng. column span)</dt>
+                        <dd>Sagt dem Browser, dass eine Tabellenzelle den Platz von mehreren Spalten einnehmen soll.</dd>
+                    </dl>
+                </table>
+            </section>
+        </main>
+    </body>
+</html>
