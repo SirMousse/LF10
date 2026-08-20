@@ -80,6 +80,84 @@
                     <li>Hai</li> 
                 </ul>
             </section>
+
+            <section>
+                <h2>4. Beschreibende Listen (&lt;dl&gt;)</h2>
+
+                <p> Eine beschreibende Liste besteht aus: <strong>&lt;dt&gt;</strong> (Begriff) und <strong>&lt;dd&gt;</strong> (Beschreibung).</p>
+
+                <h3>Beispiel:</h3>
+
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Auszeichnungssprache zur Strukturierung von Webseiten.</dd>
+
+                    <br>
+
+                    <dt>CSS</dt>
+                    <dd>Sprache für das Design und Layout einer Webseite.</dd>
+                </dl>
+
+                <h3>Mehrere Beschreibungen zu einem Begriff</h3>
+
+                <dl>
+                    <dt>Dackel</dt>
+                    <dd>Hunderasse</dd>
+                    <dd>Gilt als intelligent, lernfähig und stur.</dd>
+                </dl>
+            </section>
+
+            <section>
+                <h2>5. Verschachtelte Liste</h2>
+                <p>Listen können in anderen Listen eingebettet werden (Bsp.: für Menü oder Kategorien).</p>
+
+
+                <h3>Beispiel:</h3>
+                <ul>
+                    <li>Produkt
+                        <ul>
+                            <li>Handys
+                                <ul>
+                                    <li>Android</li>
+                                    <li>iOS</li>
+                                </ul>
+                            </li>
+                            <li>Laptop</li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                <h3>Beispiel Rucksack:</h3>
+                <ol>
+                    <li>Rucksack
+                        <ul>
+                            <li>Fach 1
+                                <ul>
+                                    <li>Schere</li>
+                                    <li>Stifte</li>
+                                </ul>
+                            </li>
+                            <li>Fach 2
+                                <ol>
+                                    <li>Wasserflasche</li>
+                                    <li>Tascherechner</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Anleitung: Verschachtelte Listen in HTML</h3>
+                <ol>
+                    <li>Erstellt zuerst eine normale Liste mit &lt;ul&gt; oder &lt;ol&gt;.</li>
+                    <li>Füge mit &lt;li&gt; einen Listeneintrag hinzu.</li>
+                    <li>Schreibe einen Text für den Haupteintrag in das &lt;li&gt;-Element.</li>
+                    <li>Erstelle <strong>innerhalb dieses &lt;li&gt;-Elements</strong> eine neue Liste mit &lt;ul&gt; oder &lt;ol&gt;.</li>
+                    <li>Füge die Unterpunkte mit weiteren &lt;li&gt;-Elements ein.</li>
+                    <li>Schließe zuerst die Unterliste und danach den Haupteintarg mit &lt;li&gt;.</li> 
+                </ol>
+            </section>
         </main>
     </body>
 </html>

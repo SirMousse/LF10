@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Das Abenteuer von HTMLoria</title>
+    </head>
+
+    <body>
+
+        <h1>Das Abenteuer von HTMLoria</h1>
+        <p>Kapitel 1: Der verschwundene Quellcode</p>
+
+        <hr>
+
+        <h2>Quest 1 – Die Karte des Zauberers</h2>
+
+        <ol start="5">
+            <li>Dorf verlassen</li>
+            <li>Verbotenen Wald durchqueren</li>
+            <li>Brücke des schlechten WLANs überqueren</li>
+            <li>Höhle des vergessenen Passworts betreten</li>
+            <li>Burg von Lord Error 404 erreichen</li>
+        </ol>
+
+        <p>
+            Hier wird eine geordnete Liste verwendet, weil die Stationen
+            in einer festen Reihenfolge besucht werden müssen.
+            Mit <code>start="5"</code> beginnt die Nummerierung bei 5.
+        </p>
+
+        <hr>
+
+        <h2>Quest 2 – Der Händler des verdächtigen Inventars</h2>
+
+        <ul>
+            <li>Tastatur +3</li>
+            <li>USB-Stick unbekannter Herkunft</li>
+            <li>Magische Powerbank</li>
+            <li>Debugging-Lupe</li>
+            <li>Schwert gegen Syntaxfehler</li>
+            <li>Notfall-Kekse</li>
+            <li>Unsichtbarer Regenschirm</li>
+            <li>Karte mit eingebautem GPS-Zauber</li>
+            <li>Trank gegen schlechte WLAN-Verbindungen</li>
+        </ul>
+
+        <p>
+            Hier wird eine ungeordnete Liste verwendet, weil die Reihenfolge
+            der Gegenstände keine Rolle spielt.
+        </p>
+
+        <hr>
+
+        <h2>Quest 3 – Der verbotene Wald</h2>
+
+        <ul>
+            <li>
+                Verbotener Wald
+
+                <ol>
+                    <li>
+                        Linker Weg
+
+                        <ul>
+                            <li>Trollbrücke</li>
+                            <li>Verlassene Hütte</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        Mittlerer Weg
+
+                        <ul>
+                            <li>Sumpf</li>
+
+                            <li>
+                                Höhle
+
+                                <ul>
+                                    <li>Schatztruhe</li>
+                                    <li>Schlafender Goblin</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        Rechter Weg
+
+                        <ul>
+                            <li>Alter Turm</li>
+                            <li>See der verlorenen Passwörter</li>
+
+                            <li>
+                                Ruine der kaputten Server
+
+                                <ol>
+                                    <li>Serverraum</li>
+                                    <li>Geheimer Keller</li>
+                                    <li>Notstromgenerator</li>
+                                </ol>
+                            </li>
+
+                            <li>
+                                Hühnerlichtung
+
+                                <ul>
+                                    <li>Sehr verdächtiges Huhn</li>
+                                    <li>Kaputter Futterautomat</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+
+        <p>
+            Die Unterlisten stehen immer innerhalb des passenden
+            <code>&lt;li&gt;</code>-Elements.
+        </p>
+
+        <hr>
+
+        <h2>Quest 4 – Das Rätsel der alten Tür</h2>
+
+        <dl>
+            <dt>HTML</dt>
+            <dd>
+                HTML steht für HyperText Markup Language.
+                Damit wird die Struktur und der Inhalt einer Webseite aufgebaut,
+                zum Beispiel Texte, Überschriften, Bilder und Listen.
+            </dd>
+
+            <dt>CSS</dt>
+            <dd>
+                CSS steht für Cascading Style Sheets.
+                Damit wird das Aussehen einer Webseite gestaltet,
+                zum Beispiel Farben, Abstände, Größen und Schriftarten.
+            </dd>
+
+            <dt>URL</dt>
+            <dd>
+                URL steht für Uniform Resource Locator.
+                Eine URL ist die Adresse einer Ressource im Internet,
+                zum Beispiel einer Webseite, Datei oder eines Bildes.
+            </dd>
+        </dl>
+
+        <hr>
+
+        <h2>Quest 5 – Lord Error 404</h2>
+
+        <ol reversed>
+            <li>Der Drucker ohne Verbindung</li>
+            <li>Der WLAN-Goblin</li>
+            <li>Das endlose Update</li>
+            <li>Der Syntaxfehler-Troll</li>
+            <li>Der gefürchtete Blue-Screen-Drache</li>
+        </ol>
+
+        <p>
+            Mit dem Attribut <code>reversed</code> wird die Liste
+            rückwärts nummeriert.
+        </p>
+
+        <h3>Bonus – Römische Zahlen</h3>
+
+        <ol reversed type="I">
+            <li>Der Drucker ohne Verbindung</li>
+            <li>Der WLAN-Goblin</li>
+            <li>Das endlose Update</li>
+            <li>Der Syntaxfehler-Troll</li>
+            <li>Der gefürchtete Blue-Screen-Drache</li>
+        </ol>
+
+        <p>
+            Mit <code>type="I"</code> werden große römische Zahlen verwendet.
+        </p>
+
+        <hr>
+
+        <h2>Das Finale</h2>
+
+        <ul>
+            <li>Eine <code>&lt;ol&gt;</code> wurde verwendet.</li>
+            <li>Eine <code>&lt;ul&gt;</code> wurde verwendet.</li>
+            <li>
+                <code>&lt;dl&gt;</code>,
+                <code>&lt;dt&gt;</code> und
+                <code>&lt;dd&gt;</code> wurden verwendet.
+            </li>
+            <li>Listen wurden korrekt verschachtelt.</li>
+            <li>
+                Die Attribute <code>start</code>,
+                <code>reversed</code> und
+                <code>type</code> wurden verwendet.
+            </li>
+            <li>Informationen wurden selbst recherchiert.</li>
+            <li>Der HTML-Code funktioniert im Browser.</li>
+        </ul>
+
+        <hr>
+
+        <h2>HTMLoria ist gerettet!</h2>
+
+        <p>
+            Lord Error 404 wurde besiegt.
+        </p>
+
+        <p>
+            Der legendäre Quellcode wurde gefunden.
+        </p>
+
+        <p>
+            Leider hat das Huhn ihn gefressen.
+        </p>
+
+        <p>
+            Fortsetzung folgt ...
+        </p>
+
+    </body>
+
+</html>
