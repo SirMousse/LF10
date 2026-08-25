@@ -1,0 +1,390 @@
+<!--
+============================================================
+AUFGABE: DAS TIERHEIM-ABENTEUER
+============================================================
+
+Dauer: ca. 45 Minuten
+Level: Anfänger bis leicht fortgeschritten
+
+Themen:
+- Tabellen
+- Links
+- Sprungmarken
+- E-Mail- und Telefon-Links
+- target und rel
+- colspan und rowspan
+- kleine Recherche-Aufgaben
+
+
+DIE GESCHICHTE
+------------------------------------------------------------
+
+Du hilfst heute im Tierheim "Pfotenhausen".
+
+Leider ist die Webseite des Tierheims völlig chaotisch.
+Besucher finden keine Tiere, keine Kontaktdaten und
+keine wichtigen Informationen.
+
+Deine Aufgabe:
+
+Erstelle eine neue HTML-Seite namens
+
+tierheim.html
+
+und bring Ordnung in das digitale Tierheim.
+
+
+============================================================
+LEVEL 1 - DIE TIERE IM ÜBERBLICK
+ca. 7 Minuten
+============================================================
+
+Erstelle die Überschrift:
+
+"Unsere Tiere"
+
+Darunter soll eine Tabelle mit folgenden Daten entstehen:
+
+
+Name            Tierart         Alter
+------------------------------------------------
+Balu            Hund            6 Jahre
+Minka           Katze           3 Jahre
+Keks            Kaninchen       2 Jahre
+Professor Pieps Wellensittich   4 Jahre
+
+
+Die Tabelle soll die Beschriftung
+
+"Tiere im Tierheim Pfotenhausen"
+
+bekommen.
+
+
+ANFORDERUNGEN:
+
+Verwende:
+
+- <table>
+- <caption>
+- <tr>
+- <th>
+- <td>
+
+Die Spaltenüberschriften sollen außerdem das passende
+scope-Attribut erhalten.
+
+
+============================================================
+LEVEL 2 - DIE TIERPROFILE
+ca. 6 Minuten
+============================================================
+
+Besucher möchten mehr über einzelne Tiere erfahren.
+
+Erstelle die Überschrift:
+
+"Tierprofile"
+
+Darunter sollen drei Links stehen:
+
+
+1. "Mehr über Balu"
+   Ziel: balu.html
+
+2. "Mehr über Minka"
+   Ziel: minka.html
+
+3. "Mehr über Keks"
+   Ziel: keks.html
+
+
+Erstelle danach noch einen Link zu:
+
+https://www.tierschutzbund.de
+
+Dieser Link soll sich in einem NEUEN TAB öffnen.
+
+Achte dabei auch auf die passenden Werte für das
+rel-Attribut.
+
+
+============================================================
+LEVEL 3 - KONTAKT ZUM TIERHEIM
+ca. 6 Minuten
+============================================================
+
+Ein Besucher möchte das Tierheim kontaktieren.
+
+
+TEIL 1: E-MAIL
+
+Erstelle einen Link, der das E-Mail-Programm öffnet.
+
+E-Mail-Adresse:
+
+kontakt@pfotenhausen.de
+
+Der Betreff soll bereits eingetragen sein:
+
+Frage zu einem Tier
+
+Der Nachrichtentext soll bereits enthalten:
+
+Hallo Tierheim-Team,
+
+ich interessiere mich für ein Tier.
+
+
+TEIL 2: TELEFON
+
+Erstelle zusätzlich einen Telefon-Link.
+
+Telefonnummer:
+
++49123456789
+
+Der sichtbare Linktext soll sein:
+
+"Tierheim anrufen"
+
+
+============================================================
+LEVEL 4 - DER FÜTTERUNGSPLAN
+ca. 7 Minuten
+============================================================
+
+Die Tiere müssen natürlich versorgt werden.
+
+Erstelle folgende Tabelle:
+
+
+Tier            Futter          Menge
+------------------------------------------------
+Balu            Hundefutter     300 g
+Minka           Katzenfutter    180 g
+Keks            Heu             150 g
+Professor Pieps Körner           40 g
+
+
+Baue diese Tabelle mit:
+
+- <thead>
+- <tbody>
+- <tfoot>
+
+
+Im Fußbereich soll stehen:
+
+"Alle Tiere bekommen zusätzlich frisches Wasser."
+
+
+ACHTUNG:
+
+Dieser Satz soll sich über ALLE DREI SPALTEN erstrecken.
+
+
+DENKFRAGE:
+
+Welches HTML-Attribut brauchst du dafür?
+
+
+============================================================
+LEVEL 5 - DER PFLEGEPLAN
+ca. 7 Minuten
+============================================================
+
+Erstelle folgende Tabelle:
+
+
+Tag          Vormittag           Nachmittag
+------------------------------------------------------
+Montag       Hundeauslauf        Katzenpflege
+Dienstag     Hundeauslauf        Käfige reinigen
+Mittwoch     Tierarztbesuch      Tierarztbesuch
+
+
+ABER:
+
+"Hundeauslauf" darf nur EINMAL in deinem HTML-Code
+stehen.
+
+Es soll trotzdem für Montag UND Dienstag gelten.
+
+
+Auch "Tierarztbesuch" darf nur EINMAL im HTML-Code
+stehen.
+
+Es soll aber Vormittag UND Nachmittag belegen.
+
+
+RECHERCHE-AUFGABE:
+
+Finde heraus:
+
+Was ist der Unterschied zwischen
+
+rowspan
+
+und
+
+colspan
+
+?
+
+
+Benutze anschließend beide Attribute richtig in deiner
+Tabelle.
+
+
+============================================================
+LEVEL 6 - SCHNELL DURCH DIE SEITE
+ca. 7 Minuten
+============================================================
+
+Ganz unten auf deiner Webseite befindet sich der Bereich:
+
+"Kontakt und Besuch"
+
+
+Ganz oben auf deiner Webseite soll ein Link stehen:
+
+"Direkt zum Kontakt"
+
+
+Beim Anklicken soll der Browser direkt zu diesem Bereich
+springen.
+
+
+Beim Kontaktbereich soll außerdem ein Link stehen:
+
+"Zurück zu unseren Tieren"
+
+
+Dieser Link soll zurück zur Tier-Tabelle springen.
+
+
+ANFORDERUNG:
+
+Benutze dafür:
+
+- id
+- href="#..."
+
+
+============================================================
+FINAL BOSS - DIE ADOPTIONSUNTERLAGEN
+ca. 5 Minuten
+============================================================
+
+Ein Besucher möchte ein Formular zur Tiervermittlung
+herunterladen.
+
+Jetzt musst du selbst etwas Neues herausfinden.
+
+
+RECHERCHE:
+
+Wie kann man mit einem Link eine Datei zum Download
+anbieten?
+
+
+Suche nach dem HTML-Attribut:
+
+download
+
+
+Erstelle anschließend einen Link zur Datei:
+
+adoptionsformular.pdf
+
+
+Der sichtbare Linktext soll sein:
+
+"Adoptionsformular herunterladen"
+
+
+ZUSATZFRAGE:
+
+Was passiert, wenn die Datei "adoptionsformular.pdf"
+gar nicht im richtigen Ordner liegt?
+
+
+============================================================
+BONUS-LEVEL
+============================================================
+
+Wenn du früher fertig bist:
+
+Erstelle ganz oben auf deiner Webseite eine Navigation.
+
+
+Sie soll folgende Links enthalten:
+
+Tiere | Tierprofile | Fütterung | Pflegeplan | Kontakt
+
+
+Beim Anklicken soll man direkt zum entsprechenden Bereich
+auf DEINER Webseite springen.
+
+
+Dafür musst du eventuell zusätzliche id-Attribute
+verwenden.
+
+
+============================================================
+QUEST-CHECK
+============================================================
+
+Kontrolliere deine Webseite:
+
+[ ] HTML-Grundstruktur vorhanden
+
+[ ] Tabellen funktionieren
+
+[ ] <th> und <td> sinnvoll verwendet
+
+[ ] scope verwendet
+
+[ ] <thead>, <tbody> und <tfoot> verwendet
+
+[ ] colspan verwendet
+
+[ ] rowspan verwendet
+
+[ ] Links zu anderen Dateien erstellt
+
+[ ] Externen Link erstellt
+
+[ ] target="_blank" verwendet
+
+[ ] rel verwendet
+
+[ ] mailto-Link erstellt
+
+[ ] tel-Link erstellt
+
+[ ] Sprungmarken mit id erstellt
+
+[ ] download selbst recherchiert
+
+[ ] Webseite im Browser getestet
+
+
+============================================================
+GESCHAFFT?
+============================================================
+
+Wenn alle Tabellen korrekt angezeigt werden und deine
+Links funktionieren, ist die Webseite des Tierheims
+wieder einsatzbereit.
+
+Falls etwas nicht funktioniert:
+
+Nicht sofort alles löschen.
+
+Untersuche deinen Code.
+Finde heraus, bei welcher Aufgabe der Fehler steckt.
+Teste deine Lösung erneut im Browser.
+============================================================
+-->

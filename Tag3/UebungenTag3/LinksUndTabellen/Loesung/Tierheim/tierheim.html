@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierheim Pfotenhausen</title>
+</head>
+
+<body>
+
+    <h1>Tierheim Pfotenhausen</h1>
+
+    <!-- Bonus-Level: Navigation -->
+    <nav>
+        <a href="#tiere">Tiere</a> |
+        <a href="#tierprofile">Tierprofile</a> |
+        <a href="#fuetterung">Fütterung</a> |
+        <a href="#pflegeplan">Pflegeplan</a> |
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <p>
+        <a href="#kontakt">Direkt zum Kontakt</a>
+    </p>
+
+
+    <!-- ==================================================
+        LEVEL 1 - DIE TIERE IM ÜBERBLICK
+        ================================================== -->
+
+    <section id="tiere">
+        <h2>Unsere Tiere</h2>
+
+        <table>
+            <caption>Tiere im Tierheim Pfotenhausen</caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tierart</th>
+                    <th scope="col">Alter</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Balu</td>
+                    <td>Hund</td>
+                    <td>6 Jahre</td>
+                </tr>
+
+                <tr>
+                    <td>Minka</td>
+                    <td>Katze</td>
+                    <td>3 Jahre</td>
+                </tr>
+
+                <tr>
+                    <td>Keks</td>
+                    <td>Kaninchen</td>
+                    <td>2 Jahre</td>
+                </tr>
+
+                <tr>
+                    <td>Professor Pieps</td>
+                    <td>Wellensittich</td>
+                    <td>4 Jahre</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 2 - DIE TIERPROFILE
+        ================================================== -->
+
+    <section id="tierprofile">
+        <h2>Tierprofile</h2>
+
+        <p>
+            <a href="balu.html">Mehr über Balu</a>
+        </p>
+
+        <p>
+            <a href="minka.html">Mehr über Minka</a>
+        </p>
+
+        <p>
+            <a href="keks.html">Mehr über Keks</a>
+        </p>
+
+        <p>
+            <a
+                href="https://www.tierschutzbund.de"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Deutscher Tierschutzbund
+            </a>
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+         LEVEL 3 - KONTAKT ZUM TIERHEIM
+         ================================================== -->
+
+    <section id="kontaktmoeglichkeiten">
+        <h2>Kontakt zum Tierheim</h2>
+
+        <h3>E-Mail</h3>
+
+        <p>
+            <a href="mailto:kontakt@pfotenhausen.de?subject=Frage%20zu%20einem%20Tier&amp;body=Hallo%20Tierheim-Team%2C%0D%0A%0D%0Aich%20interessiere%20mich%20f%C3%BCr%20ein%20Tier.">
+                Tierheim per E-Mail kontaktieren
+            </a>
+        </p>
+
+        <h3>Telefon</h3>
+
+        <p>
+            <a href="tel:+49123456789">
+                Tierheim anrufen
+            </a>
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 4 - DER FÜTTERUNGSPLAN
+        ================================================== -->
+
+    <section id="fuetterung">
+        <h2>Der Fütterungsplan</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Tier</th>
+                    <th scope="col">Futter</th>
+                    <th scope="col">Menge</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Balu</td>
+                    <td>Hundefutter</td>
+                    <td>300 g</td>
+                </tr>
+
+                <tr>
+                    <td>Minka</td>
+                    <td>Katzenfutter</td>
+                    <td>180 g</td>
+                </tr>
+
+                <tr>
+                    <td>Keks</td>
+                    <td>Heu</td>
+                    <td>150 g</td>
+                </tr>
+
+                <tr>
+                    <td>Professor Pieps</td>
+                    <td>Körner</td>
+                    <td>40 g</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        Alle Tiere bekommen zusätzlich frisches Wasser.
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <p>
+            <strong>Denkfrage:</strong>
+            Das benötigte HTML-Attribut heißt <code>colspan</code>.
+        </p>
+
+        <p>
+            Mit <code>colspan="3"</code> erstreckt sich eine Tabellenzelle über alle drei Spalten der Tabelle.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 5 - DER PFLEGEPLAN
+        ================================================== -->
+
+    <section id="pflegeplan">
+        <h2>Der Pflegeplan</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Vormittag</th>
+                    <th scope="col">Nachmittag</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row">Montag</th>
+
+                    <td rowspan="2">
+                        Hundeauslauf
+                    </td>
+
+                    <td>
+                        Katzenpflege
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Dienstag</th>
+
+                    <td>
+                        Käfige reinigen
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Mittwoch</th>
+
+                    <td colspan="2">
+                        Tierarztbesuch
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Unterschied zwischen rowspan und colspan</h3>
+
+        <p>
+            <code>rowspan</code> verbindet beziehungsweise erweitert
+            eine Tabellenzelle über mehrere <strong>Zeilen</strong>.
+        </p>
+
+        <p>
+            <code>colspan</code> verbindet beziehungsweise erweitert
+            eine Tabellenzelle über mehrere <strong>Spalten</strong>.
+        </p>
+
+        <p>
+            In dieser Tabelle wird deshalb
+            <code>rowspan="2"</code> für „Hundeauslauf“ verwendet.
+            Dadurch gilt diese Zelle sowohl für Montag als auch für Dienstag.
+        </p>
+
+        <p>
+            Für „Tierarztbesuch“ wird
+            <code>colspan="2"</code> verwendet.
+            Dadurch belegt die Zelle sowohl die Spalte „Vormittag“
+            als auch die Spalte „Nachmittag“.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        FINAL BOSS - DIE ADOPTIONSUNTERLAGEN
+        ================================================== -->
+
+    <section id="adoption">
+        <h2>Die Adoptionsunterlagen</h2>
+
+        <p>
+            <a href="adoptionsformular.pdf" download>
+                Adoptionsformular herunterladen
+            </a>
+        </p>
+
+        <h3>Was macht das download-Attribut?</h3>
+
+        <p>
+            Das Attribut <code>download</code> gibt dem Browser an,
+            dass die verlinkte Datei heruntergeladen werden soll,
+            anstatt sie nur als normale Webseite oder Datei zu öffnen.
+        </p>
+
+        <h3>
+            Was passiert, wenn die Datei nicht im richtigen Ordner liegt?
+        </h3>
+
+        <p>
+            Wenn die Datei <code>adoptionsformular.pdf</code>
+            unter dem angegebenen Pfad nicht gefunden werden kann,
+            funktioniert der Download nicht.
+        </p>
+
+        <p>
+            Auf einem Webserver erscheint dann normalerweise eine
+            Fehlermeldung wie <strong>404 Not Found</strong>.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 6 - SCHNELL DURCH DIE SEITE
+        ================================================== -->
+
+    <section id="kontakt">
+        <h2>Kontakt und Besuch</h2>
+
+        <p>
+            Tierheim Pfotenhausen
+        </p>
+
+        <p>
+            E-Mail:
+            <a href="mailto:kontakt@pfotenhausen.de">
+                kontakt@pfotenhausen.de
+            </a>
+        </p>
+
+        <p>
+            Telefon:
+            <a href="tel:+49123456789">
+                +49 123 456789
+            </a>
+        </p>
+
+        <p>
+            <a href="#tiere">Zurück zu unseren Tieren</a>
+        </p>
+    </section>
+
+</body>
+</html>

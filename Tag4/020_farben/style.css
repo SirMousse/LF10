@@ -1,0 +1,88 @@
+/* Grundlagen unserer .box Klasse */
+.box{
+    padding: 12px;
+    border: 2px solid rgb(2, 197,245);
+    margin: 10px 0;
+    background: antiquewhite;
+}
+
+/*Farbnamen*/
+.name-red{
+    color: red;
+}
+
+.name-blue{
+    color: blue;
+}
+
+.name-green{
+    color: green;
+}
+
+/*Hex-Farben*/
+.hex-red{
+    color: #ff0000;
+}
+
+.hex-blue{
+    color: #0000ff;
+}
+
+.hex-green{
+    color: #008000;
+}
+
+/*RGB und RGBA */
+.rgb-red{
+    color: rgb(255, 0, 0);
+}
+
+.rgba-red{
+    color: rgba(255, 0, 0, 0.4);
+}
+
+.rgb-green{
+    color: rgb(0, 128, 0);
+}
+
+.rgba-green{
+    color: rgba(0, 128, 0, 0.6);
+}
+
+.rgb-blue{
+    color: rgb(0, 0, 255);
+}
+
+.rgba-blue{
+    color: rgba(0, 0, 255, 0.8);
+}
+
+/* HSL und HSLA*/
+.hsl-red{
+    color: hsl(0, 100%, 50%);
+}
+
+.hsla-red{
+    color: hsla(0, 100%, 50%, 0.8);
+}
+
+.hsl-green{
+    color: hsl(120, 100%, 25%);
+}
+
+.hsla-green{
+    color: hsla(120, 100%, 25%, 0.6);
+}
+
+.hsl-blue{
+    color: hsl(220, 80%, 50%);
+}
+
+.hsla-blue{
+    color: hsla(220, 80%, 50%, 0.4);
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5;
+}

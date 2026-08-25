@@ -1,0 +1,516 @@
+HTML-ZELDA-ABENTEUER – DER TEMPEL DER VERLORENEN FRAGMENTE
+============================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: helden_quest.html
+
+MISSION
+Das Königreich Hyrule ist in Aufruhr.
+
+Drei magische Fragmente wurden aus dem alten Tempel gestohlen.
+Ohne sie kann das Schutzsiegel des Königreichs nicht erneuert werden.
+
+Du übernimmst die Rolle eines jungen Helden und sollst eine vollständige
+HTML-Webseite für die Expedition erstellen.
+
+Die Webseite soll:
+- die Quest erklären,
+- Orte und Gefahren dokumentieren,
+- dein Inventar darstellen,
+- wichtige Hinweise sammeln,
+- und neue Gefährten für die Reise anmelden.
+
+WICHTIG:
+Du bekommst nicht überall genau vorgegeben, WO ein HTML-Element hingehört.
+Du musst selbst entscheiden, welche Struktur sinnvoll ist.
+
+============================================================
+LEVEL 1 – DAS ERWACHEN DES HELDEN | ca. 8 Minuten
+============================================================
+
+Erstelle ein vollständiges HTML-Grundgerüst.
+
+Pflicht:
+
+- <!DOCTYPE html>
+- <html> mit deutscher Sprache
+- <head>
+- UTF-8
+- viewport
+- description
+- sinnvoller <title>
+- <body>
+
+Der Browser-Tab soll ungefähr heißen:
+
+„Hyrule – Die verlorenen Fragmente“
+
+Strukturiere die sichtbare Seite sinnvoll mit:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Verwende außerdem:
+
+- h1
+- h2
+- h3
+- p
+- strong
+- b
+- br
+- hr
+
+STORY:
+Schreibe eine kurze Einleitung.
+
+Die drei Fragmente des uralten Siegels wurden gestohlen.
+Die letzte Spur führt in einen verlassenen Tempel im Nebelwald.
+
+Ein alter Mann behauptet:
+
+„Es ist gefährlich, allein zu gehen.“
+
+Baue mindestens 5 sinnvolle HTML-Kommentare ein.
+
+DENKFRAGE ALS HTML-KOMMENTAR:
+Was ist der Unterschied zwischen <section>, <article> und <aside>?
+
+============================================================
+LEVEL 2 – DIE KARTE VON HYRULE | ca. 7 Minuten
+============================================================
+
+Erstelle eine Navigation mit Sprungmarken zu:
+
+- Quest
+- Orte
+- Inventar
+- Gefahren
+- Gefährten anmelden
+
+Nutze dafür passende id-Attribute.
+
+Zusätzlich brauchst du:
+
+1. einen Link zu einer lokalen HTML-Datei
+2. einen externen Link
+3. target="_blank"
+4. rel="noopener noreferrer"
+5. einen mailto-Link zur königlichen Wache
+6. einen tel-Link zur fiktiven Notfallzentrale
+7. ganz unten einen Link:
+   „Zurück zum Schloss“
+
+FEHLERSUCHE:
+
+Warum funktioniert dieser Link nicht?
+
+<a href="#tempel">Zum Tempel</a>
+
+<section id="alter-tempel">
+    ...
+</section>
+
+Erkläre den Fehler als HTML-Kommentar.
+
+============================================================
+LEVEL 3 – DAS INVENTAR DES HELDEN | ca. 8 Minuten
+============================================================
+
+Erstelle eine <ul> mit mindestens 7 Gegenständen.
+
+Zum Beispiel:
+
+- Schwert
+- Schild
+- Bogen
+- Fackel
+- Karte
+- Heiltrank
+- 17 Rubine
+- verdächtig aussehender Schlüssel
+
+Danach:
+
+Erstelle eine <ol> mit mindestens 5 Schritten:
+
+„Was tun, wenn plötzlich ein Bossgegner erscheint?“
+
+Verwende mindestens eines:
+
+type
+start
+reversed
+
+SCHWIERIGER:
+
+Erstelle eine korrekt verschachtelte Liste:
+
+Hyrule
+    Schloss
+        Thronsaal
+        Bibliothek
+    Nebelwald
+        Verlorener Pfad
+        Feenquelle
+    Alter Tempel
+        Eingangshalle
+        Rätselkammer
+            Schalterraum
+            Schatzkammer
+        Bossraum
+
+Die Unterlisten müssen innerhalb der passenden <li>-Elemente liegen.
+
+============================================================
+LEVEL 4 – DAS HELDENLEXIKON | ca. 5 Minuten
+============================================================
+
+Erstelle mit:
+
+<dl>
+<dt>
+<dd>
+
+ein kleines Abenteuer-Lexikon.
+
+Mindestens 5 Begriffe.
+
+Zum Beispiel:
+
+Rubin
+Dungeon
+Boss
+Artefakt
+Quest
+Trank
+
+Mindestens EIN <dt> muss zwei <dd>-Beschreibungen besitzen.
+
+============================================================
+LEVEL 5 – GEFAHREN IM KÖNIGREICH | ca. 10 Minuten
+============================================================
+
+Erstelle eine Tabelle:
+
+„Gefahren auf der Reise“
+
+Spalten:
+
+Gefahr | Ort | Stärke | Belohnung | Gegenmaßnahme
+
+Mindestens 5 Einträge.
+
+Beispiele:
+
+Schleimmonster | Nebelwald | 1 | 3 Rubine | Schwert
+Skelettkrieger | Alter Tempel | 3 | Schlüssel | Schild
+Tempelwächter | Bossraum | 5 | Fragment | Gute Vorbereitung
+Huhn mit schlechter Laune | Dorf | 99 | Keine | Weglaufen
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- scope="col"
+- mindestens einmal scope="row"
+- colspan ODER rowspan
+
+Im <tfoot> soll ein lustiges Gesamturteil stehen.
+
+Beispiel:
+
+„Fazit: Der Boss ist gefährlich. Das Huhn ist gefährlicher.“
+
+KNOBELFRAGE:
+Warum sollte man Tabellenüberschriften mit <th> statt nur
+mit einem fett geschriebenen <td> erstellen?
+
+============================================================
+LEVEL 6 – GEFÄHRTEN FÜR DIE QUEST | ca. 14 Minuten
+============================================================
+
+Erstelle ein Formular:
+
+„Für die Heldenreise anmelden“
+
+Nutze:
+
+<form action="" method="post">
+
+FELDER:
+
+1. Heldenname
+   - type="text"
+   - required
+   - placeholder
+
+2. E-Mail
+   - type="email"
+   - required
+
+3. Telefonnummer
+   - type="tel"
+
+4. Startdatum
+   - type="date"
+
+5. Helden-Level
+   - type="number"
+   - min="1"
+   - max="20"
+
+6. Warum möchtest du mitkommen?
+   - textarea
+   - minlength="20"
+   - maxlength="250"
+   - required
+
+7. Klasse
+   - select
+   - mindestens 5 option-Einträge
+
+Zum Beispiel:
+
+- Schwertkämpfer
+- Bogenschütze
+- Magier
+- Heiler
+- Abenteurer
+
+Die erste Option soll:
+
+selected
+disabled
+value=""
+
+besitzen.
+
+8. Bevorzugter Kontakt
+
+Zwei radio-Buttons:
+
+- E-Mail
+- Telefon
+
+Beide müssen zur selben Gruppe gehören.
+
+9. Ausrüstung
+
+Mindestens 3 checkbox-Felder.
+
+Zum Beispiel:
+
+- Schild
+- Heiltrank
+- Fackel
+
+10. Pflicht-Checkbox:
+
+„Ich verspreche, keine Töpfe ohne guten Grund zu zerstören.“
+
+required
+
+Jedes sinnvolle Feld braucht korrekt verbunden:
+
+<label for="...">
+
+und
+
+id="..."
+
+BUTTONS:
+
+- submit → „Quest beginnen“
+- reset → „Zurück ins Dorf“
+- button → „BOSSRAUM ÖFFNEN“
+
+Der normale Button macht ohne JavaScript nichts.
+
+============================================================
+LEVEL 7 – DEBUGGING: DER VERFLUCHTE CODE | ca. 5 Minuten
+============================================================
+
+Ein Magier hat den Quellcode verzaubert.
+
+Dabei entstand:
+
+<nav>
+    <a href="#boss">Zum Bossraum</a>
+</nav>
+
+<section id="bossraum">
+    <h2>Bossraum</h2>
+</section>
+
+<label for="held">Heldenname:</label>
+<input type="text" id="name">
+
+<input type="radio" name="taube" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="telefon" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Geheime Karte</a>
+
+<ul>
+    <li>Inventar
+        <ul>
+            <li>Schwert
+            <li>Schild</li>
+        </ul>
+</ul>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme oder unsaubere Stellen.
+
+Korrigiere den Code.
+
+Erkläre mindestens 3 Änderungen als HTML-Kommentar.
+
+============================================================
+LEVEL 8 – DIE PRÜFUNG DER WEISHEIT | ca. 3 Minuten
+============================================================
+
+Beantworte ganz unten als HTML-Kommentare:
+
+1. Was macht href?
+2. Wie funktioniert eine Sprungmarke?
+3. Unterschied zwischen <ul> und <ol>?
+4. Wann benutzt man <dl>?
+5. Wofür braucht man <li>?
+6. Unterschied zwischen <th> und <td>?
+7. Was machen colspan und rowspan?
+8. Was bewirkt required?
+9. Warum haben zusammengehörige radio-Buttons denselben name?
+10. Unterschied zwischen submit, reset und button?
+11. Welche Aufgaben haben header, main und footer?
+
+============================================================
+BONUS – MEISTER DER DUNGEONS
+============================================================
+
+Wenn du früher fertig bist:
+
+BONUS 1:
+Erstelle eine zweite Tabelle:
+
+„Gefundene Schätze“
+
+Gegenstand | Wert | Fundort | Seltenheit
+
+BONUS 2:
+Verwende rowspan UND colspan sinnvoll.
+
+BONUS 3:
+Erstelle eine <ol reversed>.
+
+BONUS 4:
+Baue einen mailto-Link mit bereits eingetragenem Betreff.
+
+BONUS 5:
+Verstecke dieses Easter Egg als HTML-Kommentar:
+
+<!-- Der echte Endgegner waren die 37 Töpfe, die wir unterwegs zerstört haben. -->
+
+BONUS 6:
+Erstelle eine zusätzliche Sprungmarke:
+
+„Direkt zum Bossraum“
+
+BONUS 7:
+Erstelle im <aside> eine Infobox:
+
+„GEGENSTAND DES TAGES“
+
+mit:
+- Name
+- Nutzen
+- Fundort
+- lustiger Beschreibung
+
+============================================================
+ENDGEGNER – TEMPELKONTROLLE
+============================================================
+
+Überprüfe deine Webseite:
+
+[ ] vollständiges HTML-Grundgerüst
+[ ] sinnvolle semantische Struktur
+[ ] header / nav / main / footer
+[ ] section / article / aside
+[ ] h1 / h2 / h3
+[ ] p / strong / b / br / hr
+[ ] interne Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target + rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Liste
+[ ] dl / dt / dd
+[ ] Tabelle
+[ ] caption
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / for / id
+[ ] verschiedene input-Typen
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Debugging gelöst
+[ ] mindestens 5 HTML-Kommentare
+
+============================================================
+QUEST ERFOLGREICH?
+============================================================
+
+Die Quest ist bestanden, wenn:
+
+1. deine Webseite funktioniert,
+2. die HTML-Struktur sinnvoll ist,
+3. du erklären kannst, warum du die Elemente verwendet hast,
+4. alle drei Fragmente gefunden wurden.
+
+TEMPELPROTOKOLL:
+
+> Erstes Fragment gefunden...
+> Zweites Fragment gefunden...
+> Bossraum geöffnet...
+
+> WARNUNG:
+> Ein Huhn wurde versehentlich angegriffen.
+
+> Noch größere Warnung:
+> 47 weitere Hühner nähern sich.
+
+> QUESTSTATUS:
+> LAUF.
+
+ENDE

@@ -1,0 +1,944 @@
+============================================================
+              CSS-ÜBUNG: TIERHEIM PFOTENGLÜCK
+============================================================
+
+Dauer: ungefähr 40 Minuten
+
+Situation:
+
+Du hilfst im Tierheim "Pfotenglück".
+
+Eigentlich solltest du Hunde ausführen,
+Katzen füttern
+und möglichst nicht von einem Kaninchen beurteilt werden.
+
+Dann hat jemand herausgefunden,
+dass du "irgendwas mit Webseiten" kannst.
+
+Seitdem sollst du die Tierheim-Webseite schöner machen.
+
+Die aktuelle Seite funktioniert zwar,
+sieht aber ungefähr so aus,
+als hätte ein sehr motivierter Hamster sie gestaltet.
+
+Deine Aufgabe:
+
+Mach die Webseite mit CSS schöner.
+
+Heute brauchst du:
+
+- externes CSS
+- internes CSS
+- Inline CSS
+- color
+- background
+- padding
+- margin
+- border
+
+Am Ende lernst du noch genau EINE neue CSS-Eigenschaft.
+
+Keine Sorge.
+
+Du musst heute keine komplette Webseite bauen.
+
+Die Tiere haben bereits genug Chaos organisiert.
+
+
+============================================================
+AUFGABE 1: DATEIEN VORBEREITEN
+============================================================
+
+Erstelle einen Ordner:
+
+tierheim-css
+
+
+Darin brauchst du:
+
+index.html
+
+style.css
+
+
+Erstelle in index.html ein normales HTML-Grundgerüst.
+
+Du brauchst also unter anderem:
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<body>
+
+
+Gib der Webseite außerdem den Titel:
+
+Tierheim Pfotenglück
+
+
+============================================================
+AUFGABE 2: EXTERNES CSS EINBINDEN
+============================================================
+
+Verbinde deine HTML-Datei mit:
+
+style.css
+
+
+Die CSS-Datei soll im <head> eingebunden werden.
+
+
+TIPP:
+
+Dafür gibt es das Element:
+
+<link>
+
+
+Versuche zuerst selbst herauszufinden,
+wie die vollständige Zeile aussehen muss.
+
+
+Falls nichts funktioniert:
+
+1. Speichern.
+2. Dateinamen überprüfen.
+3. Pfad überprüfen.
+4. Browser aktualisieren.
+5. Nicht sofort die Katze beschuldigen.
+
+Auch wenn sie verdächtig aussieht.
+
+
+============================================================
+AUFGABE 3: DAS TIERHEIM BRAUCHT INHALT
+============================================================
+
+Erstelle im <body>:
+
+Eine Hauptüberschrift:
+
+Tierheim Pfotenglück
+
+
+Darunter einen Absatz:
+
+Viele Tiere suchen ein Zuhause.
+Manche suchen zusätzlich dein Pausenbrot.
+
+
+Erstelle danach eine Überschrift:
+
+Unsere Tiere
+
+
+============================================================
+AUFGABE 4: TIER NUMMER 1
+============================================================
+
+Erstelle ein <article>.
+
+
+Das article bekommt:
+
+class="tier"
+
+
+Schreibe hinein:
+
+
+<h2>Bello</h2>
+
+
+und:
+
+
+<p>
+Bello ist ein freundlicher Hund.
+Er liebt Spaziergänge,
+Bälle und Menschen mit Snacks.
+</p>
+
+
+Alter:
+
+<p>Alter: 4 Jahre</p>
+
+
+============================================================
+AUFGABE 5: NOCH MEHR TIERE
+============================================================
+
+Erstelle zwei weitere Tiere.
+
+
+Beide sollen ebenfalls:
+
+class="tier"
+
+bekommen.
+
+
+TIER 2:
+
+Name:
+
+Minka
+
+
+Beschreibung:
+
+Minka ist eine ruhige Katze.
+Sie schläft ungefähr 18 Stunden am Tag
+und ist in den restlichen 6 Stunden beschäftigt,
+dich zu ignorieren.
+
+
+Alter:
+
+6 Jahre
+
+
+TIER 3:
+
+Name:
+
+Krümel
+
+
+Beschreibung:
+
+Krümel ist ein Kaninchen.
+Er ist klein,
+schnell
+und überraschend gut darin,
+Kabel interessant zu finden.
+
+
+Alter:
+
+2 Jahre
+
+
+Jetzt solltest du insgesamt drei:
+
+<article class="tier">
+
+haben.
+
+
+============================================================
+AUFGABE 6: EXTERNES CSS
+============================================================
+
+Öffne jetzt:
+
+style.css
+
+
+Style dort zuerst den body.
+
+
+Benutze:
+
+font-family: Arial, Helvetica, sans-serif;
+
+line-height: 1.5;
+
+
+Danach kümmern wir uns um:
+
+.tier
+
+
+Jedes Tier soll einen Rahmen bekommen:
+
+border: 2px solid black;
+
+
+Außerdem soll jedes Tier bekommen:
+
+padding: 10px;
+
+margin: 10px 0;
+
+
+Speichern.
+
+Webseite anschauen.
+
+
+============================================================
+KURZE DENKPAUSE
+============================================================
+
+Schau dir deine Tier-Boxen an.
+
+
+Was macht:
+
+border?
+
+
+Was macht:
+
+padding?
+
+
+Was macht:
+
+margin?
+
+
+Versuche es mit eigenen Worten zu erklären.
+
+
+TIPP:
+
+
+padding
+
+ist der Abstand INNERHALB eines Elements.
+
+
+margin
+
+ist der Abstand AUSSERHALB eines Elements.
+
+
+Stell dir eine Transportbox vor:
+
+Das Tier sitzt innen.
+
+padding wäre der Platz zwischen dem Tier
+und dem Rand der Box.
+
+margin wäre der Abstand
+zwischen dieser Box und der nächsten Box.
+
+
+============================================================
+AUFGABE 7: KLEINES EXPERIMENT
+============================================================
+
+Ändere bei .tier kurz:
+
+padding: 10px;
+
+zu:
+
+padding: 40px;
+
+
+Was verändert sich?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+padding: 10px;
+
+
+Jetzt ändere:
+
+margin: 10px 0;
+
+zu:
+
+margin: 40px 0;
+
+
+Was verändert sich diesmal?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+margin: 10px 0;
+
+
+FRAGE:
+
+Kannst du jetzt den Unterschied zwischen
+padding und margin erklären?
+
+
+============================================================
+AUFGABE 8: INTERNES CSS
+============================================================
+
+Jetzt benutzen wir internes CSS.
+
+
+Gehe in deine index.html.
+
+
+Erstelle im <head> einen:
+
+<style>
+
+</style>
+
+
+Erstelle darin die Klasse:
+
+.wichtig
+
+
+Sie soll folgende Eigenschaften bekommen:
+
+
+Schriftfarbe:
+
+darkred
+
+
+Hintergrund:
+
+#ffeeee
+
+
+Innenabstand:
+
+10px
+
+
+Den CSS-Code dafür musst du selbst schreiben.
+
+
+============================================================
+AUFGABE 9: WICHTIGER HINWEIS
+============================================================
+
+Erstelle unter deinen Tieren einen Absatz:
+
+
+ACHTUNG:
+Der Futterschrank wurde geöffnet.
+Niemand weiß von wem.
+Der Labrador schweigt.
+
+
+Gib diesem Absatz:
+
+class="wichtig"
+
+
+Wenn der Absatz jetzt anders aussieht:
+
+Sehr gut.
+
+Das interne CSS funktioniert.
+
+
+Der Labrador sieht weiterhin unschuldig aus.
+
+Sehr verdächtig.
+
+
+============================================================
+AUFGABE 10: INLINE CSS
+============================================================
+
+Jetzt brauchen wir noch Inline CSS.
+
+
+Erstelle einen neuen Absatz:
+
+
+Tierheimstatus:
+Geöffnet.
+Alle Tiere wurden gezählt.
+Fast alle.
+
+
+Diesen Absatz sollst du DIREKT im HTML stylen.
+
+
+Benutze dafür:
+
+style=""
+
+
+Der Absatz soll bekommen:
+
+
+color: green;
+
+background: #e6ffe6;
+
+padding: 8px;
+
+
+Wichtig:
+
+Dafür KEINE Klasse erstellen.
+
+
+============================================================
+DENKFRAGE
+============================================================
+
+Du hast jetzt drei Arten von CSS benutzt.
+
+
+1. Wo steht EXTERNES CSS?
+
+
+____________________________
+
+
+2. Wo steht INTERNES CSS?
+
+
+____________________________
+
+
+3. Wo steht INLINE CSS?
+
+
+____________________________
+
+
+Versuche die Fragen zu beantworten,
+ohne nach oben zu schauen.
+
+
+============================================================
+AUFGABE 11: DER CSS-TEST
+============================================================
+
+Jetzt testen wir,
+welche CSS-Regel gewinnt.
+
+
+Erstelle einen neuen Absatz:
+
+
+<p class="test">
+Welche Farbe bekomme ich?
+</p>
+
+
+Schreibe in deine EXTERNE style.css:
+
+
+.test {
+    color: blue;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text?
+
+
+____________________________
+
+
+Jetzt schreibst du in dein INTERNES CSS:
+
+
+.test {
+    color: green;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Zum Schluss bekommt der Absatz Inline CSS:
+
+
+style="color: purple;"
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Was fällt dir auf?
+
+
+Für diese Übung kannst du dir merken:
+
+
+Inline CSS
+
+hat normalerweise eine sehr hohe Priorität.
+
+
+Wenn zwei gleich starke Regeln vorhanden sind,
+kann auch die Reihenfolge wichtig sein.
+
+
+Das Thema dahinter heißt:
+
+CSS Cascade
+
+
+Das schauen wir uns später genauer an.
+
+
+Für heute reicht es zu wissen:
+
+Mehrere CSS-Regeln können gleichzeitig
+auf dasselbe Element wirken.
+
+
+Ein bisschen wie drei Katzen,
+die gleichzeitig denselben Karton wollen.
+
+
+============================================================
+AUFGABE 12: EINE NEUE SACHE
+============================================================
+
+Jetzt lernst du genau EINE neue CSS-Eigenschaft.
+
+
+border-radius
+
+
+Füge bei:
+
+.tier
+
+folgende Zeile hinzu:
+
+
+border-radius: 10px;
+
+
+Speichern und anschauen.
+
+
+Was hat sich verändert?
+
+
+____________________________
+
+
+Teste danach kurz:
+
+border-radius: 30px;
+
+
+Was passiert?
+
+
+____________________________
+
+
+Stelle danach einen Wert ein,
+der dir gefällt.
+
+
+MERKE:
+
+border-radius
+
+macht die Ecken eines Elements rund.
+
+
+Die Tiere werden davon nicht runder.
+
+Nur ihre Boxen.
+
+
+============================================================
+ABSCHLUSSAUFGABE
+============================================================
+
+Jetzt bekommst du weniger Hilfe.
+
+
+Erstelle ein viertes Tier:
+
+
+Name:
+
+Rocky
+
+
+Beschreibung:
+
+Rocky ist ein älterer Hund.
+Er läuft nicht mehr besonders schnell,
+hat aber jahrelange Erfahrung darin,
+genau dort zu liegen,
+wo man gerade entlanggehen möchte.
+
+
+Alter:
+
+11 Jahre
+
+
+Das Tier soll genauso aussehen
+wie die anderen Tiere.
+
+
+Überlege:
+
+Welche Klasse musst du verwenden?
+
+
+============================================================
+BONUS FÜR SCHNELLE
+============================================================
+
+Nur wenn du früher fertig bist:
+
+
+Erstelle eine neue Klasse:
+
+.dringend
+
+
+Sie soll:
+
+- rote Schrift haben
+- einen hellen Hintergrund haben
+- einen Rahmen haben
+- padding haben
+
+
+Erstelle danach ein weiteres Tier:
+
+
+Name:
+
+Luna
+
+
+Beschreibung:
+
+Luna sucht dringend ein neues Zuhause.
+Sie ist freundlich,
+verspielt
+und hält Hausschuhe offenbar für Beute.
+
+
+Alter:
+
+3 Jahre
+
+
+Gib Luna:
+
+class="tier"
+
+
+UND zusätzlich die Klasse:
+
+dringend
+
+
+Versuche herauszufinden,
+wie ein HTML-Element ZWEI Klassen bekommen kann.
+
+
+TIPP:
+
+Die Lösung sieht NICHT so aus:
+
+
+class="tier"
+class="dringend"
+
+
+Ein Element braucht nur EIN class-Attribut.
+
+
+Die beiden Klassen werden innerhalb
+des class-Attributs eingetragen.
+
+
+============================================================
+MINI-CHECK AM ENDE
+============================================================
+
+Kannst du diese Begriffe erklären?
+
+
+color
+=
+
+____________________________
+
+
+background
+=
+
+____________________________
+
+
+padding
+=
+
+____________________________
+
+
+margin
+=
+
+____________________________
+
+
+border
+=
+
+____________________________
+
+
+border-radius
+=
+
+____________________________
+
+
+Inline CSS
+=
+
+____________________________
+
+
+Internes CSS
+=
+
+____________________________
+
+
+Externes CSS
+=
+
+____________________________
+
+
+============================================================
+LETZTE FRAGEN
+============================================================
+
+Wo wird externes CSS geschrieben?
+
+
+____________________________
+
+
+Wie wird eine externe CSS-Datei
+mit HTML verbunden?
+
+
+____________________________
+
+
+Wo befindet sich internes CSS?
+
+
+____________________________
+
+
+Wo befindet sich Inline CSS?
+
+
+____________________________
+
+
+Was ist der Unterschied zwischen
+padding und margin?
+
+
+____________________________
+
+
+Was macht ein border?
+
+
+____________________________
+
+
+Was macht border-radius?
+
+
+____________________________
+
+
+============================================================
+GESCHAFFT
+============================================================
+
+Wenn du jetzt weißt:
+
+- wie eine CSS-Datei eingebunden wird
+- was externes CSS ist
+- was internes CSS ist
+- was Inline CSS ist
+- was color macht
+- was background macht
+- was padding macht
+- was margin macht
+- was border macht
+
+dann ist das Ziel erreicht.
+
+
+Wenn du außerdem verstanden hast,
+was border-radius macht:
+
+Bonuswissen erfolgreich freigeschaltet.
+
+
+Und wenn du padding und margin
+nicht mehr verwechselst:
+
+Dann bekommst du im Tierheim offiziell den Titel:
+
+"Junior-Pfleger für Abstände und Rahmen"
+
+
+Die Katze ist davon nicht beeindruckt.
+
+Das ist normal.
+
+
+Die Webseite funktioniert.
+
+Die Tiere sind versorgt.
+
+Der Futterschrank ist wieder zu.
+
+Der Labrador behauptet,
+mit der Sache nichts zu tun zu haben.
+
+
+Nächstes mögliches Thema:
+
+:hover
+
+oder
+
+Flexbox
+
+
+Aber nicht heute.
+
+Erst einmal muss jemand herausfinden,
+wer schon wieder die Leckerli-Schublade geöffnet hat.
+============================================================

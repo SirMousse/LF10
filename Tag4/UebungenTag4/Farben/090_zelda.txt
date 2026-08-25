@@ -1,0 +1,32 @@
+Zelda-Abenteuer
+
+Thema: Zelda / Fantasy-Abenteuer
+
+Ziel: Naturfarben, Goldfarben und magische Farben kombinieren
+
+Aufgabe:
+
+Erstelle eine kleine Abenteuerseite mit:  - einem Himmel
+                                           - einer grünen Landschaft
+                                           - einem Helden-Bereich
+                                           - 3 Gegenstandskarten:
+                                                 - Schwert
+                                                 - Schild
+                                                 - Trank
+                                           - einem Button „Abenteuer starten!“
+
+Bedingungen:    - Der Himmel soll rgb() verwenden.
+                - Die Landschaft soll hsl() verwenden.
+                - Das Schwert soll eine Hex-Farbe bekommen.
+                - Der Schild soll einen Farbnamen verwenden.
+                - Der Trank soll einen halbtransparenten Hintergrund
+                  mit rgba() bekommen.
+                - Der Button soll beim Hover seine Farbe ändern.
+
+Extra-Challenge:
+
+Erstelle drei verschiedene Tränke:  - Leben
+                                    - Magie
+                                    - Ausdauer
+
+Verwende für jeden Trank ein anderes Farbmodell.

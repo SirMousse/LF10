@@ -1,0 +1,32 @@
+Abenteuer-Gilde
+
+Thema: Fantasy / Abenteuer
+
+Ziel: verschiedene Farben für Heldenklassen einsetzen
+
+Aufgabe:
+
+Erstelle eine Gilden-Webseite mit:  - einem Gildennamen
+                                    - einem Bereich „Unsere Helden“
+                                    - 4 Helden-Karten:
+                                          - Krieger
+                                          - Magier
+                                          - Bogenschütze
+                                          - Heiler
+                                    - einem Button „Quest annehmen!“
+
+Bedingungen:    - Jede Heldenklasse soll eine andere Farbe bekommen.
+                - Zwei Klassen sollen Hex-Farben verwenden.
+                - Eine Klasse soll rgb() verwenden.
+                - Eine Klasse soll hsl() verwenden.
+                - Der Hintergrund soll mit einer Hex-Farbe gestaltet werden.
+                - Der Quest-Button soll beim Hover seine Farbe ändern.
+
+Extra-Challenge:
+
+Füge Seltenheitsstufen hinzu:  - Gewöhnlich
+                               - Selten
+                               - Episch
+                               - Legendär
+
+Jede Seltenheitsstufe soll eine eigene Farbe bekommen.

@@ -1,0 +1,939 @@
+============================================================
+              CSS-ÜBUNG: DETEKTIVBÜRO 404
+============================================================
+
+Dauer: ungefähr 40 Minuten
+
+Situation:
+
+Du arbeitest neu im Detektivbüro "404".
+
+Eigentlich solltest du nur Akten sortieren.
+
+Dann hat dein Chef gesehen,
+dass du "irgendwas mit Webseiten" kannst.
+
+Seitdem ist das dein Problem.
+
+Die Webseite des Büros sieht nämlich aus,
+als hätte ein Verdächtiger sie absichtlich sabotiert.
+
+Deine Aufgabe:
+
+Mach die Detektiv-Webseite mit CSS schöner.
+
+Heute brauchst du:
+
+- externes CSS
+- internes CSS
+- Inline CSS
+- color
+- background
+- padding
+- margin
+- border
+
+Am Ende lernst du noch genau EINE neue CSS-Eigenschaft.
+
+Keine Sorge.
+
+Du musst heute keinen Mordfall lösen.
+
+Nur CSS.
+
+Das ist manchmal ähnlich kompliziert.
+
+
+============================================================
+AUFGABE 1: DATEIEN VORBEREITEN
+============================================================
+
+Erstelle einen Ordner:
+
+detektivbuero-css
+
+
+Darin brauchst du:
+
+index.html
+
+style.css
+
+
+Erstelle in index.html ein normales HTML-Grundgerüst.
+
+Du brauchst also unter anderem:
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<body>
+
+
+Gib der Webseite außerdem den Titel:
+
+Detektivbüro 404
+
+
+============================================================
+AUFGABE 2: EXTERNES CSS EINBINDEN
+============================================================
+
+Verbinde deine HTML-Datei mit:
+
+style.css
+
+
+Die CSS-Datei soll im <head> eingebunden werden.
+
+
+TIPP:
+
+Dafür gibt es das Element:
+
+<link>
+
+
+Versuche zuerst selbst herauszufinden,
+wie die vollständige Zeile aussehen muss.
+
+
+Falls nichts funktioniert:
+
+1. Speichern.
+2. Dateiname überprüfen.
+3. Pfad überprüfen.
+4. Browser aktualisieren.
+5. Erst dann von Sabotage ausgehen.
+
+
+============================================================
+AUFGABE 3: DAS DETEKTIVBÜRO BRAUCHT INHALT
+============================================================
+
+Erstelle im <body>:
+
+Eine Hauptüberschrift:
+
+Detektivbüro 404
+
+
+Darunter einen Absatz:
+
+Wir finden Hinweise.
+Manchmal sogar die richtigen.
+
+
+Erstelle danach eine Überschrift:
+
+Aktuelle Fälle
+
+
+============================================================
+AUFGABE 4: FALL NUMMER 1
+============================================================
+
+Erstelle ein <article>.
+
+
+Das article bekommt:
+
+class="fall"
+
+
+Schreibe hinein:
+
+
+<h2>Der verschwundene Keks</h2>
+
+
+und:
+
+
+<p>
+Aus der Küche ist ein Keks verschwunden.
+Es gibt drei Verdächtige und sehr viele Krümel.
+</p>
+
+
+Status:
+
+<p>Status: Ermittlungen laufen</p>
+
+
+============================================================
+AUFGABE 5: NOCH MEHR FÄLLE
+============================================================
+
+Erstelle zwei weitere Fälle.
+
+
+Beide sollen ebenfalls:
+
+class="fall"
+
+bekommen.
+
+
+FALL 2:
+
+Name:
+
+Das geheimnisvolle Passwort
+
+
+Beschreibung:
+
+Jemand hat das Passwort zum Bürocomputer geändert.
+Der Chef behauptet,
+es sei vorher "1234" gewesen.
+
+
+Status:
+
+Dringend
+
+
+FALL 3:
+
+Name:
+
+Die verschwundene Zimmerpflanze
+
+
+Beschreibung:
+
+Eine Pflanze ist über Nacht verschwunden.
+Niemand weiß warum.
+Die Pflanze hatte keine bekannten Feinde.
+
+
+Status:
+
+Ungeklärt
+
+
+Jetzt solltest du insgesamt drei:
+
+<article class="fall">
+
+haben.
+
+
+============================================================
+AUFGABE 6: EXTERNES CSS
+============================================================
+
+Öffne jetzt:
+
+style.css
+
+
+Style dort zuerst den body.
+
+
+Benutze:
+
+font-family: Arial, Helvetica, sans-serif;
+
+line-height: 1.5;
+
+
+Danach kümmern wir uns um:
+
+.fall
+
+
+Jeder Fall soll einen Rahmen bekommen:
+
+border: 2px solid black;
+
+
+Außerdem soll jeder Fall bekommen:
+
+padding: 10px;
+
+margin: 10px 0;
+
+
+Speichern.
+
+Webseite anschauen.
+
+
+============================================================
+KURZE DENKPAUSE
+============================================================
+
+Schau dir deine Fall-Boxen an.
+
+
+Was macht:
+
+border?
+
+
+Was macht:
+
+padding?
+
+
+Was macht:
+
+margin?
+
+
+Versuche es mit eigenen Worten zu erklären.
+
+
+TIPP:
+
+
+padding
+
+ist der Abstand INNERHALB eines Elements.
+
+
+margin
+
+ist der Abstand AUSSERHALB eines Elements.
+
+
+Stell dir eine Beweisbox vor:
+
+Der Inhalt liegt innen.
+
+padding ist der Platz zwischen dem Beweis
+und dem Rand der Box.
+
+margin ist der Abstand
+zwischen dieser Box und der nächsten Box.
+
+
+============================================================
+AUFGABE 7: KLEINES EXPERIMENT
+============================================================
+
+Ändere bei .fall kurz:
+
+padding: 10px;
+
+zu:
+
+padding: 40px;
+
+
+Was verändert sich?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+padding: 10px;
+
+
+Jetzt ändere:
+
+margin: 10px 0;
+
+zu:
+
+margin: 40px 0;
+
+
+Was verändert sich diesmal?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+margin: 10px 0;
+
+
+FRAGE:
+
+Kannst du jetzt den Unterschied zwischen
+padding und margin erklären?
+
+
+============================================================
+AUFGABE 8: INTERNES CSS
+============================================================
+
+Jetzt benutzen wir internes CSS.
+
+
+Gehe in deine index.html.
+
+
+Erstelle im <head> einen:
+
+<style>
+
+</style>
+
+
+Erstelle darin die Klasse:
+
+.wichtig
+
+
+Sie soll folgende Eigenschaften bekommen:
+
+
+Schriftfarbe:
+
+darkred
+
+
+Hintergrund:
+
+#ffeeee
+
+
+Innenabstand:
+
+10px
+
+
+Den CSS-Code dafür musst du selbst schreiben.
+
+
+============================================================
+AUFGABE 9: WICHTIGER HINWEIS
+============================================================
+
+Erstelle unter deinen Fällen einen Absatz:
+
+
+ACHTUNG:
+Die Kaffeemaschine ist leer.
+Die Ermittlungsfähigkeit des Teams sinkt rapide.
+
+
+Gib diesem Absatz:
+
+class="wichtig"
+
+
+Wenn der Absatz jetzt anders aussieht:
+
+Sehr gut.
+
+Das interne CSS funktioniert.
+
+
+Der Chef schreibt das als
+"technischen Durchbruch" in den Bericht.
+
+
+============================================================
+AUFGABE 10: INLINE CSS
+============================================================
+
+Jetzt brauchen wir noch Inline CSS.
+
+
+Erstelle einen neuen Absatz:
+
+
+Bürostatus:
+Geöffnet.
+Mindestens eine Person tut so, als würde sie arbeiten.
+
+
+Diesen Absatz sollst du DIREKT im HTML stylen.
+
+
+Benutze dafür:
+
+style=""
+
+
+Der Absatz soll bekommen:
+
+
+color: green;
+
+background: #e6ffe6;
+
+padding: 8px;
+
+
+Wichtig:
+
+Dafür KEINE Klasse erstellen.
+
+
+============================================================
+DENKFRAGE
+============================================================
+
+Du hast jetzt drei Arten von CSS benutzt.
+
+
+1. Wo steht EXTERNES CSS?
+
+
+____________________________
+
+
+2. Wo steht INTERNES CSS?
+
+
+____________________________
+
+
+3. Wo steht INLINE CSS?
+
+
+____________________________
+
+
+Versuche die Fragen zu beantworten,
+ohne nach oben zu schauen.
+
+
+============================================================
+AUFGABE 11: DER CSS-FALL
+============================================================
+
+Jetzt untersuchen wir,
+welche CSS-Regel gewinnt.
+
+
+Erstelle einen neuen Absatz:
+
+
+<p class="spur">
+Welche Farbe bekomme ich?
+</p>
+
+
+Schreibe in deine EXTERNE style.css:
+
+
+.spur {
+    color: blue;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text?
+
+
+____________________________
+
+
+Jetzt schreibst du in dein INTERNES CSS:
+
+
+.spur {
+    color: green;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Zum Schluss bekommt der Absatz Inline CSS:
+
+
+style="color: purple;"
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Was fällt dir auf?
+
+
+Für diese Übung kannst du dir merken:
+
+
+Inline CSS
+
+hat normalerweise eine sehr hohe Priorität.
+
+
+Wenn zwei gleich starke Regeln vorhanden sind,
+kann auch die Reihenfolge wichtig sein.
+
+
+Das Thema dahinter heißt:
+
+CSS Cascade
+
+
+Das schauen wir uns später genauer an.
+
+
+Für heute reicht es zu wissen:
+
+Mehrere CSS-Regeln können gleichzeitig
+auf dasselbe Element wirken.
+
+
+Ein bisschen wie mehrere Zeugen.
+
+Nur dass CSS manchmal widersprüchlicher ist.
+
+
+============================================================
+AUFGABE 12: EINE NEUE SACHE
+============================================================
+
+Jetzt lernst du genau EINE neue CSS-Eigenschaft.
+
+
+border-radius
+
+
+Füge bei:
+
+.fall
+
+folgende Zeile hinzu:
+
+
+border-radius: 10px;
+
+
+Speichern und anschauen.
+
+
+Was hat sich verändert?
+
+
+____________________________
+
+
+Teste danach kurz:
+
+border-radius: 30px;
+
+
+Was passiert?
+
+
+____________________________
+
+
+Stelle danach einen Wert ein,
+der dir gefällt.
+
+
+MERKE:
+
+border-radius
+
+macht die Ecken eines Elements rund.
+
+
+Auch Detektivakten dürfen freundlich aussehen.
+
+Verdächtig freundlich.
+
+
+============================================================
+ABSCHLUSSAUFGABE
+============================================================
+
+Jetzt bekommst du weniger Hilfe.
+
+
+Erstelle einen vierten Fall:
+
+
+Name:
+
+Der kaputte Drucker
+
+
+Beschreibung:
+
+Der Drucker behauptet,
+er habe Papierstau.
+
+Es ist kein Papier drin.
+
+Das macht die Sache verdächtig.
+
+
+Status:
+
+Hochgradig mysteriös
+
+
+Der Fall soll genauso aussehen
+wie die anderen Fälle.
+
+
+Überlege:
+
+Welche Klasse musst du verwenden?
+
+
+============================================================
+BONUS FÜR SCHNELLE
+============================================================
+
+Nur wenn du früher fertig bist:
+
+
+Erstelle eine neue Klasse:
+
+.geheim
+
+
+Sie soll:
+
+- rote oder dunkle Schrift haben
+- einen hellen Hintergrund haben
+- einen Rahmen haben
+- padding haben
+
+
+Erstelle danach einen neuen Fall:
+
+
+Name:
+
+Akte X-404
+
+
+Beschreibung:
+
+In dieser Akte steht etwas sehr Geheimes.
+
+Leider hat jemand
+"sehr geheim"
+mit Textmarker darüber geschrieben.
+
+
+Gib diesem Fall:
+
+class="fall"
+
+
+UND zusätzlich die Klasse:
+
+geheim
+
+
+Versuche herauszufinden,
+wie ein HTML-Element ZWEI Klassen bekommen kann.
+
+
+TIPP:
+
+Die Lösung sieht NICHT so aus:
+
+
+class="fall"
+class="geheim"
+
+
+Ein Element braucht nur EIN class-Attribut.
+
+
+Die beiden Klassen werden innerhalb
+des class-Attributs eingetragen.
+
+
+============================================================
+MINI-CHECK AM ENDE
+============================================================
+
+Kannst du diese Begriffe erklären?
+
+
+color
+=
+
+____________________________
+
+
+background
+=
+
+____________________________
+
+
+padding
+=
+
+____________________________
+
+
+margin
+=
+
+____________________________
+
+
+border
+=
+
+____________________________
+
+
+border-radius
+=
+
+____________________________
+
+
+Inline CSS
+=
+
+____________________________
+
+
+Internes CSS
+=
+
+____________________________
+
+
+Externes CSS
+=
+
+____________________________
+
+
+============================================================
+LETZTE ERMITTLUNGSFRAGEN
+============================================================
+
+Wo wird externes CSS geschrieben?
+
+
+____________________________
+
+
+Wie wird eine externe CSS-Datei
+mit HTML verbunden?
+
+
+____________________________
+
+
+Wo befindet sich internes CSS?
+
+
+____________________________
+
+
+Wo befindet sich Inline CSS?
+
+
+____________________________
+
+
+Was ist der Unterschied zwischen
+padding und margin?
+
+
+____________________________
+
+
+Was macht ein border?
+
+
+____________________________
+
+
+Was macht border-radius?
+
+
+____________________________
+
+
+============================================================
+FALL GELÖST
+============================================================
+
+Wenn du jetzt weißt:
+
+- wie eine CSS-Datei eingebunden wird
+- was externes CSS ist
+- was internes CSS ist
+- was Inline CSS ist
+- was color macht
+- was background macht
+- was padding macht
+- was margin macht
+- was border macht
+
+dann ist das Ziel erreicht.
+
+
+Wenn du außerdem verstanden hast,
+was border-radius macht:
+
+Zusatzfall erfolgreich gelöst.
+
+
+Und wenn du padding und margin
+nicht mehr verwechselst:
+
+Dann erhältst du offiziell den Rang:
+
+"Junior-Ermittler für verdächtige Abstände"
+
+
+Der Chef fragt:
+
+"Wer hat diesen Abstand verursacht?"
+
+
+Du antwortest:
+
+"margin."
+
+
+Der Fall ist geschlossen.
+
+
+Die Webseite funktioniert.
+
+Der Keks ist immer noch verschwunden.
+
+Der Drucker lügt weiterhin.
+
+Aber CSS läuft.
+
+
+Nächstes mögliches Thema:
+
+:hover
+
+oder
+
+Flexbox
+
+
+Aber nicht heute.
+
+Man soll einen Fall schließlich
+nach dem anderen lösen.
+============================================================

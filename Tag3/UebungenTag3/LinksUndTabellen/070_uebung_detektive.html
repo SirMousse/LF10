@@ -1,0 +1,393 @@
+<!--
+============================================================
+AUFGABE: DER FALL DER VERSCHWUNDENEN AKTE
+============================================================
+
+Dauer: ca. 45 Minuten
+Level: Anfänger bis leicht fortgeschritten
+
+Themen:
+- Tabellen
+- Links
+- Sprungmarken
+- E-Mail- und Telefon-Links
+- target und rel
+- colspan und rowspan
+- kleine Recherche-Aufgaben
+
+
+DIE GESCHICHTE
+------------------------------------------------------------
+
+Du arbeitest in der Detektei "Code & Co.".
+
+Eines Morgens ist eine wichtige Fallakte verschwunden.
+Niemand weiß, wer sie genommen hat.
+
+Zum Glück gibt es Hinweise, Verdächtige und einen
+Einsatzplan.
+
+Deine Aufgabe:
+
+Erstelle eine neue HTML-Seite namens
+
+detektiv.html
+
+und dokumentiere den Fall so ordentlich, dass die
+Detektei damit arbeiten kann.
+
+
+============================================================
+LEVEL 1 - DIE VERDÄCHTIGEN
+ca. 7 Minuten
+============================================================
+
+Erstelle die Überschrift:
+
+"Verdächtige Personen"
+
+Darunter soll eine Tabelle mit folgenden Daten entstehen:
+
+
+Name              Beruf              Alibi
+------------------------------------------------------
+Mara Schwarz      Journalistin       im Café
+Theo Blank        Hausmeister        im Keller
+Lina Frost        Fotografin         im Park
+Professor Byte    Informatiker       angeblich zu Hause
+
+
+Die Tabelle soll die Beschriftung
+
+"Verdächtige im Fall der verschwundenen Akte"
+
+bekommen.
+
+
+ANFORDERUNGEN:
+
+Verwende:
+
+- <table>
+- <caption>
+- <tr>
+- <th>
+- <td>
+
+Die Spaltenüberschriften sollen außerdem das passende
+scope-Attribut erhalten.
+
+
+============================================================
+LEVEL 2 - DIE SPUREN
+ca. 6 Minuten
+============================================================
+
+Im Büro wurden mehrere Spuren gefunden.
+
+Erstelle die Überschrift:
+
+"Gefundene Spuren"
+
+Darunter sollen drei Links stehen:
+
+
+1. "Fingerabdruck untersuchen"
+   Ziel: fingerabdruck.html
+
+2. "Kameraaufnahme ansehen"
+   Ziel: kamera.html
+
+3. "Geheime Notiz lesen"
+   Ziel: notiz.html
+
+
+Erstelle danach noch einen Link zu:
+
+https://de.wikipedia.org/wiki/Kriminalistik
+
+Dieser Link soll sich in einem NEUEN TAB öffnen.
+
+Achte dabei auch auf die passenden Werte für das
+rel-Attribut.
+
+
+============================================================
+LEVEL 3 - KONTAKT ZUR DETEKTEI
+ca. 6 Minuten
+============================================================
+
+Ein Zeuge möchte die Detektei kontaktieren.
+
+
+TEIL 1: E-MAIL
+
+Erstelle einen Link, der das E-Mail-Programm öffnet.
+
+E-Mail-Adresse:
+
+hinweis@code-und-co.de
+
+Der Betreff soll bereits eingetragen sein:
+
+Hinweis zum Fall
+
+Der Nachrichtentext soll bereits enthalten:
+
+Hallo Detektei,
+
+ich habe einen wichtigen Hinweis.
+
+
+TEIL 2: TELEFON
+
+Erstelle zusätzlich einen Telefon-Link.
+
+Telefonnummer:
+
++49123456789
+
+Der sichtbare Linktext soll sein:
+
+"Detektei anrufen"
+
+
+============================================================
+LEVEL 4 - DIE BEWEISMITTEL
+ca. 7 Minuten
+============================================================
+
+Alle Beweise müssen sauber dokumentiert werden.
+
+Erstelle folgende Tabelle:
+
+
+Beweis            Fundort           Status
+------------------------------------------------------
+Schlüssel         Büro              untersucht
+Handschuh         Hinterhof         ungeklärt
+USB-Stick         Schreibtisch      gesichert
+Kaffeebecher      Besprechungsraum  verdächtig
+
+
+Baue diese Tabelle mit:
+
+- <thead>
+- <tbody>
+- <tfoot>
+
+
+Im Fußbereich soll stehen:
+
+"Alle Beweise bleiben bis zum Abschluss des Falls gesichert."
+
+
+ACHTUNG:
+
+Dieser Satz soll sich über ALLE DREI SPALTEN erstrecken.
+
+
+DENKFRAGE:
+
+Welches HTML-Attribut brauchst du dafür?
+
+
+============================================================
+LEVEL 5 - DER ERMITTLUNGSPLAN
+ca. 7 Minuten
+============================================================
+
+Erstelle folgende Tabelle:
+
+
+Tag          Vormittag             Nachmittag
+------------------------------------------------------
+Montag       Zeugen befragen       Spuren prüfen
+Dienstag     Zeugen befragen       Büro durchsuchen
+Mittwoch     Akten vergleichen     Akten vergleichen
+
+
+ABER:
+
+"Zeugen befragen" darf nur EINMAL in deinem HTML-Code
+stehen.
+
+Es soll trotzdem für Montag UND Dienstag gelten.
+
+
+Auch "Akten vergleichen" darf nur EINMAL im HTML-Code
+stehen.
+
+Es soll aber Vormittag UND Nachmittag belegen.
+
+
+RECHERCHE-AUFGABE:
+
+Finde heraus:
+
+Was ist der Unterschied zwischen
+
+rowspan
+
+und
+
+colspan
+
+?
+
+
+Benutze anschließend beide Attribute richtig in deiner
+Tabelle.
+
+
+============================================================
+LEVEL 6 - DER GEHEIME AKTENSCHRANK
+ca. 7 Minuten
+============================================================
+
+Ganz unten auf deiner Webseite befindet sich der Bereich:
+
+"Geheimer Aktenschrank"
+
+
+Ganz oben auf deiner Webseite soll ein Link stehen:
+
+"Direkt zum Aktenschrank"
+
+
+Beim Anklicken soll der Browser direkt zu diesem Bereich
+springen.
+
+
+Beim Aktenschrank soll außerdem ein Link stehen:
+
+"Zurück zu den Verdächtigen"
+
+
+Dieser Link soll zurück zur ersten Tabelle springen.
+
+
+ANFORDERUNG:
+
+Benutze dafür:
+
+- id
+- href="#..."
+
+
+============================================================
+FINAL BOSS - DIE FALLAKTE
+ca. 5 Minuten
+============================================================
+
+Du findest endlich die verschwundene Fallakte.
+
+Sie soll als Datei auf der Webseite bereitgestellt werden.
+
+Jetzt musst du selbst etwas Neues herausfinden.
+
+
+RECHERCHE:
+
+Wie kann man mit einem Link eine Datei zum Download
+anbieten?
+
+
+Suche nach dem HTML-Attribut:
+
+download
+
+
+Erstelle anschließend einen Link zur Datei:
+
+fallakte.pdf
+
+
+Der sichtbare Linktext soll sein:
+
+"Fallakte herunterladen"
+
+
+ZUSATZFRAGE:
+
+Was passiert, wenn die Datei "fallakte.pdf"
+gar nicht im richtigen Ordner liegt?
+
+
+============================================================
+BONUS-LEVEL
+============================================================
+
+Wenn du früher fertig bist:
+
+Erstelle ganz oben auf deiner Webseite eine Navigation.
+
+
+Sie soll folgende Links enthalten:
+
+Verdächtige | Spuren | Beweise | Ermittlungsplan | Aktenschrank
+
+
+Beim Anklicken soll man direkt zum entsprechenden Bereich
+auf DEINER Webseite springen.
+
+
+Dafür musst du eventuell zusätzliche id-Attribute
+verwenden.
+
+
+============================================================
+QUEST-CHECK
+============================================================
+
+Kontrolliere deine Webseite:
+
+[ ] HTML-Grundstruktur vorhanden
+
+[ ] Tabellen funktionieren
+
+[ ] <th> und <td> sinnvoll verwendet
+
+[ ] scope verwendet
+
+[ ] <thead>, <tbody> und <tfoot> verwendet
+
+[ ] colspan verwendet
+
+[ ] rowspan verwendet
+
+[ ] Links zu anderen Dateien erstellt
+
+[ ] Externen Link erstellt
+
+[ ] target="_blank" verwendet
+
+[ ] rel verwendet
+
+[ ] mailto-Link erstellt
+
+[ ] tel-Link erstellt
+
+[ ] Sprungmarken mit id erstellt
+
+[ ] download selbst recherchiert
+
+[ ] Webseite im Browser getestet
+
+
+============================================================
+GESCHAFFT?
+============================================================
+
+Wenn alle Tabellen korrekt angezeigt werden und deine
+Links funktionieren, ist der Fall sauber dokumentiert.
+
+Falls etwas nicht funktioniert:
+
+Nicht sofort alles löschen.
+
+Untersuche deinen Code.
+Finde heraus, bei welcher Aufgabe der Fehler steckt.
+Teste deine Lösung erneut im Browser.
+============================================================
+-->

@@ -1,0 +1,24 @@
+Hobbit-Haus
+
+Thema: Hobbits
+Ziel: natürliche Farben kombinieren
+
+Aufgabe:
+
+Gestalte eine kleine Szene mit: - Himmel
+                                - Wiese
+                                - Hobbit-Hügel
+                                - runder Tür
+                                - Fenstern
+                                - Weg aus Steinen
+
+Bedingungen:    - Der Himmel soll mit rgb() definiert sein.
+                - Die Wiese mit hsl().
+                - Die Tür mit einer Hex-Farbe.
+                - Fenster oder Lichtschein sollen mit rgba() Transparenz bekommen.
+
+Extra-Challenge:
+
+Mach eine zweite Version:   - Frühling
+                            - Herbst
+                            - Nacht

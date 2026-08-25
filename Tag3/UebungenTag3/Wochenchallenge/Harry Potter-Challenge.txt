@@ -1,0 +1,516 @@
+HTML-ZAUBERSCHUL-ABENTEUER – DAS GEHEIMNIS DER VERBOTENEN KAMMER
+================================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: zauberschule_abenteuer.html
+
+MISSION
+In einer berühmten Zauberschule ist ein uraltes magisches Artefakt verschwunden.
+Seitdem geschehen merkwürdige Dinge:
+
+- Treppen führen plötzlich ins falsche Stockwerk
+- Gemälde flüstern nachts
+- eine Rüstung behauptet, sie sei unschuldig
+- und irgendwo im Keller hört man ein sehr verdächtiges „Miau“
+
+Du sollst eine vollständige HTML-Webseite für die Untersuchung erstellen.
+
+Die Webseite soll:
+- die Mission erklären,
+- Schüler und Verdächtige dokumentieren,
+- magische Orte auflisten,
+- Gefahren bewerten,
+- Ausrüstung strukturieren,
+- und neue Mitglieder für das Ermittlungsteam anmelden.
+
+WICHTIG:
+Du bekommst nicht überall genau vorgegeben, WO ein HTML-Element hingehört.
+Du musst selbst entscheiden, welche Struktur sinnvoll ist.
+
+================================================================
+LEVEL 1 – WILLKOMMEN IN DER ZAUBERSCHULE | ca. 8 Minuten
+================================================================
+
+Erstelle ein vollständiges HTML-Grundgerüst.
+
+Pflicht:
+
+- <!DOCTYPE html>
+- <html> mit deutscher Sprache
+- <head>
+- UTF-8
+- viewport
+- description
+- sinnvoller <title>
+- <body>
+
+Der Browser-Tab soll ungefähr heißen:
+
+„Zauberschule – Die verbotene Kammer“
+
+Strukturiere die sichtbare Seite sinnvoll mit:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Verwende außerdem:
+
+- h1
+- h2
+- h3
+- p
+- strong
+- b
+- br
+- hr
+
+STORY:
+Schreibe eine kurze Einleitung.
+
+Das „Auge von Nocturnus“, ein mächtiges magisches Artefakt, wurde gestohlen.
+Die letzte Spur führt in einen gesperrten Teil des Schlosses.
+
+Ein Hausgeist sagt:
+
+„Ich habe nichts gesehen. Aber die Katze weiß etwas.“
+
+Baue mindestens 5 sinnvolle HTML-Kommentare ein.
+
+DENKFRAGE ALS HTML-KOMMENTAR:
+Was ist der Unterschied zwischen <section>, <article> und <aside>?
+
+================================================================
+LEVEL 2 – DIE KARTE DES SCHLOSSES | ca. 7 Minuten
+================================================================
+
+Erstelle eine Navigation mit Sprungmarken zu:
+
+- Mission
+- Häuser
+- Magische Orte
+- Gefahren
+- Team beitreten
+
+Nutze dafür passende id-Attribute.
+
+Zusätzlich brauchst du:
+
+1. einen Link zu einer lokalen HTML-Datei
+2. einen externen Link
+3. target="_blank"
+4. rel="noopener noreferrer"
+5. einen mailto-Link zum Sekretariat
+6. einen tel-Link zur fiktiven Zauber-Notfallzentrale
+7. ganz unten einen Link:
+   „Zurück zur Großen Halle“
+
+FEHLERSUCHE:
+
+Warum funktioniert dieser Link nicht?
+
+<a href="#bibliothek">Zur Bibliothek</a>
+
+<section id="alte-bibliothek">
+    ...
+</section>
+
+Erkläre den Fehler als HTML-Kommentar.
+
+================================================================
+LEVEL 3 – DER ZAUBER-RUCKSACK | ca. 8 Minuten
+================================================================
+
+Erstelle eine <ul> mit mindestens 7 Gegenständen.
+
+Zum Beispiel:
+
+- Zauberstab
+- Karte
+- Taschenlampe
+- Trank
+- Feder
+- Notizbuch
+- Schokofrosch
+- äußerst verdächtiger Schlüssel
+
+Danach:
+
+Erstelle eine <ol> mit mindestens 5 Schritten:
+
+„Was tun, wenn ein Geist im Flur auftaucht?“
+
+Verwende mindestens eines:
+
+type
+start
+reversed
+
+SCHWIERIGER:
+
+Erstelle eine korrekt verschachtelte Liste:
+
+Zauberschule
+    Erdgeschoss
+        Große Halle
+        Küche
+    Erster Stock
+        Klassenraum
+        Bibliothek
+    Keller
+        Tranklabor
+        Verbotener Gang
+            Alte Tür
+            Geheime Kammer
+
+Die Unterlisten müssen innerhalb der passenden <li>-Elemente liegen.
+
+================================================================
+LEVEL 4 – DAS MAGISCHE LEXIKON | ca. 5 Minuten
+================================================================
+
+Erstelle mit:
+
+<dl>
+<dt>
+<dd>
+
+ein kleines Zauber-Lexikon.
+
+Mindestens 5 Begriffe.
+
+Zum Beispiel:
+
+Zauberstab
+Trank
+Hausgeist
+Artefakt
+Fluch
+Geheimgang
+
+Mindestens EIN <dt> muss zwei <dd>-Beschreibungen besitzen.
+
+================================================================
+LEVEL 5 – GEFAHREN IM SCHLOSS | ca. 10 Minuten
+================================================================
+
+Erstelle eine Tabelle:
+
+„Magische Gefahren im Schloss“
+
+Spalten:
+
+Gefahr | Ort | Stufe | Wahrscheinlichkeit | Gegenmaßnahme
+
+Mindestens 5 Einträge.
+
+Beispiele:
+
+Poltergeist | Treppenhaus | 3 | Hoch | Abstand halten
+Verfluchte Rüstung | Westflügel | 4 | Mittel | Nicht provozieren
+Giftiger Trank | Keller | 5 | Niedrig | Nicht trinken
+Hungrige Eule | Eulenturm | 2 | Sehr hoch | Snacks mitbringen
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- scope="col"
+- mindestens einmal scope="row"
+- colspan ODER rowspan
+
+Im <tfoot> soll ein lustiges Gesamturteil stehen.
+
+Beispiel:
+
+„Fazit: Die Kammer ist gefährlich. Die Eule ist hartnäckiger.“
+
+KNOBELFRAGE:
+Warum sollte man Tabellenüberschriften mit <th> statt nur mit einem fett geschriebenen <td> erstellen?
+
+================================================================
+LEVEL 6 – AUFNAHME INS ERMITTLUNGSTEAM | ca. 14 Minuten
+================================================================
+
+Erstelle ein Formular:
+
+„Dem Zauber-Ermittlungsteam beitreten“
+
+Nutze:
+
+<form action="" method="post">
+
+FELDER:
+
+1. Zaubername
+   - type="text"
+   - required
+   - placeholder
+
+2. E-Mail
+   - type="email"
+   - required
+
+3. Telefonnummer
+   - type="tel"
+
+4. Einsatzdatum
+   - type="date"
+
+5. Magie-Level
+   - type="number"
+   - min="1"
+   - max="10"
+
+6. Warum möchtest du mitmachen?
+   - textarea
+   - minlength="20"
+   - maxlength="250"
+   - required
+
+7. Spezialgebiet
+   - select
+   - mindestens 5 option-Einträge
+
+Zum Beispiel:
+
+- Zaubersprüche
+- Tränke
+- Spurensuche
+- Magische Wesen
+- Bibliotheksrecherche
+
+Die erste Option soll:
+
+selected
+disabled
+value=""
+
+besitzen.
+
+8. Bevorzugter Kontakt
+
+Zwei radio-Buttons:
+
+- E-Mail
+- Telefon
+
+Beide müssen zur selben Gruppe gehören.
+
+9. Ausrüstung
+
+Mindestens 3 checkbox-Felder.
+
+Zum Beispiel:
+
+- Zauberstab
+- Trank
+- Karte
+
+10. Pflicht-Checkbox:
+
+„Ich verspreche, keine verbotenen Türen ohne Erlaubnis zu öffnen.“
+
+required
+
+Jedes sinnvolle Feld braucht korrekt verbunden:
+
+<label for="...">
+
+und
+
+id="..."
+
+BUTTONS:
+
+- submit → „Team beitreten“
+- reset → „Zurück in den Schlafsaal“
+- button → „GEHEIME KAMMER ÖFFNEN“
+
+Der normale Button macht ohne JavaScript nichts.
+
+================================================================
+LEVEL 7 – DEBUGGING: DER VERFLUCHTE QUELLCODE | ca. 5 Minuten
+================================================================
+
+Ein misslungener Zauberspruch hat den HTML-Code beschädigt.
+
+Dabei entstand:
+
+<nav>
+    <a href="#kammer">Zur geheimen Kammer</a>
+</nav>
+
+<section id="geheime-kammer">
+    <h2>Geheime Kammer</h2>
+</section>
+
+<label for="schueler">Name:</label>
+<input type="text" id="name">
+
+<input type="radio" name="eule" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="telefon" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Magisches Archiv</a>
+
+<ul>
+    <li>Zaubertasche
+        <ul>
+            <li>Trank
+            <li>Feder</li>
+        </ul>
+</ul>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme oder unsaubere Stellen.
+
+Korrigiere den Code.
+
+Erkläre mindestens 3 Änderungen als HTML-Kommentar.
+
+================================================================
+LEVEL 8 – DIE PRÜFUNG DES ZAUBERRATES | ca. 3 Minuten
+================================================================
+
+Beantworte ganz unten als HTML-Kommentare:
+
+1. Was macht href?
+2. Wie funktioniert eine Sprungmarke?
+3. Unterschied zwischen <ul> und <ol>?
+4. Wann benutzt man <dl>?
+5. Wofür braucht man <li>?
+6. Unterschied zwischen <th> und <td>?
+7. Was machen colspan und rowspan?
+8. Was bewirkt required?
+9. Warum haben zusammengehörige radio-Buttons denselben name?
+10. Unterschied zwischen submit, reset und button?
+11. Welche Aufgaben haben header, main und footer?
+
+================================================================
+BONUS – MEISTERZAUBERER
+================================================================
+
+Wenn du früher fertig bist:
+
+BONUS 1:
+Erstelle eine zweite Tabelle:
+
+„Magische Gegenstände“
+
+Gegenstand | Besitzer | Fundort | Gefahrenstufe
+
+BONUS 2:
+Verwende rowspan UND colspan sinnvoll.
+
+BONUS 3:
+Erstelle eine <ol reversed>.
+
+BONUS 4:
+Baue einen mailto-Link mit bereits eingetragenem Betreff.
+
+BONUS 5:
+Verstecke dieses Easter Egg als HTML-Kommentar:
+
+<!-- Die Katze war unschuldig. Die Rüstung allerdings nicht. -->
+
+BONUS 6:
+Erstelle eine zusätzliche Sprungmarke:
+
+„Direkt zur geheimen Kammer“
+
+BONUS 7:
+Erstelle im <aside> eine Infobox:
+
+„MAGISCHER GEGENSTAND DES TAGES“
+
+mit:
+- Name
+- Wirkung
+- Fundort
+- lustiger Nebenwirkung
+
+================================================================
+ENDGEGNER – SCHLOSSKONTROLLE
+================================================================
+
+Überprüfe deine Webseite:
+
+[ ] vollständiges HTML-Grundgerüst
+[ ] sinnvolle semantische Struktur
+[ ] header / nav / main / footer
+[ ] section / article / aside
+[ ] h1 / h2 / h3
+[ ] p / strong / b / br / hr
+[ ] interne Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target + rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Liste
+[ ] dl / dt / dd
+[ ] Tabelle
+[ ] caption
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / for / id
+[ ] verschiedene input-Typen
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Debugging gelöst
+[ ] mindestens 5 HTML-Kommentare
+
+================================================================
+MISSION ERFOLGREICH?
+================================================================
+
+Die Untersuchung ist bestanden, wenn:
+
+1. deine Webseite funktioniert,
+2. die HTML-Struktur sinnvoll ist,
+3. du erklären kannst, warum du die Elemente verwendet hast,
+4. das verschwundene Artefakt gefunden wurde.
+
+SCHLOSSPROTOKOLL:
+
+> Geheime Kammer geöffnet...
+> Artefakt gefunden...
+> Verdächtige überprüft...
+
+> Ergebnis:
+> Das Artefakt lag die ganze Zeit in der Bibliothek.
+
+> Neben einem Schild:
+> „NICHT AUSLEIHEN“
+
+> Offenbar hat das niemand gelesen.
+
+MISSION ENDE

@@ -1,0 +1,34 @@
+Zauberschule / Harry Potter
+
+Thema: Harry Potter / Zauberschule
+
+Ziel: Hausfarben und magische Farbeffekte einsetzen
+
+Aufgabe:
+
+Erstelle eine Zauberschul-Webseite mit:  - einer Überschrift
+                                          „Willkommen in der Zauberschule“
+                                         - 4 Haus-Karten
+                                         - einem Bereich „Deine Zauber“
+                                         - einem Button „Zauber wirken!“
+
+Bedingungen:    - Jede Haus-Karte soll eine andere Hauptfarbe bekommen.
+                - Eine Haus-Karte soll Hex verwenden.
+                - Eine Haus-Karte soll rgb() verwenden.
+                - Eine Haus-Karte soll hsl() verwenden.
+                - Eine Haus-Karte soll einen Farbnamen verwenden.
+                - Ein magischer Lichtschein soll mit rgba() oder hsla()
+                  transparent dargestellt werden.
+                - Der Button soll beim Hover seine Farbe ändern.
+
+Extra-Challenge:
+
+Erstelle vier Zauber:  - Licht
+                       - Feuer
+                       - Schutzschild
+                       - Unsichtbarkeit
+
+Wähle für jeden Zauber eine passende Farbe.
+
+Schreibe als CSS-Kommentar dazu, warum du das jeweilige
+Farbmodell gewählt hast.

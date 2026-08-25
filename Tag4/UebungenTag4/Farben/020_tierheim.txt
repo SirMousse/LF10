@@ -1,0 +1,20 @@
+Tierheim-Webseite
+
+Thema: Tierheim
+Ziel: ruhige und freundliche Farben einsetzen
+
+Aufgabe:
+
+Erstelle eine Startseite für ein fiktives Tierheim mit: - Header
+                                                        - Infobox
+                                                        - 3 Tierkarten
+                                                        - Spendenbutton
+
+Bedingungen:    - Nutze warme und freundliche Farben.
+                - Der Header soll mit hsl() gestaltet werden.
+                - Die Infobox soll einen halbtransparenten Hintergrund mit hsla() oder rgba() haben.
+                - Die Tierkarten sollen unterschiedliche Pastellfarben bekommen.
+
+Zusatz: Überlege dir, welches Farbmodell am besten ist für: - exakte Farben
+                                                            - transparente Hintergründe
+                                                            - sanfte Farbvariationen

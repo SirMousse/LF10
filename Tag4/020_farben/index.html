@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS Farben - Grundlagen</title>
+
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Farben in CSS - Grundlagen</h1>
+
+            <p>
+                In CSS können wir Farben auf verschiedene Arten angeben. 
+                Farben werden z.B.: für Texte, Hintergrundfarben und Rahmen verwendet.
+            </p>
+
+            <ol>
+                <li>Farbennamen (z.B.: red, green)</li>
+                <li>HEX-Werte (z.B.: #ff0000)</li>
+                <li>RGB/ RGBA (z.B.: rgb(255, 0, 0))</li>
+                <li>HSL/ HSLA (z.B.: hsl(0, 100%, 50%))</li>
+            </ol>
+        </header>
+
+        <main>
+            <section>
+                <h2>1. Farbnamen</h2>
+                <p>
+                    CSS kennt viele eingebaute Farbnamen wie <code>red</code>, <code>blue</code> 
+                    und <code>green</code>.
+                </p>
+
+                <article>
+                    <p class="name-red box">Ich bin rot (red).</p>
+                    <p class="name-blue box">Ich bin blau (blue).</p>
+                    <p class="name-green box">Ich bin grün (green).</p>
+                </article>
+
+                <pre>
+                    .name-red{
+                        color: red;
+                    }
+
+                    .name-blue{
+                        color: blue;
+                    }
+
+                    .name-green{
+                        color: green;
+                    }
+                </pre>
+
+                <p>
+                    Einfach, aber begrenzte Auswahl und oft nicht exakt
+                    der gewünschte Farbton.
+                </p>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>2. HEX-Farben (#RRGGBB)</h2>
+                <p>
+                    Hex-Farben sind sehr verbreitet im Web. Sie bestehen aus
+                    <code>#RRGGBB</code> (Rot, Grün, Blau).
+                    Die Werte im Hexadezimal gehen von 00 bis FF, dabei steht 00 = 0
+                    (nichts) und FF = 255 (volle Stärke). 
+                </p>
+                
+                <p>
+                    FF wird berechnet 15 x 16 + 15 = 255.
+                    15 -> steht für 1 bis F(15)
+                    16 -> steht für alle Hexadezimalwerte (0 bis F)
+                    + 15 wird dazugrechnet, da man die 0 Ausgelassen hat bei dem
+                    ersten Wert.
+                </p>
+
+                <article>
+                    <p class="hex-red box">Ich bin #ff0000 (ROT).</p>
+                    <p class="hex-blue box">Ich bin #0000ff (BLAU).</p>
+                    <p class="hex-green box">Ich bin #008000 (GRÜN).</p>
+                </article>
+
+                <pre>
+                    .hex-red{
+                        color: #ff0000;
+                    }
+
+                    .hex-blue{
+                        color: #0000ff;
+                    }
+
+                    .hex-green{
+                        color: #008000;
+                    }
+                </pre>
+
+                <p>
+                    Hex-Farben sind sehr genau und Standard Design in der Webentwicklung.
+                </p>
+            </section>
+
+            <section>
+                <h2>3. RGB und RGBA</h2>
+
+                <p>
+                    RGB mischt Rot, Grün und Blau (0-255). <br>
+                    RGBA hat zusätzlich einen Alpha-Wert (Transparent 0 bis 1).
+                </p>
+
+                <article>
+                    <p class="rgb-red box">Ich bin rgb(255, 0, 0)</p>
+                    <p class="rgba-red box">Ich bin rgba(255, 0, 0, 0.4)</p>
+                    <p class="rgb-green box">Ich bin rgb(0, 128, 0)</p>
+                    <p class="rgba-green box">Ich bin rgba(0, 128, 0, 0.6)</p>
+                    <p class="rgb-blue box">Ich bin rgb(0, 0, 255)</p>
+                    <p class="rgba-blue box">Ich bin rgba(0, 0, 255, 0.8)</p>
+                </article>
+
+                <p>
+                    Super für Transparenz (Overlays/ Effekte).
+                </p>
+            </section>
+
+            <section>
+                <h2>4. HSL und HSLA</h2>
+                <p>
+                    HSL steht für: Farbton (Hue), Sättigung (Saturation) und Helligkeit
+                    (Lightness).
+                </p>
+
+                <ol>
+                    <li>Welche Farbe?</li>
+                    <li>Wie kräftig?</li>
+                    <li>Wie hell?</li>
+                </ol>
+
+                <article>
+                    <p class="hsl-red box">Ich bin hsl(0, 100%, 50%)</p>
+                    <p class="hsla-red box">Ich bin hsla(0, 100%, 50%, 0.8)</p>
+                    <p class="hsl-green box">Ich bin hsl(120, 100%, 25%)</p>
+                    <p class="hsla-green box">Ich bin hsla(120, 100%, 25%, 0.6)</p>
+                    <p class="hsl-blue box">Ich bin hsl(220, 80%, 50%)</p>
+                    <p class="hsla-blue box">Ich bin hsla(220, 80%, 50%, 0.4)</p>
+                </article>
+
+                <p>
+                    Sehr intuitiv für Design (heller/ dunkler stellen oder
+                    Farbton drehen).
+                </p>
+
+                <button type="submit" href="../010_stylesheets/index.html">Transparent</button>
+            </section>
+        </main>
+    </body>
+</html>

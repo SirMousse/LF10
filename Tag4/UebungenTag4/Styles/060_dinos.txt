@@ -1,0 +1,954 @@
+============================================================
+               CSS-ÜBUNG: DINO-PARK 404
+============================================================
+
+Dauer: ungefähr 40 Minuten
+
+Situation:
+
+Du arbeitest neu im Dino-Park.
+
+Eigentlich solltest du nur Besucherkarten sortieren
+und möglichst nicht von einem Velociraptor gefressen werden.
+
+Dann hat jemand herausgefunden,
+dass du "irgendwas mit Webseiten" kannst.
+
+Seitdem sollst du die Webseite des Dino-Parks schöner machen.
+
+Die aktuelle Seite funktioniert zwar,
+sieht aber ungefähr so aus,
+als hätte ein Triceratops sie mit der Stirn gestaltet.
+
+Deine Aufgabe:
+
+Mach die Webseite mit CSS schöner.
+
+Heute brauchst du:
+
+- externes CSS
+- internes CSS
+- Inline CSS
+- color
+- background
+- padding
+- margin
+- border
+
+Am Ende lernst du noch genau EINE neue CSS-Eigenschaft.
+
+Keine Sorge.
+
+Der T-Rex ist heute angeblich satt.
+
+Das Wort "angeblich" ist wichtig.
+
+
+============================================================
+AUFGABE 1: DATEIEN VORBEREITEN
+============================================================
+
+Erstelle einen Ordner:
+
+dino-park-css
+
+
+Darin brauchst du:
+
+index.html
+
+style.css
+
+
+Erstelle in index.html ein normales HTML-Grundgerüst.
+
+Du brauchst also unter anderem:
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<body>
+
+
+Gib der Webseite außerdem den Titel:
+
+Dino-Park 404
+
+
+============================================================
+AUFGABE 2: EXTERNES CSS EINBINDEN
+============================================================
+
+Verbinde deine HTML-Datei mit:
+
+style.css
+
+
+Die CSS-Datei soll im <head> eingebunden werden.
+
+
+TIPP:
+
+Dafür gibt es das Element:
+
+<link>
+
+
+Versuche zuerst selbst herauszufinden,
+wie die vollständige Zeile aussehen muss.
+
+
+Falls nichts funktioniert:
+
+1. Speichern.
+2. Dateinamen überprüfen.
+3. Pfad überprüfen.
+4. Browser aktualisieren.
+5. Erst danach den T-Rex beschuldigen.
+
+
+============================================================
+AUFGABE 3: DER DINO-PARK BRAUCHT INHALT
+============================================================
+
+Erstelle im <body>:
+
+Eine Hauptüberschrift:
+
+Dino-Park 404
+
+
+Darunter einen Absatz:
+
+Willkommen im Dino-Park.
+Bitte Arme und Beine innerhalb des Besucherbereichs behalten.
+
+
+Erstelle danach eine Überschrift:
+
+Unsere Dinosaurier
+
+
+============================================================
+AUFGABE 4: DINO NUMMER 1
+============================================================
+
+Erstelle ein <article>.
+
+
+Das article bekommt:
+
+class="dino"
+
+
+Schreibe hinein:
+
+
+<h2>Triceratops</h2>
+
+
+und:
+
+
+<p>
+Der Triceratops ist groß,
+ruhig
+und trägt drei Hörner.
+
+Diskussionen über Vorfahrt gewinnt er meistens.
+</p>
+
+
+Futter:
+
+<p>Futter: Pflanzen</p>
+
+
+============================================================
+AUFGABE 5: NOCH MEHR DINOS
+============================================================
+
+Erstelle zwei weitere Dinosaurier.
+
+
+Beide sollen ebenfalls:
+
+class="dino"
+
+bekommen.
+
+
+DINO 2:
+
+Name:
+
+Velociraptor
+
+
+Beschreibung:
+
+Schnell, schlau und ziemlich aufmerksam.
+Wenn du ihn nicht siehst,
+ist das vermutlich kein gutes Zeichen.
+
+
+Futter:
+
+Fleisch
+
+
+DINO 3:
+
+Name:
+
+Brachiosaurus
+
+
+Beschreibung:
+
+Sehr groß,
+sehr lang
+und vermutlich der einzige Bewohner,
+der über den Parkzaun schauen kann.
+
+
+Futter:
+
+Pflanzen
+
+
+Jetzt solltest du insgesamt drei:
+
+<article class="dino">
+
+haben.
+
+
+============================================================
+AUFGABE 6: EXTERNES CSS
+============================================================
+
+Öffne jetzt:
+
+style.css
+
+
+Style dort zuerst den body.
+
+
+Benutze:
+
+font-family: Arial, Helvetica, sans-serif;
+
+line-height: 1.5;
+
+
+Danach kümmern wir uns um:
+
+.dino
+
+
+Jeder Dino soll einen Rahmen bekommen:
+
+border: 2px solid black;
+
+
+Außerdem soll jeder Dino bekommen:
+
+padding: 10px;
+
+margin: 10px 0;
+
+
+Speichern.
+
+Webseite anschauen.
+
+
+============================================================
+KURZE DENKPAUSE
+============================================================
+
+Schau dir deine Dino-Boxen an.
+
+
+Was macht:
+
+border?
+
+
+Was macht:
+
+padding?
+
+
+Was macht:
+
+margin?
+
+
+Versuche es mit eigenen Worten zu erklären.
+
+
+TIPP:
+
+
+padding
+
+ist der Abstand INNERHALB eines Elements.
+
+
+margin
+
+ist der Abstand AUSSERHALB eines Elements.
+
+
+Stell dir ein Dino-Gehege vor:
+
+Der Dino ist der Inhalt.
+
+padding ist der Platz zwischen dem Dino
+und dem Rand seines Geheges.
+
+margin ist der Abstand
+zwischen diesem Gehege und dem nächsten Gehege.
+
+
+============================================================
+AUFGABE 7: KLEINES EXPERIMENT
+============================================================
+
+Ändere bei .dino kurz:
+
+padding: 10px;
+
+zu:
+
+padding: 40px;
+
+
+Was verändert sich?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+padding: 10px;
+
+
+Jetzt ändere:
+
+margin: 10px 0;
+
+zu:
+
+margin: 40px 0;
+
+
+Was verändert sich diesmal?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+margin: 10px 0;
+
+
+FRAGE:
+
+Kannst du jetzt den Unterschied zwischen
+padding und margin erklären?
+
+
+============================================================
+AUFGABE 8: INTERNES CSS
+============================================================
+
+Jetzt benutzen wir internes CSS.
+
+
+Gehe in deine index.html.
+
+
+Erstelle im <head> einen:
+
+<style>
+
+</style>
+
+
+Erstelle darin die Klasse:
+
+.warnung
+
+
+Sie soll folgende Eigenschaften bekommen:
+
+
+Schriftfarbe:
+
+darkred
+
+
+Hintergrund:
+
+#ffeeee
+
+
+Innenabstand:
+
+10px
+
+
+Den CSS-Code dafür musst du selbst schreiben.
+
+
+============================================================
+AUFGABE 9: WICHTIGE PARKWARNUNG
+============================================================
+
+Erstelle unter deinen Dinosauriern einen Absatz:
+
+
+ACHTUNG:
+Gehege 3 ist vorübergehend geschlossen.
+Ein Velociraptor hat herausgefunden,
+wie Türklinken funktionieren.
+
+
+Gib diesem Absatz:
+
+class="warnung"
+
+
+Wenn der Absatz jetzt anders aussieht:
+
+Sehr gut.
+
+Das interne CSS funktioniert.
+
+
+Die Parkleitung ist erleichtert.
+
+Die Sicherheitsabteilung eher nicht.
+
+
+============================================================
+AUFGABE 10: INLINE CSS
+============================================================
+
+Jetzt brauchen wir noch Inline CSS.
+
+
+Erstelle einen neuen Absatz:
+
+
+Parkstatus:
+Geöffnet.
+Noch sind alle Dinosaurier dort,
+wo sie ungefähr sein sollten.
+
+
+Diesen Absatz sollst du DIREKT im HTML stylen.
+
+
+Benutze dafür:
+
+style=""
+
+
+Der Absatz soll bekommen:
+
+
+color: green;
+
+background: #e6ffe6;
+
+padding: 8px;
+
+
+Wichtig:
+
+Dafür KEINE Klasse erstellen.
+
+
+============================================================
+DENKFRAGE
+============================================================
+
+Du hast jetzt drei Arten von CSS benutzt.
+
+
+1. Wo steht EXTERNES CSS?
+
+
+____________________________
+
+
+2. Wo steht INTERNES CSS?
+
+
+____________________________
+
+
+3. Wo steht INLINE CSS?
+
+
+____________________________
+
+
+Versuche die Fragen zu beantworten,
+ohne nach oben zu schauen.
+
+
+============================================================
+AUFGABE 11: DER CSS-DINO-KAMPF
+============================================================
+
+Jetzt testen wir,
+welche CSS-Regel gewinnt.
+
+
+Erstelle einen neuen Absatz:
+
+
+<p class="test">
+Welche Farbe bekomme ich?
+</p>
+
+
+Schreibe in deine EXTERNE style.css:
+
+
+.test {
+    color: blue;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text?
+
+
+____________________________
+
+
+Jetzt schreibst du in dein INTERNES CSS:
+
+
+.test {
+    color: green;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Zum Schluss bekommt der Absatz Inline CSS:
+
+
+style="color: purple;"
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Was fällt dir auf?
+
+
+Für diese Übung kannst du dir merken:
+
+
+Inline CSS
+
+hat normalerweise eine sehr hohe Priorität.
+
+
+Wenn zwei gleich starke Regeln vorhanden sind,
+kann auch die Reihenfolge wichtig sein.
+
+
+Das Thema dahinter heißt:
+
+CSS Cascade
+
+
+Das schauen wir uns später genauer an.
+
+
+Für heute reicht es zu wissen:
+
+Mehrere CSS-Regeln können gleichzeitig
+auf dasselbe Element wirken.
+
+
+Ein bisschen wie drei Dinosaurier,
+die gleichzeitig durch dieselbe Tür wollen.
+
+Irgendeiner gewinnt.
+
+
+============================================================
+AUFGABE 12: EINE NEUE SACHE
+============================================================
+
+Jetzt lernst du genau EINE neue CSS-Eigenschaft.
+
+
+border-radius
+
+
+Füge bei:
+
+.dino
+
+folgende Zeile hinzu:
+
+
+border-radius: 10px;
+
+
+Speichern und anschauen.
+
+
+Was hat sich verändert?
+
+
+____________________________
+
+
+Teste danach kurz:
+
+border-radius: 30px;
+
+
+Was passiert?
+
+
+____________________________
+
+
+Stelle danach einen Wert ein,
+der dir gefällt.
+
+
+MERKE:
+
+border-radius
+
+macht die Ecken eines Elements rund.
+
+
+Der T-Rex wird dadurch nicht freundlicher.
+
+Nur seine Box.
+
+
+============================================================
+ABSCHLUSSAUFGABE
+============================================================
+
+Jetzt bekommst du weniger Hilfe.
+
+
+Erstelle einen vierten Dino:
+
+
+Name:
+
+Stegosaurus
+
+
+Beschreibung:
+
+Ein friedlicher Pflanzenfresser
+mit großen Platten auf dem Rücken.
+
+Sein Schwanz sieht allerdings aus,
+als hätte die Natur kurz schlechte Laune gehabt.
+
+
+Futter:
+
+Pflanzen
+
+
+Der Dino soll genauso aussehen
+wie die anderen Dinosaurier.
+
+
+Überlege:
+
+Welche Klasse musst du verwenden?
+
+
+============================================================
+BONUS FÜR SCHNELLE
+============================================================
+
+Nur wenn du früher fertig bist:
+
+
+Erstelle eine neue Klasse:
+
+.gefaehrlich
+
+
+Sie soll:
+
+- rote Schrift haben
+- einen hellen Hintergrund haben
+- einen Rahmen haben
+- padding haben
+
+
+Erstelle danach einen weiteren Dino:
+
+
+Name:
+
+T-Rex
+
+
+Beschreibung:
+
+Sehr groß.
+Sehr laut.
+Sehr viele Zähne.
+
+Vermutlich kein geeigneter Streichelzoo-Bewohner.
+
+
+Futter:
+
+Fleisch
+
+
+Gib dem T-Rex:
+
+class="dino"
+
+
+UND zusätzlich die Klasse:
+
+gefaehrlich
+
+
+Versuche herauszufinden,
+wie ein HTML-Element ZWEI Klassen bekommen kann.
+
+
+TIPP:
+
+Die Lösung sieht NICHT so aus:
+
+
+class="dino"
+class="gefaehrlich"
+
+
+Ein Element braucht nur EIN class-Attribut.
+
+
+Die beiden Klassen werden innerhalb
+des class-Attributs eingetragen.
+
+
+============================================================
+MINI-CHECK AM ENDE
+============================================================
+
+Kannst du diese Begriffe erklären?
+
+
+color
+=
+
+____________________________
+
+
+background
+=
+
+____________________________
+
+
+padding
+=
+
+____________________________
+
+
+margin
+=
+
+____________________________
+
+
+border
+=
+
+____________________________
+
+
+border-radius
+=
+
+____________________________
+
+
+Inline CSS
+=
+
+____________________________
+
+
+Internes CSS
+=
+
+____________________________
+
+
+Externes CSS
+=
+
+____________________________
+
+
+============================================================
+LETZTE FRAGEN
+============================================================
+
+Wo wird externes CSS geschrieben?
+
+
+____________________________
+
+
+Wie wird eine externe CSS-Datei
+mit HTML verbunden?
+
+
+____________________________
+
+
+Wo befindet sich internes CSS?
+
+
+____________________________
+
+
+Wo befindet sich Inline CSS?
+
+
+____________________________
+
+
+Was ist der Unterschied zwischen
+padding und margin?
+
+
+____________________________
+
+
+Was macht ein border?
+
+
+____________________________
+
+
+Was macht border-radius?
+
+
+____________________________
+
+
+============================================================
+GESCHAFFT
+============================================================
+
+Wenn du jetzt weißt:
+
+- wie eine CSS-Datei eingebunden wird
+- was externes CSS ist
+- was internes CSS ist
+- was Inline CSS ist
+- was color macht
+- was background macht
+- was padding macht
+- was margin macht
+- was border macht
+
+dann ist das Ziel erreicht.
+
+
+Wenn du außerdem verstanden hast,
+was border-radius macht:
+
+Bonuswissen erfolgreich freigeschaltet.
+
+
+Und wenn du padding und margin
+nicht mehr verwechselst:
+
+Dann bekommst du im Dino-Park offiziell den Titel:
+
+"Junior-Gehege-Designer für CSS-Abstände"
+
+
+Der Parkleiter fragt:
+
+"Warum ist zwischen den Gehegen so viel Platz?"
+
+
+Du antwortest:
+
+"margin."
+
+
+Er nickt.
+
+Du hast bestanden.
+
+
+Die Webseite funktioniert.
+
+Der Triceratops ist zufrieden.
+
+Der Brachiosaurus frisst.
+
+Der Velociraptor beobachtet dich.
+
+Der T-Rex ist angeblich noch im Gehege.
+
+
+Nächstes mögliches Thema:
+
+:hover
+
+oder
+
+Flexbox
+
+
+Aber nicht heute.
+
+Ein ausgestorbener Gegner nach dem anderen.
+============================================================

@@ -1,0 +1,493 @@
+HTML-DINO-CHALLENGE – OPERATION JURASSIC 404
+================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: dino_mission.html
+
+MISSION
+Willkommen im Forschungspark „Jurassic 404“.
+
+Professor Pixel wollte eigentlich nur die neue Dino-Datenbank testen.
+Leider hat ein Velociraptor das WLAN-Kabel gefressen, ein Triceratops
+blockiert den Serverraum und T-Rex „Kevin“ besitzt jetzt den Administrator-Ausweis.
+
+Deine Aufgabe:
+Baue eine vollständige HTML-Webseite für die Rettungsmission.
+
+Du musst Informationen strukturieren, Dinosaurier katalogisieren,
+Gefahren darstellen und ein Formular für neue Expeditionsteilnehmer erstellen.
+
+WICHTIG:
+Du bekommst nicht überall vorgegeben, WO ein Element hingehört.
+Entscheide selbst, welche HTML-Struktur sinnvoll ist.
+
+================================================
+LEVEL 1 – PARKSYSTEM STARTEN | ca. 8 Minuten
+================================================
+
+Erstelle ein vollständiges HTML-Grundgerüst.
+
+Pflicht:
+
+- <!DOCTYPE html>
+- <html> mit deutscher Sprache
+- <head>
+- UTF-8
+- viewport
+- description
+- sinnvoller <title>
+- <body>
+
+Der Browser-Tab soll ungefähr heißen:
+
+„JURASSIC 404 // Dino Research Center“
+
+Strukturiere die sichtbare Webseite sinnvoll mit:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Nutze außerdem:
+
+- h1
+- h2
+- h3
+- p
+- strong
+- b
+- br
+- hr
+
+STORY:
+Schreibe eine kurze Einleitung.
+
+Der „Goldene Dino-Knochen“ wurde aus dem Forschungslabor gestohlen.
+Hauptverdächtiger ist T-Rex Kevin.
+
+Baue mindestens 5 sinnvolle HTML-Kommentare ein.
+
+DENKFRAGE ALS HTML-KOMMENTAR:
+Was ist der Unterschied zwischen <section>, <article> und <aside>?
+
+================================================
+LEVEL 2 – PARK-NAVIGATION | ca. 7 Minuten
+================================================
+
+Erstelle eine Navigation mit Sprungmarken zu:
+
+- Mission
+- Dinosaurier
+- Gefahren
+- Ausrüstung
+- Expedition anmelden
+
+Nutze dafür passende id-Attribute.
+
+Zusätzlich brauchst du:
+
+1. einen Link zu einer lokalen HTML-Datei
+2. einen externen Link
+3. target="_blank"
+4. rel="noopener noreferrer"
+5. einen mailto-Link zur Forschungsstation
+6. einen tel-Link zur Dino-Notfallzentrale
+7. unten einen Link „Zurück zum Parkeingang“
+
+FEHLERSUCHE:
+
+Warum funktioniert dieser Link möglicherweise nicht?
+
+<a href="#trex">Zum T-Rex</a>
+
+Überlege, was das Zielelement benötigt.
+
+================================================
+LEVEL 3 – EXPEDITIONSRUCKSACK | ca. 8 Minuten
+================================================
+
+Erstelle eine <ul> mit mindestens 6 Gegenständen.
+
+Zum Beispiel:
+
+- Fernglas
+- Wasser
+- Taschenlampe
+- Erste-Hilfe-Set
+- Dino-Lexikon
+- Notfall-Banane
+- extrem stabile Laufschuhe
+
+Danach:
+
+Erstelle eine <ol> mit mindestens 5 Schritten:
+
+„Was tun, wenn ein T-Rex auftaucht?“
+
+Die Antworten dürfen lustig und fiktiv sein.
+
+Verwende bei der geordneten Liste zusätzlich mindestens eines:
+
+type
+start
+reversed
+
+SCHWIERIGER:
+
+Erstelle eine korrekt verschachtelte Liste:
+
+Jurassic 404
+    Pflanzenfresser-Zone
+        Triceratops
+        Brachiosaurus
+    Fleischfresser-Zone
+        Velociraptor
+        T-Rex
+            Kevin
+            Kevin II.
+    Forschungsstation
+        Labor
+        Serverraum
+
+Die Unterlisten müssen innerhalb der passenden <li>-Elemente stehen.
+
+================================================
+LEVEL 4 – DINO-LEXIKON | ca. 5 Minuten
+================================================
+
+Erstelle ein kleines Lexikon mit:
+
+<dl>
+<dt>
+<dd>
+
+Mindestens 5 Begriffe.
+
+Zum Beispiel:
+
+T-Rex
+Velociraptor
+Triceratops
+Fossil
+Paläontologie
+
+Mindestens EIN <dt> muss zwei <dd>-Beschreibungen besitzen.
+
+Du darfst lustige Zusatzinformationen ergänzen.
+
+================================================
+LEVEL 5 – DINO-GEFAHRENANALYSE | ca. 10 Minuten
+================================================
+
+Erstelle eine Tabelle:
+
+„Dinosaurier im Jurassic-404-Park“
+
+Spalten:
+
+Dinosaurier | Ernährung | Gefahrenstufe | Standort | Besonderheit
+
+Mindestens 5 Dinosaurier.
+
+Beispiel:
+
+T-Rex Kevin | Fleischfresser | 5 | Serverraum | Hat den Admin-Ausweis
+Triceratops | Pflanzenfresser | 2 | Eingang | Blockiert die Tür
+Velociraptor | Fleischfresser | 5 | Küche | Hat Kaffee entdeckt
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- scope="col"
+- mindestens einmal scope="row"
+- colspan ODER rowspan
+
+Im <tfoot> soll ein Gesamturteil stehen.
+
+Beispiel:
+
+„Parkstatus: Vielleicht hätten wir doch einen Streichelzoo eröffnen sollen.“
+
+KNOBELFRAGE:
+Warum ist <th> für eine Tabellenüberschrift sinnvoller
+als ein normales <td> mit <b>?
+
+================================================
+LEVEL 6 – EXPEDITIONSANMELDUNG | ca. 14 Minuten
+================================================
+
+Erstelle ein Formular:
+
+„Anmeldung zur Dino-Rettungsmission“
+
+Nutze:
+
+<form action="" method="post">
+
+FELDER:
+
+1. Expeditionsname
+   - type="text"
+   - required
+   - placeholder
+
+2. E-Mail
+   - type="email"
+   - required
+
+3. Telefonnummer
+   - type="tel"
+
+4. Expeditionstag
+   - type="date"
+
+5. Dino-Mut-Level
+   - type="number"
+   - min="1"
+   - max="10"
+
+6. Warum möchtest du mitkommen?
+   - textarea
+   - minlength="20"
+   - maxlength="250"
+   - required
+
+7. Lieblingsdinosaurier
+   - select
+   - mindestens 5 option-Einträge
+
+Die erste Option soll:
+
+selected
+disabled
+value=""
+
+besitzen.
+
+8. Kontaktweg
+
+Zwei radio-Buttons:
+
+- E-Mail
+- Telefon
+
+Beide gehören zur selben Gruppe.
+
+9. Ausrüstung
+
+Mindestens 3 checkbox-Felder, z. B.:
+
+- Fernglas
+- Taschenlampe
+- Notfall-Banane
+
+10. Pflicht-Checkbox:
+
+„Ich verspreche, T-Rex Kevin NICHT zu füttern.“
+
+required
+
+Jedes sinnvolle Feld braucht ein korrekt verbundenes:
+
+<label for="...">
+
+und
+
+id="..."
+
+BUTTONS:
+
+- submit → „Expedition starten“
+- reset → „Flucht ergreifen“
+- button → „DINO-TÜR ÖFFNEN“
+
+Der normale Button soll ohne JavaScript nichts machen.
+
+================================================
+LEVEL 7 – DEBUGGING-RAPTOR | ca. 5 Minuten
+================================================
+
+Ein Velociraptor ist über die Tastatur gelaufen.
+
+Dabei entstand dieser Code:
+
+<nav>
+    <a href="#raptor">Zum Velociraptor</a>
+</nav>
+
+<section id="velociraptor">
+    <h2>Velociraptor</h2>
+</section>
+
+<label for="forscher">Forschername:</label>
+<input type="text" id="name">
+
+<input type="radio" name="mail" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="telefon" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Dino-Datenbank</a>
+
+<ul>
+    <li>T-Rex
+        <ul>
+            <li>Kevin
+            <li>Kevin II.</li>
+        </ul>
+</ul>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme oder unsaubere Stellen.
+
+Korrigiere den Code.
+
+Erkläre mindestens 3 Änderungen mit HTML-Kommentaren.
+
+================================================
+LEVEL 8 – FINALER DINO-TEST | ca. 3 Minuten
+================================================
+
+Beantworte ganz unten in deiner HTML-Datei als Kommentare:
+
+1. Was macht href?
+2. Wie funktioniert eine Sprungmarke?
+3. Was ist der Unterschied zwischen <ul> und <ol>?
+4. Wann benutzt man <dl>?
+5. Wofür braucht man <li>?
+6. Unterschied zwischen <th> und <td>?
+7. Was machen colspan und rowspan?
+8. Was bewirkt required?
+9. Warum besitzen zusammengehörige radio-Buttons denselben name?
+10. Unterschied zwischen submit, reset und button?
+11. Welche Aufgaben haben header, main und footer?
+
+================================================
+BONUS – PALÄONTOLOGIE-ELITE
+================================================
+
+Wenn du früher fertig bist:
+
+BONUS 1:
+Erstelle eine zweite Tabelle:
+
+„Dino-Futterplan“
+
+Dinosaurier | Frühstück | Mittag | Abendessen
+
+BONUS 2:
+Verwende rowspan UND colspan sinnvoll.
+
+BONUS 3:
+Erstelle eine <ol reversed>.
+
+BONUS 4:
+Baue einen mailto-Link mit bereits eingetragenem Betreff.
+
+BONUS 5:
+Verstecke dieses Easter Egg in einem HTML-Kommentar:
+
+<!-- T-Rex Kevin kennt dein Passwort. Es lautet offenbar: banane123 -->
+
+(Natürlich nur ein Witz – niemals echte Passwörter in HTML schreiben!)
+
+BONUS 6:
+Erstelle eine zusätzliche Sprungmarke:
+
+„Direkt zu T-Rex Kevin“
+
+BONUS 7:
+Erstelle im <aside> eine Infobox:
+
+„DINO DES TAGES“
+
+mit Name, Ernährung und einer lustigen Eigenschaft.
+
+================================================
+ENDGEGNER – PARK-KONTROLLE
+================================================
+
+Überprüfe deine Webseite:
+
+[ ] vollständiges HTML-Grundgerüst
+[ ] sinnvolle semantische Struktur
+[ ] header / nav / main / footer
+[ ] section / article / aside
+[ ] h1 / h2 / h3
+[ ] p / strong / b / br / hr
+[ ] interne Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target + rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Liste
+[ ] dl / dt / dd
+[ ] Tabelle
+[ ] caption
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / for / id
+[ ] text / email / tel / date / number
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Debugging gelöst
+[ ] mindestens 5 HTML-Kommentare
+
+================================================
+MISSION ERFOLGREICH?
+================================================
+
+Deine Mission ist nur bestanden, wenn:
+
+1. die Webseite funktioniert,
+2. die Struktur sinnvoll ist,
+3. du erklären kannst, warum du die Elemente verwendet hast,
+4. der Goldene Dino-Knochen gefunden wurde.
+
+SYSTEM:
+
+> Jurassic 404 wird gestartet...
+> Dinosaurier werden gezählt...
+> 1...
+> 2...
+> 3...
+> 47?!
+
+> WARNUNG:
+> T-Rex Kevin hat den Serverraum betreten.
+
+> Kevin trägt den Goldenen Dino-Knochen.
+
+> Kevin trägt außerdem eine Sonnenbrille.
+
+> Niemand weiß warum.
+
+MISSION ENDE

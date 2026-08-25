@@ -1,0 +1,26 @@
+Dino-Park
+
+Thema: Dinosaurier
+
+Ziel: kräftige Naturfarben und verschiedene Farbmodelle einsetzen
+
+Aufgabe:
+
+Erstelle eine kleine Dino-Park-Webseite mit:  - einem Himmel
+                                              - einer Dschungel-Fläche
+                                              - 3 Dino-Karten:
+                                                    - T-Rex
+                                                    - Triceratops
+                                                    - Velociraptor
+                                              - einem Button „Park betreten!“
+
+Bedingungen:    - Der Himmel soll mit rgb() gefärbt werden.
+                - Der Dschungel-Hintergrund soll mit hsl() gestaltet werden.
+                - Jede Dino-Karte soll eine andere Hintergrundfarbe bekommen.
+                - Mindestens eine Dino-Karte soll eine Hex-Farbe verwenden.
+                - Der Button soll beim Hover eine andere Farbe bekommen.
+
+Extra-Challenge:
+
+Erstelle eine Warnbox „T-Rex-Gehege!“ und nutze dafür einen
+halbtransparenten Hintergrund mit rgba().

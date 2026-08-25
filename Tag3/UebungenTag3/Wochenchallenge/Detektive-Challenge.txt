@@ -1,0 +1,518 @@
+HTML-DETEKTIV-ABENTEUER – DER FALL DER VERSCHWUNDENEN DIAMANTEN
+================================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: detektiv_fall.html
+
+MISSION
+Im berühmten Grand Hotel „404“ wurde in der Nacht ein wertvoller Diamant gestohlen.
+
+Die Polizei steht vor einem Rätsel.
+Vier Personen waren zur Tatzeit im Hotel:
+
+- die geheimnisvolle Baronin Blau
+- der nervöse Butler
+- ein berühmter Magier
+- und Herr Krümel, der erstaunlich oft in der Küche gesehen wurde
+
+Du wirst als Detektiv/in beauftragt, eine vollständige HTML-Webseite für den Fall zu erstellen.
+
+Die Webseite soll:
+- den Fall erklären,
+- Verdächtige dokumentieren,
+- Beweise sammeln,
+- Hinweise strukturieren,
+- und neue Ermittler für das Team anmelden.
+
+WICHTIG:
+Du bekommst nicht überall genau vorgegeben, WO ein HTML-Element hingehört.
+Du musst selbst entscheiden, welche Struktur sinnvoll ist.
+
+================================================================
+LEVEL 1 – DIE FALLAKTE | ca. 8 Minuten
+================================================================
+
+Erstelle ein vollständiges HTML-Grundgerüst.
+
+Pflicht:
+
+- <!DOCTYPE html>
+- <html> mit deutscher Sprache
+- <head>
+- UTF-8
+- viewport
+- description
+- sinnvoller <title>
+- <body>
+
+Der Browser-Tab soll ungefähr heißen:
+
+„Fall 404 – Der verschwundene Diamant“
+
+Strukturiere die sichtbare Seite sinnvoll mit:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Verwende außerdem:
+
+- h1
+- h2
+- h3
+- p
+- strong
+- b
+- br
+- hr
+
+STORY:
+Schreibe eine kurze Einleitung.
+
+Der Diamant „Das Auge der Nacht“ wurde um 23:47 Uhr aus einem verschlossenen Raum gestohlen.
+Es gibt keine sichtbaren Einbruchsspuren.
+
+Der einzige Hinweis:
+
+Auf dem Boden lag ein halber Keks.
+
+Baue mindestens 5 sinnvolle HTML-Kommentare ein.
+
+DENKFRAGE ALS HTML-KOMMENTAR:
+Was ist der Unterschied zwischen <section>, <article> und <aside>?
+
+================================================================
+LEVEL 2 – ERMITTLUNGS-NAVIGATION | ca. 7 Minuten
+================================================================
+
+Erstelle eine Navigation mit Sprungmarken zu:
+
+- Fall
+- Verdächtige
+- Beweise
+- Tatorte
+- Ermittler anmelden
+
+Nutze dafür passende id-Attribute.
+
+Zusätzlich brauchst du:
+
+1. einen Link zu einer lokalen HTML-Datei
+2. einen externen Link
+3. target="_blank"
+4. rel="noopener noreferrer"
+5. einen mailto-Link zur Detektei
+6. einen tel-Link zur fiktiven Einsatzleitung
+7. ganz unten einen Link:
+   „Zurück zur Fallakte“
+
+FEHLERSUCHE:
+
+Warum funktioniert dieser Link nicht?
+
+<a href="#tatort">Zum Tatort</a>
+
+<section id="haupt-tatort">
+    ...
+</section>
+
+Erkläre den Fehler als HTML-Kommentar.
+
+================================================================
+LEVEL 3 – DER DETEKTIVKOFFER | ca. 8 Minuten
+================================================================
+
+Erstelle eine <ul> mit mindestens 7 Dingen.
+
+Zum Beispiel:
+
+- Lupe
+- Taschenlampe
+- Notizbuch
+- Kamera
+- Handschuhe
+- Maßband
+- Thermoskanne Kaffee
+- verdächtig viele Kekse
+
+Danach:
+
+Erstelle eine <ol> mit mindestens 5 Schritten:
+
+„So wird ein Tatort untersucht“
+
+Verwende mindestens eines:
+
+type
+start
+reversed
+
+SCHWIERIGER:
+
+Erstelle eine korrekt verschachtelte Liste:
+
+Grand Hotel 404
+    Erdgeschoss
+        Empfang
+        Küche
+    Erster Stock
+        Zimmer 101
+        Zimmer 102
+    Zweiter Stock
+        Diamantenzimmer
+            Vitrine
+            Fenster
+        Personalbereich
+
+Die Unterlisten müssen innerhalb der passenden <li>-Elemente liegen.
+
+================================================================
+LEVEL 4 – DAS ERMITTLER-LEXIKON | ca. 5 Minuten
+================================================================
+
+Erstelle mit:
+
+<dl>
+<dt>
+<dd>
+
+ein kleines Detektiv-Lexikon.
+
+Mindestens 5 Begriffe.
+
+Zum Beispiel:
+
+Alibi
+Motiv
+Indiz
+Zeuge
+Tatort
+Verdächtiger
+
+Mindestens EIN <dt> muss zwei <dd>-Beschreibungen besitzen.
+
+================================================================
+LEVEL 5 – VERDÄCHTIGENREGISTER | ca. 10 Minuten
+================================================================
+
+Erstelle eine Tabelle:
+
+„Verdächtige im Fall 404“
+
+Spalten:
+
+Name | Aufenthaltsort | Motiv | Verdachtsstufe | Alibi
+
+Mindestens 5 Einträge.
+
+Beispiele:
+
+Baronin Blau | Bibliothek | Geld | 4 | Unklar
+Butler | Küche | Unbekannt | 3 | Behauptet gearbeitet zu haben
+Magier Magnus | Bühne | Aufmerksamkeit | 2 | Publikum
+Herr Krümel | Küche | Kekse | 5 | Sehr verdächtig
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- scope="col"
+- mindestens einmal scope="row"
+- colspan ODER rowspan
+
+Im <tfoot> soll ein Gesamturteil stehen.
+
+Beispiel:
+
+„Ermittlungsstatus: Zu viele Verdächtige, zu wenige Kekse.“
+
+KNOBELFRAGE:
+Warum sollte man Tabellenüberschriften mit <th> statt nur
+mit einem fett geschriebenen <td> erstellen?
+
+================================================================
+LEVEL 6 – ERMITTLER-ANMELDUNG | ca. 14 Minuten
+================================================================
+
+Erstelle ein Formular:
+
+„Für das Ermittlerteam anmelden“
+
+Nutze:
+
+<form action="" method="post">
+
+FELDER:
+
+1. Ermittlername
+   - type="text"
+   - required
+   - placeholder
+
+2. E-Mail
+   - type="email"
+   - required
+
+3. Telefonnummer
+   - type="tel"
+
+4. Einsatzdatum
+   - type="date"
+
+5. Ermittlungsstufe
+   - type="number"
+   - min="1"
+   - max="10"
+
+6. Warum möchtest du den Fall übernehmen?
+   - textarea
+   - minlength="20"
+   - maxlength="250"
+   - required
+
+7. Spezialgebiet
+   - select
+   - mindestens 5 option-Einträge
+
+Zum Beispiel:
+
+- Spurensicherung
+- Verhöre
+- Tatortanalyse
+- Recherche
+- Keksforensik
+
+Die erste Option soll:
+
+selected
+disabled
+value=""
+
+besitzen.
+
+8. Bevorzugter Kontakt
+
+Zwei radio-Buttons:
+
+- E-Mail
+- Telefon
+
+Beide müssen zur selben Gruppe gehören.
+
+9. Ausrüstung
+
+Mindestens 3 checkbox-Felder.
+
+Zum Beispiel:
+
+- Lupe
+- Kamera
+- Notizbuch
+
+10. Pflicht-Checkbox:
+
+„Ich verspreche, keine Beweise zu essen – auch keine Kekse.“
+
+required
+
+Jedes sinnvolle Feld braucht korrekt verbunden:
+
+<label for="...">
+
+und
+
+id="..."
+
+BUTTONS:
+
+- submit → „Ermittlung starten“
+- reset → „Fall schließen“
+- button → „GEHEIMAKTE ÖFFNEN“
+
+Der normale Button macht ohne JavaScript nichts.
+
+================================================================
+LEVEL 7 – DEBUGGING: DER SABOTIERTE CODE | ca. 5 Minuten
+================================================================
+
+Jemand hat die digitale Fallakte manipuliert.
+
+Dabei entstand:
+
+<nav>
+    <a href="#diamant">Zum Diamantenzimmer</a>
+</nav>
+
+<section id="diamantenzimmer">
+    <h2>Diamantenzimmer</h2>
+</section>
+
+<label for="detektiv">Name:</label>
+<input type="text" id="name">
+
+<input type="radio" name="mail" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="telefon" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Geheime Fallakte</a>
+
+<ul>
+    <li>Beweise
+        <ul>
+            <li>Keks
+            <li>Fußspur</li>
+        </ul>
+</ul>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme oder unsaubere Stellen.
+
+Korrigiere den Code.
+
+Erkläre mindestens 3 Änderungen als HTML-Kommentar.
+
+================================================================
+LEVEL 8 – DIE ABSCHLUSSPRÜFUNG | ca. 3 Minuten
+================================================================
+
+Beantworte ganz unten als HTML-Kommentare:
+
+1. Was macht href?
+2. Wie funktioniert eine Sprungmarke?
+3. Unterschied zwischen <ul> und <ol>?
+4. Wann benutzt man <dl>?
+5. Wofür braucht man <li>?
+6. Unterschied zwischen <th> und <td>?
+7. Was machen colspan und rowspan?
+8. Was bewirkt required?
+9. Warum haben zusammengehörige radio-Buttons denselben name?
+10. Unterschied zwischen submit, reset und button?
+11. Welche Aufgaben haben header, main und footer?
+
+================================================================
+BONUS – MEISTERDETEKTIV
+================================================================
+
+Wenn du früher fertig bist:
+
+BONUS 1:
+Erstelle eine zweite Tabelle:
+
+„Beweisstücke“
+
+Beweis | Fundort | Relevanz | Status
+
+BONUS 2:
+Verwende rowspan UND colspan sinnvoll.
+
+BONUS 3:
+Erstelle eine <ol reversed>.
+
+BONUS 4:
+Baue einen mailto-Link mit bereits eingetragenem Betreff.
+
+BONUS 5:
+Verstecke dieses Easter Egg als HTML-Kommentar:
+
+<!-- Der Butler war es nicht. Aber er weiß, wer den letzten Keks gegessen hat. -->
+
+BONUS 6:
+Erstelle eine zusätzliche Sprungmarke:
+
+„Direkt zum Hauptverdächtigen“
+
+BONUS 7:
+Erstelle im <aside> eine Infobox:
+
+„HINWEIS DES TAGES“
+
+mit:
+- Hinweis
+- Fundort
+- Bedeutung
+- lustiger Einschätzung
+
+================================================================
+ENDGEGNER – FALLKONTROLLE
+================================================================
+
+Überprüfe deine Webseite:
+
+[ ] vollständiges HTML-Grundgerüst
+[ ] sinnvolle semantische Struktur
+[ ] header / nav / main / footer
+[ ] section / article / aside
+[ ] h1 / h2 / h3
+[ ] p / strong / b / br / hr
+[ ] interne Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target + rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Liste
+[ ] dl / dt / dd
+[ ] Tabelle
+[ ] caption
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / for / id
+[ ] verschiedene input-Typen
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Debugging gelöst
+[ ] mindestens 5 HTML-Kommentare
+
+================================================================
+FALL GELÖST?
+================================================================
+
+Der Fall ist bestanden, wenn:
+
+1. deine Webseite funktioniert,
+2. die HTML-Struktur sinnvoll ist,
+3. du erklären kannst, warum du die Elemente verwendet hast,
+4. der Diamant gefunden wurde.
+
+ERMITTLUNGSPROTOKOLL:
+
+> Fingerabdrücke geprüft...
+> Alibis verglichen...
+> Keks analysiert...
+
+> Ergebnis:
+> Der Diamant wurde im Kuchenschrank gefunden.
+
+> Herr Krümel behauptet:
+> „Ich kann das erklären.“
+
+> Niemand glaubt ihm.
+
+FALL 404 GESCHLOSSEN.

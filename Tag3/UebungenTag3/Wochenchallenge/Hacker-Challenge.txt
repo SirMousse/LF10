@@ -1,0 +1,450 @@
+HTML-HACKER-CHALLENGE – OPERATION BLACK TERMINAL
+===================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: hacker_mission.html
+
+MISSION
+Du bist Agent/in „NullByte“ und wurdest vom streng geheimen Cyber-Team
+„404 Division“ angeworben.
+
+Keine Sorge: Heute wird niemand wirklich gehackt.
+Deine Mission besteht ausschließlich darin, eine fiktive Hacker-/Cyber-Abenteuerseite
+mit HTML zu bauen.
+
+Das System „BLACK TERMINAL“ ist abgestürzt. Um wieder Zugriff zu erhalten,
+musst du verschiedene HTML-Prüfungen bestehen.
+
+WICHTIG:
+Du bekommst nicht überall gesagt, WO ein Element hingehört.
+Du musst selbst entscheiden, welche HTML-Struktur sinnvoll ist.
+
+===================================================
+LEVEL 1 – SYSTEM BOOT | ca. 8 Minuten
+===================================================
+
+Erstelle ein vollständiges HTML-Grundgerüst.
+
+Pflicht:
+- <!DOCTYPE html>
+- <html> mit deutscher Sprache
+- <head>
+- UTF-8
+- viewport
+- description
+- sinnvoller <title>
+- <body>
+
+Der Browser-Tab soll ungefähr heißen:
+
+„BLACK TERMINAL // ACCESS REQUIRED“
+
+Baue die sichtbare Seite semantisch auf.
+
+Verwende sinnvoll:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Zusätzlich:
+- h1
+- h2
+- h3
+- p
+- strong
+- b
+- br
+- hr
+
+STORY:
+Das geheime System wurde durch einen mysteriösen „404-Ghost“ gesperrt.
+Dein Team muss drei digitale Schlüssel finden, um Professor Root zu retten.
+
+Schreibe mindestens 5 eigene HTML-Kommentare.
+
+DENKFRAGE ALS HTML-KOMMENTAR:
+Was ist der Unterschied zwischen <section>, <article> und <aside>?
+
+===================================================
+LEVEL 2 – TERMINAL-NAVIGATION | ca. 7 Minuten
+===================================================
+
+Erstelle eine Navigation mit Sprungmarken zu:
+
+- Mission
+- Agenten
+- Sicherheitsstufen
+- Zugang beantragen
+
+Die Navigation muss mit id und href="#..." funktionieren.
+
+Zusätzlich brauchst du:
+
+1. einen Link zu einer lokalen HTML-Datei
+2. einen externen Link
+3. target="_blank"
+4. rel="noopener noreferrer"
+5. einen mailto-Link zum fiktiven Cyber-HQ
+6. einen tel-Link zur fiktiven Notfall-Hotline
+7. ganz unten einen Link „Zurück zum Terminal“
+
+FRAGE:
+Was fehlt bei folgendem Code?
+
+<a href="#agenten">Agenten anzeigen</a>
+
+...wenn beim Anklicken nichts passiert?
+
+===================================================
+LEVEL 3 – AGENTEN-AUSRÜSTUNG | ca. 8 Minuten
+===================================================
+
+Erstelle eine Liste der Ausrüstung.
+
+Nutze eine <ul> mit mindestens 6 Dingen, z. B.:
+
+- Laptop
+- USB-Stick
+- Kaffee
+- Ersatz-Tastatur
+- Gummiente
+- 23 Meter Netzwerkkabel
+
+Erstelle danach eine <ol>:
+
+„Notfallprotokoll bei Systemalarm“
+
+Mindestens 5 Schritte.
+
+Verwende bei der geordneten Liste zusätzlich mindestens eines:
+
+type
+start
+reversed
+
+SCHWIERIGER:
+Erstelle eine verschachtelte Liste:
+
+Cyber-HQ
+    Ebene 1
+        Kontrollraum
+        Serverraum
+    Ebene 2
+        Agentenbüro
+        Archiv
+    Geheimlabor
+        Raum X
+            ???
+
+Die Verschachtelung muss korrekt innerhalb der <li>-Elemente erfolgen.
+
+===================================================
+LEVEL 4 – HACKER-LEXIKON | ca. 5 Minuten
+===================================================
+
+Erstelle mit:
+
+<dl>
+<dt>
+<dd>
+
+ein kleines Cyber-Lexikon.
+
+Mindestens 5 Begriffe.
+
+Mögliche Begriffe:
+
+Firewall
+Bug
+Server
+HTML
+404
+Root
+Phishing
+
+WICHTIG:
+Die Begriffe sollen harmlos und allgemein erklärt werden.
+Es sollen keine echten Angriffsanleitungen entstehen.
+
+Mindestens EIN <dt> benötigt zwei <dd>-Beschreibungen.
+
+===================================================
+LEVEL 5 – BEDROHUNGSANALYSE | ca. 10 Minuten
+===================================================
+
+Erstelle eine Tabelle:
+
+„BLACK TERMINAL – Bedrohungsübersicht“
+
+Spalten:
+
+Codename | Bereich | Stufe | Status | Gegenmaßnahme
+
+Mindestens 5 fiktive Bedrohungen.
+
+Beispiele:
+
+404-Ghost | Serverraum | 5 | Aktiv | Links überprüfen
+CSS-Goblin | Oberfläche | 2 | Verwirrt | Kaffee anbieten
+NullByte-Ente | Büro | 1 | Quakt | Ignorieren
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- scope="col"
+- mindestens einmal scope="row"
+- colspan ODER rowspan
+
+Im <tfoot> soll ein Gesamtstatus stehen, z. B.:
+
+„SYSTEMSTATUS: Ungewöhnlich viele Goblins entdeckt.“
+
+KNOBELFRAGE:
+Warum sollte eine Tabellenüberschrift mit <th> und nicht einfach
+mit einem fett geschriebenen <td> erstellt werden?
+
+===================================================
+LEVEL 6 – SECURITY CLEARANCE FORM | ca. 14 Minuten
+===================================================
+
+Erstelle ein Formular:
+
+„Zugang zur 404 Division beantragen“
+
+Nutze:
+
+<form action="" method="post">
+
+FELDER:
+
+1. Agentenname
+   type="text"
+   required
+   placeholder
+
+2. E-Mail
+   type="email"
+   required
+
+3. Telefonnummer
+   type="tel"
+
+4. Missionsdatum
+   type="date"
+
+5. Sicherheitsstufe
+   type="number"
+   min="1"
+   max="5"
+
+6. Begründung für den Zugang
+   textarea
+   minlength="20"
+   maxlength="250"
+   required
+
+7. Spezialgebiet
+   select + option
+
+Optionen beispielsweise:
+- HTML
+- CSS
+- Fehlersuche
+- Kaffeeversorgung
+- Goblin-Verhandlungen
+
+Die erste Option soll:
+selected
+disabled
+value=""
+besitzen.
+
+8. Kontaktweg
+
+Zwei radio-Buttons:
+- E-Mail
+- Telefon
+
+Beide müssen zur gleichen Gruppe gehören.
+
+9. Verfügbare Ausrüstung
+
+Mindestens drei checkbox-Felder.
+
+10. Pflichtfeld:
+
+Checkbox mit:
+
+„Ich werde ausschließlich legale und autorisierte Systeme verwenden.“
+
+required
+
+Jedes sinnvolle Feld braucht ein korrekt verbundenes:
+
+<label for="...">
+<input id="...">
+
+BUTTONS:
+
+- submit: „Zugang beantragen“
+- reset: „Identität löschen“
+- button: „ROOT-ZUGRIFF“
+
+Der normale Button macht ohne JavaScript nichts.
+
+===================================================
+LEVEL 7 – DEBUGGING: SYSTEM BESCHÄDIGT | ca. 5 Minuten
+===================================================
+
+Der Praktikant „Little Bobby Tables“ hat diesen Code geschrieben:
+
+<nav>
+    <a href="#server">Serverraum</a>
+</nav>
+
+<section id="servers">
+    <h2>Serverraum</h2>
+</section>
+
+<label for="agent">Agent:</label>
+<input type="text" id="username">
+
+<input type="radio" name="mail" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="telefon" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Cyber HQ</a>
+
+<ol>
+    <li>System prüfen
+    <li>Alarm melden</li>
+</ol>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme oder unsaubere Stellen.
+
+Korrigiere den Code.
+
+Erkläre mindestens 3 deiner Änderungen als HTML-Kommentar.
+
+===================================================
+LEVEL 8 – FINAL ACCESS TEST | ca. 3 Minuten
+===================================================
+
+Beantworte ganz unten in deiner HTML-Datei als Kommentare:
+
+1. Was macht href?
+2. Wie funktioniert eine Sprungmarke?
+3. Unterschied zwischen <ul> und <ol>?
+4. Wann benutzt man <dl>?
+5. Unterschied zwischen <th> und <td>?
+6. Was machen colspan und rowspan?
+7. Was bewirkt required?
+8. Warum brauchen zusammengehörige radio-Buttons denselben name?
+9. Unterschied zwischen submit, reset und button?
+10. Wofür stehen header, main und footer?
+
+===================================================
+BONUS – ELITE AGENT
+===================================================
+
+Wenn du vor Ablauf der Stunde fertig bist:
+
+BONUS 1:
+Baue eine zweite Tabelle „Agenten-Datenbank“ mit:
+Codename | Rang | Spezialgebiet | Status
+
+BONUS 2:
+Nutze rowspan UND colspan sinnvoll.
+
+BONUS 3:
+Erstelle einen mailto-Link mit bereits eingetragenem Betreff.
+
+BONUS 4:
+Baue eine <ol reversed> ein.
+
+BONUS 5:
+Verstecke im HTML-Kommentar diese Nachricht:
+
+ACCESS CODE: KAFFEE-404
+
+BONUS 6:
+Erstelle eine zusätzliche Sprungmarke direkt zur höchsten Sicherheitsstufe.
+
+===================================================
+ENDGEGNER – CODE REVIEW
+===================================================
+
+Prüfe deine Datei selbst.
+
+[ ] vollständiges HTML-Grundgerüst
+[ ] sinnvolle semantische Struktur
+[ ] header / nav / main / footer
+[ ] section / article / aside
+[ ] Überschriften
+[ ] Absätze und Textformatierung
+[ ] Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target + rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Liste
+[ ] dl / dt / dd
+[ ] Tabelle
+[ ] caption
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / for / id
+[ ] verschiedene input-Typen
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Debugging-Aufgabe gelöst
+[ ] mindestens 5 HTML-Kommentare
+
+===================================================
+MISSION ERFOLGREICH?
+===================================================
+
+Du erhältst ROOT-ZUGRIFF nur, wenn deine Webseite funktioniert UND du
+erklären kannst, warum du die verwendeten HTML-Elemente gewählt hast.
+
+SYSTEM:
+> Verifying HTML...
+> Checking tables...
+> Checking forms...
+> Searching for Goblins...
+> Goblin detected.
+> Offering coffee...
+> ACCESS GRANTED.
+
+404 DIVISION // END OF TRANSMISSION

@@ -1,0 +1,931 @@
+============================================================
+          CSS-ÜBUNG: MITTELERDE BRAUCHT CSS
+============================================================
+
+Dauer: ungefähr 40 Minuten
+
+Situation:
+
+Du bist neu in Mittelerde.
+
+Eigentlich wolltest du nur gemütlich im Auenland sitzen,
+etwas essen und möglichst keine Abenteuer erleben.
+
+Leider hat Gandalf herausgefunden,
+dass du "irgendwas mit Webseiten" kannst.
+
+Jetzt sollst du die Webseite von Mittelerde verschönern.
+
+Die aktuelle Webseite sieht ungefähr so aus,
+als hätte ein Ork sie während seiner Mittagspause erstellt.
+
+Deine Aufgabe:
+
+Mach die Webseite mit CSS schöner.
+
+Heute brauchst du:
+
+- externes CSS
+- internes CSS
+- Inline CSS
+- color
+- background
+- padding
+- margin
+- border
+
+Am Ende lernst du noch genau EINE neue CSS-Eigenschaft.
+
+Keine Sorge.
+
+Du musst heute keinen Ring nach Mordor bringen.
+
+
+============================================================
+AUFGABE 1: DATEIEN VORBEREITEN
+============================================================
+
+Erstelle einen Ordner:
+
+mittelerde-css
+
+
+Darin brauchst du:
+
+index.html
+
+style.css
+
+
+Erstelle in index.html ein normales HTML-Grundgerüst.
+
+Du brauchst also unter anderem:
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<body>
+
+
+Gib der Webseite außerdem den Titel:
+
+Mittelerde
+
+
+============================================================
+AUFGABE 2: EXTERNES CSS EINBINDEN
+============================================================
+
+Verbinde deine HTML-Datei mit:
+
+style.css
+
+
+Die CSS-Datei soll im <head> eingebunden werden.
+
+
+TIPP:
+
+Dafür gibt es das Element:
+
+<link>
+
+
+Versuche zuerst selbst herauszufinden,
+wie die vollständige Zeile aussehen muss.
+
+
+Falls nichts funktioniert:
+
+1. Speichern.
+2. Dateinamen überprüfen.
+3. Pfad überprüfen.
+4. Browser aktualisieren.
+5. Erst danach Sauron beschuldigen.
+
+
+============================================================
+AUFGABE 3: MITTELERDE BRAUCHT INHALT
+============================================================
+
+Erstelle im <body>:
+
+Eine Hauptüberschrift:
+
+Willkommen in Mittelerde
+
+
+Darunter einen Absatz:
+
+Abenteuer, Gefahren und überraschend viele lange Wanderungen.
+
+
+Erstelle danach eine Überschrift:
+
+Unsere Gefährten
+
+
+============================================================
+AUFGABE 4: GEFÄHRTE NUMMER 1
+============================================================
+
+Erstelle ein <article>.
+
+
+Das article bekommt:
+
+class="gefaehrte"
+
+
+Schreibe hinein:
+
+
+<h2>Frodo</h2>
+
+
+und:
+
+
+<p>
+Ein Hobbit aus dem Auenland.
+Wollte eigentlich nur ein ruhiges Leben führen.
+Das hat nicht besonders gut funktioniert.
+</p>
+
+
+Aufgabe:
+
+<p>Aufgabe: Den Ring tragen</p>
+
+
+============================================================
+AUFGABE 5: NOCH MEHR GEFÄHRTEN
+============================================================
+
+Erstelle zwei weitere Gefährten.
+
+
+Beide sollen ebenfalls:
+
+class="gefaehrte"
+
+bekommen.
+
+
+GEFÄHRTE 2:
+
+Name:
+
+Gandalf
+
+
+Beschreibung:
+
+Ein mächtiger Zauberer.
+Taucht gerne genau dann auf,
+wenn die Situation bereits ziemlich schlimm ist.
+
+
+Aufgabe:
+
+Die Gruppe beschützen
+
+
+GEFÄHRTE 3:
+
+Name:
+
+Legolas
+
+
+Beschreibung:
+
+Ein Elf mit sehr guten Augen.
+Sieht Gegner meistens früher als alle anderen.
+Erzählt es dann auch allen.
+
+
+Aufgabe:
+
+Bogenschießen und dramatisch in die Ferne schauen
+
+
+Jetzt solltest du insgesamt drei:
+
+<article class="gefaehrte">
+
+haben.
+
+
+============================================================
+AUFGABE 6: EXTERNES CSS
+============================================================
+
+Öffne jetzt:
+
+style.css
+
+
+Style dort zuerst den body.
+
+
+Benutze:
+
+font-family: Arial, Helvetica, sans-serif;
+
+line-height: 1.5;
+
+
+Danach kümmern wir uns um:
+
+.gefaehrte
+
+
+Jeder Gefährte soll einen Rahmen bekommen:
+
+border: 2px solid black;
+
+
+Außerdem soll jeder Gefährte bekommen:
+
+padding: 10px;
+
+margin: 10px 0;
+
+
+Speichern.
+
+Webseite anschauen.
+
+
+============================================================
+KURZE DENKPAUSE
+============================================================
+
+Schau dir deine Gefährten-Boxen an.
+
+
+Was macht:
+
+border?
+
+
+Was macht:
+
+padding?
+
+
+Was macht:
+
+margin?
+
+
+Versuche es mit eigenen Worten zu erklären.
+
+
+TIPP:
+
+
+padding
+
+ist der Abstand INNERHALB eines Elements.
+
+
+margin
+
+ist der Abstand AUSSERHALB eines Elements.
+
+
+Stell dir eine Hobbit-Höhle vor:
+
+Der Hobbit sitzt drinnen.
+
+padding wäre der Platz zwischen dem Hobbit
+und der Wand seiner Höhle.
+
+margin wäre der Platz zwischen seiner Höhle
+und der nächsten Hobbit-Höhle.
+
+
+============================================================
+AUFGABE 7: KLEINES EXPERIMENT
+============================================================
+
+Ändere bei .gefaehrte kurz:
+
+padding: 10px;
+
+zu:
+
+padding: 40px;
+
+
+Was verändert sich?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+padding: 10px;
+
+
+Jetzt ändere:
+
+margin: 10px 0;
+
+zu:
+
+margin: 40px 0;
+
+
+Was verändert sich diesmal?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+margin: 10px 0;
+
+
+FRAGE:
+
+Kannst du jetzt den Unterschied zwischen
+padding und margin erklären?
+
+
+============================================================
+AUFGABE 8: INTERNES CSS
+============================================================
+
+Jetzt benutzen wir internes CSS.
+
+
+Gehe in deine index.html.
+
+
+Erstelle im <head> einen:
+
+<style>
+
+</style>
+
+
+Erstelle darin die Klasse:
+
+.warnung
+
+
+Sie soll folgende Eigenschaften bekommen:
+
+
+Schriftfarbe:
+
+darkred
+
+
+Hintergrund:
+
+#ffeeee
+
+
+Innenabstand:
+
+10px
+
+
+Den CSS-Code dafür musst du selbst schreiben.
+
+
+============================================================
+AUFGABE 9: WARNUNG AUS MITTELERDE
+============================================================
+
+Erstelle unter deinen Gefährten einen Absatz:
+
+
+ACHTUNG:
+Orks wurden in der Nähe gesehen.
+Bitte keine wertvollen Ringe offen herumtragen.
+
+
+Gib diesem Absatz:
+
+class="warnung"
+
+
+Wenn der Absatz jetzt anders aussieht:
+
+Sehr gut.
+
+Das interne CSS funktioniert.
+
+
+Gandalf nickt zufrieden.
+
+Das passiert ungefähr einmal pro Zeitalter.
+
+
+============================================================
+AUFGABE 10: INLINE CSS
+============================================================
+
+Jetzt brauchen wir noch Inline CSS.
+
+
+Erstelle einen neuen Absatz:
+
+
+Status des Auenlands:
+Ruhig.
+Sam kocht vermutlich gerade etwas.
+
+
+Diesen Absatz sollst du DIREKT im HTML stylen.
+
+
+Benutze dafür:
+
+style=""
+
+
+Der Absatz soll bekommen:
+
+
+color: green;
+
+background: #e6ffe6;
+
+padding: 8px;
+
+
+Wichtig:
+
+Dafür KEINE Klasse erstellen.
+
+
+============================================================
+DENKFRAGE
+============================================================
+
+Du hast jetzt drei Arten von CSS benutzt.
+
+
+1. Wo steht EXTERNES CSS?
+
+
+____________________________
+
+
+2. Wo steht INTERNES CSS?
+
+
+____________________________
+
+
+3. Wo steht INLINE CSS?
+
+
+____________________________
+
+
+Versuche die Fragen zu beantworten,
+ohne nach oben zu schauen.
+
+
+============================================================
+AUFGABE 11: DER CSS-KAMPF
+============================================================
+
+Jetzt kämpfen mehrere CSS-Regeln
+um dasselbe Element.
+
+
+Erstelle einen neuen Absatz:
+
+
+<p class="ring">
+Welche Farbe bekomme ich?
+</p>
+
+
+Schreibe in deine EXTERNE style.css:
+
+
+.ring {
+    color: blue;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text?
+
+
+____________________________
+
+
+Jetzt schreibst du in dein INTERNES CSS:
+
+
+.ring {
+    color: green;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Zum Schluss bekommt der Absatz Inline CSS:
+
+
+style="color: purple;"
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Was fällt dir auf?
+
+
+Für diese Übung kannst du dir merken:
+
+
+Inline CSS
+
+hat normalerweise eine sehr hohe Priorität.
+
+
+Wenn zwei gleich starke Regeln vorhanden sind,
+kann auch die Reihenfolge wichtig sein.
+
+
+Das Thema dahinter heißt:
+
+CSS Cascade
+
+
+Das schauen wir uns später genauer an.
+
+
+Für heute reicht es zu wissen:
+
+Mehrere CSS-Regeln können gleichzeitig
+auf dasselbe Element wirken.
+
+
+Der eine Ring mag sie alle knechten.
+
+Bei CSS ist es leider etwas komplizierter.
+
+
+============================================================
+AUFGABE 12: EINE NEUE SACHE
+============================================================
+
+Jetzt lernst du genau EINE neue CSS-Eigenschaft.
+
+
+border-radius
+
+
+Füge bei:
+
+.gefaehrte
+
+folgende Zeile hinzu:
+
+
+border-radius: 10px;
+
+
+Speichern und anschauen.
+
+
+Was hat sich verändert?
+
+
+____________________________
+
+
+Teste danach kurz:
+
+border-radius: 30px;
+
+
+Was passiert?
+
+
+____________________________
+
+
+Stelle danach einen Wert ein,
+der dir gefällt.
+
+
+MERKE:
+
+border-radius
+
+macht die Ecken eines Elements rund.
+
+
+Vielleicht nicht ganz so rund wie eine Hobbit-Tür.
+
+Aber wir arbeiten daran.
+
+
+============================================================
+ABSCHLUSSAUFGABE
+============================================================
+
+Jetzt bekommst du weniger Hilfe.
+
+
+Erstelle einen vierten Gefährten:
+
+
+Name:
+
+Gimli
+
+
+Beschreibung:
+
+Ein Zwerg mit einer Axt.
+Eigentlich meistens mit mehreren Äxten.
+Fragen dazu sind nicht notwendig.
+
+
+Aufgabe:
+
+Orks bekämpfen und sich mit Legolas streiten
+
+
+Der Gefährte soll genauso aussehen
+wie die anderen Gefährten.
+
+
+Überlege:
+
+Welche Klasse musst du verwenden?
+
+
+============================================================
+BONUS FÜR SCHNELLE
+============================================================
+
+Nur wenn du früher fertig bist:
+
+
+Erstelle eine neue Klasse:
+
+.gefahr
+
+
+Sie soll:
+
+- rote Schrift haben
+- einen hellen Hintergrund haben
+- einen Rahmen haben
+- padding haben
+
+
+Erstelle danach einen neuen Gefährten:
+
+
+Name:
+
+Boromir
+
+
+Beschreibung:
+
+Sehr guter Kämpfer.
+Hat allerdings auffällig großes Interesse
+an einem bestimmten Schmuckstück.
+
+
+Gib Boromir:
+
+class="gefaehrte"
+
+
+UND zusätzlich die Klasse:
+
+gefahr
+
+
+Versuche herauszufinden,
+wie ein HTML-Element ZWEI Klassen bekommen kann.
+
+
+TIPP:
+
+Die Lösung sieht NICHT so aus:
+
+
+class="gefaehrte"
+class="gefahr"
+
+
+Ein Element braucht nur EIN class-Attribut.
+
+
+Die beiden Klassen werden innerhalb
+des class-Attributs eingetragen.
+
+
+============================================================
+MINI-CHECK AM ENDE
+============================================================
+
+Kannst du diese Begriffe erklären?
+
+
+color
+=
+
+____________________________
+
+
+background
+=
+
+____________________________
+
+
+padding
+=
+
+____________________________
+
+
+margin
+=
+
+____________________________
+
+
+border
+=
+
+____________________________
+
+
+border-radius
+=
+
+____________________________
+
+
+Inline CSS
+=
+
+____________________________
+
+
+Internes CSS
+=
+
+____________________________
+
+
+Externes CSS
+=
+
+____________________________
+
+
+============================================================
+LETZTE FRAGEN
+============================================================
+
+Wo wird externes CSS geschrieben?
+
+
+____________________________
+
+
+Wie wird eine externe CSS-Datei
+mit HTML verbunden?
+
+
+____________________________
+
+
+Wo befindet sich internes CSS?
+
+
+____________________________
+
+
+Wo befindet sich Inline CSS?
+
+
+____________________________
+
+
+Was ist der Unterschied zwischen
+padding und margin?
+
+
+____________________________
+
+
+Was macht ein border?
+
+
+____________________________
+
+
+Was macht border-radius?
+
+
+____________________________
+
+
+============================================================
+GESCHAFFT
+============================================================
+
+Wenn du jetzt weißt:
+
+- wie eine CSS-Datei eingebunden wird
+- was externes CSS ist
+- was internes CSS ist
+- was Inline CSS ist
+- was color macht
+- was background macht
+- was padding macht
+- was margin macht
+- was border macht
+
+dann ist das Ziel erreicht.
+
+
+Wenn du außerdem verstanden hast,
+was border-radius macht:
+
+Bonuswissen erfolgreich freigeschaltet.
+
+
+Und wenn du padding und margin
+nicht mehr verwechselst:
+
+Dann erhältst du offiziell den Titel:
+
+"Hüter der Abstände von Mittelerde"
+
+
+Gandalf sagt:
+
+"Du kannst nicht vorbei!"
+
+
+Du antwortest:
+
+"Doch. Ich habe margin."
+
+
+Gandalf muss kurz darüber nachdenken.
+
+
+Die Webseite funktioniert.
+
+Der Ring ist noch da.
+
+Mittelerde wurde gerettet.
+
+Zumindest bis zur nächsten CSS-Stunde.
+
+
+Nächstes mögliches Thema:
+
+:hover
+
+oder
+
+Flexbox
+
+
+Aber nicht heute.
+
+Eine Reise nach Mordor reicht auch nicht für einen Nachmittag.
+============================================================

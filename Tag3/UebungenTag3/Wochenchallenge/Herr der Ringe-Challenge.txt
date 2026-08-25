@@ -1,0 +1,511 @@
+HTML-FANTASY-ABENTEUER – DIE REISE ZUM SCHATTENBERG
+====================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: mittelerde_quest.html
+
+MISSION
+Ein uraltes Artefakt muss tief in das Land des Schattens gebracht werden.
+Der Weg führt durch Wälder, Berge, Ruinen und gefährliche Festungen.
+
+Du sollst eine vollständige HTML-Webseite für die Gefährten dieser Reise erstellen.
+
+Die Webseite soll:
+- die Mission erklären,
+- Gefährten dokumentieren,
+- Reiseorte darstellen,
+- Gefahren bewerten,
+- Ausrüstung strukturieren,
+- und neue Begleiter für die Reise anmelden.
+
+WICHTIG:
+Du bekommst nicht überall genau vorgegeben, WO ein HTML-Element hingehört.
+Du musst selbst entscheiden, welche Struktur sinnvoll ist.
+
+====================================================
+LEVEL 1 – DER AUFBRUCH | ca. 8 Minuten
+====================================================
+
+Erstelle ein vollständiges HTML-Grundgerüst.
+
+Pflicht:
+
+- <!DOCTYPE html>
+- <html> mit deutscher Sprache
+- <head>
+- UTF-8
+- viewport
+- description
+- sinnvoller <title>
+- <body>
+
+Der Browser-Tab soll ungefähr heißen:
+
+„Mittelerde – Die große Reise“
+
+Strukturiere die sichtbare Seite sinnvoll mit:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Verwende außerdem:
+
+- h1
+- h2
+- h3
+- p
+- strong
+- b
+- br
+- hr
+
+STORY:
+Schreibe eine kurze Einleitung.
+
+Ein geheimnisvolles Artefakt muss zum Schattenberg gebracht werden.
+Niemand darf erfahren, wer es trägt.
+
+Ein alter Zauberer sagt:
+
+„Der Weg wird gefährlich. Und jemand hat schon wieder das Reisebrot aufgegessen.“
+
+Baue mindestens 5 sinnvolle HTML-Kommentare ein.
+
+DENKFRAGE ALS HTML-KOMMENTAR:
+Was ist der Unterschied zwischen <section>, <article> und <aside>?
+
+====================================================
+LEVEL 2 – DIE KARTE DER REISE | ca. 7 Minuten
+====================================================
+
+Erstelle eine Navigation mit Sprungmarken zu:
+
+- Mission
+- Gefährten
+- Orte
+- Gefahren
+- Reise beitreten
+
+Nutze dafür passende id-Attribute.
+
+Zusätzlich brauchst du:
+
+1. einen Link zu einer lokalen HTML-Datei
+2. einen externen Link
+3. target="_blank"
+4. rel="noopener noreferrer"
+5. einen mailto-Link zur fiktiven Ratsversammlung
+6. einen tel-Link zur fiktiven Notfallwache
+7. ganz unten einen Link:
+   „Zurück zum Auenland“
+
+FEHLERSUCHE:
+
+Warum funktioniert dieser Link nicht?
+
+<a href="#moria">Zu den Minen</a>
+
+<section id="minen-von-moria">
+    ...
+</section>
+
+Erkläre den Fehler als HTML-Kommentar.
+
+====================================================
+LEVEL 3 – DIE AUSRÜSTUNG DER GEFÄHRTEN | ca. 8 Minuten
+====================================================
+
+Erstelle eine <ul> mit mindestens 7 Gegenständen.
+
+Zum Beispiel:
+
+- Schwert
+- Bogen
+- Wanderstock
+- Karte
+- Wasser
+- Reisebrot
+- Fackel
+- ein sehr verdächtiger Ring
+
+Danach:
+
+Erstelle eine <ol> mit mindestens 5 Schritten:
+
+„Was tun, wenn plötzlich Orks auftauchen?“
+
+Verwende mindestens eines:
+
+type
+start
+reversed
+
+SCHWIERIGER:
+
+Erstelle eine korrekt verschachtelte Liste:
+
+Mittelerde
+    Auenland
+        Beutelsend
+        Gasthaus
+    Nebelgebirge
+        Pass
+        Alte Mine
+            Große Halle
+            Brücke
+    Waldreich
+        Fluss
+        Ruinen
+
+Die Unterlisten müssen innerhalb der passenden <li>-Elemente liegen.
+
+====================================================
+LEVEL 4 – DAS REISELEXIKON | ca. 5 Minuten
+====================================================
+
+Erstelle mit:
+
+<dl>
+<dt>
+<dd>
+
+ein kleines Fantasy-Lexikon.
+
+Mindestens 5 Begriffe.
+
+Zum Beispiel:
+
+Gefährte
+Artefakt
+Ork
+Zwerg
+Elb
+Zauberer
+
+Mindestens EIN <dt> muss zwei <dd>-Beschreibungen besitzen.
+
+====================================================
+LEVEL 5 – GEFAHRENREGISTER | ca. 10 Minuten
+====================================================
+
+Erstelle eine Tabelle:
+
+„Gefahren auf dem Weg“
+
+Spalten:
+
+Gefahr | Ort | Stärke | Wahrscheinlichkeit | Gegenmaßnahme
+
+Mindestens 5 Einträge.
+
+Beispiele:
+
+Ork-Trupp | Alte Mine | 4 | Hoch | Gemeinsam kämpfen
+Spinne | Dunkler Wald | 5 | Mittel | Abstand halten
+Steinschlag | Gebirgspass | 3 | Hoch | Vorsichtig reisen
+Hungriger Hobbit | Lager | 2 | Sehr hoch | Zweites Frühstück
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- scope="col"
+- mindestens einmal scope="row"
+- colspan ODER rowspan
+
+Im <tfoot> soll ein lustiges Gesamturteil stehen.
+
+Beispiel:
+
+„Fazit: Der Schattenberg ist gefährlich. Der Essensvorrat ist kritischer.“
+
+KNOBELFRAGE:
+Warum sollte man Tabellenüberschriften mit <th> statt nur mit einem fett geschriebenen <td> erstellen?
+
+====================================================
+LEVEL 6 – AUFNAHME IN DIE GEFÄHRTEN | ca. 14 Minuten
+====================================================
+
+Erstelle ein Formular:
+
+„Der Reisegemeinschaft beitreten“
+
+Nutze:
+
+<form action="" method="post">
+
+FELDER:
+
+1. Name des Abenteurers
+   - type="text"
+   - required
+   - placeholder
+
+2. E-Mail
+   - type="email"
+   - required
+
+3. Telefonnummer
+   - type="tel"
+
+4. Startdatum
+   - type="date"
+
+5. Mut-Level
+   - type="number"
+   - min="1"
+   - max="10"
+
+6. Warum möchtest du mitreisen?
+   - textarea
+   - minlength="20"
+   - maxlength="250"
+   - required
+
+7. Rolle
+   - select
+   - mindestens 5 option-Einträge
+
+Zum Beispiel:
+
+- Schwertkämpfer
+- Bogenschütze
+- Heiler
+- Späher
+- Koch
+
+Die erste Option soll:
+
+selected
+disabled
+value=""
+
+besitzen.
+
+8. Bevorzugter Kontakt
+
+Zwei radio-Buttons:
+
+- E-Mail
+- Telefon
+
+Beide müssen zur selben Gruppe gehören.
+
+9. Ausrüstung
+
+Mindestens 3 checkbox-Felder.
+
+Zum Beispiel:
+
+- Karte
+- Fackel
+- Reisebrot
+
+10. Pflicht-Checkbox:
+
+„Ich verspreche, das geheimnisvolle Artefakt nicht einfach anzuprobieren.“
+
+required
+
+Jedes sinnvolle Feld braucht korrekt verbunden:
+
+<label for="...">
+
+und
+
+id="..."
+
+BUTTONS:
+
+- submit → „Reise beginnen“
+- reset → „Zurück ins Auenland“
+- button → „GEHEIMEN PFAD ÖFFNEN“
+
+Der normale Button macht ohne JavaScript nichts.
+
+====================================================
+LEVEL 7 – DEBUGGING: DER VERFLUCHTE CODE | ca. 5 Minuten
+====================================================
+
+Ein dunkler Zauber hat den Quellcode beschädigt.
+
+Dabei entstand:
+
+<nav>
+    <a href="#mine">Zu den Minen</a>
+</nav>
+
+<section id="minen">
+    <h2>Die alten Minen</h2>
+</section>
+
+<label for="held">Name:</label>
+<input type="text" id="name">
+
+<input type="radio" name="brief" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="horn" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Geheime Karte</a>
+
+<ul>
+    <li>Rucksack
+        <ul>
+            <li>Fackel
+            <li>Reisebrot</li>
+        </ul>
+</ul>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme oder unsaubere Stellen.
+
+Korrigiere den Code.
+
+Erkläre mindestens 3 Änderungen als HTML-Kommentar.
+
+====================================================
+LEVEL 8 – DIE PRÜFUNG DES RATES | ca. 3 Minuten
+====================================================
+
+Beantworte ganz unten als HTML-Kommentare:
+
+1. Was macht href?
+2. Wie funktioniert eine Sprungmarke?
+3. Unterschied zwischen <ul> und <ol>?
+4. Wann benutzt man <dl>?
+5. Wofür braucht man <li>?
+6. Unterschied zwischen <th> und <td>?
+7. Was machen colspan und rowspan?
+8. Was bewirkt required?
+9. Warum haben zusammengehörige radio-Buttons denselben name?
+10. Unterschied zwischen submit, reset und button?
+11. Welche Aufgaben haben header, main und footer?
+
+====================================================
+BONUS – LEGENDÄRER GEFÄHRTE
+====================================================
+
+Wenn du früher fertig bist:
+
+BONUS 1:
+Erstelle eine zweite Tabelle:
+
+„Mitglieder der Reisegruppe“
+
+Name | Volk | Rolle | Status
+
+BONUS 2:
+Verwende rowspan UND colspan sinnvoll.
+
+BONUS 3:
+Erstelle eine <ol reversed>.
+
+BONUS 4:
+Baue einen mailto-Link mit bereits eingetragenem Betreff.
+
+BONUS 5:
+Verstecke dieses Easter Egg als HTML-Kommentar:
+
+<!-- Der wahre Schatz war vermutlich das zweite Frühstück. -->
+
+BONUS 6:
+Erstelle eine zusätzliche Sprungmarke:
+
+„Direkt zum gefährlichsten Ort“
+
+BONUS 7:
+Erstelle im <aside> eine Infobox:
+
+„GEFÄHRTE DES TAGES“
+
+mit:
+- Name
+- Rolle
+- besondere Fähigkeit
+- lustiger Eigenschaft
+
+====================================================
+ENDGEGNER – REISEKONTROLLE
+====================================================
+
+Überprüfe deine Webseite:
+
+[ ] vollständiges HTML-Grundgerüst
+[ ] sinnvolle semantische Struktur
+[ ] header / nav / main / footer
+[ ] section / article / aside
+[ ] h1 / h2 / h3
+[ ] p / strong / b / br / hr
+[ ] interne Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target + rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Liste
+[ ] dl / dt / dd
+[ ] Tabelle
+[ ] caption
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / for / id
+[ ] verschiedene input-Typen
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Debugging gelöst
+[ ] mindestens 5 HTML-Kommentare
+
+====================================================
+MISSION ERFOLGREICH?
+====================================================
+
+Die Reise ist bestanden, wenn:
+
+1. deine Webseite funktioniert,
+2. die HTML-Struktur sinnvoll ist,
+3. du erklären kannst, warum du die Elemente verwendet hast,
+4. das Artefakt sicher sein Ziel erreicht.
+
+REISEPROTOKOLL:
+
+> Karte geprüft...
+> Gefährten gezählt...
+> Reisebrot gezählt...
+
+> WARNUNG:
+> Reisebrot fehlt.
+
+> Noch größere Warnung:
+> Der Hobbit sagt, er habe „nur ein kleines Frühstück“ gegessen.
+
+> Niemand glaubt ihm.
+
+QUEST ENDE

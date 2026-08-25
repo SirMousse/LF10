@@ -1,0 +1,30 @@
+Hacker-Terminal
+
+Thema: Hacker / Cyber
+
+Ziel: Neonfarben, dunkle Hintergründe und Transparenz ausprobieren
+
+Aufgabe:
+
+Erstelle ein fiktives Hacker-Terminal mit:  - einer Überschrift „ACCESS TERMINAL“
+                                             - einem dunklen Hintergrund
+                                             - 3 Statusfeldern:
+                                                   - Server
+                                                   - Firewall
+                                                   - Datenbank
+                                             - einem Button „ACCESS“
+
+Bedingungen:    - Der Haupthintergrund soll eine Hex-Farbe verwenden.
+                - Die Schriftfarbe soll mit einem Farbnamen gesetzt werden.
+                - Ein Statusfeld soll rgb() verwenden.
+                - Ein Statusfeld soll rgba() verwenden.
+                - Ein Statusfeld soll hsl() verwenden.
+                - Der Button soll beim Hover seine Farbe ändern.
+
+Extra-Challenge:
+
+Erstelle eine halbtransparente Warnmeldung:
+
+„WARNING: UNKNOWN CONNECTION“
+
+Nutze dafür rgba() oder hsla().

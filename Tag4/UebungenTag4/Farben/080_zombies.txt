@@ -1,0 +1,31 @@
+Zombie-Alarm
+
+Thema: Zombies
+
+Ziel: Warnfarben und starke Farbkontraste einsetzen
+
+Aufgabe:
+
+Erstelle eine Zombie-Überlebensseite mit:  - einer Überschrift „Zombie Alarm!“
+                                            - einer Gefahrenanzeige
+                                            - 3 Karten:
+                                                  - Nahrung
+                                                  - Medizin
+                                                  - Ausrüstung
+                                            - einem Button „Zum Bunker!“
+
+Bedingungen:    - Der Hintergrund soll mit einer dunklen Hex-Farbe gestaltet werden.
+                - Die Gefahrenanzeige soll rgb() verwenden.
+                - Die drei Karten sollen unterschiedliche Farben bekommen.
+                - Mindestens eine Karte soll hsl() verwenden.
+                - Eine Warnbox soll einen halbtransparenten Hintergrund
+                  mit rgba() bekommen.
+                - Der Button soll beim Hover eine andere Farbe bekommen.
+
+Extra-Challenge:
+
+Erstelle drei Gefahrenstufen:  - Sicher
+                               - Achtung
+                               - Zombie-Alarm
+
+Wähle für jede Gefahrenstufe eine passende Farbe.

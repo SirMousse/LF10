@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurassic Code</title>
+</head>
+
+<body>
+
+    <h1>Jurassic Code</h1>
+
+    <!-- Bonus-Level: Navigation -->
+    <nav>
+        <a href="#dinos">Dinos</a> |
+        <a href="#profile">Profile</a> |
+        <a href="#fuetterung">Fütterung</a> |
+        <a href="#forschung">Forschung</a> |
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <p>
+        <a href="#kontakt">Direkt zum Kontakt</a>
+    </p>
+
+
+    <!-- ==================================================
+        LEVEL 1 - DIE DINOS IM ÜBERBLICK
+        ================================================== -->
+
+    <section id="dinos">
+        <h2>Unsere Dinosaurier</h2>
+
+        <table border="1">
+            <caption>Dinosaurier der Forschungsstation</caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Art</th>
+                    <th scope="col">Größe</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Rexi</td>
+                    <td>Tyrannosaurus Rex</td>
+                    <td>12 Meter</td>
+                </tr>
+
+                <tr>
+                    <td>Spike</td>
+                    <td>Triceratops</td>
+                    <td>9 Meter</td>
+                </tr>
+
+                <tr>
+                    <td>Fluffy</td>
+                    <td>Velociraptor</td>
+                    <td>2 Meter</td>
+                </tr>
+
+                <tr>
+                    <td>Longneck</td>
+                    <td>Brachiosaurus</td>
+                    <td>22 Meter</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 2 - DIE DINO-PROFILE
+        ================================================== -->
+
+    <section id="profile">
+        <h2>Dino-Profile</h2>
+
+        <p>
+            <a href="rexi.html">Mehr über Rexi</a>
+        </p>
+
+        <p>
+            <a href="spike.html">Mehr über Spike</a>
+        </p>
+
+        <p>
+            <a href="fluffy.html">Mehr über Fluffy</a>
+        </p>
+
+        <p>
+            <a
+                href="https://de.wikipedia.org/wiki/Dinosaurier"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Mehr über Dinosaurier erfahren
+            </a>
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 3 - KONTAKT ZUR FORSCHUNGSSTATION
+        ================================================== -->
+
+    <section id="kontaktmoeglichkeiten">
+        <h2>Kontakt zur Forschungsstation</h2>
+
+        <h3>E-Mail</h3>
+
+        <p>
+            <a href="mailto:kontakt@jurassic-code.de?subject=Frage%20zu%20einem%20Dinosaurier&amp;body=Hallo%20Forschungsteam%2C%0D%0A%0D%0Aich%20habe%20eine%20Frage%20zu%20einem%20Dinosaurier.">
+                Forschungsteam per E-Mail kontaktieren
+            </a>
+        </p>
+
+        <h3>Telefon</h3>
+
+        <p>
+            <a href="tel:+49123456789">
+                Forschungsstation anrufen
+            </a>
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 4 - DER FÜTTERUNGSPLAN
+        ================================================== -->
+
+    <section id="fuetterung">
+        <h2>Der Fütterungsplan</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th scope="col">Dino</th>
+                    <th scope="col">Futter</th>
+                    <th scope="col">Menge</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Rexi</td>
+                    <td>Fleisch</td>
+                    <td>80 kg</td>
+                </tr>
+
+                <tr>
+                    <td>Spike</td>
+                    <td>Pflanzen</td>
+                    <td>60 kg</td>
+                </tr>
+
+                <tr>
+                    <td>Fluffy</td>
+                    <td>Fleisch</td>
+                    <td>20 kg</td>
+                </tr>
+
+                <tr>
+                    <td>Longneck</td>
+                    <td>Blätter</td>
+                    <td>150 kg</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        Alle Dinosaurier bekommen zusätzlich frisches Wasser.
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <p>
+            <strong>Denkfrage:</strong> Das benötigte Attribut heißt <code>colspan</code>.
+        </p>
+
+        <p>
+            Mit <code>colspan="3"</code> erstreckt sich eine Tabellenzelle über alle drei Spalten.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 5 - DER FORSCHUNGSPLAN
+        ================================================== -->
+
+    <section id="forschung">
+        <h2>Der Forschungsplan</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Vormittag</th>
+                    <th scope="col">Nachmittag</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row">Montag</th>
+
+                    <td rowspan="2">
+                        Rexi beobachten
+                    </td>
+
+                    <td>
+                        Pflanzen sammeln
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Dienstag</th>
+
+                    <td>
+                        Eier untersuchen
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Mittwoch</th>
+
+                    <td colspan="2">
+                        Fossilien suchen
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Unterschied zwischen rowspan und colspan</h3>
+
+        <p>
+            <code>rowspan</code> sorgt dafür, dass sich eine Tabellenzelle über mehrere <strong>Zeilen</strong> erstreckt.
+        </p>
+
+        <p>
+            <code>colspan</code> sorgt dafür, dass sich eine Tabellenzelle über mehrere <strong>Spalten</strong> erstreckt.
+        </p>
+
+        <p>
+            In dieser Tabelle wird <code>rowspan="2"</code> für „Rexi beobachten“ verwendet. Dadurch gilt die Zelle sowohl für Montag als auch für Dienstag.
+        </p>
+
+        <p>
+            Für „Fossilien suchen“ wird <code>colspan="2"</code> verwendet. Dadurch belegt die Zelle sowohl den Vormittag als auch den Nachmittag.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        FINAL BOSS - DER GEHEIME FOSSILIENBERICHT
+        ================================================== -->
+
+    <section id="fossilienbericht">
+        <h2>Der geheime Fossilienbericht</h2>
+
+        <p>
+            <a href="fossilienbericht.pdf" download>
+                Fossilienbericht herunterladen
+            </a>
+        </p>
+
+        <h3>Was macht das download-Attribut?</h3>
+
+        <p>
+            Das Attribut <code>download</code> teilt dem Browser mit, dass die verlinkte Datei heruntergeladen werden soll, anstatt sie nur normal zu öffnen.
+        </p>
+
+        <h3>
+            Was passiert, wenn fossilienbericht.pdf nicht im richtigen Ordner liegt?
+        </h3>
+
+        <p>
+            Wenn die Datei unter dem angegebenen Pfad nicht gefunden wird, kann sie nicht heruntergeladen werden.
+        </p>
+
+        <p>
+            Auf einem Webserver erscheint dann normalerweise eine Fehlermeldung wie <strong>404 Not Found</strong>.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 6 - SCHNELL DURCH DIE FORSCHUNGSSTATION
+        ================================================== -->
+
+    <section id="kontakt">
+        <h2>Kontakt zur Forschungsstation</h2>
+
+        <p>
+            Forschungsstation Jurassic Code
+        </p>
+
+        <p>
+            E-Mail:
+            <a href="mailto:kontakt@jurassic-code.de">
+                kontakt@jurassic-code.de
+            </a>
+        </p>
+
+        <p>
+            Telefon:
+            <a href="tel:+49123456789">
+                +49 123 456789
+            </a>
+        </p>
+
+        <p>
+            <a href="#dinos">Zurück zu den Dinosauriern</a>
+        </p>
+    </section>
+
+</body>
+</html>

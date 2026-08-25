@@ -1,0 +1,25 @@
+Detektiv-Akte
+
+Thema: Detektive
+
+Ziel: dunkle Farben und Transparenz kombinieren
+
+Aufgabe:
+
+Erstelle eine geheime Ermittlungsakte mit:  - einer Überschrift „Streng geheim“
+                                             - einem Verdächtigen-Foto als Platzhalter
+                                             - 3 Hinweis-Karten
+                                             - einem Button „Fall lösen“
+
+Bedingungen:    - Der Seitenhintergrund soll mit einer Hex-Farbe gestaltet werden.
+                - Die Überschrift soll mit einem Farbnamen gefärbt werden.
+                - Eine Hinweis-Karte soll rgb() verwenden.
+                - Eine Hinweis-Karte soll hsl() verwenden.
+                - Eine Hinweis-Karte soll rgba() verwenden.
+                - Der Button soll beim Hover eine andere Farbe bekommen.
+
+Extra-Challenge:
+
+Gestalte Hinweise unterschiedlich nach Wichtigkeit:  - grün = sicher
+                                                       - orange = verdächtig
+                                                       - rot = gefährlich

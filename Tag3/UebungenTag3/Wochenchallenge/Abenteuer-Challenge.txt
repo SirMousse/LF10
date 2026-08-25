@@ -1,0 +1,363 @@
+HTML-ABENTEUER-CHALLENGE – DER TEMPEL DER 404 PRÜFUNGEN
+==============================================================
+
+ZEIT: ca. 60 Minuten
+SCHWIERIGKEIT: Fortgeschritten
+DATEI: tempel_404.html
+
+MISSION
+Professor Pixel ist im „Tempel der 404 Prüfungen“ verschwunden.
+Du musst eine vollständige Abenteuer-Webseite bauen, mit der ein Rettungsteam
+den Tempel betreten, Gefahren einschätzen und sich für die Expedition anmelden kann.
+
+WICHTIG:
+Du bekommst keine genaue Reihenfolge für jedes einzelne HTML-Element.
+Du musst selbst entscheiden, welche Elemente sinnvoll zusammengehören.
+
+==============================================================
+TEIL 1 – GRUNDGERÜST UND SEMANTIK | ca. 10 Minuten
+==============================================================
+
+Erstelle eine vollständige HTML-Seite mit:
+
+- <!DOCTYPE html>
+- deutscher Sprache
+- UTF-8
+- viewport
+- description
+- sinnvollem <title>
+
+Die sichtbare Seite soll sinnvoll gegliedert sein mit:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+Zusätzlich brauchst du mindestens:
+- eine <h1>
+- zwei <h2>
+- eine <h3>
+- mehrere <p>
+- <strong>
+- <b>
+- <br>
+- <hr>
+
+INHALT:
+Erfinde eine kleine Geschichte darüber, dass Professor Pixel einen
+„Goldenen USB-Stick“ im Tempel sucht.
+
+WICHTIG:
+Nutze <section>, <article> und <aside> nicht einfach irgendwo.
+Die Struktur soll inhaltlich Sinn ergeben.
+
+KURZFRAGE IM HTML-KOMMENTAR:
+Erkläre in 1–2 Sätzen den Unterschied zwischen <article> und <section>.
+
+==============================================================
+TEIL 2 – NAVIGATION UND LINKS | ca. 8 Minuten
+==============================================================
+
+Deine Navigation soll mindestens zu diesen Bereichen springen:
+
+- Mission
+- Gefahren
+- Ausrüstung
+- Anmeldung
+
+Nutze dafür interne Sprungmarken mit id.
+
+Baue außerdem ein:
+
+1. einen Link zu einer anderen lokalen HTML-Datei
+2. einen externen Link
+3. der externe Link öffnet sich in einem neuen Tab
+4. verwende dabei:
+   target="_blank"
+   rel="noopener noreferrer"
+5. einen mailto-Link
+6. einen tel-Link
+
+EXTRA-SCHWIERIGKEIT:
+Erstelle im unteren Bereich der Seite einen Link:
+„Zurück zum Anfang“
+
+DENKFRAGE:
+Warum funktioniert href="#gefahren" nur dann, wenn ein Element die passende id besitzt?
+
+==============================================================
+TEIL 3 – DAS INVENTAR DES ABENTEURERS | ca. 8 Minuten
+==============================================================
+
+Erstelle eine verschachtelte Liste.
+
+Die Hauptliste soll mindestens enthalten:
+
+- Rucksack
+- Werkzeug
+- Verpflegung
+
+Jeder Hauptpunkt bekommt eine Unterliste.
+
+Mindestens eine Unterliste muss wiederum eine weitere Unterliste enthalten.
+
+Zusätzlich brauchst du:
+
+- mindestens eine <ul>
+- mindestens eine <ol>
+- mindestens eine geordnete Liste mit type, start ODER reversed
+
+Erstelle danach mit:
+
+<dl>
+<dt>
+<dd>
+
+ein Mini-Lexikon mit mindestens 4 Begriffen aus dem Abenteuer.
+
+Mindestens ein <dt> soll zwei <dd>-Einträge besitzen.
+
+BEISPIELBEGRIFFE:
+Quest, Goblin, Bug, HTML, 404-Geist
+
+==============================================================
+TEIL 4 – GEFAHRENANALYSE ALS TABELLE | ca. 10 Minuten
+==============================================================
+
+Erstelle eine Tabelle mit dem Titel:
+
+„Gefahren im Tempel“
+
+Sie soll mindestens 5 Gefahren enthalten.
+
+Spalten:
+
+Gefahr | Ort | Stufe | Wahrscheinlichkeit | Gegenmaßnahme
+
+Verwende zwingend:
+
+<table>
+<caption>
+<thead>
+<tbody>
+<tfoot>
+<tr>
+<th>
+<td>
+
+Zusätzlich:
+
+- Spaltenüberschriften mit scope="col"
+- mindestens eine Zeilenüberschrift mit scope="row"
+- mindestens einmal colspan ODER rowspan
+
+Im <tfoot> soll eine Zusammenfassung stehen, z. B.:
+
+„Gesamturteil: Expedition nur mit Kaffee empfohlen.“
+
+KNOBELFRAGE:
+Warum ist <th> semantisch besser für Überschriften als einfach nur ein fett geschriebenes <td>?
+
+==============================================================
+TEIL 5 – EXPEDITIONS-FORMULAR | ca. 15 Minuten
+==============================================================
+
+Erstelle ein Formular für neue Expeditionsteilnehmer.
+
+<form> soll enthalten:
+
+action=""
+method="post"
+
+FELDER:
+
+1. Codename
+   - text
+   - required
+   - placeholder
+
+2. E-Mail
+   - email
+   - required
+
+3. Telefonnummer
+   - tel
+
+4. Expeditionstag
+   - date
+
+5. Mut-Level
+   - number
+   - min="1"
+   - max="10"
+
+6. Nachricht an Professor Pixel
+   - textarea
+   - minlength="10"
+   - maxlength="200"
+   - required
+
+7. Rolle im Team
+   - select
+   - mindestens 4 option-Einträge
+   - erste Option:
+     selected
+     disabled
+     value=""
+
+8. Bevorzugter Kontakt
+   - zwei radio-Buttons
+   - gleicher name-Wert
+
+9. Ausrüstung
+   - mindestens 3 checkbox-Felder
+
+10. Pflicht-Checkbox:
+   „Ich verspreche, den roten Knopf nicht zu drücken.“
+   - required
+
+Jedes sinnvolle Eingabefeld braucht ein korrekt verbundenes <label>.
+
+Nutze dafür:
+for="..."
+id="..."
+
+Füge diese Buttons ein:
+
+- submit
+- reset
+- button
+
+Der normale Button soll heißen:
+
+„NICHT DRÜCKEN“
+
+==============================================================
+TEIL 6 – DEBUGGING-BOSS | ca. 5 Minuten
+==============================================================
+
+Dieser Code enthält mehrere Fehler:
+
+<form method="post">
+
+<label for="hero">Codename:</label>
+<input type="text" id="name" required>
+
+<input type="radio" name="mail" id="kontakt1">
+<label for="kontakt1">E-Mail</label>
+
+<input type="radio" name="telefon" id="kontakt2">
+<label for="kontakt2">Telefon</label>
+
+<a target="_blank">Geheimer Tempel</a>
+
+<ul>
+    <li>Rucksack
+        <ul>
+            <li>Lampe
+            <li>Wasser</li>
+        </ul>
+</ul>
+
+</form>
+
+AUFGABE:
+
+Finde mindestens 5 Probleme.
+
+Schreibe die korrigierte Version als HTML-Kommentar oder unter deine Seite.
+
+Erkläre zu mindestens 3 Fehlern kurz, warum sie problematisch waren.
+
+==============================================================
+TEIL 7 – ABSCHLUSSPRÜFUNG | ca. 4 Minuten
+==============================================================
+
+Schreibe deine Antworten als HTML-Kommentare ganz unten in die Datei.
+
+1. Was ist der Unterschied zwischen <ul> und <ol>?
+2. Wann verwendet man <dl>?
+3. Wofür steht href?
+4. Was ist eine Sprungmarke?
+5. Was ist der Unterschied zwischen <th> und <td>?
+6. Was bewirken colspan und rowspan?
+7. Was macht required?
+8. Warum sollten radio-Buttons derselben Gruppe denselben name besitzen?
+9. Was ist der Unterschied zwischen submit, reset und button?
+10. Welche Aufgabe haben header, main und footer?
+
+==============================================================
+BONUS – WENN DU FRÜHER FERTIG BIST
+==============================================================
+
+BONUS 1:
+Baue irgendwo sinnvoll eine zweite kleine Tabelle ein.
+
+BONUS 2:
+Erstelle einen mailto-Link mit vorgegebenem Betreff.
+
+BONUS 3:
+Baue eine geordnete Liste mit reversed.
+
+BONUS 4:
+Füge mindestens 5 sinnvolle HTML-Kommentare ein.
+
+BONUS 5:
+Baue absichtlich einen kleinen Fehler ein, korrigiere ihn und dokumentiere
+im Kommentar, was falsch war.
+
+==============================================================
+ERFOLGSKONTROLLE
+==============================================================
+
+Am Ende sollte deine Seite ungefähr diese Fähigkeiten zeigen:
+
+[ ] HTML-Grundgerüst
+[ ] semantische Struktur
+[ ] Überschriften und Text
+[ ] interne Links / Sprungmarken
+[ ] lokaler Link
+[ ] externer Link
+[ ] target und rel
+[ ] mailto
+[ ] tel
+[ ] ul
+[ ] ol
+[ ] verschachtelte Listen
+[ ] dl / dt / dd
+[ ] vollständige Tabelle
+[ ] thead / tbody / tfoot
+[ ] scope
+[ ] colspan oder rowspan
+[ ] Formular
+[ ] label / id / for
+[ ] text / email / tel / date / number
+[ ] textarea
+[ ] select / option
+[ ] radio
+[ ] checkbox
+[ ] required
+[ ] placeholder
+[ ] min / max
+[ ] submit / reset / button
+[ ] Fehlersuche
+[ ] eigene Erklärungen
+
+==============================================================
+ENDGEGNER-REGEL
+==============================================================
+
+Die Aufgabe ist nicht bestanden, wenn die Seite zwar funktioniert,
+du aber nicht erklären kannst, warum du die verwendeten Elemente benutzt hast.
+
+Und ganz wichtig:
+
+DEN ROTEN KNOPF NICHT DRÜCKEN.
+
+Wirklich nicht.
+
+...

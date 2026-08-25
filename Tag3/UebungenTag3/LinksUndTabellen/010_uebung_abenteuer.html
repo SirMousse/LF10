@@ -1,0 +1,397 @@
+<!--
+============================================================
+AUFGABE: DAS ABENTEUER VON LINKORIA
+============================================================
+
+Dauer: ca. 45 Minuten
+Level: Anfänger bis leicht fortgeschritten
+
+Themen:
+- Tabellen
+- Links
+- Sprungmarken
+- E-Mail- und Telefon-Links
+- target und rel
+- colspan und rowspan
+- kleine Recherche-Aufgaben
+
+
+DIE GESCHICHTE
+------------------------------------------------------------
+
+Du bist im digitalen Königreich Linkoria gefangen.
+
+Der Magier "404 Not Found" hat alle Wege aus dem Schloss
+zerstört.
+
+Um zu entkommen, musst du eine HTML-Seite namens
+
+abenteuer.html
+
+erstellen.
+
+Jede gelöste Aufgabe bringt dich dem Ausgang näher.
+
+
+============================================================
+LEVEL 1 - DEIN ABENTEUER-RUCKSACK
+ca. 7 Minuten
+============================================================
+
+Erstelle die Überschrift:
+
+"Mein Abenteuer-Rucksack"
+
+Darunter soll eine Tabelle mit folgenden Daten entstehen:
+
+Gegenstand              Anzahl      Wert
+------------------------------------------------
+Heiltrank                3           15 Gold
+Käsebrot                 5           unbezahlbar
+Holzschwert              1           4 Gold
+Mysteriöser USB-Stick    1           ???
+
+Die Tabelle soll die Beschriftung
+
+"Inventar des Helden"
+
+bekommen.
+
+
+ANFORDERUNGEN:
+
+Verwende:
+
+- <table>
+- <caption>
+- <tr>
+- <th>
+- <td>
+
+Die Spaltenüberschriften sollen außerdem das passende
+scope-Attribut erhalten.
+
+
+============================================================
+LEVEL 2 - DIE DREI TÜREN
+ca. 6 Minuten
+============================================================
+
+Du kommst in einen Raum mit drei Türen.
+
+Erstelle die Überschrift:
+
+"Wähle deinen Weg"
+
+Darunter sollen drei Links stehen:
+
+
+1. "In den Wald gehen"
+   Ziel: wald.html
+
+2. "Die Taverne betreten"
+   Ziel: taverne.html
+
+3. "Zum Drachen gehen"
+   Ziel: drache.html
+
+
+Erstelle danach einen weiteren Link zu:
+
+https://example.com
+
+Dieser Link soll sich in einem NEUEN TAB öffnen.
+
+Achte dabei auch auf die passenden Werte für das
+rel-Attribut.
+
+
+============================================================
+LEVEL 3 - DER MAGISCHE KOMMUNIKATIONSSTEIN
+ca. 6 Minuten
+============================================================
+
+Du findest einen Kommunikationsstein.
+
+Damit kannst du einen Zauberer kontaktieren.
+
+
+TEIL 1: E-MAIL
+
+Erstelle einen Link, der das E-Mail-Programm öffnet.
+
+E-Mail-Adresse:
+
+zauberer@linkoria.de
+
+Der Betreff soll bereits eingetragen sein:
+
+Hilfe aus Linkoria
+
+Der Nachrichtentext soll bereits enthalten:
+
+Hallo Zauberer,
+
+ich brauche Hilfe!
+
+
+TEIL 2: TELEFON
+
+Erstelle zusätzlich einen Telefon-Link.
+
+Telefonnummer:
+
++49123456789
+
+Der sichtbare Linktext soll sein:
+
+"Ritter-Hotline anrufen"
+
+
+============================================================
+LEVEL 4 - DER HÄNDLER
+ca. 7 Minuten
+============================================================
+
+Du triffst den Händler Sir Tabellenstein.
+
+Er verkauft folgende Gegenstände:
+
+
+Gegenstand          Preis       Zustand
+------------------------------------------------------
+Drachenschwert      120 Gold    leicht angekokelt
+Tarnumhang          80 Gold     leider sichtbar
+Heiltrank           10 Gold     Himbeergeschmack
+Magische Maus       3 Gold      läuft nachts herum
+
+
+Baue diese Tabelle mit:
+
+- <thead>
+- <tbody>
+- <tfoot>
+
+
+Im Fußbereich soll stehen:
+
+"Alle Preise ohne Drachensteuer"
+
+
+ACHTUNG:
+
+Dieser Satz soll sich über ALLE DREI SPALTEN erstrecken.
+
+
+DENKFRAGE:
+
+Welches HTML-Attribut brauchst du dafür?
+
+
+============================================================
+LEVEL 5 - DIE VERFLUCHTE DUNGEON-KARTE
+ca. 7 Minuten
+============================================================
+
+Erstelle folgende Tabelle:
+
+
+Tag          Vormittag             Nachmittag
+------------------------------------------------------
+Montag       Dungeon erkunden      Monster suchen
+Dienstag     Dungeon erkunden      Schatz suchen
+Mittwoch     Wandertag             Wandertag
+
+
+ABER:
+
+"Dungeon erkunden" darf nur EINMAL in deinem HTML-Code
+stehen.
+
+Es soll trotzdem für Montag UND Dienstag gelten.
+
+
+Auch "Wandertag" darf nur EINMAL im HTML-Code stehen.
+
+Es soll aber Vormittag UND Nachmittag belegen.
+
+
+RECHERCHE-AUFGABE:
+
+Finde heraus:
+
+Was ist der Unterschied zwischen
+
+rowspan
+
+und
+
+colspan
+
+?
+
+
+Benutze anschließend beide Attribute richtig in deiner
+Tabelle.
+
+
+============================================================
+LEVEL 6 - DER TELEPORTER
+ca. 7 Minuten
+============================================================
+
+Ganz unten auf deiner Webseite befindet sich der Ausgang.
+
+Erstelle dort die Überschrift:
+
+"Ausgang aus Linkoria"
+
+
+Ganz oben auf deiner Webseite soll ein Link stehen:
+
+"Direkt zum Ausgang teleportieren"
+
+
+Beim Anklicken soll der Browser direkt zum Ausgang springen.
+
+
+Beim Ausgang soll außerdem ein Link stehen:
+
+"Zurück zum Rucksack"
+
+
+Dieser Link soll zurück zur Inventar-Tabelle springen.
+
+
+ANFORDERUNG:
+
+Benutze dafür:
+
+- id
+- href="#..."
+
+
+============================================================
+FINAL BOSS - ETWAS NEUES HERAUSFINDEN
+ca. 5 Minuten
+============================================================
+
+Der Magier "404 Not Found" stellt dir eine letzte Aufgabe.
+
+
+Du kennst bereits Links zu:
+
+- Webseiten
+- HTML-Dateien
+- Telefonnummern
+- E-Mail-Adressen
+- Stellen innerhalb einer Webseite
+
+
+Jetzt musst du selbst etwas Neues herausfinden.
+
+
+RECHERCHE:
+
+Wie kann man mit einem Link eine Datei zum Download
+anbieten?
+
+
+Suche nach dem HTML-Attribut:
+
+download
+
+
+Erstelle anschließend einen Link zur Datei:
+
+schatzkarte.pdf
+
+
+Der sichtbare Linktext soll sein:
+
+"Schatzkarte herunterladen"
+
+
+ZUSATZFRAGE:
+
+Was passiert, wenn die Datei "schatzkarte.pdf" gar nicht
+im richtigen Ordner liegt?
+
+
+============================================================
+BONUS-LEVEL
+============================================================
+
+Wenn du früher fertig bist:
+
+Erstelle ganz oben auf deiner Webseite eine Navigation.
+
+
+Sie soll folgende Links enthalten:
+
+Rucksack | Türen | Händler | Dungeon | Ausgang
+
+
+Beim Anklicken soll man direkt zum entsprechenden Bereich
+auf DEINER Webseite springen.
+
+
+Dafür musst du eventuell zusätzliche id-Attribute
+verwenden.
+
+
+============================================================
+QUEST-CHECK
+============================================================
+
+Kontrolliere deine Webseite:
+
+[ ] HTML-Grundstruktur vorhanden
+
+[ ] Tabellen funktionieren
+
+[ ] <th> und <td> sinnvoll verwendet
+
+[ ] scope verwendet
+
+[ ] <thead>, <tbody> und <tfoot> verwendet
+
+[ ] colspan verwendet
+
+[ ] rowspan verwendet
+
+[ ] Links zu anderen Dateien erstellt
+
+[ ] Externen Link erstellt
+
+[ ] target="_blank" verwendet
+
+[ ] rel verwendet
+
+[ ] mailto-Link erstellt
+
+[ ] tel-Link erstellt
+
+[ ] Sprungmarken mit id erstellt
+
+[ ] download selbst recherchiert
+
+[ ] Webseite im Browser getestet
+
+
+============================================================
+GESCHAFFT?
+============================================================
+
+Wenn alle Tabellen korrekt angezeigt werden und deine
+Links funktionieren, hast du Linkoria erfolgreich verlassen.
+
+Falls etwas nicht funktioniert:
+
+Nicht sofort alles löschen.
+
+Untersuche deinen Code.
+Finde heraus, in welchem Level der Fehler steckt.
+Teste deine Lösung erneut im Browser.
+============================================================
+-->

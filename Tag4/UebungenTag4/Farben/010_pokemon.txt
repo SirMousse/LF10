@@ -1,0 +1,27 @@
+Pokémon-Trainerkarte
+
+Thema: Pokémon
+
+Ziel: Hex-Farben und Farbnamen üben
+
+Aufgabe: 
+
+Erstelle eine kleine Pokémon-Trainerkarte mit:  - einem Hintergrund
+                                                - einem Namensfeld
+                                                - 3 Pokémon-Karten
+                                                - einem Button „Zum Kampf!“
+
+Bedingungen:    - Der Hintergrund soll mit einer Hex-Farbe gesetzt werden.
+                - Der Name des Trainers soll mit einem Farbnamen gefärbt werden.
+                - Jedes Pokémon soll eine andere Hintergrundfarbe bekommen: - Pikachu: gelb
+                                                                            - Glumanda: orange/rot
+                                                                            - Bisasam: grün
+                - Der Button soll beim Hover eine andere Farbe bekommen.
+
+Extra-Challenge: Nutze nur Farbnamen für die Pokémon und nur Hex-Farben für den Rest.
+
+Beispiel-Ideen: - yellow
+                - orange
+                - green
+                - #1e1e2f
+                - #ffffff 

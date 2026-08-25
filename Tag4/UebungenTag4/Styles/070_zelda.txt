@@ -1,0 +1,945 @@
+============================================================
+              CSS-ÜBUNG: HYRULE BRAUCHT CSS
+============================================================
+
+Dauer: ungefähr 40 Minuten
+
+Situation:
+
+Du bist neu in Hyrule.
+
+Eigentlich wolltest du nur ein paar Rubine sammeln
+und möglichst keine Töpfe kaputt machen.
+
+Dann hat Prinzessin Zelda erfahren,
+dass du "irgendwas mit Webseiten" kannst.
+
+Jetzt sollst du die Webseite von Hyrule verschönern.
+
+Die aktuelle Webseite funktioniert zwar,
+sieht aber ungefähr so aus,
+als hätte ein Bokblin sie mit einem Stock gestaltet.
+
+Deine Aufgabe:
+
+Mach die Webseite mit CSS schöner.
+
+Heute brauchst du:
+
+- externes CSS
+- internes CSS
+- Inline CSS
+- color
+- background
+- padding
+- margin
+- border
+
+Am Ende lernst du noch genau EINE neue CSS-Eigenschaft.
+
+Keine Sorge.
+
+Ganon ist heute nicht Teil der Prüfung.
+
+Hoffentlich.
+
+
+============================================================
+AUFGABE 1: DATEIEN VORBEREITEN
+============================================================
+
+Erstelle einen Ordner:
+
+hyrule-css
+
+
+Darin brauchst du:
+
+index.html
+
+style.css
+
+
+Erstelle in index.html ein normales HTML-Grundgerüst.
+
+Du brauchst also unter anderem:
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<body>
+
+
+Gib der Webseite außerdem den Titel:
+
+Hyrule
+
+
+============================================================
+AUFGABE 2: EXTERNES CSS EINBINDEN
+============================================================
+
+Verbinde deine HTML-Datei mit:
+
+style.css
+
+
+Die CSS-Datei soll im <head> eingebunden werden.
+
+
+TIPP:
+
+Dafür gibt es das Element:
+
+<link>
+
+
+Versuche zuerst selbst herauszufinden,
+wie die vollständige Zeile aussehen muss.
+
+
+Falls nichts funktioniert:
+
+1. Speichern.
+2. Dateinamen überprüfen.
+3. Pfad überprüfen.
+4. Browser aktualisieren.
+5. Erst danach Ganon beschuldigen.
+
+
+============================================================
+AUFGABE 3: HYRULE BRAUCHT INHALT
+============================================================
+
+Erstelle im <body>:
+
+Eine Hauptüberschrift:
+
+Willkommen in Hyrule
+
+
+Darunter einen Absatz:
+
+Abenteuer, Monster und auffällig viele zerbrechliche Töpfe.
+
+
+Erstelle danach eine Überschrift:
+
+Unsere Helden und Bewohner
+
+
+============================================================
+AUFGABE 4: CHARAKTER NUMMER 1
+============================================================
+
+Erstelle ein <article>.
+
+
+Das article bekommt:
+
+class="charakter"
+
+
+Schreibe hinein:
+
+
+<h2>Link</h2>
+
+
+und:
+
+
+<p>
+Ein mutiger Held mit Schwert und Schild.
+Redet nicht besonders viel,
+ist aber sehr gut darin,
+fremde Häuser zu betreten.
+</p>
+
+
+Aufgabe:
+
+<p>Aufgabe: Hyrule retten</p>
+
+
+============================================================
+AUFGABE 5: NOCH MEHR CHARAKTERE
+============================================================
+
+Erstelle zwei weitere Charaktere.
+
+
+Beide sollen ebenfalls:
+
+class="charakter"
+
+bekommen.
+
+
+CHARAKTER 2:
+
+Name:
+
+Zelda
+
+
+Beschreibung:
+
+Prinzessin von Hyrule.
+Klug, mutig und meistens deutlich besser vorbereitet als alle anderen.
+
+
+Aufgabe:
+
+Hyrule beschützen
+
+
+CHARAKTER 3:
+
+Name:
+
+Beedle
+
+
+Beschreibung:
+
+Ein reisender Händler.
+Verkauft wichtige Dinge
+und taucht gefühlt überall gleichzeitig auf.
+
+
+Aufgabe:
+
+Dinge verkaufen und dabei sehr freundlich sein
+
+
+Jetzt solltest du insgesamt drei:
+
+<article class="charakter">
+
+haben.
+
+
+============================================================
+AUFGABE 6: EXTERNES CSS
+============================================================
+
+Öffne jetzt:
+
+style.css
+
+
+Style dort zuerst den body.
+
+
+Benutze:
+
+font-family: Arial, Helvetica, sans-serif;
+
+line-height: 1.5;
+
+
+Danach kümmern wir uns um:
+
+.charakter
+
+
+Jeder Charakter soll einen Rahmen bekommen:
+
+border: 2px solid black;
+
+
+Außerdem soll jeder Charakter bekommen:
+
+padding: 10px;
+
+margin: 10px 0;
+
+
+Speichern.
+
+Webseite anschauen.
+
+
+============================================================
+KURZE DENKPAUSE
+============================================================
+
+Schau dir deine Charakter-Boxen an.
+
+
+Was macht:
+
+border?
+
+
+Was macht:
+
+padding?
+
+
+Was macht:
+
+margin?
+
+
+Versuche es mit eigenen Worten zu erklären.
+
+
+TIPP:
+
+
+padding
+
+ist der Abstand INNERHALB eines Elements.
+
+
+margin
+
+ist der Abstand AUSSERHALB eines Elements.
+
+
+Stell dir eine Schatztruhe vor:
+
+Der Inhalt liegt innen.
+
+padding ist der Platz zwischen dem Inhalt
+und dem Rand der Truhe.
+
+margin ist der Abstand
+zwischen dieser Truhe und der nächsten Truhe.
+
+
+============================================================
+AUFGABE 7: KLEINES EXPERIMENT
+============================================================
+
+Ändere bei .charakter kurz:
+
+padding: 10px;
+
+zu:
+
+padding: 40px;
+
+
+Was verändert sich?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+padding: 10px;
+
+
+Jetzt ändere:
+
+margin: 10px 0;
+
+zu:
+
+margin: 40px 0;
+
+
+Was verändert sich diesmal?
+
+
+____________________________
+
+
+Danach wieder zurück auf:
+
+margin: 10px 0;
+
+
+FRAGE:
+
+Kannst du jetzt den Unterschied zwischen
+padding und margin erklären?
+
+
+============================================================
+AUFGABE 8: INTERNES CSS
+============================================================
+
+Jetzt benutzen wir internes CSS.
+
+
+Gehe in deine index.html.
+
+
+Erstelle im <head> einen:
+
+<style>
+
+</style>
+
+
+Erstelle darin die Klasse:
+
+.warnung
+
+
+Sie soll folgende Eigenschaften bekommen:
+
+
+Schriftfarbe:
+
+darkred
+
+
+Hintergrund:
+
+#ffeeee
+
+
+Innenabstand:
+
+10px
+
+
+Den CSS-Code dafür musst du selbst schreiben.
+
+
+============================================================
+AUFGABE 9: WARNUNG AUS HYRULE
+============================================================
+
+Erstelle unter deinen Charakteren einen Absatz:
+
+
+ACHTUNG:
+Monster wurden in der Nähe gesehen.
+Bitte Schwerter, Schilde und Snacks bereithalten.
+
+
+Gib diesem Absatz:
+
+class="warnung"
+
+
+Wenn der Absatz jetzt anders aussieht:
+
+Sehr gut.
+
+Das interne CSS funktioniert.
+
+
+Zelda ist zufrieden.
+
+Link sagt nichts.
+
+Das ist normal.
+
+
+============================================================
+AUFGABE 10: INLINE CSS
+============================================================
+
+Jetzt brauchen wir noch Inline CSS.
+
+
+Erstelle einen neuen Absatz:
+
+
+Status von Hyrule:
+Noch nicht vollständig zerstört.
+Das ist ein guter Anfang.
+
+
+Diesen Absatz sollst du DIREKT im HTML stylen.
+
+
+Benutze dafür:
+
+style=""
+
+
+Der Absatz soll bekommen:
+
+
+color: green;
+
+background: #e6ffe6;
+
+padding: 8px;
+
+
+Wichtig:
+
+Dafür KEINE Klasse erstellen.
+
+
+============================================================
+DENKFRAGE
+============================================================
+
+Du hast jetzt drei Arten von CSS benutzt.
+
+
+1. Wo steht EXTERNES CSS?
+
+
+____________________________
+
+
+2. Wo steht INTERNES CSS?
+
+
+____________________________
+
+
+3. Wo steht INLINE CSS?
+
+
+____________________________
+
+
+Versuche die Fragen zu beantworten,
+ohne nach oben zu schauen.
+
+
+============================================================
+AUFGABE 11: DER CSS-KAMPF
+============================================================
+
+Jetzt testen wir,
+welche CSS-Regel gewinnt.
+
+
+Erstelle einen neuen Absatz:
+
+
+<p class="triforce">
+Welche Farbe bekomme ich?
+</p>
+
+
+Schreibe in deine EXTERNE style.css:
+
+
+.triforce {
+    color: blue;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text?
+
+
+____________________________
+
+
+Jetzt schreibst du in dein INTERNES CSS:
+
+
+.triforce {
+    color: green;
+}
+
+
+Speichern.
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Zum Schluss bekommt der Absatz Inline CSS:
+
+
+style="color: purple;"
+
+
+Welche Farbe hat der Text jetzt?
+
+
+____________________________
+
+
+Was fällt dir auf?
+
+
+Für diese Übung kannst du dir merken:
+
+
+Inline CSS
+
+hat normalerweise eine sehr hohe Priorität.
+
+
+Wenn zwei gleich starke Regeln vorhanden sind,
+kann auch die Reihenfolge wichtig sein.
+
+
+Das Thema dahinter heißt:
+
+CSS Cascade
+
+
+Das schauen wir uns später genauer an.
+
+
+Für heute reicht es zu wissen:
+
+Mehrere CSS-Regeln können gleichzeitig
+auf dasselbe Element wirken.
+
+
+Ein bisschen wie mehrere Kräfte des Triforce.
+
+Nur mit weniger Magie
+und mehr geschweiften Klammern.
+
+
+============================================================
+AUFGABE 12: EINE NEUE SACHE
+============================================================
+
+Jetzt lernst du genau EINE neue CSS-Eigenschaft.
+
+
+border-radius
+
+
+Füge bei:
+
+.charakter
+
+folgende Zeile hinzu:
+
+
+border-radius: 10px;
+
+
+Speichern und anschauen.
+
+
+Was hat sich verändert?
+
+
+____________________________
+
+
+Teste danach kurz:
+
+border-radius: 30px;
+
+
+Was passiert?
+
+
+____________________________
+
+
+Stelle danach einen Wert ein,
+der dir gefällt.
+
+
+MERKE:
+
+border-radius
+
+macht die Ecken eines Elements rund.
+
+
+Keine Sorge.
+
+Das Triforce bleibt trotzdem dreieckig.
+
+
+============================================================
+ABSCHLUSSAUFGABE
+============================================================
+
+Jetzt bekommst du weniger Hilfe.
+
+
+Erstelle einen vierten Charakter:
+
+
+Name:
+
+Impa
+
+
+Beschreibung:
+
+Eine erfahrene Kämpferin und Beschützerin.
+Kennt vermutlich mehr Geheimnisse,
+als sie jemals erzählen wird.
+
+
+Aufgabe:
+
+Zelda beschützen
+
+
+Der Charakter soll genauso aussehen
+wie die anderen Charaktere.
+
+
+Überlege:
+
+Welche Klasse musst du verwenden?
+
+
+============================================================
+BONUS FÜR SCHNELLE
+============================================================
+
+Nur wenn du früher fertig bist:
+
+
+Erstelle eine neue Klasse:
+
+.gefaehrlich
+
+
+Sie soll:
+
+- rote Schrift haben
+- einen hellen Hintergrund haben
+- einen Rahmen haben
+- padding haben
+
+
+Erstelle danach einen weiteren Charakter:
+
+
+Name:
+
+Ganondorf
+
+
+Beschreibung:
+
+Sehr mächtig.
+Sehr ehrgeizig.
+Hat auffällig oft schlechte Pläne für Hyrule.
+
+
+Aufgabe:
+
+Bitte nicht gewinnen lassen
+
+
+Gib Ganondorf:
+
+class="charakter"
+
+
+UND zusätzlich die Klasse:
+
+gefaehrlich
+
+
+Versuche herauszufinden,
+wie ein HTML-Element ZWEI Klassen bekommen kann.
+
+
+TIPP:
+
+Die Lösung sieht NICHT so aus:
+
+
+class="charakter"
+class="gefaehrlich"
+
+
+Ein Element braucht nur EIN class-Attribut.
+
+
+Die beiden Klassen werden innerhalb
+des class-Attributs eingetragen.
+
+
+============================================================
+MINI-CHECK AM ENDE
+============================================================
+
+Kannst du diese Begriffe erklären?
+
+
+color
+=
+
+____________________________
+
+
+background
+=
+
+____________________________
+
+
+padding
+=
+
+____________________________
+
+
+margin
+=
+
+____________________________
+
+
+border
+=
+
+____________________________
+
+
+border-radius
+=
+
+____________________________
+
+
+Inline CSS
+=
+
+____________________________
+
+
+Internes CSS
+=
+
+____________________________
+
+
+Externes CSS
+=
+
+____________________________
+
+
+============================================================
+LETZTE FRAGEN
+============================================================
+
+Wo wird externes CSS geschrieben?
+
+
+____________________________
+
+
+Wie wird eine externe CSS-Datei
+mit HTML verbunden?
+
+
+____________________________
+
+
+Wo befindet sich internes CSS?
+
+
+____________________________
+
+
+Wo befindet sich Inline CSS?
+
+
+____________________________
+
+
+Was ist der Unterschied zwischen
+padding und margin?
+
+
+____________________________
+
+
+Was macht ein border?
+
+
+____________________________
+
+
+Was macht border-radius?
+
+
+____________________________
+
+
+============================================================
+GESCHAFFT
+============================================================
+
+Wenn du jetzt weißt:
+
+- wie eine CSS-Datei eingebunden wird
+- was externes CSS ist
+- was internes CSS ist
+- was Inline CSS ist
+- was color macht
+- was background macht
+- was padding macht
+- was margin macht
+- was border macht
+
+dann ist das Ziel erreicht.
+
+
+Wenn du außerdem verstanden hast,
+was border-radius macht:
+
+Bonuswissen erfolgreich freigeschaltet.
+
+
+Und wenn du padding und margin
+nicht mehr verwechselst:
+
+Dann erhältst du in Hyrule offiziell den Titel:
+
+"Hüter der heiligen CSS-Abstände"
+
+
+Zelda fragt:
+
+"Warum ist dort so viel Platz?"
+
+
+Du antwortest:
+
+"margin."
+
+
+Link nickt schweigend.
+
+Du hast bestanden.
+
+
+Die Webseite funktioniert.
+
+Hyrule steht noch.
+
+Die Töpfe leider nicht.
+
+Niemand weiß,
+wer sie alle kaputt gemacht hat.
+
+
+Nächstes mögliches Thema:
+
+:hover
+
+oder
+
+Flexbox
+
+
+Aber nicht heute.
+
+Ein Dungeon nach dem anderen.
+============================================================

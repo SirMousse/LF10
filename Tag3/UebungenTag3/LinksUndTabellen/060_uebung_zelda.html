@@ -1,0 +1,389 @@
+<!--
+============================================================
+AUFGABE: DAS ABENTEUER VON HYRULE
+============================================================
+
+Dauer: ca. 45 Minuten
+Level: Anfänger bis leicht fortgeschritten
+
+Themen:
+- Tabellen
+- Links
+- Sprungmarken
+- E-Mail- und Telefon-Links
+- target und rel
+- colspan und rowspan
+- kleine Recherche-Aufgaben
+
+
+DIE GESCHICHTE
+------------------------------------------------------------
+
+Du reist durch das Königreich Hyrule.
+
+Doch im Schloss ist Chaos ausgebrochen:
+Karten fehlen, Gegenstände sind nicht sortiert und
+wichtige Informationen wurden aus der Webseite gelöscht.
+
+Deine Aufgabe:
+
+Erstelle eine neue HTML-Seite namens
+
+hyrule.html
+
+und bring Ordnung in das Königreich.
+
+
+============================================================
+LEVEL 1 - DEIN INVENTAR
+ca. 7 Minuten
+============================================================
+
+Erstelle die Überschrift:
+
+"Mein Inventar"
+
+Darunter soll eine Tabelle mit folgenden Daten entstehen:
+
+
+Gegenstand          Anzahl      Wert
+------------------------------------------------
+Heiltrank           3           20 Rubine
+Holzschild          1           50 Rubine
+Pfeile              15          30 Rubine
+Hylianischer Käse   2           unbezahlbar
+
+
+Die Tabelle soll die Beschriftung
+
+"Abenteuer-Inventar"
+
+bekommen.
+
+
+ANFORDERUNGEN:
+
+Verwende:
+
+- <table>
+- <caption>
+- <tr>
+- <th>
+- <td>
+
+Die Spaltenüberschriften sollen außerdem das passende
+scope-Attribut erhalten.
+
+
+============================================================
+LEVEL 2 - DIE ORTE VON HYRULE
+ca. 6 Minuten
+============================================================
+
+Du möchtest verschiedene Orte besuchen.
+
+Erstelle die Überschrift:
+
+"Reiseziele"
+
+Darunter sollen drei Links stehen:
+
+
+1. "Zum Schloss"
+   Ziel: schloss.html
+
+2. "Zum Dorf"
+   Ziel: dorf.html
+
+3. "Zum Tempel"
+   Ziel: tempel.html
+
+
+Erstelle danach noch einen Link zu:
+
+https://de.wikipedia.org/wiki/The_Legend_of_Zelda
+
+Dieser Link soll sich in einem NEUEN TAB öffnen.
+
+Achte dabei auch auf die passenden Werte für das
+rel-Attribut.
+
+
+============================================================
+LEVEL 3 - KONTAKT ZUR ABENTEURER-GILDE
+ca. 6 Minuten
+============================================================
+
+Du möchtest die Abenteurer-Gilde kontaktieren.
+
+
+TEIL 1: E-MAIL
+
+Erstelle einen Link, der das E-Mail-Programm öffnet.
+
+E-Mail-Adresse:
+
+gilde@hyrule.de
+
+Der Betreff soll bereits eingetragen sein:
+
+Hilfe in Hyrule
+
+Der Nachrichtentext soll bereits enthalten:
+
+Hallo Abenteurer-Gilde,
+
+ich brauche Unterstützung auf meiner Reise.
+
+
+TEIL 2: TELEFON
+
+Erstelle zusätzlich einen Telefon-Link.
+
+Telefonnummer:
+
++49123456789
+
+Der sichtbare Linktext soll sein:
+
+"Abenteurer-Gilde anrufen"
+
+
+============================================================
+LEVEL 4 - DER HÄNDLER
+ca. 7 Minuten
+============================================================
+
+Du triffst einen Händler auf einem Marktplatz.
+
+Er verkauft folgende Dinge:
+
+
+Gegenstand          Preis         Zustand
+------------------------------------------------
+Eisenschwert        100 Rubine    gut
+Holzschild          50 Rubine     leicht beschädigt
+Heiltrank           20 Rubine     frisch
+Mysteriöse Maske    200 Rubine    irgendwie verdächtig
+
+
+Baue diese Tabelle mit:
+
+- <thead>
+- <tbody>
+- <tfoot>
+
+
+Im Fußbereich soll stehen:
+
+"Alle Preise können sich nach Sonnenuntergang ändern."
+
+
+ACHTUNG:
+
+Dieser Satz soll sich über ALLE DREI SPALTEN erstrecken.
+
+
+DENKFRAGE:
+
+Welches HTML-Attribut brauchst du dafür?
+
+
+============================================================
+LEVEL 5 - DER ABENTEUERPLAN
+ca. 7 Minuten
+============================================================
+
+Erstelle folgende Tabelle:
+
+
+Tag          Vormittag             Nachmittag
+------------------------------------------------------
+Montag       Tempel erkunden       Rubine sammeln
+Dienstag     Tempel erkunden       Pferd trainieren
+Mittwoch     Schloss besuchen      Schloss besuchen
+
+
+ABER:
+
+"Tempel erkunden" darf nur EINMAL in deinem HTML-Code
+stehen.
+
+Es soll trotzdem für Montag UND Dienstag gelten.
+
+
+Auch "Schloss besuchen" darf nur EINMAL im HTML-Code
+stehen.
+
+Es soll aber Vormittag UND Nachmittag belegen.
+
+
+RECHERCHE-AUFGABE:
+
+Finde heraus:
+
+Was ist der Unterschied zwischen
+
+rowspan
+
+und
+
+colspan
+
+?
+
+
+Benutze anschließend beide Attribute richtig in deiner
+Tabelle.
+
+
+============================================================
+LEVEL 6 - DER SCHNELLREISE-PUNKT
+ca. 7 Minuten
+============================================================
+
+Ganz unten auf deiner Webseite befindet sich der Bereich:
+
+"Schrein der Schnellreise"
+
+
+Ganz oben auf deiner Webseite soll ein Link stehen:
+
+"Direkt zum Schrein"
+
+
+Beim Anklicken soll der Browser direkt zu diesem Bereich
+springen.
+
+
+Beim Schrein soll außerdem ein Link stehen:
+
+"Zurück zum Inventar"
+
+
+Dieser Link soll zurück zur ersten Tabelle springen.
+
+
+ANFORDERUNG:
+
+Benutze dafür:
+
+- id
+- href="#..."
+
+
+============================================================
+FINAL BOSS - DIE GEHEIME KARTE
+ca. 5 Minuten
+============================================================
+
+Du findest eine alte Karte von Hyrule.
+
+Jetzt musst du selbst etwas Neues herausfinden.
+
+
+RECHERCHE:
+
+Wie kann man mit einem Link eine Datei zum Download
+anbieten?
+
+
+Suche nach dem HTML-Attribut:
+
+download
+
+
+Erstelle anschließend einen Link zur Datei:
+
+hyrule-karte.pdf
+
+
+Der sichtbare Linktext soll sein:
+
+"Hyrule-Karte herunterladen"
+
+
+ZUSATZFRAGE:
+
+Was passiert, wenn die Datei "hyrule-karte.pdf"
+gar nicht im richtigen Ordner liegt?
+
+
+============================================================
+BONUS-LEVEL
+============================================================
+
+Wenn du früher fertig bist:
+
+Erstelle ganz oben auf deiner Webseite eine Navigation.
+
+
+Sie soll folgende Links enthalten:
+
+Inventar | Reiseziele | Händler | Abenteuerplan | Schrein
+
+
+Beim Anklicken soll man direkt zum entsprechenden Bereich
+auf DEINER Webseite springen.
+
+
+Dafür musst du eventuell zusätzliche id-Attribute
+verwenden.
+
+
+============================================================
+QUEST-CHECK
+============================================================
+
+Kontrolliere deine Webseite:
+
+[ ] HTML-Grundstruktur vorhanden
+
+[ ] Tabellen funktionieren
+
+[ ] <th> und <td> sinnvoll verwendet
+
+[ ] scope verwendet
+
+[ ] <thead>, <tbody> und <tfoot> verwendet
+
+[ ] colspan verwendet
+
+[ ] rowspan verwendet
+
+[ ] Links zu anderen Dateien erstellt
+
+[ ] Externen Link erstellt
+
+[ ] target="_blank" verwendet
+
+[ ] rel verwendet
+
+[ ] mailto-Link erstellt
+
+[ ] tel-Link erstellt
+
+[ ] Sprungmarken mit id erstellt
+
+[ ] download selbst recherchiert
+
+[ ] Webseite im Browser getestet
+
+
+============================================================
+GESCHAFFT?
+============================================================
+
+Wenn alle Tabellen korrekt angezeigt werden und deine
+Links funktionieren, ist Hyrule wieder ein Stück
+übersichtlicher geworden.
+
+Falls etwas nicht funktioniert:
+
+Nicht sofort alles löschen.
+
+Untersuche deinen Code.
+Finde heraus, bei welcher Aufgabe der Fehler steckt.
+Teste deine Lösung erneut im Browser.
+============================================================
+-->

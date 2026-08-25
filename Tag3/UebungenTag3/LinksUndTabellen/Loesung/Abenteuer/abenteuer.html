@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das Abenteuer von Linkoria</title>
+</head>
+
+<body>
+
+    <h1>Das Abenteuer von Linkoria</h1>
+
+    <!-- Bonus-Level: Navigation -->
+    <nav>
+        <a href="#rucksack">Rucksack</a> |
+        <a href="#tueren">Türen</a> |
+        <a href="#haendler">Händler</a> |
+        <a href="#dungeon">Dungeon</a> |
+        <a href="#ausgang">Ausgang</a>
+    </nav>
+
+    <p>
+        <a href="#ausgang">Direkt zum Ausgang teleportieren</a>
+    </p>
+
+
+    <!-- ==================================================
+        LEVEL 1 - DEIN ABENTEUER-RUCKSACK
+        ================================================== -->
+
+    <section id="rucksack">
+        <h2>Mein Abenteuer-Rucksack</h2>
+
+        <table>
+            <caption>Inventar des Helden</caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Gegenstand</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col">Wert</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Heiltrank</td>
+                    <td>3</td>
+                    <td>15 Gold</td>
+                </tr>
+
+                <tr>
+                    <td>Käsebrot</td>
+                    <td>5</td>
+                    <td>unbezahlbar</td>
+                </tr>
+
+                <tr>
+                    <td>Holzschwert</td>
+                    <td>1</td>
+                    <td>4 Gold</td>
+                </tr>
+
+                <tr>
+                    <td>Mysteriöser USB-Stick</td>
+                    <td>1</td>
+                    <td>???</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 2 - DIE DREI TÜREN
+        ================================================== -->
+
+    <section id="tueren">
+        <h2>Wähle deinen Weg</h2>
+
+        <p>
+            <a href="wald.html">In den Wald gehen</a>
+        </p>
+
+        <p>
+            <a href="taverne.html">Die Taverne betreten</a>
+        </p>
+
+        <p>
+            <a href="drache.html">Zum Drachen gehen</a>
+        </p>
+
+        <p>
+            <a
+                href="https://example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Example.com in einem neuen Tab öffnen
+            </a>
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+         LEVEL 3 - DER MAGISCHE KOMMUNIKATIONSSTEIN
+         ================================================== -->
+
+    <section id="kommunikation">
+        <h2>Der magische Kommunikationsstein</h2>
+
+        <h3>E-Mail</h3>
+
+        <p>
+            <a href="mailto:zauberer@linkoria.de?subject=Hilfe%20aus%20Linkoria&amp;body=Hallo%20Zauberer%2C%0D%0A%0D%0Aich%20brauche%20Hilfe%21">
+                Zauberer per E-Mail kontaktieren
+            </a>
+        </p>
+
+        <h3>Telefon</h3>
+
+        <p>
+            <a href="tel:+49123456789">
+                Ritter-Hotline anrufen
+            </a>
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 4 - DER HÄNDLER
+        ================================================== -->
+
+    <section id="haendler">
+        <h2>Der Händler Sir Tabellenstein</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Gegenstand</th>
+                    <th scope="col">Preis</th>
+                    <th scope="col">Zustand</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Drachenschwert</td>
+                    <td>120 Gold</td>
+                    <td>leicht angekokelt</td>
+                </tr>
+
+                <tr>
+                    <td>Tarnumhang</td>
+                    <td>80 Gold</td>
+                    <td>leider sichtbar</td>
+                </tr>
+
+                <tr>
+                    <td>Heiltrank</td>
+                    <td>10 Gold</td>
+                    <td>Himbeergeschmack</td>
+                </tr>
+
+                <tr>
+                    <td>Magische Maus</td>
+                    <td>3 Gold</td>
+                    <td>läuft nachts herum</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        Alle Preise ohne Drachensteuer
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <p>
+            <strong>Denkfrage:</strong>
+            Das benötigte Attribut heißt <code>colspan</code>.
+            Mit <code>colspan="3"</code> erstreckt sich die Tabellenzelle über drei Spalten.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 5 - DIE VERFLUCHTE DUNGEON-KARTE
+        ================================================== -->
+
+    <section id="dungeon">
+        <h2>Die verfluchte Dungeon-Karte</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Vormittag</th>
+                    <th scope="col">Nachmittag</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row">Montag</th>
+
+                    <td rowspan="2">
+                        Dungeon erkunden
+                    </td>
+
+                    <td>
+                        Monster suchen
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Dienstag</th>
+
+                    <td>
+                        Schatz suchen
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Mittwoch</th>
+
+                    <td colspan="2">
+                        Wandertag
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Unterschied zwischen rowspan und colspan</h3>
+
+        <p>
+            <code>rowspan</code> verbindet eine Tabellenzelle <strong>über mehrere Zeilen</strong>.
+        </p>
+
+        <p>
+            <code>colspan</code> verbindet eine Tabellenzelle <strong>über mehrere Spalten</strong>.
+        </p>
+
+        <p>
+            In dieser Tabelle gilt deshalb:
+        </p>
+
+        <ul>
+            <li>
+                <code>rowspan="2"</code> sorgt dafür, dass „Dungeon erkunden“ für Montag und Dienstag gilt.
+            </li>
+            <li>
+                <code>colspan="2"</code> sorgt dafür, dass „Wandertag“ Vormittag und Nachmittag belegt.
+            </li>
+        </ul>
+    </section>
+
+
+    <!-- ==================================================
+        FINAL BOSS - DOWNLOAD-LINK
+        ================================================== -->
+
+    <section id="final-boss">
+        <h2>Final Boss: Die Schatzkarte</h2>
+
+        <p>
+            <a href="schatzkarte.pdf" download>
+                Schatzkarte herunterladen
+            </a>
+        </p>
+
+        <h3>Was macht das download-Attribut?</h3>
+
+        <p>
+            Das Attribut <code>download</code> teilt dem Browser mit, dass die verlinkte Datei möglichst heruntergeladen werden
+            soll, anstatt sie einfach nur im Browser zu öffnen.
+        </p>
+
+        <h3>Was passiert, wenn schatzkarte.pdf nicht existiert?</h3>
+
+        <p>
+            Wenn die Datei nicht unter dem angegebenen Pfad gefunden werden kann, funktioniert der Download nicht.
+            Je nach Server oder Umgebung erhält man beispielsweise eine Fehlermeldung wie <strong>404 Not Found</strong>.
+        </p>
+    </section>
+
+
+    <!-- ==================================================
+        LEVEL 6 - DER TELEPORTER
+        ================================================== -->
+
+    <section id="ausgang">
+        <h2>Ausgang aus Linkoria</h2>
+
+        <p>
+            Du hast alle Prüfungen bestanden und kannst Linkoria verlassen!
+        </p>
+
+        <p>
+            <a href="#rucksack">Zurück zum Rucksack</a>
+        </p>
+    </section>
+
+</body>
+</html>
