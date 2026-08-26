@@ -1,5 +1,255 @@
-/*Bilder*/
-.bild{
+/* 1. Grundeinstellungen */
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, dl, dd, figure{
+    margin: 0;
+}
+
+/*2 Farb- und Abstandsvariablen */
+/* CSS Variablen (Custom Property) sie werden an einer Stelle definiert damit man 
+Farben bzw. Abstände nicht an zig Stellen im Code ändern muss, sondern nur hier oben. */
+
+:root{  /* Pseudenklassen Selektor und spricht unser html Tag an */
+
+    /* --name : wert; */
+
+    /*Farben*/
+    --farbe-hintergrund: #f6f6f5;   /* Seitenhintergrund, sehr dezent gewählt*/
+    --farbe-flaeche: #ffffff;       /* Hintergrund der Boxen/ Sections */
+    --farbe-rand: #dbe4e1;          /* helle Rahmenlinien */
+    --farb-text: #1e2b28;           /* Haupttextfarbe, dunkler statt schwarz */
+    --farbe-text-schwach: #55665f;  /* für Bildunterschriften und Nebentexte*/
+    --farbe-akzent: #0f6e5c;        /* Überschriften, Links und Rahmen */
+    --farbe-akzent-hell: #e4f3ee;   /* helle Akzentfläche z.B.: Glossar */
+    --farbe-code-hg: #10221f;       /* dunklerer Hitergrund für <pre> Blöcke*/
+    --farbe-code-text: #d8ede6;     /* hellere Schrift auf dunklem Code Hintergrund */
+
+    /*Abstände*/
+    --abstand-s: 0.5rem;
+    --abstand-m: 1rem;
+    --abstand-l: 2rem;
+    --abstand-xl: 3rem;
+    /* rem = root em -> orientiert sich am obersten Element (Standardgröße 16px = 1 rem) */
+
+    --radius: 10px;     /* einheitlich abgerundete Ecken */
+
+    /* Für Einheitliche Bildgröße */
+    --bild-breite: 520px;
+    --bild-höhe: 420px;
+}
+
+/* 3. Typografie */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--farb-text);
+    background-color: var(--farbe-hintergrund);
+    text-align: center; /* zentriert Überschriften und Absätze */
+}
+
+h1{
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+h2{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--farbe-akzent);
+    border-bottom: 3px solid var(--farbe-akzent);
+    padding-bottom: var(--abstand-s);
+    margin-bottom: var(--abstand-m);
+}
+
+h3{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--farb-text);
+    margin-top: var(--abstand-l);
+    margin-bottom: var(--abstand-s);
+}
+
+p{
+    max-width: 70ch;    /*~701 Zeichen pro Zeile -> angenehme Lesebreite */
+    margin: var(--abstand-s) 0 var(--abstand-m) 0;
+}
+
+/* 4. Seitenlayout */
+body{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--abstand-l) var(--abstand-m) var(--abstand-xl) ; /* var 1 = oben | var 2 = rechts + links | var 3 = unten */
+}
+
+header{
+    background-color: var(--farbe-akzent);
+    color: #ffffff;
+    padding: var(--abstand-l);
+    border-radius: var(--radius);
+    margin-bottom: var(--abstand-l);
+}
+
+header p{ /*Nachfahrenselektor */
+    color: #e4f3ee;
+    max-width: none;
+}
+
+/*Abschnitt (section) */
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--farbe-flaeche);
+    border: 1px solid var(--farbe-rand);
+    border-radius: var(--radius);
+    padding: var(--abstand-l);
+    margin-bottom: var(--abstand-l);
+}
+
+h3 + img, 
+h3 + audio,
+h3 + video,
+h3 + figure,
+h3 + a{
+    margin-top: var(--abstand-s);
+}
+
+/* 6. Bilder */
+img{
+    width: var(--bild-breite);
+    height: var(--bild-höhe);
+    object-fit: cover; /* füllt die feste Größe ohne Verzerrung aus */
+    
+    display: block;
+    border-radius: var(--radius);
+    margin-bottom: var(--abstand-m);
+}
+
+/* .bild{
     width: 50%;
     height: auto;
+}
+
+img[width="350"]{ /* Attribut selektor
+    border: 1px solid var(--farbe-rand);
+} */
+
+a:has(img){
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    border: 3px solid transparent;
+    border-radius: var(--radius);
+    transition: border-color 0.15s ease;
+}
+
+a:has(img):hover,           /* hover = für die Maus*/
+a:has(img):focus-visible{   /* focus-visble = für die Tastur */
+    border-color: var(--farbe-akzent);
+}
+
+figure {
+    width: fit-content;
+    margin: 0 auto var(--abstand-m) auto;
+    border: 1px solid var(--farbe-rand);
+    border-radius: var(--radius);
+    padding: var(--abstand-s);
+    background-color: var(--farbe-hintergrund);
+}
+
+figure img{
+    margin-bottom: var(--abstand-s);
+}
+
+figcaption{
+    font-size: 0.9rem;
+    color: var(--farbe-text-schwach);
+    font-style: italic;
+    padding: 0 var(--abstand-s) var(--abstand-s);   /* oben = 0 | rechts + links = s | unten = s */
+}
+
+/* Audio und Video */
+audio{
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: var(--abstand-m);
+}
+
+video{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    margin-bottom: var(--abstand-m);
+    background-color: #000;
+}
+
+iframe{
+    display: block;
+    max-width: 100%;
+    border: 0;
+    border-radius: var(--radius);
+    margin-bottom: var(--abstand-m);
+}
+
+/*8. Glossar*/
+dl{
+    background-color: var(--farbe-akzent-hell);
+    border-radius: var(--radius);
+    padding: var(--abstand-l);
+    margin-top: var(--abstand-l);
+    text-align: left;
+}
+
+dt{
+    font-weight: 700;
+    color: var(--farbe-akzent);
+    margin-top: var(--abstand-m);
+}
+
+dt:first-of-type{
+    margin-top: 0;
+}
+
+dd{
+    margin-bottom: var(--abstand-s);
+}
+
+/* 9. Codebeispiele */
+
+pre{
+    background-color: var(--farbe-code-hg);
+    color: var(--farbe-code-text);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    line-height: 1.5rem;
+    padding: var(--abstand-m);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin: var(--abstand-s) 0;
+    text-align: left;
+}
+
+/* 10. Responsive Design */
+@media (max-width: 600px){
+    section{
+        padding: var(--abstand-m);
+    }
+
+    header{
+        padding: var(--abstand-m);
+    }
+
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .bild{
+        width: 100%;
+    }
 }

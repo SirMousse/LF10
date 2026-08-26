@@ -36,6 +36,143 @@
                 <img src="./images/bird.png" 
                 alt=" Das ist ein männlicher Nymphensittich, der auf einen Zweig sitzt und zur Seite schaut."
                 class="bild">
+
+                <h3>Variante 4: Klickbare Bilder</h3>
+                <a href="https://tierschutz-berlin.de/tiere/?_gl=1*o661iy*_up*MQ..*_gs*MQ..&gclid=CjwKCAjw-rTUBhAiEiwADv8gBONxufZCt_44tuxGI1R2vPgZ6nqEY40xlJ6HrLIXdF_4Fri99EilExoCrf8QAvD_BwE" target="_blank" rel="noopener noreferrer">
+                    <img src="./images/dog.png" alt="Kleiner Goldenretriever Welpe mit großen braunenen Augen, 
+                    der in die Kamera schaut und ein Zuhause sucht.">
+                </a>
+
+                <h3>Variante 5: Bilder mit Beschriftung (&lt;figure&gt;)</h3>
+                <figure style="margin: 0;">
+                    <img src="./images/fish.png" alt="Das ist ein orange/gelber Goldfisch der im Wasser schwimmt.">
+                    <figcaption>
+                        Abbildung 1: Dieser Goldfisch hat gleich Pause.
+                    </figcaption>
+                </figure>
+
+                <h3>Variant 6: Bilder aus dem Web</h3>
+                <img src="https://www.reptilienkosmos.de/documents/category/949/landschildkroeten-Testudo-hermanni-330x230px.jpg" 
+                alt="Das ist eine junge Landschildkröte die alle vier von sich gestreckt hat.">
+
+                <h3>Variante 7: Responsive Bild</h3>
+                <img src="./images/rat.png" alt="Das ist der Meister der Ninja Turtles beim Mittagessen."
+                style="max-width: 100%; height: auto;">
+            </section>
+
+            <section>
+                <h2>2. Audio einbinden (&lt;audio&gt;)</h2>
+
+                <h3>Variant 1: Einfaches Audio mit Steuerung</h3>
+                <audio src="./audio/evel_witch.mp3" controls></audio>
+
+                <h3>Variante 2: Audio mit source-Tag</h3>
+                <audio controls>
+                    <source src="./audio/whooo.mp3" type="audio/mpeg">
+                    Dein Browser unterstützt dieses Audio-Element nicht.
+                </audio>
+
+                <h3>Variante 3: Autoplay und stumm (für Hintergrund und Demo)</h3>
+                <audio src="./audio/sinister-laugh.mp3" controls autoplay muted></audio>
+
+                <h3>Variante 4: Loop (wiederholt sich)</h3>
+                <audio src="./audio/i-got-this.mp3" controls loop></audio>
+
+                <h3>Variante 5: Aus dem Web einbinden</h3>
+                <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
+            </section>
+
+            <section>
+                <h2>3. Videos einbinden (&lt;video&gt;)</h2>
+
+                <h3>Variante 1: Einfaches Video mit Steuerung</h3>
+                <video src="./video/327101_medium.mp4" controls width="500"></video>
+
+                <h3>Variante 2: Video mit source-Tag</h3>
+                <video controls width="450">
+                    <source src="./video/331922_medium.mp4" type="video/mp4">
+
+                    <track 
+                    src="untertitle.vtt"
+                    kind="subtitles"
+                    srclang="de"
+                    label="Deutsch">
+
+                    Dein Browser unterstützt dieses Video nicht!
+
+                    
+                </video>
+                <p>Diese Video wurde mit KI erstellt</p>
+
+                <h3>Variante 3: Autoplay und stumm/ Download Verbot</h3>
+                <video src="./video/333483_medium.mp4" controls autoplay muted width="550"
+                    controlsList="nodownload" oncontextmenu="return false"></video>
+                <!-- controlsList="nodownload" -> Browser soll möglichst keinen Download Button 
+                                                in den Controls anbieten
+                    oncontextmenu="return false" -> Rechtsklick-Kontextmenü auf dem Video wird blockiert-->
+
+                <h3>Variante 4: Vorschaubild (Poster Bild)</h3>
+                <video src="./video/332821_medium.mp4" controls width="400" poster="./images/surprise.png"></video>
+                <!-- poster -> sagt das ist ein Titlebild, was angezeigt wird, bevor das Video startet-->
+
+                <h3>Variante 5: Loop (wiederholt sich)</h3>
+                <video src="./video/333954_medium.mp4" controls width="450" loop></video>
+
+                <h3>Variante 6: Aus dem Web einbinden</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/HX8Qgg9rvCs?si=dmOgpYW5GPO3PGcB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ecfKVWa5Aec?si=Gt_xnU11e3f_ycPi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/3Wf29RiKp70?si=MTJLq4uutWuoEhlr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <dl>
+                    <dt>Barrierefreiheit bei Videos</dt>
+                    <dd>alt gibt es bei &lt;video&gt; NICHT! Das alt Attribut gehört nur zu img (Bildern).</dd>
+                    <dd>Was macht man bei Videos?</dd>
+                    <dd>1. Fallback-Texte im Video = dieser Text ist das "Ersatz alt" für Videos!
+                        <pre>
+    &lt;video controls width="450"&gt;
+        &lt;source src="./video/331922_medium.mp4" type="video/mp4"&gt;
+        Dein Browser unterstützt dieses Video nicht. (Das ist der Fallback-Text.)
+    &lt;/video&gt;
+                        </pre>
+                    </dd>
+                    <dd>2. Untertitel = das ist die beste Alternative zu alt. Hilft z.B.: gehörlosen Nutzern sowie beim Verständnis
+                        <pre>
+    &lt;video controls width="450"&gt;
+        &lt;source src="./video/331922_medium.mp4" type="video/mp4"&gt;
+        &lt;track src="untertitle.vtt" kind="substitle" srclang="de" label="Deutsch"&gt; 
+    &lt;/video&gt;
+                        </pre>
+                    </dd>
+                    <dd>3. Beschreibung um das Video herum -> mithilfe von &lt;p&gt;
+                        <pre>
+    &lt;p&gt;Das ist wo die Beschreibung des Videos angezeigt wird&lt;/p&gt;
+
+    &lt;video src="./video/327101_medium.mp4" controls width="500"&gt;&lt;/video&gt;
+                        </pre>
+                    </dd>
+
+                    <br>
+
+                    <dt>track</dt>
+                    <dd>... fügt zu einem Video/Audio zusätliche Textinformationen hinzu. Das könnten sein z.B.: Untertitle, Kapitel, Beschreibungen, andere Textspuren.</dd>
+
+                    <dt>vtt = Web Video Text Track</dt>
+                    <dd>... ist eine Textdatei für Untertitle und Beschreibungen bei Videos. .vtt-Datei enthält: 1) Untertitel (Text) | 2.) Zeitangabe (wann wird was angezeigt)</dd>
+
+                    <dt>kind</dt>
+                    <dd>... beschreibt die Art der Textspur die wir nutzen.</dd>
+                    <dd>Welche kind Werte gibt es?</dd>
+                    <dd>1. subtitle = für übersetzten und unterstützenden Text zur Sprache der Videos</dd>
+                    <dd>2. captions = Untertitle inklusive Geräuchinformationen. Z.B.: "[Tür knallt zu!]" </dd>
+                    <dd>3. description = Textbeschreiben für die visuellen Inhalte</dd>
+                    <dd>4. chapters = Kapitelmarken in Videos</dd>
+                    <dd>5. metadata = zusätzliche Daten, die nicht direkt angezeigt werden</dd>
+
+                    <dt>srclang = source language</dt>
+                    <dd>Hier gibt einfach nur an, in welcher Sprache die Textspur ist.</dd>
+
+                    <dt>label</dt>
+                    <dd>... ist die sichtbare Bezeichnung für den Nutzer</dd>
+                </dl>
             </section>
         </main>
     </body>
