@@ -1,0 +1,1109 @@
+AUFGABE – DAS DETEKTIVBÜRO
+
+Bearbeitungszeit: ca. 40 Minuten
+
+THEMA:
+HTML und CSS miteinander verbinden, Bilder, Videos und Sounds einfügen, verschiedene CSS-Größeneinheiten verwenden und ein neues CSS-Element kennenlernen.
+
+==================================================
+SZENARIO
+========
+
+In der Stadt häufen sich geheimnisvolle Fälle.
+
+Verschwundene Gegenstände, rätselhafte Nachrichten und seltsame Beobachtungen beschäftigen die Bewohner.
+
+Du arbeitest für das Detektivbüro „Spurensucher“ und sollst eine Webseite für das Büro erstellen.
+
+Auf der Webseite sollen:
+
+* das Detektivbüro vorgestellt werden
+* aktuelle Fälle gezeigt werden
+* Bilder eingebunden werden
+* ein Sound eingebunden werden
+* ein Video eingebunden werden
+* verschiedene Bereiche gestaltet werden
+* unterschiedliche CSS-Größeneinheiten verwendet werden
+
+Am Ende soll deine Webseite wie eine geheimnisvolle Detektiv-Webseite aussehen.
+
+==================================================
+DATEISTRUKTUR
+=============
+
+Erstelle einen neuen Ordner:
+
+detektivbuero
+
+In diesem Ordner legst du folgende Dateien und Ordner an:
+
+detektivbuero
+
+index.html
+style.css
+
+img
+audio
+video
+
+Speichere deine Bilder im Ordner:
+
+img
+
+Speichere deine Sounddatei im Ordner:
+
+audio
+
+Speichere dein Video im Ordner:
+
+video
+
+==================================================
+AUFGABE 1 – HTML-GRUNDGERÜST
+============================
+
+Erstelle die Datei:
+
+index.html
+
+Füge folgendes HTML-Grundgerüst ein:
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Detektivbüro Spurensucher</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<header>
+
+    <h1>Detektivbüro Spurensucher</h1>
+
+    <p>
+        Kein Rätsel bleibt ungelöst.
+    </p>
+
+</header>
+
+
+<main>
+
+    <section>
+
+        <h2>Willkommen im Detektivbüro</h2>
+
+        <p>
+            Unser Detektivbüro untersucht ungewöhnliche
+            und geheimnisvolle Fälle.
+
+            Wir suchen nach Hinweisen, befragen Zeugen
+            und versuchen herauszufinden,
+            was wirklich passiert ist.
+        </p>
+
+    </section>
+
+</main>
+```
+
+</body>
+
+</html>
+
+Öffne die Datei anschließend im Browser.
+
+Überprüfe:
+
+Wird die Überschrift angezeigt?
+
+Wird der Text angezeigt?
+
+Wenn ja, kannst du weitermachen.
+
+==================================================
+AUFGABE 2 – CSS-DATEI ERSTELLEN
+===============================
+
+Erstelle eine neue Datei:
+
+style.css
+
+Deine CSS-Datei wird mit folgender Zeile
+mit der HTML-Datei verbunden:
+
+<link rel="stylesheet" href="style.css">
+
+Gestalte zuerst den gesamten <body>.
+
+Füge in deine style.css ein:
+
+body {
+background-color: #1d1d1d;
+color: #eeeeee;
+font-family: Arial, sans-serif;
+}
+
+Du darfst die Farben später selbst verändern.
+
+==================================================
+AUFGABE 3 – DEN HEADER GESTALTEN
+================================
+
+Gestalte den Kopfbereich des Detektivbüros.
+
+Ergänze deine CSS-Datei:
+
+header {
+background-color: #343434;
+text-align: center;
+padding: 2rem;
+}
+
+Gestalte danach die Hauptüberschrift:
+
+h1 {
+font-size: 2.5rem;
+letter-spacing: 2px;
+}
+
+WICHTIG:
+
+Für die Schriftgröße verwendest du:
+
+rem
+
+rem eignet sich zum Beispiel gut für:
+
+* Schriftgrößen
+* Abstände
+* padding
+* margin
+
+==================================================
+AUFGABE 4 – EIN BILD DES DETEKTIVBÜROS EINFÜGEN
+===============================================
+
+Suche ein passendes Bild oder verwende ein eigenes Bild.
+
+Zum Beispiel:
+
+* Detektivbüro
+* Schreibtisch
+* Lupe
+* Akten
+* Notizen
+* Beweiswand
+* dunkle Straße
+
+Speichere das Bild im Ordner:
+
+img
+
+Benenne es zum Beispiel:
+
+buero.jpg
+
+Füge unter der ersten Section
+eine neue Section ein:
+
+<section>
+
+```
+<h2>Unser Detektivbüro</h2>
+
+<img
+    src="./img/buero.jpg"
+    alt="Ein Detektivbüro mit Schreibtisch, Akten und Hinweisen"
+    class="buerobild">
+
+<p>
+    In unserem Büro sammeln wir Hinweise,
+    untersuchen Beweise und planen unsere Ermittlungen.
+
+    Jeder Fall bekommt eine eigene Akte.
+</p>
+```
+
+</section>
+
+==================================================
+AUFGABE 5 – DAS BILD MIT CSS GESTALTEN
+======================================
+
+Gestalte das Bild in deiner style.css:
+
+.buerobild {
+width: 70%;
+max-width: 700px;
+border: 3px solid #b28b43;
+border-radius: 12px;
+}
+
+Hier verwendest du zwei unterschiedliche Größeneinheiten:
+
+70%
+
+und
+
+700px
+
+FRAGE:
+
+Warum könnte % für die Breite sinnvoll sein?
+
+Schreibe deine Antwort als Kommentar in deine CSS-Datei.
+
+Beispiel:
+
+/*
+% ist sinnvoll, weil sich die Breite
+an den verfügbaren Platz anpassen kann.
+*/
+
+==================================================
+AUFGABE 6 – DIE BEREICHE GESTALTEN
+==================================
+
+Gestalte alle <section>-Elemente.
+
+section {
+background-color: #292929;
+
+```
+margin: 2rem;
+
+padding: 2rem;
+
+border: 2px solid #666666;
+
+border-radius: 12px;
+```
+
+}
+
+Hier verwendest du:
+
+2rem für Abstände
+
+2px für den Rahmen
+
+FRAGE:
+
+Warum ist ein Rahmen mit 2px sinnvoller
+als ein Rahmen mit 2rem?
+
+Schreibe deine Antwort als Kommentar in CSS.
+
+==================================================
+AUFGABE 7 – DER AKTUELLE FALL
+=============================
+
+Füge in dein <main> einen weiteren Bereich ein:
+
+<section class="fall">
+
+```
+<h2>Aktueller Fall</h2>
+
+<h3>Der verschwundene Diamant</h3>
+
+<p>
+    Aus einem Museum ist ein wertvoller Diamant
+    verschwunden.
+
+    Die Türen waren verschlossen und die Alarmanlage
+    wurde nicht ausgelöst.
+
+    Deine Aufgabe ist es, die vorhandenen Hinweise
+    zu untersuchen und den Täter zu finden.
+</p>
+```
+
+</section>
+
+Gestalte diesen Bereich anschließend mit CSS:
+
+.fall {
+background-color: #382f25;
+
+```
+width: 80%;
+
+margin: 2rem auto;
+
+padding: 2rem;
+
+border: 3px solid #b28b43;
+
+border-radius: 1rem;
+```
+
+}
+
+==================================================
+AUFGABE 8 – EIN BEWEISBILD EINFÜGEN
+===================================
+
+Suche ein weiteres Bild.
+
+Zum Beispiel:
+
+* Fingerabdruck
+* Lupe
+* geheimnisvoller Brief
+* Fußspur
+* Schlüssel
+* Schmuckstück
+* Tatort
+
+Speichere es zum Beispiel als:
+
+beweis.jpg
+
+Füge das Bild in den Bereich
+„Aktueller Fall“ ein:
+
+<img
+ src="./img/beweis.jpg"
+ alt="Ein wichtiger Beweis für den aktuellen Detektivfall"
+ class="beweisbild">
+
+Gestalte das Bild:
+
+.beweisbild {
+width: 40vw;
+max-width: 100%;
+border-radius: 1rem;
+}
+
+NEUE EINHEIT:
+
+vw
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht ungefähr:
+
+1 % der Breite des Browserfensters
+
+TEST:
+
+Ziehe dein Browserfenster größer und kleiner.
+
+Beobachte, wie sich das Bild verändert.
+
+Schreibe deine Beobachtung
+als Kommentar in deine CSS-Datei.
+
+==================================================
+AUFGABE 9 – EINEN SOUND EINFÜGEN
+================================
+
+Jetzt soll deine Detektiv-Webseite
+eine Audiodatei enthalten.
+
+Suche oder verwende eine passende Audiodatei.
+
+Zum Beispiel:
+
+* Schritte
+* Türknarren
+* Telefonklingeln
+* Regen
+* mysteriöse Musik
+* Uhrenticken
+* Straßenlärm
+
+Speichere die Datei im Ordner:
+
+audio
+
+Benenne sie zum Beispiel:
+
+hinweis.mp3
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Audio-Hinweis</h2>
+
+<p>
+    Bei den Ermittlungen wurde eine Tonaufnahme gefunden.
+
+    Höre genau hin.
+    Vielleicht versteckt sich darin ein wichtiger Hinweis.
+</p>
+
+<audio controls>
+
+    <source
+        src="./audio/hinweis.mp3"
+        type="audio/mpeg">
+
+    Dein Browser unterstützt dieses Audio nicht.
+
+</audio>
+```
+
+</section>
+
+Das Attribut:
+
+controls
+
+sorgt dafür, dass die Steuerung angezeigt wird.
+
+Zum Beispiel:
+
+* Play
+* Pause
+* Lautstärke
+* Fortschritt
+
+==================================================
+AUFGABE 10 – AUDIO MIT CSS GESTALTEN
+====================================
+
+Gestalte das Audioelement:
+
+audio {
+width: 80%;
+margin-top: 1rem;
+}
+
+Hier verwendest du:
+
+%
+
+und
+
+rem
+
+==================================================
+AUFGABE 11 – EIN VIDEO EINFÜGEN
+===============================
+
+Jetzt wurde auch eine Videoaufnahme gefunden.
+
+Verwende ein passendes Video.
+
+Zum Beispiel:
+
+* Überwachungskamera
+* dunkle Straße
+* vorbeilaufende Person
+* Bahnhof
+* Stadt bei Nacht
+* leeres Gebäude
+* Regen
+
+Speichere es im Ordner:
+
+video
+
+Benenne es zum Beispiel:
+
+ueberwachung.mp4
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Aufnahme der Überwachungskamera</h2>
+
+<p>
+    Diese Aufnahme entstand in der Nähe des Tatortes.
+
+    Untersuche das Video genau.
+    Vielleicht erkennst du etwas Verdächtiges.
+</p>
+
+<video controls>
+
+    <source
+        src="./video/ueberwachung.mp4"
+        type="video/mp4">
+
+    Dein Browser unterstützt dieses Video nicht.
+
+</video>
+```
+
+</section>
+
+==================================================
+AUFGABE 12 – VIDEO MIT CSS GESTALTEN
+====================================
+
+Gestalte dein Video:
+
+video {
+width: 80%;
+max-width: 700px;
+height: auto;
+
+```
+border: 3px solid #b28b43;
+
+border-radius: 1rem;
+```
+
+}
+
+WICHTIG:
+
+height: auto;
+
+sorgt dafür, dass das Seitenverhältnis
+des Videos erhalten bleibt.
+
+==================================================
+AUFGABE 13 – ÜBERSCHRIFTEN GESTALTEN
+====================================
+
+Gestalte deine <h2>-Überschriften:
+
+h2 {
+color: #d0a85c;
+
+```
+font-size: 2rem;
+
+border-bottom: 2px solid #b28b43;
+
+padding-bottom: 0.5rem;
+```
+
+}
+
+Gestalte danach <h3>:
+
+h3 {
+font-size: 1.4em;
+}
+
+NEUE EINHEIT:
+
+em
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements beziehungsweise
+seines Umfeldes.
+
+==================================================
+AUFGABE 14 – NEUES CSS-ELEMENT: box-shadow
+==========================================
+
+Jetzt lernst du eine neue CSS-Eigenschaft kennen:
+
+box-shadow
+
+Mit box-shadow kannst du einem Element
+einen Schatten geben.
+
+Beispiel:
+
+section {
+box-shadow: 0 4px 12px black;
+}
+
+Die Werte bedeuten:
+
+0
+
+= Verschiebung nach links oder rechts
+
+4px
+
+= Verschiebung nach oben oder unten
+
+12px
+
+= Unschärfe des Schattens
+
+black
+
+= Farbe des Schattens
+
+DEINE AUFGABE:
+
+Füge bei mindestens zwei Elementen
+einen Schatten ein.
+
+Zum Beispiel:
+
+header
+
+section
+
+.fall
+
+.buerobild
+
+.beweisbild
+
+video
+
+==================================================
+AUFGABE 15 – VH AUSPROBIEREN
+============================
+
+Jetzt lernst du noch:
+
+vh
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht:
+
+1 % der Höhe des Browserfensters
+
+Ergänze deinen Header:
+
+header {
+min-height: 25vh;
+}
+
+Teste danach deine Webseite.
+
+FRAGE:
+
+Was passiert mit dem Header,
+wenn du die Höhe des Browserfensters veränderst?
+
+Schreibe deine Beobachtung als Kommentar
+in deine CSS-Datei.
+
+==================================================
+AUFGABE 16 – DIE GRÖSSENEINHEITEN
+=================================
+
+Du hast jetzt verschiedene Größeneinheiten verwendet.
+
+---
+
+px
+
+---
+
+Beispiel:
+
+border: 2px solid #b28b43;
+
+px bedeutet:
+
+Pixel
+
+px ist eine feste Größe.
+
+Gut geeignet für:
+
+* Rahmen
+* kleine Details
+* kleine feste Größen
+
+---
+
+%
+
+---
+
+Beispiel:
+
+width: 80%;
+
+% orientiert sich meistens am verfügbaren Platz
+beziehungsweise am Elternelement.
+
+Gut geeignet für:
+
+* flexible Breiten
+* Bilder
+* Audio
+* Videos
+
+---
+
+rem
+
+---
+
+Beispiel:
+
+padding: 2rem;
+
+rem orientiert sich an der Schriftgröße
+des <html>-Elements.
+
+Gut geeignet für:
+
+* Abstände
+* Schriftgrößen
+* margin
+* padding
+
+---
+
+em
+
+---
+
+Beispiel:
+
+font-size: 1.4em;
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements beziehungsweise
+seines Kontextes.
+
+Gut geeignet für:
+
+* relative Schriftgrößen
+* Elemente, deren Größe von ihrer Umgebung
+  abhängig sein soll
+
+---
+
+vw
+
+---
+
+Beispiel:
+
+width: 40vw;
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht:
+
+1 % der Breite des Browserfensters.
+
+Gut geeignet für:
+
+* Elemente, die sich an der Fensterbreite orientieren
+
+---
+
+vh
+
+---
+
+Beispiel:
+
+min-height: 25vh;
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht:
+
+1 % der Höhe des Browserfensters.
+
+Gut geeignet für:
+
+* große Bereiche
+* Header
+* Startbereiche
+* Elemente, die sich an der Fensterhöhe orientieren
+
+==================================================
+AUFGABE 17 – EIGENE ERKLÄRUNG
+=============================
+
+Füge ganz unten in deine style.css
+folgenden Kommentar ein und beantworte die Fragen:
+
+/*
+
+GRÖSSENEINHEITEN
+
+1. Was bedeutet px?
+
+Antwort:
+
+2. Wann würde ich px verwenden?
+
+Antwort:
+
+3. Was bedeutet %?
+
+Antwort:
+
+4. Wann würde ich % verwenden?
+
+Antwort:
+
+5. Was bedeutet rem?
+
+Antwort:
+
+6. Wann würde ich rem verwenden?
+
+Antwort:
+
+7. Was bedeutet em?
+
+Antwort:
+
+8. Wann würde ich em verwenden?
+
+Antwort:
+
+9. Was bedeutet vw?
+
+Antwort:
+
+10. Wann würde ich vw verwenden?
+
+Antwort:
+
+11. Was bedeutet vh?
+
+Antwort:
+
+12. Wann würde ich vh verwenden?
+
+Antwort:
+
+13. Warum würde ich für einen Rahmen eher
+    2px statt 2rem verwenden?
+
+Antwort:
+
+14. Warum ist % für Bilder häufig sinnvoll?
+
+Antwort:
+
+*/
+
+==================================================
+AUFGABE 18 – DER GEHEIME HINWEIS
+================================
+
+Erstelle jetzt einen neuen Bereich:
+
+<section class="geheim">
+
+```
+<h2>Geheimer Hinweis</h2>
+
+<p>
+    Hinter dem alten Bahnhof wurde ein kleiner
+    Schlüssel gefunden.
+
+    Niemand weiß bisher,
+    welches Schloss damit geöffnet werden kann.
+</p>
+```
+
+</section>
+
+Gestalte diesen Bereich selbst.
+
+Deine Klasse:
+
+.geheim
+
+muss mindestens folgende Eigenschaften besitzen:
+
+background-color
+
+width
+
+margin
+
+padding
+
+border
+
+border-radius
+
+box-shadow
+
+Verwende dabei mindestens
+DREI unterschiedliche Größeneinheiten.
+
+Zum Beispiel:
+
+.geheim {
+width: 80%;
+padding: 2rem;
+border: 3px solid #b28b43;
+}
+
+==================================================
+AUFGABE 19 – ABSCHLUSSHERAUSFORDERUNG
+=====================================
+
+Gestalte deine Detektiv-Webseite jetzt selbst weiter.
+
+Deine fertige Webseite muss mindestens enthalten:
+
+* einen Header
+* mindestens vier Sections
+* mehrere Überschriften
+* verschiedene Texte
+* mindestens zwei Bilder
+* mindestens eine Audiodatei
+* mindestens ein Video
+* unterschiedliche Hintergrundfarben
+* Rahmen
+* abgerundete Ecken
+* Abstände
+* box-shadow
+
+Außerdem musst du jede dieser Einheiten
+mindestens einmal verwendet haben:
+
+px
+
+%
+
+rem
+
+em
+
+vw
+
+vh
+
+==================================================
+BONUSAUFGABE – :hover
+=====================
+
+Du bist früher fertig?
+
+Finde selbst heraus, was
+
+:hover
+
+in CSS macht.
+
+Teste zum Beispiel:
+
+.fall:hover {
+transform: scale(1.02);
+}
+
+Oder:
+
+.beweisbild:hover {
+border: 5px solid gold;
+}
+
+Beobachte, was passiert,
+wenn du mit der Maus über das Element fährst.
+
+BONUS 2:
+
+Versuche zusätzlich:
+
+cursor: pointer;
+
+Beispiel:
+
+.beweisbild:hover {
+cursor: pointer;
+}
+
+Was verändert sich?
+
+==================================================
+CHECKLISTE
+==========
+
+Bevor du den Fall abschließt, überprüfe:
+
+Ist meine index.html mit style.css verbunden?
+
+Habe ich mindestens zwei Bilder eingefügt?
+
+Besitzen meine Bilder einen sinnvollen alt-Text?
+
+Habe ich einen Sound mit <audio> eingefügt?
+
+Besitzt mein Audio controls?
+
+Habe ich ein Video mit <video> eingefügt?
+
+Besitzt mein Video controls?
+
+Habe ich verschiedene Sections erstellt?
+
+Habe ich Klassen verwendet?
+
+Habe ich meine Bereiche mit CSS gestaltet?
+
+Habe ich border verwendet?
+
+Habe ich border-radius verwendet?
+
+Habe ich box-shadow verwendet?
+
+Habe ich px verwendet?
+
+Habe ich % verwendet?
+
+Habe ich rem verwendet?
+
+Habe ich em verwendet?
+
+Habe ich vw verwendet?
+
+Habe ich vh verwendet?
+
+Kann ich erklären, wann ich welche Einheit benutze?
+
+==================================================
+ZIEL
+====
+
+Am Ende kannst du:
+
+* HTML und CSS miteinander verbinden
+* eine externe CSS-Datei verwenden
+* Bilder mit <img> einfügen
+* sinnvolle alt-Texte schreiben
+* Audiodateien mit <audio> einfügen
+* Videos mit <video> einfügen
+* HTML-Elemente mit CSS gestalten
+* CSS-Klassen erstellen und verwenden
+* Rahmen erstellen
+* Ecken abrunden
+* Abstände gestalten
+* Schatten mit box-shadow erzeugen
+* responsive Größen verwenden
+* px, %, rem, em, vw und vh unterscheiden
+* erklären, wann unterschiedliche Größeneinheiten sinnvoll sind
+
+Deine fertige Webseite soll wie die Webseite
+eines geheimnisvollen Detektivbüros aussehen.
+
+VIEL ERFOLG, DETEKTIV!
+
+DER FALL WARTET AUF DICH.

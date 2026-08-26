@@ -1,0 +1,1131 @@
+AUFGABE – DIE DINOSAURIER-FORSCHUNGSSTATION
+
+Bearbeitungszeit: ca. 40 Minuten
+
+THEMA:
+HTML und CSS miteinander verbinden, Bilder, Videos und Sounds einfügen, verschiedene CSS-Größeneinheiten verwenden und ein neues CSS-Element kennenlernen.
+
+==================================================
+SZENARIO
+========
+
+Willkommen in der Dinosaurier-Forschungsstation!
+
+Forscher haben auf einer abgelegenen Insel verschiedene Dinosaurier entdeckt.
+
+Jetzt soll eine Webseite entstehen, auf der Besucher mehr über die Forschungsstation und ihre Dinosaurier erfahren können.
+
+Deine Aufgabe ist es, diese Webseite zu erstellen und mit CSS zu gestalten.
+
+Auf der Webseite sollen:
+
+* die Forschungsstation vorgestellt werden
+* verschiedene Dinosaurier gezeigt werden
+* Bilder eingebunden werden
+* ein Dinosaurier-Sound eingebunden werden
+* ein Video eingebunden werden
+* verschiedene Bereiche gestaltet werden
+* unterschiedliche CSS-Größeneinheiten verwendet werden
+
+Am Ende soll deine Webseite wie eine spannende Dinosaurier-Forschungsseite aussehen.
+
+==================================================
+DATEISTRUKTUR
+=============
+
+Erstelle einen neuen Ordner:
+
+dino-station
+
+In diesem Ordner legst du folgende Dateien und Ordner an:
+
+dino-station
+
+index.html
+style.css
+
+img
+audio
+video
+
+Speichere deine Bilder im Ordner:
+
+img
+
+Speichere deine Sounddatei im Ordner:
+
+audio
+
+Speichere dein Video im Ordner:
+
+video
+
+==================================================
+AUFGABE 1 – HTML-GRUNDGERÜST
+============================
+
+Erstelle die Datei:
+
+index.html
+
+Füge folgendes HTML-Grundgerüst ein:
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Dinosaurier-Forschungsstation</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<header>
+
+    <h1>Dinosaurier-Forschungsstation</h1>
+
+    <p>
+        Willkommen in einer Welt,
+        die seit Millionen Jahren verschwunden ist.
+    </p>
+
+</header>
+
+
+<main>
+
+    <section>
+
+        <h2>Willkommen auf der Forschungsinsel</h2>
+
+        <p>
+            Auf unserer Forschungsinsel untersuchen
+            Wissenschaftler verschiedene Dinosaurier.
+
+            Dabei beobachten wir ihr Verhalten,
+            ihre Ernährung und ihre Lebensräume.
+        </p>
+
+    </section>
+
+</main>
+```
+
+</body>
+
+</html>
+
+Öffne die Datei anschließend im Browser.
+
+Überprüfe:
+
+Wird die Überschrift angezeigt?
+
+Wird der Text angezeigt?
+
+Wenn ja, kannst du weitermachen.
+
+==================================================
+AUFGABE 2 – CSS-DATEI ERSTELLEN
+===============================
+
+Erstelle eine neue Datei:
+
+style.css
+
+Die CSS-Datei wird mit folgender Zeile
+mit deiner HTML-Datei verbunden:
+
+<link rel="stylesheet" href="style.css">
+
+Gestalte zuerst den gesamten <body>.
+
+Füge in deine style.css ein:
+
+body {
+background-color: #172117;
+color: #eeeeee;
+font-family: Arial, sans-serif;
+}
+
+Du darfst die Farben später selbst verändern.
+
+==================================================
+AUFGABE 3 – DEN HEADER GESTALTEN
+================================
+
+Gestalte den Kopfbereich deiner Dinosaurier-Seite.
+
+Ergänze deine CSS-Datei:
+
+header {
+background-color: #31452b;
+text-align: center;
+padding: 2rem;
+}
+
+Gestalte danach die Hauptüberschrift:
+
+h1 {
+font-size: 2.5rem;
+letter-spacing: 2px;
+}
+
+WICHTIG:
+
+Für die Schriftgröße verwendest du:
+
+rem
+
+rem eignet sich gut für:
+
+* Schriftgrößen
+* Abstände
+* padding
+* margin
+
+==================================================
+AUFGABE 4 – EIN DINOSAURIER-BILD EINFÜGEN
+=========================================
+
+Suche ein passendes Bild oder verwende ein eigenes Bild.
+
+Zum Beispiel:
+
+* Tyrannosaurus Rex
+* Triceratops
+* Brachiosaurus
+* Velociraptor
+* Dinosaurier-Landschaft
+* Dinosaurier-Skelett
+
+Speichere das Bild im Ordner:
+
+img
+
+Benenne es zum Beispiel:
+
+trex.jpg
+
+Füge unter der ersten Section
+eine neue Section ein:
+
+<section>
+
+```
+<h2>Tyrannosaurus Rex</h2>
+
+<img
+    src="./img/trex.jpg"
+    alt="Ein großer Tyrannosaurus Rex"
+    class="dinobild">
+
+<p>
+    Der Tyrannosaurus Rex gehört zu den
+    bekanntesten Dinosauriern.
+
+    Er war ein großer Fleischfresser
+    und lebte vor ungefähr 66 Millionen Jahren.
+</p>
+```
+
+</section>
+
+==================================================
+AUFGABE 5 – DAS DINO-BILD MIT CSS GESTALTEN
+===========================================
+
+Gestalte das Bild in deiner style.css:
+
+.dinobild {
+width: 70%;
+max-width: 700px;
+border: 3px solid #8ea85b;
+border-radius: 15px;
+}
+
+Hier verwendest du zwei unterschiedliche Größeneinheiten:
+
+70%
+
+und
+
+700px
+
+FRAGE:
+
+Warum könnte % für die Breite sinnvoll sein?
+
+Schreibe deine Antwort als Kommentar in deine CSS-Datei.
+
+Beispiel:
+
+/*
+% ist sinnvoll, weil sich die Breite
+an den verfügbaren Platz anpassen kann.
+*/
+
+==================================================
+AUFGABE 6 – DIE BEREICHE GESTALTEN
+==================================
+
+Gestalte jetzt alle <section>-Elemente.
+
+section {
+background-color: #263426;
+
+```
+margin: 2rem;
+
+padding: 2rem;
+
+border: 2px solid #65765b;
+
+border-radius: 12px;
+```
+
+}
+
+Hier verwendest du:
+
+2rem für Abstände
+
+2px für den Rahmen
+
+FRAGE:
+
+Warum ist ein Rahmen mit 2px sinnvoller
+als ein Rahmen mit 2rem?
+
+Schreibe deine Antwort als Kommentar in CSS.
+
+==================================================
+AUFGABE 7 – DINOSAURIER DES TAGES
+=================================
+
+Füge in dein <main> einen weiteren Bereich ein:
+
+<section class="dino">
+
+```
+<h2>Dinosaurier des Tages</h2>
+
+<h3>Triceratops</h3>
+
+<p>
+    Der Triceratops war ein Pflanzenfresser.
+
+    Besonders auffällig waren seine drei Hörner
+    und sein großer Nackenschild.
+
+    Diese Merkmale konnten ihm möglicherweise
+    bei der Verteidigung helfen.
+</p>
+```
+
+</section>
+
+Gestalte diesen Bereich anschließend mit CSS:
+
+.dino {
+background-color: #3b462c;
+
+```
+width: 80%;
+
+margin: 2rem auto;
+
+padding: 2rem;
+
+border: 3px solid #a5bd68;
+
+border-radius: 1rem;
+```
+
+}
+
+==================================================
+AUFGABE 8 – EIN ZWEITES DINO-BILD EINFÜGEN
+==========================================
+
+Suche ein weiteres Dinosaurier-Bild.
+
+Zum Beispiel:
+
+* Triceratops
+* Stegosaurus
+* Brachiosaurus
+* Velociraptor
+* Ankylosaurus
+
+Speichere es zum Beispiel als:
+
+triceratops.jpg
+
+Füge das Bild in den Bereich
+„Dinosaurier des Tages“ ein:
+
+<img
+ src="./img/triceratops.jpg"
+ alt="Ein Triceratops mit drei Hörnern"
+ class="triceratopsbild">
+
+Gestalte das Bild:
+
+.triceratopsbild {
+width: 40vw;
+max-width: 100%;
+border-radius: 1rem;
+}
+
+NEUE EINHEIT:
+
+vw
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht:
+
+1 % der Breite des Browserfensters
+
+TEST:
+
+Ziehe dein Browserfenster größer und kleiner.
+
+Beobachte:
+
+Was passiert mit dem Bild?
+
+Schreibe deine Beobachtung als Kommentar
+in deine CSS-Datei.
+
+==================================================
+AUFGABE 9 – EINEN DINOSAURIER-SOUND EINFÜGEN
+============================================
+
+Jetzt soll deine Dinosaurier-Webseite
+eine Audiodatei enthalten.
+
+Suche oder verwende eine passende Audiodatei.
+
+Zum Beispiel:
+
+* Dinosaurier-Brüllen
+* Tiergeräusche
+* Dschungelgeräusche
+* Schritte
+* Wind
+* Naturgeräusche
+* spannende Hintergrundgeräusche
+
+Speichere die Datei im Ordner:
+
+audio
+
+Benenne sie zum Beispiel:
+
+dino.mp3
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Geräusche der Urzeit</h2>
+
+<p>
+    Wie könnte sich ein Dinosaurier angehört haben?
+
+    Starte die Audioaufnahme und höre genau hin.
+</p>
+
+<audio controls>
+
+    <source
+        src="./audio/dino.mp3"
+        type="audio/mpeg">
+
+    Dein Browser unterstützt dieses Audio nicht.
+
+</audio>
+```
+
+</section>
+
+WICHTIG:
+
+Das Attribut
+
+controls
+
+sorgt dafür, dass die Steuerung angezeigt wird.
+
+Zum Beispiel:
+
+* Play
+* Pause
+* Lautstärke
+* Fortschritt
+
+==================================================
+AUFGABE 10 – AUDIO MIT CSS GESTALTEN
+====================================
+
+Gestalte das Audioelement:
+
+audio {
+width: 80%;
+margin-top: 1rem;
+}
+
+Hier verwendest du:
+
+%
+
+und
+
+rem
+
+==================================================
+AUFGABE 11 – EIN DINOSAURIER-VIDEO EINFÜGEN
+===========================================
+
+Jetzt soll die Webseite auch ein Video enthalten.
+
+Suche oder verwende ein passendes Video.
+
+Zum Beispiel:
+
+* Dinosaurier-Animation
+* Dinosaurier-Dokumentation
+* Dinosaurier-Skelett
+* Museum
+* Urzeit-Landschaft
+* Dschungel
+* Ausgrabungsstätte
+
+Speichere es im Ordner:
+
+video
+
+Benenne es zum Beispiel:
+
+dinosaurier.mp4
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Beobachtung der Dinosaurier</h2>
+
+<p>
+    Dieses Video zeigt einen Dinosaurier
+    oder eine Landschaft aus der Urzeit.
+</p>
+
+<video controls>
+
+    <source
+        src="./video/dinosaurier.mp4"
+        type="video/mp4">
+
+    Dein Browser unterstützt dieses Video nicht.
+
+</video>
+```
+
+</section>
+
+==================================================
+AUFGABE 12 – VIDEO MIT CSS GESTALTEN
+====================================
+
+Gestalte dein Video:
+
+video {
+width: 80%;
+max-width: 700px;
+height: auto;
+
+```
+border: 3px solid #8ea85b;
+
+border-radius: 1rem;
+```
+
+}
+
+WICHTIG:
+
+height: auto;
+
+sorgt dafür, dass das Seitenverhältnis
+des Videos erhalten bleibt.
+
+==================================================
+AUFGABE 13 – ÜBERSCHRIFTEN GESTALTEN
+====================================
+
+Gestalte deine <h2>-Überschriften:
+
+h2 {
+color: #b7cf73;
+
+```
+font-size: 2rem;
+
+border-bottom: 2px solid #8ea85b;
+
+padding-bottom: 0.5rem;
+```
+
+}
+
+Gestalte danach <h3>:
+
+h3 {
+font-size: 1.4em;
+}
+
+NEUE EINHEIT:
+
+em
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements beziehungsweise
+seines Umfeldes.
+
+==================================================
+AUFGABE 14 – NEUES CSS-ELEMENT: box-shadow
+==========================================
+
+Jetzt lernst du eine neue CSS-Eigenschaft kennen:
+
+box-shadow
+
+Mit box-shadow kannst du einem Element
+einen Schatten geben.
+
+Beispiel:
+
+section {
+box-shadow: 0 4px 12px black;
+}
+
+Die Werte bedeuten:
+
+0
+
+= Verschiebung nach links oder rechts
+
+4px
+
+= Verschiebung nach oben oder unten
+
+12px
+
+= Unschärfe des Schattens
+
+black
+
+= Farbe des Schattens
+
+DEINE AUFGABE:
+
+Füge bei mindestens zwei Elementen
+einen Schatten ein.
+
+Zum Beispiel:
+
+header
+
+section
+
+.dino
+
+.dinobild
+
+.triceratopsbild
+
+video
+
+==================================================
+AUFGABE 15 – VH AUSPROBIEREN
+============================
+
+Jetzt lernst du noch:
+
+vh
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht:
+
+1 % der Höhe des Browserfensters
+
+Ergänze deinen Header:
+
+header {
+min-height: 25vh;
+}
+
+Teste danach deine Webseite.
+
+FRAGE:
+
+Was passiert mit dem Header,
+wenn du die Höhe des Browserfensters veränderst?
+
+Schreibe deine Beobachtung als Kommentar
+in deine CSS-Datei.
+
+==================================================
+AUFGABE 16 – DIE GRÖSSENEINHEITEN
+=================================
+
+Du hast jetzt verschiedene Größeneinheiten verwendet.
+
+---
+
+px
+
+---
+
+Beispiel:
+
+border: 3px solid green;
+
+px bedeutet:
+
+Pixel
+
+px ist eine feste Größe.
+
+Gut geeignet für:
+
+* Rahmen
+* kleine Details
+* kleine feste Größen
+
+---
+
+%
+
+---
+
+Beispiel:
+
+width: 80%;
+
+% orientiert sich meistens am verfügbaren Platz
+beziehungsweise am Elternelement.
+
+Gut geeignet für:
+
+* flexible Breiten
+* Bilder
+* Audio
+* Videos
+
+---
+
+rem
+
+---
+
+Beispiel:
+
+padding: 2rem;
+
+rem orientiert sich an der Schriftgröße
+des <html>-Elements.
+
+Gut geeignet für:
+
+* Abstände
+* Schriftgrößen
+* margin
+* padding
+
+---
+
+em
+
+---
+
+Beispiel:
+
+font-size: 1.4em;
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements beziehungsweise
+seines Kontextes.
+
+Gut geeignet für:
+
+* relative Schriftgrößen
+* Elemente, deren Größe sich an ihrer Umgebung orientiert
+
+---
+
+vw
+
+---
+
+Beispiel:
+
+width: 40vw;
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht:
+
+1 % der Breite des Browserfensters.
+
+Gut geeignet für:
+
+* Elemente, die sich an der Fensterbreite orientieren
+
+---
+
+vh
+
+---
+
+Beispiel:
+
+min-height: 25vh;
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht:
+
+1 % der Höhe des Browserfensters.
+
+Gut geeignet für:
+
+* große Bereiche
+* Header
+* Startbereiche
+* Elemente, die sich an der Fensterhöhe orientieren
+
+==================================================
+AUFGABE 17 – EIGENE ERKLÄRUNG
+=============================
+
+Füge ganz unten in deine style.css
+folgenden Kommentar ein und beantworte die Fragen:
+
+/*
+
+GRÖSSENEINHEITEN
+
+1. Was bedeutet px?
+
+Antwort:
+
+2. Wann würde ich px verwenden?
+
+Antwort:
+
+3. Was bedeutet %?
+
+Antwort:
+
+4. Wann würde ich % verwenden?
+
+Antwort:
+
+5. Was bedeutet rem?
+
+Antwort:
+
+6. Wann würde ich rem verwenden?
+
+Antwort:
+
+7. Was bedeutet em?
+
+Antwort:
+
+8. Wann würde ich em verwenden?
+
+Antwort:
+
+9. Was bedeutet vw?
+
+Antwort:
+
+10. Wann würde ich vw verwenden?
+
+Antwort:
+
+11. Was bedeutet vh?
+
+Antwort:
+
+12. Wann würde ich vh verwenden?
+
+Antwort:
+
+13. Warum würde ich für einen Rahmen
+    eher 3px statt 3rem verwenden?
+
+Antwort:
+
+14. Warum ist % für Bilder häufig sinnvoll?
+
+Antwort:
+
+*/
+
+==================================================
+AUFGABE 18 – DINOSAURIER-AKTE ERSTELLEN
+=======================================
+
+Jetzt erstellst du selbst eine kleine Dinosaurier-Akte.
+
+Füge in deine HTML-Datei ein:
+
+<section class="dinoakte">
+
+```
+<h2>Dinosaurier-Akte</h2>
+
+<h3>Velociraptor</h3>
+
+<p>
+    Ernährung: Fleischfresser
+</p>
+
+<p>
+    Lebensraum: Asien
+</p>
+
+<p>
+    Besonderheit:
+    Schneller und beweglicher Dinosaurier
+</p>
+```
+
+</section>
+
+Gestalte:
+
+.dinoakte
+
+selbst.
+
+Deine Klasse muss mindestens folgende
+CSS-Eigenschaften besitzen:
+
+background-color
+
+width
+
+margin
+
+padding
+
+border
+
+border-radius
+
+box-shadow
+
+Verwende dabei mindestens
+DREI unterschiedliche Größeneinheiten.
+
+Zum Beispiel:
+
+.dinoakte {
+width: 80%;
+padding: 2rem;
+border: 3px solid green;
+}
+
+==================================================
+AUFGABE 19 – ABSCHLUSSHERAUSFORDERUNG
+=====================================
+
+Gestalte deine Dinosaurier-Webseite
+jetzt selbst weiter.
+
+Deine fertige Webseite muss mindestens enthalten:
+
+* einen Header
+* mindestens vier Sections
+* mehrere Überschriften
+* verschiedene Texte
+* mindestens zwei Dinosaurier-Bilder
+* mindestens eine Audiodatei
+* mindestens ein Video
+* unterschiedliche Hintergrundfarben
+* Rahmen
+* abgerundete Ecken
+* Abstände
+* box-shadow
+
+Außerdem musst du jede dieser Einheiten
+mindestens einmal verwendet haben:
+
+px
+
+%
+
+rem
+
+em
+
+vw
+
+vh
+
+==================================================
+BONUSAUFGABE – :hover
+=====================
+
+Du bist früher fertig?
+
+Finde selbst heraus, was
+
+:hover
+
+in CSS macht.
+
+Teste zum Beispiel:
+
+.dino:hover {
+transform: scale(1.02);
+}
+
+Oder:
+
+.dinobild:hover {
+border: 5px solid yellowgreen;
+}
+
+Beobachte, was passiert,
+wenn du mit der Maus über das Element fährst.
+
+==================================================
+BONUSAUFGABE 2 – cursor
+=======================
+
+Probiere zusätzlich:
+
+cursor: pointer;
+
+Zum Beispiel:
+
+.dinobild:hover {
+cursor: pointer;
+}
+
+FRAGE:
+
+Was verändert sich?
+
+==================================================
+CHECKLISTE
+==========
+
+Bevor du die Forschungsstation verlässt,
+überprüfe:
+
+Ist meine index.html mit style.css verbunden?
+
+Habe ich mindestens zwei Bilder eingefügt?
+
+Besitzen meine Bilder einen sinnvollen alt-Text?
+
+Habe ich einen Sound mit <audio> eingefügt?
+
+Besitzt mein Audio controls?
+
+Habe ich ein Video mit <video> eingefügt?
+
+Besitzt mein Video controls?
+
+Habe ich verschiedene Sections erstellt?
+
+Habe ich CSS-Klassen verwendet?
+
+Habe ich background-color verwendet?
+
+Habe ich border verwendet?
+
+Habe ich border-radius verwendet?
+
+Habe ich box-shadow verwendet?
+
+Habe ich margin verwendet?
+
+Habe ich padding verwendet?
+
+Habe ich px verwendet?
+
+Habe ich % verwendet?
+
+Habe ich rem verwendet?
+
+Habe ich em verwendet?
+
+Habe ich vw verwendet?
+
+Habe ich vh verwendet?
+
+Kann ich erklären, wann ich welche Einheit benutze?
+
+==================================================
+ZIEL
+====
+
+Am Ende kannst du:
+
+* HTML und CSS miteinander verbinden
+* eine externe CSS-Datei verwenden
+* Bilder mit <img> einfügen
+* sinnvolle alt-Texte schreiben
+* Audiodateien mit <audio> einfügen
+* Videos mit <video> einfügen
+* HTML-Elemente mit CSS gestalten
+* CSS-Klassen erstellen und verwenden
+* background-color einsetzen
+* Rahmen mit border erstellen
+* Ecken mit border-radius abrunden
+* Abstände mit margin und padding gestalten
+* Schatten mit box-shadow erzeugen
+* responsive Größen verwenden
+* px, %, rem, em, vw und vh unterscheiden
+* erklären, wann unterschiedliche Größeneinheiten sinnvoll sind
+
+Deine fertige Webseite soll wie eine spannende
+Dinosaurier-Forschungsstation aussehen.
+
+VIEL ERFOLG, FORSCHER!
+
+ACHTUNG:
+
+DAS T-REX-GEHEGE BLEIBT GESCHLOSSEN!

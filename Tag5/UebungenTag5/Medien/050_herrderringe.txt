@@ -1,0 +1,931 @@
+AUFGABE – EINE REISE DURCH MITTELERDE
+
+Bearbeitungszeit: ca. 40 Minuten
+
+THEMA:
+HTML und CSS miteinander verbinden, Bilder, Videos und Sounds einfügen, verschiedene CSS-Größeneinheiten verwenden und ein neues CSS-Element kennenlernen.
+
+==================================================
+SZENARIO
+========
+
+Eine gefährliche Reise durch Mittelerde beginnt.
+
+Auf deiner Webseite soll eine kleine Abenteuerseite entstehen, die sich thematisch an „Der Herr der Ringe“ orientiert.
+
+Die Besucher sollen etwas über die Reise, verschiedene Orte und Gefahren erfahren.
+
+Auf der Webseite sollen:
+
+* Mittelerde vorgestellt werden
+* Bilder eingebunden werden
+* ein Sound eingebunden werden
+* ein Video eingebunden werden
+* verschiedene Bereiche gestaltet werden
+* unterschiedliche CSS-Größeneinheiten verwendet werden
+
+Am Ende soll deine Webseite wie eine düstere Fantasy-Abenteuerseite wirken.
+
+==================================================
+DATEISTRUKTUR
+=============
+
+Erstelle einen neuen Ordner:
+
+mittelerde
+
+In diesem Ordner legst du folgende Dateien und Ordner an:
+
+mittelerde
+
+index.html
+style.css
+
+img
+audio
+video
+
+Speichere deine Bilder im Ordner:
+
+img
+
+Speichere deine Sounddatei im Ordner:
+
+audio
+
+Speichere dein Video im Ordner:
+
+video
+
+==================================================
+AUFGABE 1 – HTML-GRUNDGERÜST
+============================
+
+Erstelle die Datei:
+
+index.html
+
+Füge folgendes HTML-Grundgerüst ein:
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Eine Reise durch Mittelerde</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<header>
+
+    <h1>Eine Reise durch Mittelerde</h1>
+
+    <p>
+        Ein Ring. Eine Reise. Ein großes Abenteuer.
+    </p>
+
+</header>
+
+
+<main>
+
+    <section>
+
+        <h2>Willkommen in Mittelerde</h2>
+
+        <p>
+            Mittelerde ist eine Welt voller geheimnisvoller
+            Wälder, großer Berge und alter Königreiche.
+
+            Auf einer Reise durch dieses Land warten
+            Freunde, Feinde und viele Gefahren.
+        </p>
+
+    </section>
+
+
+</main>
+```
+
+</body>
+
+</html>
+
+Öffne die Datei anschließend im Browser und überprüfe,
+ob Überschrift und Text angezeigt werden.
+
+==================================================
+AUFGABE 2 – CSS-DATEI ERSTELLEN
+===============================
+
+Erstelle eine neue Datei:
+
+style.css
+
+Die CSS-Datei wird durch folgende Zeile
+mit deiner HTML-Datei verbunden:
+
+<link rel="stylesheet" href="style.css">
+
+Gestalte zuerst den gesamten <body>.
+
+Füge in deine style.css ein:
+
+body {
+background-color: #1c2118;
+color: #f2ead3;
+font-family: Georgia, serif;
+}
+
+Du darfst die Farben später selbst verändern.
+
+==================================================
+AUFGABE 3 – DEN HEADER GESTALTEN
+================================
+
+Gestalte den Kopfbereich deiner Webseite.
+
+Ergänze deine CSS-Datei:
+
+header {
+background-color: #34422b;
+text-align: center;
+padding: 2rem;
+}
+
+Gestalte zusätzlich die Hauptüberschrift:
+
+h1 {
+font-size: 2.5rem;
+letter-spacing: 2px;
+}
+
+WICHTIG:
+
+Für die Schriftgröße verwendest du:
+
+rem
+
+rem eignet sich gut für:
+
+* Schriftgrößen
+* Abstände
+* padding
+* margin
+
+==================================================
+AUFGABE 4 – EIN BILD VON MITTELERDE EINFÜGEN
+============================================
+
+Suche ein passendes Bild oder verwende ein eigenes Bild.
+
+Zum Beispiel:
+
+* Fantasy-Landschaft
+* Berge
+* Burg
+* Dorf
+* Wald
+* Hobbit-Haus
+* Mittelerde
+
+Speichere das Bild im Ordner:
+
+img
+
+Benenne es zum Beispiel:
+
+mittelerde.jpg
+
+Füge unter dem ersten <section>-Bereich
+eine neue Section ein:
+
+<section>
+
+```
+<h2>Die Landschaft von Mittelerde</h2>
+
+<img
+    src="./img/mittelerde.jpg"
+    alt="Eine weite Fantasy-Landschaft mit Bergen und grünen Wiesen"
+    class="mittelerdebild">
+
+<p>
+    Von den grünen Landschaften bis zu hohen Bergen
+    gibt es in Mittelerde viele unterschiedliche Orte.
+
+    Nicht jeder Ort ist jedoch ungefährlich.
+</p>
+```
+
+</section>
+
+==================================================
+AUFGABE 5 – DAS BILD MIT CSS GESTALTEN
+======================================
+
+Gestalte das Bild in deiner style.css.
+
+.mittelerdebild {
+width: 70%;
+max-width: 700px;
+border: 3px solid #b99746;
+border-radius: 15px;
+}
+
+Hier verwendest du zwei unterschiedliche Größeneinheiten:
+
+70%
+
+und
+
+700px
+
+FRAGE:
+
+Warum könnte % für die Breite sinnvoll sein?
+
+Schreibe deine Antwort als Kommentar in deine CSS-Datei.
+
+Beispiel:
+
+/*
+% ist sinnvoll, weil sich die Breite
+an den verfügbaren Platz anpasst.
+*/
+
+==================================================
+AUFGABE 6 – DIE BEREICHE GESTALTEN
+==================================
+
+Gestalte alle <section>-Elemente.
+
+section {
+background-color: #2c3326;
+
+```
+margin: 2rem;
+
+padding: 2rem;
+
+border: 2px solid #84734c;
+
+border-radius: 12px;
+```
+
+}
+
+Hier verwendest du:
+
+2rem für Abstände
+
+2px für den Rahmen
+
+ÜBERLEGE:
+
+Warum ist ein Rahmen mit 2px sinnvoller
+als ein Rahmen mit 2rem?
+
+==================================================
+AUFGABE 7 – DIE REISE ERSTELLEN
+===============================
+
+Füge in dein <main> einen weiteren Bereich ein:
+
+<section class="reise">
+
+```
+<h2>Die Reise beginnt</h2>
+
+<h3>Der Weg nach Mordor</h3>
+
+<p>
+    Eine kleine Gruppe macht sich auf eine
+    gefährliche Reise durch Mittelerde.
+
+    Auf dem Weg warten hohe Berge,
+    dunkle Wälder und gefährliche Feinde.
+
+    Das Ziel der Reise ist Mordor.
+</p>
+```
+
+</section>
+
+Gestalte diesen Bereich anschließend mit CSS:
+
+.reise {
+background-color: #3a3024;
+
+```
+width: 80%;
+
+margin: 2rem auto;
+
+padding: 2rem;
+
+border: 3px solid #b99746;
+
+border-radius: 1rem;
+```
+
+}
+
+==================================================
+AUFGABE 8 – EIN ZWEITES BILD EINFÜGEN
+=====================================
+
+Suche ein weiteres Bild.
+
+Zum Beispiel:
+
+* dunkler Berg
+* Vulkan
+* Wald
+* Festung
+* Fantasy-Weg
+* Burg
+* Mordor
+
+Speichere es zum Beispiel als:
+
+reise.jpg
+
+Füge das Bild in den Bereich
+„Die Reise beginnt“ ein:
+
+<img
+ src="./img/reise.jpg"
+ alt="Ein gefährlicher Weg durch eine dunkle Fantasy-Landschaft"
+ class="reisebild">
+
+Gestalte das Bild:
+
+.reisebild {
+width: 40vw;
+max-width: 100%;
+border-radius: 1rem;
+}
+
+NEUE EINHEIT:
+
+vw
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht ungefähr:
+
+1 % der Breite des Browserfensters
+
+Teste:
+
+Ziehe das Browserfenster größer und kleiner.
+
+Beobachte, wie sich das Bild verändert.
+
+==================================================
+AUFGABE 9 – EINEN SOUND EINFÜGEN
+================================
+
+Jetzt soll deine Mittelerde-Webseite
+eine Audiodatei enthalten.
+
+Suche oder verwende eine passende Audiodatei.
+
+Zum Beispiel:
+
+* Fantasy-Musik
+* Wind
+* Waldgeräusche
+* Schritte
+* Kampfgeräusche
+* mystische Musik
+
+Speichere die Datei im Ordner:
+
+audio
+
+Benenne sie zum Beispiel:
+
+reise.mp3
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Klänge von Mittelerde</h2>
+
+<p>
+    Höre dir die Geräusche an,
+    die eine Reise durch Mittelerde begleiten könnten.
+</p>
+
+<audio controls>
+
+    <source
+        src="./audio/reise.mp3"
+        type="audio/mpeg">
+
+    Dein Browser unterstützt dieses Audio nicht.
+
+</audio>
+```
+
+</section>
+
+Das Attribut:
+
+controls
+
+sorgt dafür, dass Play, Pause und Lautstärke angezeigt werden.
+
+==================================================
+AUFGABE 10 – AUDIO MIT CSS GESTALTEN
+====================================
+
+Gestalte das Audioelement:
+
+audio {
+width: 80%;
+margin-top: 1rem;
+}
+
+Hier verwendest du:
+
+%
+
+und
+
+rem
+
+==================================================
+AUFGABE 11 – EIN VIDEO EINFÜGEN
+===============================
+
+Jetzt soll die Webseite ein Video enthalten.
+
+Verwende ein passendes Video.
+
+Zum Beispiel:
+
+* Fantasy-Landschaft
+* Gebirge
+* Wald
+* Burg
+* Reise durch die Natur
+* Vulkanlandschaft
+
+Speichere es im Ordner:
+
+video
+
+Benenne es zum Beispiel:
+
+mittelerde.mp4
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Ein Blick auf die Reise</h2>
+
+<p>
+    Dieses Video zeigt eine Landschaft,
+    die auf einer Reise durch Mittelerde liegen könnte.
+</p>
+
+<video controls>
+
+    <source
+        src="./video/mittelerde.mp4"
+        type="video/mp4">
+
+    Dein Browser unterstützt dieses Video nicht.
+
+</video>
+```
+
+</section>
+
+==================================================
+AUFGABE 12 – VIDEO MIT CSS GESTALTEN
+====================================
+
+Gestalte dein Video:
+
+video {
+width: 80%;
+max-width: 700px;
+height: auto;
+
+```
+border: 3px solid #b99746;
+
+border-radius: 1rem;
+```
+
+}
+
+WICHTIG:
+
+height: auto;
+
+sorgt dafür, dass das Seitenverhältnis
+des Videos erhalten bleibt.
+
+==================================================
+AUFGABE 13 – ÜBERSCHRIFTEN GESTALTEN
+====================================
+
+Gestalte deine <h2>-Überschriften:
+
+h2 {
+color: #d5b35c;
+
+```
+font-size: 2rem;
+
+border-bottom: 2px solid #b99746;
+
+padding-bottom: 0.5rem;
+```
+
+}
+
+Gestalte danach <h3>:
+
+h3 {
+font-size: 1.4em;
+}
+
+NEUE EINHEIT:
+
+em
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements oder seines Umfeldes.
+
+==================================================
+AUFGABE 14 – NEUES CSS-ELEMENT: box-shadow
+==========================================
+
+Jetzt lernst du eine neue CSS-Eigenschaft kennen:
+
+box-shadow
+
+Damit kannst du einem Element einen Schatten geben.
+
+Beispiel:
+
+section {
+box-shadow: 0 4px 12px black;
+}
+
+Bedeutung:
+
+0
+
+= Verschiebung nach links oder rechts
+
+4px
+
+= Verschiebung nach oben oder unten
+
+12px
+
+= Stärke der Unschärfe
+
+black
+
+= Farbe des Schattens
+
+DEINE AUFGABE:
+
+Füge bei mindestens zwei Elementen
+einen Schatten ein.
+
+Zum Beispiel:
+
+header
+
+section
+
+.mittelerdebild
+
+.reise
+
+video
+
+==================================================
+AUFGABE 15 – VH AUSPROBIEREN
+============================
+
+Jetzt lernst du noch:
+
+vh
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht ungefähr:
+
+1 % der Höhe des Browserfensters
+
+Ergänze deinen Header:
+
+header {
+min-height: 25vh;
+}
+
+Teste deine Webseite danach erneut.
+
+FRAGE:
+
+Was passiert mit dem Header,
+wenn du die Höhe des Browserfensters veränderst?
+
+==================================================
+AUFGABE 16 – DIE GRÖSSENEINHEITEN
+=================================
+
+Du hast jetzt folgende Einheiten verwendet:
+
+px
+
+Beispiel:
+
+border: 2px solid #b99746;
+
+px ist eine feste Größe.
+
+Gut geeignet für:
+
+* Rahmen
+* kleine Details
+* kleine feste Werte
+
+---
+
+%
+
+Beispiel:
+
+width: 80%;
+
+% orientiert sich am verfügbaren Platz
+beziehungsweise am Elternelement.
+
+Gut geeignet für:
+
+* flexible Breiten
+* Bilder
+* Audio
+* Videos
+
+---
+
+rem
+
+Beispiel:
+
+padding: 2rem;
+
+rem orientiert sich an der Schriftgröße
+des <html>-Elements.
+
+Gut geeignet für:
+
+* Abstände
+* Schriftgrößen
+* margin
+* padding
+
+---
+
+em
+
+Beispiel:
+
+font-size: 1.4em;
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements oder seines Kontextes.
+
+---
+
+vw
+
+Beispiel:
+
+width: 40vw;
+
+vw orientiert sich an der Breite
+des Browserfensters.
+
+---
+
+vh
+
+Beispiel:
+
+min-height: 25vh;
+
+vh orientiert sich an der Höhe
+des Browserfensters.
+
+==================================================
+AUFGABE 17 – EIGENE ERKLÄRUNG
+=============================
+
+Füge ganz unten in deine style.css
+folgenden Kommentar ein und beantworte die Fragen:
+
+/*
+
+GRÖSSENEINHEITEN
+
+1. Was bedeutet px?
+
+Antwort:
+
+2. Wann würde ich px verwenden?
+
+Antwort:
+
+3. Was bedeutet %?
+
+Antwort:
+
+4. Wann würde ich % verwenden?
+
+Antwort:
+
+5. Was bedeutet rem?
+
+Antwort:
+
+6. Wann würde ich rem verwenden?
+
+Antwort:
+
+7. Was bedeutet em?
+
+Antwort:
+
+8. Wann würde ich em verwenden?
+
+Antwort:
+
+9. Was bedeutet vw?
+
+Antwort:
+
+10. Wann würde ich vw verwenden?
+
+Antwort:
+
+11. Was bedeutet vh?
+
+Antwort:
+
+12. Wann würde ich vh verwenden?
+
+Antwort:
+
+*/
+
+==================================================
+AUFGABE 18 – ABSCHLUSSHERAUSFORDERUNG
+=====================================
+
+Gestalte deine Mittelerde-Webseite jetzt selbst weiter.
+
+Deine fertige Webseite muss mindestens enthalten:
+
+* einen Header
+* mindestens vier Sections
+* mehrere Überschriften
+* Texte
+* mindestens zwei Bilder
+* mindestens eine Audiodatei
+* mindestens ein Video
+* unterschiedliche Hintergrundfarben
+* Rahmen
+* abgerundete Ecken
+* Abstände
+* box-shadow
+
+Außerdem musst du alle folgenden Größeneinheiten
+mindestens einmal verwenden:
+
+px
+%
+rem
+em
+vw
+vh
+
+==================================================
+BONUSAUFGABE – :hover
+=====================
+
+Du bist früher fertig?
+
+Finde heraus, was
+
+:hover
+
+macht.
+
+Teste zum Beispiel:
+
+.reise:hover {
+transform: scale(1.02);
+}
+
+Oder:
+
+.reisebild:hover {
+border: 5px solid gold;
+}
+
+Beobachte, was passiert,
+wenn du mit der Maus über das Element fährst.
+
+==================================================
+CHECKLISTE
+==========
+
+Bevor du fertig bist, überprüfe:
+
+Ist meine index.html mit style.css verbunden?
+
+Habe ich mindestens zwei Bilder eingefügt?
+
+Besitzen meine Bilder einen sinnvollen alt-Text?
+
+Habe ich einen Sound mit <audio> eingefügt?
+
+Besitzt mein Audio controls?
+
+Habe ich ein Video mit <video> eingefügt?
+
+Besitzt mein Video controls?
+
+Habe ich meine Bereiche mit CSS gestaltet?
+
+Habe ich box-shadow verwendet?
+
+Habe ich px verwendet?
+
+Habe ich % verwendet?
+
+Habe ich rem verwendet?
+
+Habe ich em verwendet?
+
+Habe ich vw verwendet?
+
+Habe ich vh verwendet?
+
+Kann ich erklären, wann ich welche Einheit benutze?
+
+==================================================
+ZIEL
+====
+
+Am Ende kannst du:
+
+* HTML und CSS miteinander verbinden
+* externe CSS-Dateien verwenden
+* Bilder in HTML einfügen
+* sinnvolle alt-Texte verwenden
+* Audiodateien einfügen
+* Videos einfügen
+* HTML-Elemente mit CSS gestalten
+* Klassen mit CSS ansprechen
+* Größen flexibel gestalten
+* px, %, rem, em, vw und vh unterscheiden
+* box-shadow verwenden
+
+Deine fertige Webseite soll wie eine düstere
+Fantasy-Abenteuerseite aus Mittelerde aussehen.
+
+VIEL ERFOLG AUF DEINER REISE DURCH MITTELERDE!

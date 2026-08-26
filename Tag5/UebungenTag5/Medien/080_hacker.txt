@@ -1,0 +1,1105 @@
+AUFGABE – DIE HACKER-ZENTRALE
+
+Bearbeitungszeit: ca. 40 Minuten
+
+THEMA:
+HTML und CSS miteinander verbinden, Bilder, Videos und Sounds einfügen, verschiedene CSS-Größeneinheiten verwenden und ein neues CSS-Element kennenlernen.
+
+==================================================
+SZENARIO
+========
+
+Du arbeitest in einer geheimen Cybersecurity-Zentrale.
+
+Dein Team überwacht Computersysteme, analysiert verdächtige Aktivitäten und schützt wichtige Daten vor Angriffen.
+
+Deine Aufgabe ist es, eine Webseite für diese Hacker- und Cybersecurity-Zentrale zu erstellen.
+
+Auf der Webseite sollen:
+
+* die Zentrale vorgestellt werden
+* Bilder eingebunden werden
+* ein Sound eingebunden werden
+* ein Video eingebunden werden
+* verschiedene Bereiche gestaltet werden
+* unterschiedliche CSS-Größeneinheiten verwendet werden
+
+Am Ende soll deine Webseite wie eine dunkle, technische Hacker- bzw. Cybersecurity-Seite aussehen.
+
+==================================================
+DATEISTRUKTUR
+=============
+
+Erstelle einen neuen Ordner:
+
+hacker-zentrale
+
+In diesem Ordner legst du folgende Dateien und Ordner an:
+
+hacker-zentrale
+
+index.html
+style.css
+
+img
+audio
+video
+
+Speichere deine Bilder im Ordner:
+
+img
+
+Speichere deine Sounddatei im Ordner:
+
+audio
+
+Speichere dein Video im Ordner:
+
+video
+
+==================================================
+AUFGABE 1 – HTML-GRUNDGERÜST
+============================
+
+Erstelle die Datei:
+
+index.html
+
+Füge folgendes HTML-Grundgerüst ein:
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Cybersecurity-Zentrale</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<header>
+
+    <h1>Cybersecurity-Zentrale</h1>
+
+    <p>
+        Systeme überwachen. Daten schützen. Angriffe erkennen.
+    </p>
+
+</header>
+
+
+<main>
+
+    <section>
+
+        <h2>Willkommen in der Zentrale</h2>
+
+        <p>
+            In unserer Cybersecurity-Zentrale werden
+            Computersysteme überwacht und verdächtige
+            Aktivitäten untersucht.
+
+            Unser Ziel ist es, Sicherheitsprobleme
+            frühzeitig zu erkennen und Systeme zu schützen.
+        </p>
+
+    </section>
+
+</main>
+```
+
+</body>
+
+</html>
+
+Öffne die Datei anschließend im Browser.
+
+Überprüfe:
+
+Wird die Überschrift angezeigt?
+
+Wird der Text angezeigt?
+
+Wenn ja, kannst du weitermachen.
+
+==================================================
+AUFGABE 2 – CSS-DATEI ERSTELLEN
+===============================
+
+Erstelle eine neue Datei:
+
+style.css
+
+Deine CSS-Datei wird mit folgender Zeile
+mit der HTML-Datei verbunden:
+
+<link rel="stylesheet" href="style.css">
+
+Gestalte zuerst den gesamten <body>.
+
+Füge in deine style.css ein:
+
+body {
+background-color: #0d0d0d;
+color: #d7ffd7;
+font-family: Arial, sans-serif;
+}
+
+Du darfst die Farben später selbst verändern.
+
+==================================================
+AUFGABE 3 – DEN HEADER GESTALTEN
+================================
+
+Gestalte den Kopfbereich der Seite.
+
+Ergänze deine CSS-Datei:
+
+header {
+background-color: #111a11;
+text-align: center;
+padding: 2rem;
+}
+
+Gestalte danach die Hauptüberschrift:
+
+h1 {
+font-size: 2.5rem;
+letter-spacing: 2px;
+}
+
+WICHTIG:
+
+Für die Schriftgröße verwendest du:
+
+rem
+
+rem eignet sich gut für:
+
+* Schriftgrößen
+* Abstände
+* padding
+* margin
+
+==================================================
+AUFGABE 4 – EIN BILD DER ZENTRALE EINFÜGEN
+==========================================
+
+Suche ein passendes Bild oder verwende ein eigenes Bild.
+
+Zum Beispiel:
+
+* Computer
+* Serverraum
+* Code auf einem Bildschirm
+* mehrere Monitore
+* Cybersecurity-Zentrale
+* Netzwerk
+* dunkler Arbeitsplatz
+
+Speichere das Bild im Ordner:
+
+img
+
+Benenne es zum Beispiel:
+
+zentrale.jpg
+
+Füge unter der ersten Section
+eine neue Section ein:
+
+<section>
+
+```
+<h2>Unsere Cyber-Zentrale</h2>
+
+<img
+    src="./img/zentrale.jpg"
+    alt="Eine dunkle Cybersecurity-Zentrale mit mehreren Computermonitoren"
+    class="zentralebild">
+
+<p>
+    Von hier aus überwachen wir verschiedene Systeme
+    und untersuchen ungewöhnliche Netzwerkaktivitäten.
+
+    Auf mehreren Monitoren werden wichtige Informationen
+    gleichzeitig angezeigt.
+</p>
+```
+
+</section>
+
+==================================================
+AUFGABE 5 – DAS BILD MIT CSS GESTALTEN
+======================================
+
+Gestalte das Bild in deiner style.css:
+
+.zentralebild {
+width: 70%;
+max-width: 700px;
+border: 3px solid limegreen;
+border-radius: 12px;
+}
+
+Hier verwendest du zwei unterschiedliche Größeneinheiten:
+
+70%
+
+und
+
+700px
+
+FRAGE:
+
+Warum könnte % für die Breite sinnvoll sein?
+
+Schreibe deine Antwort als Kommentar in deine CSS-Datei.
+
+Beispiel:
+
+/*
+% ist sinnvoll, weil sich die Breite
+an den verfügbaren Platz anpassen kann.
+*/
+
+==================================================
+AUFGABE 6 – DIE BEREICHE GESTALTEN
+==================================
+
+Gestalte alle <section>-Elemente.
+
+section {
+background-color: #151515;
+
+```
+margin: 2rem;
+
+padding: 2rem;
+
+border: 2px solid #245b24;
+
+border-radius: 12px;
+```
+
+}
+
+Hier verwendest du:
+
+2rem für Abstände
+
+2px für den Rahmen
+
+FRAGE:
+
+Warum ist ein Rahmen mit 2px sinnvoller
+als ein Rahmen mit 2rem?
+
+Schreibe deine Antwort als Kommentar in CSS.
+
+==================================================
+AUFGABE 7 – DER AKTUELLE SICHERHEITSFALL
+========================================
+
+Füge in dein <main> einen weiteren Bereich ein:
+
+<section class="alarm">
+
+```
+<h2>Aktueller Sicherheitsfall</h2>
+
+<h3>Unbekannter Login-Versuch</h3>
+
+<p>
+    Das Sicherheitssystem hat mehrere ungewöhnliche
+    Login-Versuche erkannt.
+
+    Deine Aufgabe ist es, die Informationen zu prüfen
+    und herauszufinden, ob es sich um einen Fehler
+    oder um einen verdächtigen Zugriff handelt.
+</p>
+```
+
+</section>
+
+Gestalte diesen Bereich anschließend mit CSS:
+
+.alarm {
+background-color: #1c281c;
+
+```
+width: 80%;
+
+margin: 2rem auto;
+
+padding: 2rem;
+
+border: 3px solid limegreen;
+
+border-radius: 1rem;
+```
+
+}
+
+==================================================
+AUFGABE 8 – EIN ZWEITES BILD EINFÜGEN
+=====================================
+
+Suche ein weiteres Bild.
+
+Zum Beispiel:
+
+* Code
+* Terminal
+* Warnmeldung
+* Netzwerk
+* Schloss-Symbol
+* Server
+* Computerbildschirm
+
+Speichere es zum Beispiel als:
+
+analyse.jpg
+
+Füge das Bild in den Bereich
+„Aktueller Sicherheitsfall“ ein:
+
+<img
+ src="./img/analyse.jpg"
+ alt="Ein Computerbildschirm mit einer Sicherheitsanalyse"
+ class="analysebild">
+
+Gestalte das Bild:
+
+.analysebild {
+width: 40vw;
+max-width: 100%;
+border-radius: 1rem;
+}
+
+NEUE EINHEIT:
+
+vw
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht:
+
+1 % der Breite des Browserfensters
+
+TEST:
+
+Ziehe dein Browserfenster größer und kleiner.
+
+Beobachte, wie sich das Bild verändert.
+
+Schreibe deine Beobachtung
+als Kommentar in deine CSS-Datei.
+
+==================================================
+AUFGABE 9 – EINEN SOUND EINFÜGEN
+================================
+
+Jetzt soll deine Hacker-Webseite
+eine Audiodatei enthalten.
+
+Suche oder verwende eine passende Audiodatei.
+
+Zum Beispiel:
+
+* Tastaturgeräusche
+* Computer-Sound
+* Warnsignal
+* Benachrichtigungston
+* Servergeräusche
+* technische Hintergrundgeräusche
+
+Speichere die Datei im Ordner:
+
+audio
+
+Benenne sie zum Beispiel:
+
+alarm.mp3
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Sicherheitsalarm</h2>
+
+<p>
+    Dieses Signal wird abgespielt,
+    wenn das System eine ungewöhnliche Aktivität erkennt.
+</p>
+
+<audio controls>
+
+    <source
+        src="./audio/alarm.mp3"
+        type="audio/mpeg">
+
+    Dein Browser unterstützt dieses Audio nicht.
+
+</audio>
+```
+
+</section>
+
+Das Attribut:
+
+controls
+
+sorgt dafür, dass die Steuerung angezeigt wird.
+
+Zum Beispiel:
+
+* Play
+* Pause
+* Lautstärke
+* Fortschritt
+
+==================================================
+AUFGABE 10 – AUDIO MIT CSS GESTALTEN
+====================================
+
+Gestalte das Audioelement:
+
+audio {
+width: 80%;
+margin-top: 1rem;
+}
+
+Hier verwendest du:
+
+%
+
+und
+
+rem
+
+==================================================
+AUFGABE 11 – EIN VIDEO EINFÜGEN
+===============================
+
+Jetzt soll die Webseite ein Video enthalten.
+
+Verwende ein passendes Video.
+
+Zum Beispiel:
+
+* Serverraum
+* Computer
+* laufender Code
+* Netzwerk-Animation
+* technische Umgebung
+* Bildschirmaufnahme
+
+Speichere es im Ordner:
+
+video
+
+Benenne es zum Beispiel:
+
+system.mp4
+
+Füge einen neuen Bereich ein:
+
+<section>
+
+```
+<h2>Systemüberwachung</h2>
+
+<p>
+    Dieses Video zeigt eine technische Umgebung
+    oder eine laufende Systemüberwachung.
+</p>
+
+<video controls>
+
+    <source
+        src="./video/system.mp4"
+        type="video/mp4">
+
+    Dein Browser unterstützt dieses Video nicht.
+
+</video>
+```
+
+</section>
+
+==================================================
+AUFGABE 12 – VIDEO MIT CSS GESTALTEN
+====================================
+
+Gestalte dein Video:
+
+video {
+width: 80%;
+max-width: 700px;
+height: auto;
+
+```
+border: 3px solid limegreen;
+
+border-radius: 1rem;
+```
+
+}
+
+WICHTIG:
+
+height: auto;
+
+sorgt dafür, dass das Seitenverhältnis
+des Videos erhalten bleibt.
+
+==================================================
+AUFGABE 13 – ÜBERSCHRIFTEN GESTALTEN
+====================================
+
+Gestalte deine <h2>-Überschriften:
+
+h2 {
+color: limegreen;
+
+```
+font-size: 2rem;
+
+border-bottom: 2px solid limegreen;
+
+padding-bottom: 0.5rem;
+```
+
+}
+
+Gestalte danach <h3>:
+
+h3 {
+font-size: 1.4em;
+}
+
+NEUE EINHEIT:
+
+em
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements beziehungsweise
+seines Umfeldes.
+
+==================================================
+AUFGABE 14 – NEUES CSS-ELEMENT: box-shadow
+==========================================
+
+Jetzt lernst du eine neue CSS-Eigenschaft kennen:
+
+box-shadow
+
+Mit box-shadow kannst du einem Element
+einen Schatten geben.
+
+Beispiel:
+
+section {
+box-shadow: 0 4px 12px black;
+}
+
+Die Werte bedeuten:
+
+0
+
+= Verschiebung nach links oder rechts
+
+4px
+
+= Verschiebung nach oben oder unten
+
+12px
+
+= Unschärfe des Schattens
+
+black
+
+= Farbe des Schattens
+
+DEINE AUFGABE:
+
+Füge bei mindestens zwei Elementen
+einen Schatten ein.
+
+Zum Beispiel:
+
+header
+
+section
+
+.alarm
+
+.zentralebild
+
+.analysebild
+
+video
+
+==================================================
+AUFGABE 15 – VH AUSPROBIEREN
+============================
+
+Jetzt lernst du noch:
+
+vh
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht:
+
+1 % der Höhe des Browserfensters
+
+Ergänze deinen Header:
+
+header {
+min-height: 25vh;
+}
+
+Teste danach deine Webseite.
+
+FRAGE:
+
+Was passiert mit dem Header,
+wenn du die Höhe des Browserfensters veränderst?
+
+Schreibe deine Beobachtung als Kommentar
+in deine CSS-Datei.
+
+==================================================
+AUFGABE 16 – DIE GRÖSSENEINHEITEN
+=================================
+
+Du hast jetzt verschiedene Größeneinheiten verwendet.
+
+---
+
+px
+
+---
+
+Beispiel:
+
+border: 2px solid limegreen;
+
+px bedeutet:
+
+Pixel
+
+px ist eine feste Größe.
+
+Gut geeignet für:
+
+* Rahmen
+* kleine Details
+* kleine feste Größen
+
+---
+
+%
+
+---
+
+Beispiel:
+
+width: 80%;
+
+% orientiert sich meistens am verfügbaren Platz
+beziehungsweise am Elternelement.
+
+Gut geeignet für:
+
+* flexible Breiten
+* Bilder
+* Audio
+* Videos
+
+---
+
+rem
+
+---
+
+Beispiel:
+
+padding: 2rem;
+
+rem orientiert sich an der Schriftgröße
+des <html>-Elements.
+
+Gut geeignet für:
+
+* Abstände
+* Schriftgrößen
+* margin
+* padding
+
+---
+
+em
+
+---
+
+Beispiel:
+
+font-size: 1.4em;
+
+em orientiert sich an der Schriftgröße
+des jeweiligen Elements beziehungsweise
+seines Kontextes.
+
+Gut geeignet für:
+
+* relative Schriftgrößen
+* Größen, die sich an ihrer Umgebung orientieren
+
+---
+
+vw
+
+---
+
+Beispiel:
+
+width: 40vw;
+
+vw bedeutet:
+
+Viewport Width
+
+1vw entspricht:
+
+1 % der Breite des Browserfensters.
+
+Gut geeignet für:
+
+* Elemente, die sich an der Fensterbreite orientieren
+
+---
+
+vh
+
+---
+
+Beispiel:
+
+min-height: 25vh;
+
+vh bedeutet:
+
+Viewport Height
+
+1vh entspricht:
+
+1 % der Höhe des Browserfensters.
+
+Gut geeignet für:
+
+* große Bereiche
+* Header
+* Startbereiche
+* Elemente, die sich an der Fensterhöhe orientieren
+
+==================================================
+AUFGABE 17 – EIGENE ERKLÄRUNG
+=============================
+
+Füge ganz unten in deine style.css
+folgenden Kommentar ein und beantworte die Fragen:
+
+/*
+
+GRÖSSENEINHEITEN
+
+1. Was bedeutet px?
+
+Antwort:
+
+2. Wann würde ich px verwenden?
+
+Antwort:
+
+3. Was bedeutet %?
+
+Antwort:
+
+4. Wann würde ich % verwenden?
+
+Antwort:
+
+5. Was bedeutet rem?
+
+Antwort:
+
+6. Wann würde ich rem verwenden?
+
+Antwort:
+
+7. Was bedeutet em?
+
+Antwort:
+
+8. Wann würde ich em verwenden?
+
+Antwort:
+
+9. Was bedeutet vw?
+
+Antwort:
+
+10. Wann würde ich vw verwenden?
+
+Antwort:
+
+11. Was bedeutet vh?
+
+Antwort:
+
+12. Wann würde ich vh verwenden?
+
+Antwort:
+
+13. Warum würde ich für einen Rahmen eher
+    2px statt 2rem verwenden?
+
+Antwort:
+
+14. Warum ist % für Bilder häufig sinnvoll?
+
+Antwort:
+
+*/
+
+==================================================
+AUFGABE 18 – STATUSANZEIGE ERSTELLEN
+====================================
+
+Erstelle jetzt einen neuen Bereich:
+
+<section class="status">
+
+```
+<h2>Systemstatus</h2>
+
+<p>
+    Firewall: Aktiv
+</p>
+
+<p>
+    Server: Online
+</p>
+
+<p>
+    Sicherheitsstatus: Keine Gefahr erkannt
+</p>
+```
+
+</section>
+
+Gestalte diesen Bereich selbst.
+
+Deine Klasse:
+
+.status
+
+muss mindestens folgende Eigenschaften besitzen:
+
+background-color
+
+width
+
+margin
+
+padding
+
+border
+
+border-radius
+
+box-shadow
+
+Verwende dabei mindestens
+DREI unterschiedliche Größeneinheiten.
+
+Zum Beispiel:
+
+.status {
+width: 80%;
+padding: 2rem;
+border: 3px solid limegreen;
+}
+
+==================================================
+AUFGABE 19 – ABSCHLUSSHERAUSFORDERUNG
+=====================================
+
+Gestalte deine Hacker- bzw. Cybersecurity-Webseite
+jetzt selbst weiter.
+
+Deine fertige Webseite muss mindestens enthalten:
+
+* einen Header
+* mindestens vier Sections
+* mehrere Überschriften
+* verschiedene Texte
+* mindestens zwei Bilder
+* mindestens eine Audiodatei
+* mindestens ein Video
+* unterschiedliche Hintergrundfarben
+* Rahmen
+* abgerundete Ecken
+* Abstände
+* box-shadow
+
+Außerdem musst du jede dieser Einheiten
+mindestens einmal verwendet haben:
+
+px
+
+%
+
+rem
+
+em
+
+vw
+
+vh
+
+==================================================
+BONUSAUFGABE – :hover
+=====================
+
+Du bist früher fertig?
+
+Finde selbst heraus, was
+
+:hover
+
+in CSS macht.
+
+Teste zum Beispiel:
+
+.alarm:hover {
+transform: scale(1.02);
+}
+
+Oder:
+
+.analysebild:hover {
+border: 5px solid lime;
+}
+
+Beobachte, was passiert,
+wenn du mit der Maus über das Element fährst.
+
+BONUS 2:
+
+Probiere zusätzlich:
+
+cursor: pointer;
+
+Beispiel:
+
+.analysebild:hover {
+cursor: pointer;
+}
+
+Was verändert sich?
+
+==================================================
+CHECKLISTE
+==========
+
+Bevor du fertig bist, überprüfe:
+
+Ist meine index.html mit style.css verbunden?
+
+Habe ich mindestens zwei Bilder eingefügt?
+
+Besitzen meine Bilder einen sinnvollen alt-Text?
+
+Habe ich einen Sound mit <audio> eingefügt?
+
+Besitzt mein Audio controls?
+
+Habe ich ein Video mit <video> eingefügt?
+
+Besitzt mein Video controls?
+
+Habe ich verschiedene Sections erstellt?
+
+Habe ich Klassen verwendet?
+
+Habe ich meine Bereiche mit CSS gestaltet?
+
+Habe ich border verwendet?
+
+Habe ich border-radius verwendet?
+
+Habe ich box-shadow verwendet?
+
+Habe ich px verwendet?
+
+Habe ich % verwendet?
+
+Habe ich rem verwendet?
+
+Habe ich em verwendet?
+
+Habe ich vw verwendet?
+
+Habe ich vh verwendet?
+
+Kann ich erklären, wann ich welche Einheit benutze?
+
+==================================================
+ZIEL
+====
+
+Am Ende kannst du:
+
+* HTML und CSS miteinander verbinden
+* eine externe CSS-Datei verwenden
+* Bilder mit <img> einfügen
+* sinnvolle alt-Texte schreiben
+* Audiodateien mit <audio> einfügen
+* Videos mit <video> einfügen
+* HTML-Elemente mit CSS gestalten
+* CSS-Klassen erstellen und verwenden
+* Rahmen erstellen
+* Ecken abrunden
+* Abstände gestalten
+* Schatten mit box-shadow erzeugen
+* responsive Größen verwenden
+* px, %, rem, em, vw und vh unterscheiden
+* erklären, wann unterschiedliche Größeneinheiten sinnvoll sind
+
+Deine fertige Webseite soll wie eine
+dunkle technische Cybersecurity-Zentrale aussehen.
+
+VIEL ERFOLG!
+
+SYSTEM ONLINE.
