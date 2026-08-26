@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS-Selektoren – Wähle deinen Kämpfer</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>CSS-Selektoren</h1>
+            <p>Die Kunst, genau das richtige Element zu erwischen.</p>
+        </header>
+
+        <main>
+
+            <section>
+                <h2>Selector Training Ground</h2>
+
+                <p class="hinweis">
+                    CSS ohne Selektoren wäre wie Debugging ohne Fehlermeldung:
+                    Man weiß, dass etwas passieren soll, aber nicht wo.
+                </p>
+
+                <ol>
+                    <!-- AUFGABE 1:
+                        ELEMENTSELEKTOR 
+                        Wähle alle <p>-Elemente aus.
+                        Ändere ihre Textfarbe.
+                    -->
+                    <li>
+                        <h3>Level 1: Elementselektor</h3>
+
+                        <p>
+                            Der Elementselektor wählt Elemente anhand ihres HTML-Tags aus.
+                        </p>
+                    </li>
+
+
+                    <!-- AUFGABE 2:
+                        KLASSENSELEKTOR
+                        Wähle alle Elemente mit der Klasse "code".
+                        Gib ihnen eine andere Hintergrundfarbe, etwas padding und abgerundete Ecken.
+                    -->
+                    <li>
+                        <h3>Level 2: Klassenselektor</h3>
+
+                        <p class="code">
+                            class="code"
+                        </p>
+
+                        <p>
+                            Eine Klasse kann von mehreren Elementen verwendet werden.
+                        </p>
+                    </li>
+
+
+                    <!-- AUFGABE 3:
+                        ID-SELEKTOR
+                        Wähle nur das Element mit der ID "boss".
+                        Gib ihm eine auffällige Textfarbe.
+                    -->
+                    <li>
+                        <h3 id="boss">Level 3: Der ID-Boss</h3>
+
+                        <p>
+                            Eine ID sollte auf einer Seite eindeutig sein. Genau ein Element. Ein Boss. Keine Klone.
+                        </p>
+                    </li>
+
+
+                    <!-- AUFGABE 4:
+                        ATTRIBUTSELEKTOR
+                        Wähle das Element mit data-level="4".
+                        Gib ihm einen sichtbaren Rahmen.
+                    -->
+                    <li data-level="4">
+                        <h3>Level 4: Attributselektor</h3>
+
+                        <p>
+                            Manche Elemente verstecken ihre Informationen in Attributen. CSS findet sie trotzdem.
+                        </p>
+                    </li>
+
+
+                    <!-- AUFGABE 5:
+                        UNIVERSALSELEKTOR
+                        Wähle ALLE Elemente aus und verwende:
+                        box-sizing: border-box;
+                    -->
+                    <li>
+                        <h3>Level 5: Universalmodus</h3>
+
+                        <p>
+                            Ein Selektor, sie alle zu finden. Ein Sternchen, sie alle zu stylen.
+                        </p>
+                    </li>
+                </ol>
+
+            </section>
+
+
+            <section>
+                <h2>Bonus-Level: Kombiniere deine Kräfte</h2>
+
+                <!-- AUFGABE 6:
+                    Wähle nur <p>-Elemente mit der Klasse "warnung".
+                    Ändere Textfarbe, Hintergrund und padding.
+                -->
+                <p class="warnung">
+                    Warnung: Dieser Absatz enthält möglicherweise Spuren von CSS.
+                </p>
+
+                <div class="warnung">
+                    Ich habe auch die Klasse "warnung", bin aber kein Absatz.
+                </div>
+
+
+                <!-- AUFGABE 7:
+                    NACHFAHRENSELEKTOR
+                    Wähle alle <code>-Elemente innerhalb
+                    von <article> aus.
+                -->
+                <article>
+                    <h3>Terminal des Schicksals</h3>
+
+                    <p>
+                        Der Browser versteht:
+                        <code>HTML</code>,
+                        <code>CSS</code>
+                        und mit etwas Unterstützung auch
+                        <code>JavaScript</code>.
+                    </p>
+                </article>
+
+
+                <!-- AUFGABE 8:
+                    KINDSELEKTOR
+                    Wähle nur <p>-Elemente aus, die DIREKTE Kinder von .server sind.
+                -->
+                <div class="server">
+
+                    <p>Direktes Kind: Server läuft.</p>
+
+                    <div>
+                        <p>
+                            Verschachteltes Kind: Ich sollte nicht ausgewählt werden.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- AUFGABE 9:
+                    PSEUDOKLASSE
+                    Verändere die Farbe des Links, wenn man mit der Maus darüberfährt.
+                -->
+                <p>
+                    <a href="#">Geheimer Entwicklerzugang</a>
+                </p>
+
+
+                <!-- AUFGABE 10:
+                    :first-child
+                    Wähle nur das erste <li> dieser Liste aus und stelle den Text fett dar.
+                -->
+                <ul class="debug-liste">
+                    <li>Code schreiben</li>
+                    <li>Code testen</li>
+                    <li>Fehler finden</li>
+                    <li>Fehler googeln</li>
+                    <li>Behaupten, es sei ein Feature</li>
+                </ul>
+
+            </section>
+
+
+            <section>
+                <h2>Final Boss</h2>
+
+                <p>
+                    Schreibe die folgenden Selektoren komplett selbst, ohne neue Klassen oder IDs ins HTML einzubauen.
+                </p>
+
+                <article class="final-boss">
+
+                    <h3>CSS Selector Boss Fight</h3>
+
+                    <p>Ich bin ein normaler Absatz.</p>
+
+                    <p class="special">
+                        Ich bin ein besonderer Absatz.
+                    </p>
+
+                    <p data-status="error">
+                        ERROR: Kaffee nicht gefunden.
+                    </p>
+
+                    <p data-status="success">
+                        SUCCESS: CSS wurde kompiliert.
+                        Moment... CSS wird gar nicht kompiliert.
+                    </p>
+
+                </article>
+
+                <!--
+                    FINAL-BOSS-AUFGABEN:
+
+                    11. Wähle nur das <h3> innerhalb von .final-boss.
+
+                    12. Wähle nur:
+                        <p class="special">
+
+                    13. Wähle nur das Element mit:
+                        data-status="error"
+
+                    14. Wähle alle Elemente aus, die überhaupt
+                        ein data-status-Attribut besitzen.
+
+                    15. Wähle den ersten Absatz innerhalb
+                        von .final-boss.
+
+                    16. Sorge dafür, dass sich beim Überfahren
+                        von .final-boss mit der Maus der Rahmen ändert.
+
+                    17. EXPERTENMODUS:
+                        Wähle einen Absatz innerhalb von .final-boss,
+                        aber NICHT den Absatz mit der Klasse "special".
+                -->
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            <p>
+                Wenn dein CSS nicht funktioniert: Cache leeren, Selektor prüfen, Existenz hinterfragen.
+            </p>
+        </footer>
+
+    </body>
+
+</html>

@@ -1,0 +1,64 @@
+body{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 16px;
+}
+
+/* Allgemeine Einstellung für die Klasse Item */
+.item{
+    border: 2px solid #ccc;
+    padding: 10px;
+    background: #f7f7f7;
+}
+
+/* Flex Container */
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #eee;
+    padding: 8px;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #eee;
+    padding: 8px;
+}
+
+/* Abstände mit gap*/
+.gap{
+    gap: 12px;
+}
+
+/*Ausrichten mit justify-content */
+.jc-space{
+    justify-content: space-between;
+}
+
+.jc-space-fs{
+    justify-content: flex-start;
+}
+
+.jc-space-c{
+    justify-content: center;
+}
+
+.jc-space-fe{
+    justify-content: flex-end;
+}
+
+/* Ausrichtung mit align-items*/
+.ai-center{
+    align-items: center;
+}
+
+/* Veränderung der Items*/
+.tall {
+    min-height: 80px;
+}
+
+.big{
+    padding: 20px;
+    background-color: yellowgreen;
+}

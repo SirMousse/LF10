@@ -1,0 +1,1144 @@
+============================================================
+CSS / STYLESHEETS – LERNZETTEL
+Internes CSS | Externes CSS | Inline-CSS
+============================================================
+
+
+1. WAS IST CSS?
+============================================================
+
+CSS = Cascading Style Sheets
+
+CSS wird verwendet, um die Darstellung von HTML-Elementen zu bestimmen.
+
+Beispiele:
+- Farben
+- Schriftarten
+- Schriftgrößen
+- Abstände
+- Rahmen
+- Positionierung
+- Layout
+- Responsive Design
+- Animationen
+
+Grundidee:
+
+HTML = Struktur / Inhalt
+CSS  = Gestaltung / Darstellung
+JavaScript = Verhalten / Logik
+
+
+CSS-Grundsyntax:
+
+selektor {
+    eigenschaft: wert;
+}
+
+Beispiel:
+
+p {
+    color: red;
+    font-size: 16px;
+}
+
+p               = Selektor
+color            = Eigenschaft / Property
+red              = Wert / Value
+font-size        = Eigenschaft
+16px             = Wert
+
+Eine vollständige Angabe wie:
+
+color: red;
+
+wird als CSS-Deklaration bezeichnet.
+
+
+============================================================
+2. DIE 3 ARTEN CSS EINZUBINDEN
+============================================================
+
+1. Externes CSS
+2. Internes CSS
+3. Inline-CSS
+
+
+============================================================
+3. EXTERNES CSS
+============================================================
+
+CSS befindet sich in einer separaten .css-Datei.
+
+Beispiel:
+
+HTML-Datei:
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+style.css:
+
+body {
+    background-color: white;
+}
+
+h1 {
+    color: blue;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+WICHTIGE ATTRIBUTE:
+
+rel="stylesheet"
+
+rel = relationship / Beziehung
+
+Bedeutung:
+Die eingebundene Ressource ist ein Stylesheet.
+
+
+href="style.css"
+
+href = Adresse / Pfad zur CSS-Datei
+
+Beispiele:
+
+href="style.css"
+
+href="css/style.css"
+
+href="../css/style.css"
+
+
+Optional möglich:
+
+media="screen"
+
+oder z. B.:
+
+media="print"
+
+
+Beispiel:
+
+<link rel="stylesheet"
+      href="print.css"
+      media="print">
+
+
+NICHT MEHR NOTWENDIG:
+
+type="text/css"
+
+Früher:
+
+<link rel="stylesheet"
+      type="text/css"
+      href="style.css">
+
+Heute reicht:
+
+<link rel="stylesheet"
+      href="style.css">
+
+Bei rel="stylesheet" ist CSS bzw. text/css der Standard.
+
+
+------------------------------------------------------------
+WANN WIRD EXTERNES CSS VERWENDET?
+------------------------------------------------------------
+
+→ normale Websites
+→ Websites mit mehreren Seiten
+→ größere Projekte
+→ wenn dasselbe Design auf mehreren Seiten verwendet wird
+→ professionelle Webentwicklung
+
+
+------------------------------------------------------------
+VORTEILE EXTERNES CSS
+------------------------------------------------------------
+
++ HTML und Design sind sauber getrennt
+
++ eine CSS-Datei kann für viele HTML-Seiten verwendet werden
+
++ zentrale Änderungen möglich
+
+Beispiel:
+
+style.css ändern
+
+→ alle eingebundenen Webseiten können die Änderung übernehmen
+
+
++ gute Wartbarkeit
+
++ übersichtlicher HTML-Code
+
++ Wiederverwendbarkeit
+
++ Browser kann CSS-Dateien cachen
+
++ besonders sinnvoll bei größeren Projekten
+
+
+------------------------------------------------------------
+NACHTEILE EXTERNES CSS
+------------------------------------------------------------
+
+- zusätzliche Datei
+
+- CSS-Datei muss geladen werden
+
+- falscher Dateipfad führt dazu, dass Styles nicht geladen werden
+
+- Netzwerk-/Serverproblem kann das Laden der CSS-Datei verhindern
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Externes CSS = eigene .css-Datei
+
+HTML:
+
+<link rel="stylesheet" href="style.css">
+
+Für normale Websites meistens die BESTE Variante.
+
+
+============================================================
+4. INTERNES CSS / INTERNAL CSS
+============================================================
+
+Das CSS steht direkt in der HTML-Datei.
+
+Dafür wird das <style>-Element verwendet.
+
+Typischerweise steht es im <head>.
+
+
+Beispiel:
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        h1 {
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Hallo Welt</h1>
+
+</body>
+</html>
+
+
+------------------------------------------------------------
+WANN WIRD INTERNES CSS VERWENDET?
+------------------------------------------------------------
+
+→ einzelne HTML-Seite
+
+→ kleine Projekte
+
+→ Tests / Übungen
+
+→ spezielle Seite mit eigenem Design
+
+→ wenn kein Zugriff auf eine externe CSS-Datei möglich ist
+
+→ Prototypen
+
+
+------------------------------------------------------------
+VORTEILE INTERNES CSS
+------------------------------------------------------------
+
++ keine separate CSS-Datei notwendig
+
++ CSS-Regeln können mehrere Elemente der Seite betreffen
+
++ übersichtlicher als viele Inline-Styles
+
++ praktisch für kleine oder einzelne Seiten
+
++ schnell zum Testen
+
+
+------------------------------------------------------------
+NACHTEILE INTERNES CSS
+------------------------------------------------------------
+
+- CSS gilt normalerweise nur für diese HTML-Datei
+
+- bei mehreren Seiten muss CSS wiederholt werden
+
+- dadurch schlechter wartbar als externes CSS
+
+- HTML-Datei wird größer
+
+- Trennung zwischen Inhalt und Gestaltung ist schlechter
+  als bei externem CSS
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Internes CSS:
+
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+→ CSS befindet sich in der HTML-Datei.
+
+
+============================================================
+5. INLINE-CSS
+============================================================
+
+CSS wird direkt als style-Attribut
+in ein HTML-Element geschrieben.
+
+
+Beispiel:
+
+<p style="color: red;">
+    Hallo Welt
+</p>
+
+
+Mehrere Eigenschaften:
+
+<p style="color: red; font-size: 20px;">
+    Hallo Welt
+</p>
+
+
+Wichtiges Attribut:
+
+style="..."
+
+
+Beispiel:
+
+<h1 style="color: blue;">
+    Überschrift
+</h1>
+
+
+------------------------------------------------------------
+WANN WIRD INLINE-CSS VERWENDET?
+------------------------------------------------------------
+
+→ einzelne, sehr gezielte Formatierung
+
+→ dynamisch erzeugte Styles
+
+→ teilweise durch JavaScript
+
+→ eingeschränkte CMS-Systeme
+
+→ teilweise HTML-E-Mails
+
+→ kleine Tests
+
+
+Für normale Websites sollte Inline-CSS
+möglichst NICHT als Standardlösung verwendet werden.
+
+
+------------------------------------------------------------
+VORTEILE INLINE-CSS
+------------------------------------------------------------
+
++ wirkt direkt auf das betreffende Element
+
++ schnell für kleine Tests
+
++ keine zusätzliche CSS-Datei notwendig
+
++ sehr gezielte Formatierung möglich
+
+
+------------------------------------------------------------
+NACHTEILE INLINE-CSS
+------------------------------------------------------------
+
+- schlechte Wartbarkeit
+
+- Wiederverwendung schwierig
+
+- HTML wird unübersichtlich
+
+- Inhalt und Gestaltung werden vermischt
+
+- Änderungen müssen eventuell an vielen Elementen
+  einzeln durchgeführt werden
+
+- Selektoren wie Klassen werden dadurch nicht sinnvoll genutzt
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Inline-CSS:
+
+<p style="color: red;">Text</p>
+
+→ CSS direkt im HTML-Element.
+
+
+============================================================
+6. VERGLEICH
+============================================================
+
+EXTERN:
+
+<link rel="stylesheet" href="style.css">
+
+CSS-Datei:
+style.css
+
+Geeignet:
++++ große / professionelle Websites
+
+Wartbarkeit:
++++ sehr gut
+
+
+INTERN:
+
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+Geeignet:
+++ einzelne Seiten / kleine Projekte
+
+Wartbarkeit:
+++ mittel
+
+
+INLINE:
+
+<p style="color: red;">Text</p>
+
+Geeignet:
++ einzelne Sonderfälle
+
+Wartbarkeit:
+- schlecht
+
+
+============================================================
+7. PRIORITÄT / CASCADE
+============================================================
+
+CSS bedeutet:
+
+Cascading Style Sheets
+
+"Cascading" beschreibt, wie entschieden wird,
+welche CSS-Regel letztendlich angewendet wird.
+
+Dabei spielen unter anderem eine Rolle:
+
+1. Herkunft der Regel
+2. !important
+3. Spezifität des Selektors
+4. Reihenfolge der Regeln
+
+
+VEREINFACHT FÜR DIE PRÜFUNG:
+
+Inline-CSS besitzt normalerweise eine sehr hohe Priorität.
+
+Beispiel:
+
+Extern:
+
+p {
+    color: blue;
+}
+
+HTML:
+
+<p style="color: red;">Hallo</p>
+
+Ergebnis:
+
+→ Text normalerweise ROT
+
+
+ABER:
+
+Die Aussage
+
+"Inline > Intern > Extern"
+
+ist nur eine VEREINFACHUNG und technisch nicht vollständig korrekt.
+
+Internes und externes CSS haben nicht automatisch
+unterschiedliche Prioritäten.
+
+Wenn Spezifität und Wichtigkeit gleich sind,
+kann die später angewendete Regel gewinnen.
+
+
+Beispiel:
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+Wenn style.css enthält:
+
+p {
+    color: blue;
+}
+
+und beide Selektoren gleich spezifisch sind,
+gewinnt hier die später stehende interne Regel:
+
+→ rot
+
+
+============================================================
+8. SPEZIFITÄT
+============================================================
+
+Je spezifischer ein Selektor ist,
+desto stärker kann seine Regel sein.
+
+Vereinfacht:
+
+Elementselektor
+
+p {
+    color: red;
+}
+
+
+Klasse
+
+.text {
+    color: blue;
+}
+
+
+ID
+
+#text {
+    color: green;
+}
+
+
+Inline
+
+<p style="color: orange;">...</p>
+
+
+Grobe Merkhilfe:
+
+Element < Klasse < ID < Inline
+
+
+ACHTUNG:
+
+!important beeinflusst die Cascade zusätzlich.
+
+Beispiel:
+
+p {
+    color: red !important;
+}
+
+!important sollte nicht unnötig verwendet werden,
+da CSS dadurch schwerer wartbar werden kann.
+
+
+============================================================
+9. WICHTIGE CSS-SELEKTOREN
+============================================================
+
+ELEMENTSELEKTOR
+
+p {
+    color: red;
+}
+
+→ alle <p>-Elemente
+
+
+KLASSENSELEKTOR
+
+.info {
+    color: blue;
+}
+
+HTML:
+
+<p class="info">Text</p>
+
+Punkt = Klasse
+
+
+ID-SELEKTOR
+
+#header {
+    background-color: black;
+}
+
+HTML:
+
+<div id="header"></div>
+
+# = ID
+
+
+UNIVERSALSELEKTOR
+
+* {
+    box-sizing: border-box;
+}
+
+
+MEHRERE SELEKTOREN
+
+h1, h2, h3 {
+    color: blue;
+}
+
+
+NACHFAHRENSELEKTOR
+
+nav a {
+    color: red;
+}
+
+→ alle a-Elemente innerhalb von nav
+
+
+KINDSELEKTOR
+
+nav > a {
+    color: red;
+}
+
+→ direkte a-Kinder von nav
+
+
+============================================================
+10. CLASS UND ID
+============================================================
+
+class:
+
+<p class="info">Text</p>
+
+CSS:
+
+.info {
+    color: blue;
+}
+
+Eine Klasse kann für mehrere Elemente verwendet werden.
+
+
+id:
+
+<p id="hinweis">Text</p>
+
+CSS:
+
+#hinweis {
+    color: red;
+}
+
+Eine ID soll innerhalb eines Dokuments eindeutig sein.
+
+
+MERKSATZ:
+
+class → .
+
+id → #
+
+
+============================================================
+11. PFADANGABEN BEI EXTERNEM CSS
+============================================================
+
+Gleicher Ordner:
+
+href="style.css"
+
+
+Unterordner:
+
+href="css/style.css"
+
+
+Eine Ebene nach oben:
+
+href="../style.css"
+
+
+Beispielstruktur:
+
+projekt/
+│
+├── index.html
+│
+└── css/
+    └── style.css
+
+
+Richtig:
+
+<link rel="stylesheet" href="css/style.css">
+
+
+============================================================
+12. DAS LINK-ELEMENT
+============================================================
+
+Typisch:
+
+<link rel="stylesheet" href="style.css">
+
+
+link
+
+→ verbindet das HTML-Dokument mit einer externen Ressource
+
+
+rel
+
+→ beschreibt die Beziehung der Ressource zum Dokument
+
+
+stylesheet
+
+→ Ressource ist ein Stylesheet
+
+
+href
+
+→ Adresse / Pfad der Ressource
+
+
+media
+
+→ optional:
+   bestimmt, für welche Medien das Stylesheet gedacht ist
+
+
+Beispiel:
+
+<link rel="stylesheet"
+      href="druck.css"
+      media="print">
+
+
+============================================================
+13. STYLE-ELEMENT VS. STYLE-ATTRIBUT
+============================================================
+
+Nicht verwechseln!
+
+
+STYLE-ELEMENT:
+
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+→ INTERNES CSS
+
+
+STYLE-ATTRIBUT:
+
+<p style="color: red;">Hallo</p>
+
+→ INLINE-CSS
+
+
+PRÜFUNGSFALLE!
+
+
+============================================================
+14. TRENNUNG VON HTML UND CSS
+============================================================
+
+Ein wichtiges Prinzip der Webentwicklung:
+
+HTML: Struktur / semantischer Inhalt
+CSS: Darstellung
+JavaScript: Verhalten
+
+
+Beispiel:
+
+HTML:
+
+<p class="warnung">
+    Achtung!
+</p>
+
+
+CSS:
+
+.warnung {
+    color: red;
+    font-weight: bold;
+}
+
+
+Das ist besser wartbar als:
+
+<p style="color:red;font-weight:bold;">
+    Achtung!
+</p>
+
+
+============================================================
+15. IHK-PRÜFUNGSWISSEN / TYPISCHE FRAGEN
+============================================================
+
+Für Prüfungsaufgaben sollte man insbesondere kennen:
+
+
+FRAGE:
+
+Wie wird eine externe CSS-Datei eingebunden?
+
+ANTWORT:
+
+<link rel="stylesheet" href="style.css">
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Wo wird internes CSS definiert?
+
+ANTWORT:
+
+Im <style>-Element, typischerweise im <head>.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Wie funktioniert Inline-CSS?
+
+ANTWORT:
+
+Über das style-Attribut eines HTML-Elements.
+
+Beispiel:
+
+<p style="color:red;">Text</p>
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Welche CSS-Variante eignet sich am besten für eine Website mit vielen Unterseiten?
+
+ANTWORT:
+
+Externes Stylesheet.
+
+Warum?
+
+→ Wiederverwendbarkeit
+→ zentrale Wartung
+→ saubere Trennung von HTML und CSS
+→ gleiche Gestaltung mehrerer Seiten
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet href?
+
+ANTWORT:
+
+Adresse bzw. Pfad der eingebundenen Ressource.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet rel="stylesheet"?
+
+ANTWORT:
+
+Die verknüpfte Ressource steht in der Beziehung "Stylesheet" zum HTML-Dokument.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was ist der Unterschied zwischen class und id?
+
+ANTWORT:
+
+class:
+kann für mehrere Elemente verwendet werden
+
+id:
+soll ein Element innerhalb des Dokuments eindeutig
+identifizieren
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Wie spricht man eine Klasse in CSS an?
+
+ANTWORT:
+
+.info {
+}
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Wie spricht man eine ID in CSS an?
+
+ANTWORT:
+
+#info {
+}
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet "Cascading"?
+
+ANTWORT:
+
+Der Browser ermittelt anhand verschiedener Regeln, welche CSS-Deklaration letztendlich angewendet wird.
+
+Wichtige Faktoren:
+
+→ Herkunft
+→ !important
+→ Spezifität
+→ Reihenfolge
+
+
+============================================================
+16. HÄUFIGE PRÜFUNGSFALLEN
+============================================================
+
+FALSCH:
+
+<link href="style.css">
+
+
+RICHTIG:
+
+<link rel="stylesheet" href="style.css">
+
+
+------------------------------------------------------------
+
+FALSCH:
+
+<style="color:red">
+
+RICHTIG INLINE:
+
+style="color:red;"
+
+
+RICHTIG INTERN:
+
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+
+------------------------------------------------------------
+
+FALSCH:
+
+class="info"
+
+CSS:
+
+#info {
+}
+
+
+RICHTIG:
+
+class="info"
+
+CSS:
+
+.info {
+}
+
+
+------------------------------------------------------------
+
+FALSCH:
+
+id="info"
+
+CSS:
+
+.info {
+}
+
+
+RICHTIG:
+
+id="info"
+
+CSS:
+
+#info {
+}
+
+
+============================================================
+17. WICHTIGER FAKTENCHECK 2026
+============================================================
+
+AKTUELL:
+
+✓ Externes CSS:
+  <link rel="stylesheet" href="style.css">
+
+✓ Internes CSS:
+  <style> ... </style>
+
+✓ Inline-CSS:
+  style="..."
+
+✓ type="text/css" bei <link> ist normalerweise
+  NICHT notwendig.
+
+✓ Externe Stylesheets sind für normale,
+  mehrseitige Websites weiterhin die bevorzugte Methode.
+
+✓ Inline-CSS ist gültiges HTML,
+  wird aus Wartbarkeitsgründen aber normalerweise
+  nicht als Standardmethode empfohlen.
+
+✓ Das style-Attribut ist ein globales HTML-Attribut.
+
+✓ Das <style>-Element enthält eingebettete CSS-Regeln.
+
+✓ rel="stylesheet" kennzeichnet eine externe Ressource
+  als Stylesheet.
+
+
+============================================================
+18. ULTRAKURZ-MERKHILFE
+============================================================
+
+EXTERN
+
+<link rel="stylesheet" href="style.css">
+
+→ separate Datei
+→ beste Wartbarkeit
+→ mehrere Seiten
+→ Standard für größere Websites
+
+
+INTERN
+
+<style>
+    p { color: red; }
+</style>
+
+→ CSS direkt im HTML-Dokument
+→ für einzelne Seiten / kleine Projekte
+
+
+INLINE
+
+<p style="color:red;">Text</p>
+
+→ direkt im Element
+→ nur gezielt einsetzen
+→ schlechte Wartbarkeit
+
+
+============================================================
+19. DIE 3 ZEILEN FÜR DIE PRÜFUNG
+============================================================
+
+Extern: <link rel="stylesheet" href="style.css">
+
+Intern: <style> p { color: red; } </style>
+
+Inline: <p style="color: red;">Text</p>
+
+
+============================================================
+20. MERKSATZ
+============================================================
+
+EXTERN = eigene CSS-Datei
+INTERN = <style>-Element
+INLINE  = style-Attribut
+
+Für große Websites:
+
+EXTERN bevorzugen.
+============================================================

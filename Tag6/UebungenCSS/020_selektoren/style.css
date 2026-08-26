@@ -1,0 +1,211 @@
+/* ==========================================================
+    CSS SELECTOR CHALLENGE
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+    LEVEL 1 – ELEMENTSELEKTOR
+
+    Alle <p>
+
+    Farbe:
+    darkred
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 2 – KLASSENSELEKTOR
+
+    Alle Elemente mit class="code"
+
+    Farben:
+    Text: white
+    Hintergrund: darkblue
+
+    Zusätzlich:
+    padding: 10px
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 3 – ID-SELEKTOR
+
+    Element mit id="boss"
+
+    Farben:
+    Text: darkgreen
+    Hintergrund: lightgreen
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 4 – ATTRIBUTSELEKTOR
+
+    Element mit data-level="4"
+
+    Farben:
+    Text: darkblue
+    Hintergrund: lightblue
+    Rahmen: blue
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 5 – UNIVERSALSELEKTOR
+
+    Alle Elemente
+
+    Vorgabe:
+    box-sizing: border-box;
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 6 – ELEMENT + KLASSE
+
+    Nur <p> mit class="warnung"
+
+    Farben:
+    Text: darkred
+    Hintergrund: lightpink
+    Rahmen: red
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 7 – NACHFAHRENSELEKTOR
+
+    Alle <code> innerhalb von <article>
+
+    Farben:
+    Text: purple
+    Hintergrund: lavender
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 8 – KINDSELEKTOR
+
+    Nur direkte <p>-Kinder von .server
+
+    Farben:
+    Text: darkgreen
+    Hintergrund: lightgreen
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 9 – :hover
+
+    Link beim Darüberfahren
+
+    Farben:
+    Text: white
+    Hintergrund: darkorange
+   ---------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------
+    LEVEL 10 – :first-child
+
+    Erstes <li> der Debug-Liste
+
+    Farben:
+    Text: darkblue
+    Hintergrund: lightblue
+
+    Zusätzlich: Schrift fett
+   ---------------------------------------------------------- */
+
+
+
+
+/* ==========================================================
+    FINAL BOSS
+   ========================================================== */
+
+
+/* LEVEL 11
+    h3 innerhalb von .final-boss
+    Farbe: darkorange
+*/
+
+
+
+
+/* LEVEL 12
+    Absatz mit class="special"
+
+    Text: purple
+    Hintergrund: lavender
+*/
+
+
+
+
+/* LEVEL 13
+    data-status="error"
+
+    Text: white
+    Hintergrund: darkred
+*/
+
+
+
+
+/* LEVEL 14
+    Alle Elemente MIT data-status
+
+    Rahmen: 2px solid black
+*/
+
+
+
+
+/* LEVEL 15
+    data-status="success"
+
+    Text: darkgreen
+    Hintergrund: lightgreen
+*/
+
+
+
+
+/* LEVEL 16
+    .final-boss bei :hover
+
+    Rahmenfarbe: red
+*/
+
+
+
+
+/* LEVEL 17 – EXPERTENMODUS
+
+    Alle <p> in .final-boss, ABER NICHT .special
+
+    Vorgabe: font-style: italic;
+
+    Tipp:
+    :not(...)
+*/
+

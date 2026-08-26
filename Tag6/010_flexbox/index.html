@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>Flexbox</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>CSS Flexbox - Grundlagen</h1>
+
+            <p>
+                Flexbox ist dafür da, mehrere Elemente ordentlich nebeneinander oder untereinander anzuordnen und 
+                auszurichten.
+            </p>
+        </header>
+
+        <main>
+            <h2>1. Flexbox einschalten</h2>
+
+            <p>
+                Flexbox wird auf dem <strong>Eltern-Element</strong> aktiviert: <code>display: flex</code>.
+                Die direkten Kinder werden zu "Flex-Items".
+            </p>
+
+            <section class="flex-row">
+                <article class="item">Item 1</article>
+                <article class="item">Item 2</article>
+                <article class="item">Item 3</article>
+            </section>
+
+            <pre>
+                .flex-row{
+                    display: flex;              -> Aktiviert das alle Items nebeneinander statt untereinander, stehen
+                    border: 2px solid #eee;
+                    padding: 8px;
+                }
+            </pre>
+
+            <h2>2. Richtungen: row VS column</h2>
+
+            <p>
+                Mit <code>flex-direction</code> bestimmst du die Ausrichtung:
+                <strong>row</strong> = nebeneinander oder <strong>column</strong> = untereinander.
+            </p>
+
+            <section class="flex-row">
+                <article class="item">Item 1</article>
+                <article class="item">Item 2</article>
+                <article class="item">Item 3</article>
+            </section>
+
+            <section class="flex-column">
+                <article class="item">Item 1</article>
+                <article class="item">Item 2</article>
+                <article class="item">Item 3</article>
+            </section>
+
+            <pre>
+                .flex-row{
+                    display: flex;          -> Aktiviert Flexbox      
+                    flex-direction: row;    -> Items stehen nebeneinander
+                }
+
+                .flex-column{
+                    display: flex;          -> Aktiviert Flexbox
+                    flex-direction: column; -> Items stehen untereinander
+                }
+            </pre>
+
+            <h2>3. Abstände zwischen den Items: gap</h2>
+
+            <p>
+                <code>gap</code> macht gleichmäßige Abstände zwischen den Elementen (Items).
+            </p>
+
+            <section class="flex-row gap">
+                <article class="item">Item 1</article>
+                <article class="item">Item 2</article>
+                <article class="item">Item 3</article>
+            </section>
+
+            <pre>
+                .gap{
+                    gap: 12px;  -> gleichmäßige Abstände zw. den Elementen/ Items
+                }
+            </pre>
+
+            <h2>4. Ausrichtung auf der Hauptachse: <code>justify-content</code></h2>
+
+            <p>
+                Verteilt die Items/ Elemente entlang der Hauptachse (meist horizontal).
+            </p>
+
+            <h3>Platz dazwischen</h3>
+            <section class="flex-row jc-space">
+                <article class="item">Links</article>
+                <article class="item">Mitte</article>
+                <article class="item">Rechts</article>
+            </section>
+
+            <pre>
+                .jc-space{
+                    justify-content: space-between;
+                }
+            </pre>
+
+            <h3>Alles nach links</h3>
+            <section class="flex-row jc-space-fs">
+                <article class="item">Links</article>
+                <article class="item">Links</article>
+                <article class="item">Links</article>
+            </section>
+
+            <pre>
+                .jc-space-fs{
+                    justify-content: flex-start;
+                }
+            </pre>
+
+            <h3>Alles in die Mitte</h3>
+            <section class="flex-row jc-space-c">
+                <article class="item">Mitte</article>
+                <article class="item">Mitte</article>
+                <article class="item">Mitte</article>
+            </section>
+
+            <pre>
+                .jc-space-c{
+                    justify-content: center;
+                }
+            </pre>
+
+            <h3>Alles nach rechts</h3>
+            <section class="flex-row jc-space-fe">
+                <article class="item">Rechts</article>
+                <article class="item">Rechts</article>
+                <article class="item">Rechts</article>
+            </section>
+
+            <pre>
+                .jc-space-fe{
+                    justify-content: flex-end;
+                }
+            </pre>
+
+            <h2>5. Ausrichtung an der Querachse: <code>align-items</code></h2>
+
+            <p>
+                Richtet die Items/ Elemente auf der Querachse aus (meist vertikal).
+            </p>
+
+            <section class="flex-row ai-center tall">
+                <article class="item">Oben/Mittig</article>
+                <article class="item big">Größer</article>
+                <article class="item">Oben/Mittig</article>
+            </section>
+
+            <pre>
+                .ai-center{
+                    align-items: center;
+                }
+            </pre>
+        </main>
+    </body>
+</html>

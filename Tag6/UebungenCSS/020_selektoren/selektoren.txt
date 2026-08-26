@@ -1,0 +1,2423 @@
+============================================================
+CSS-SELEKTOREN – LERNZETTEL / IHK
+============================================================
+
+
+1. WAS IST EIN CSS-SELEKTOR?
+============================================================
+
+Ein CSS-Selektor bestimmt, WELCHE HTML-Elemente
+durch eine CSS-Regel angesprochen werden.
+
+
+Grundaufbau:
+
+selektor {
+    eigenschaft: wert;
+}
+
+
+Beispiel:
+
+p {
+    color: red;
+}
+
+
+p
+= Selektor
+
+color
+= CSS-Eigenschaft / Property
+
+red
+= Wert
+
+
+Bedeutung:
+
+→ Wähle alle <p>-Elemente aus
+→ Setze deren Textfarbe auf Rot
+
+
+============================================================
+2. WICHTIGE SELEKTOR-ARTEN
+============================================================
+
+Die wichtigsten Selektoren sind:
+
+1. Elementselektor / Typselektor
+2. Klassenselektor
+3. ID-Selektor
+4. Universalselektor
+5. Attributselektor
+6. Gruppierung / Selektorliste
+7. Nachfahrenkombinator
+8. Kindkombinator
+9. Direkt-benachbarter Geschwisterkombinator
+10. Allgemeiner Geschwisterkombinator
+11. Pseudoklassen
+12. Pseudoelemente
+
+
+============================================================
+3. ELEMENTSELEKTOR / TYPSELEKTOR
+============================================================
+
+Syntax:
+
+p {
+    color: red;
+}
+
+
+HTML:
+
+<p>Hallo</p>
+<p>Welt</p>
+
+
+Ergebnis:
+
+→ ALLE <p>-Elemente werden ausgewählt.
+
+
+Weitere Beispiele:
+
+h1 {
+    color: blue;
+}
+
+body {
+    background-color: white;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+------------------------------------------------------------
+WANN NUTZEN?
+------------------------------------------------------------
+
+Wenn ALLE Elemente eines bestimmten HTML-Typs
+gleich gestaltet werden sollen.
+
+
+Beispiele:
+
+→ alle Absätze
+→ alle Überschriften
+→ alle Links
+→ alle Buttons
+
+
+------------------------------------------------------------
+VORTEILE
+------------------------------------------------------------
+
++ einfach
++ übersichtlich
++ wenig Code
++ gut für allgemeine Grundformatierungen
+
+
+------------------------------------------------------------
+NACHTEILE
+------------------------------------------------------------
+
+- betrifft direkt alle entsprechenden Elemente
+
+- ungeeignet, wenn nur bestimmte Elemente
+  anders aussehen sollen
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+p { }
+
+→ alle <p>
+
+
+h1 { }
+
+→ alle <h1>
+
+
+============================================================
+4. KLASSENSELEKTOR
+============================================================
+
+Syntax:
+
+.meineKlasse {
+    color: red;
+}
+
+
+HTML:
+
+<p class="meineKlasse">Hallo</p>
+
+
+WICHTIG:
+
+CSS:
+
+.meineKlasse
+
+HTML:
+
+class="meineKlasse"
+
+
+Der PUNKT "." steht in CSS für eine Klasse.
+
+
+------------------------------------------------------------
+BEISPIEL
+------------------------------------------------------------
+
+HTML:
+
+<p class="warnung">Achtung!</p>
+
+<p>Normaler Text</p>
+
+<p class="warnung">Noch eine Warnung!</p>
+
+
+CSS:
+
+.warnung {
+    color: red;
+    font-weight: bold;
+}
+
+
+Ergebnis:
+
+→ Nur Elemente mit class="warnung"
+  werden formatiert.
+
+
+------------------------------------------------------------
+WANN NUTZEN?
+------------------------------------------------------------
+
+Klassen sind ideal für wiederverwendbare Styles.
+
+Beispiele:
+
+.warnung
+
+.button
+
+.card
+
+.active
+
+.error
+
+.navigation
+
+
+Klassen können auf VIELE Elemente angewendet werden.
+
+
+------------------------------------------------------------
+MEHRERE KLASSEN
+------------------------------------------------------------
+
+Ein Element kann mehrere Klassen besitzen.
+
+
+HTML:
+
+<button class="button primary">
+    Speichern
+</button>
+
+
+CSS:
+
+.button {
+    padding: 10px;
+}
+
+.primary {
+    font-weight: bold;
+}
+
+
+Der Button erhält BEIDE Formatierungen.
+
+
+------------------------------------------------------------
+VORTEILE
+------------------------------------------------------------
+
++ wiederverwendbar
+
++ flexibel
+
++ mehrere Klassen pro Element möglich
+
++ sehr häufig in professionellen Projekten
+
++ meistens besser geeignet als IDs für Styling
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Klasse = Punkt
+
+
+HTML:
+
+class="info"
+
+
+CSS:
+
+.info {
+}
+
+
+============================================================
+5. ID-SELEKTOR
+============================================================
+
+Syntax:
+
+#header {
+    background-color: black;
+}
+
+
+HTML:
+
+<header id="header">
+</header>
+
+
+WICHTIG:
+
+# = ID
+
+
+------------------------------------------------------------
+WANN NUTZEN?
+------------------------------------------------------------
+
+Eine ID identifiziert ein bestimmtes Element
+innerhalb eines HTML-Dokuments eindeutig.
+
+
+Beispiel:
+
+<section id="kontakt">
+</section>
+
+
+CSS:
+
+#kontakt {
+    background-color: gray;
+}
+
+
+------------------------------------------------------------
+WICHTIG
+------------------------------------------------------------
+
+Eine ID soll innerhalb eines Dokuments eindeutig sein.
+
+NICHT:
+
+<div id="box"></div>
+<div id="box"></div>
+
+
+BESSER:
+
+<div class="box"></div>
+<div class="box"></div>
+
+
+------------------------------------------------------------
+ID ODER CLASS FÜR CSS?
+------------------------------------------------------------
+
+Für normale wiederverwendbare CSS-Styles:
+
+→ meistens CLASS bevorzugen
+
+
+Warum?
+
+Klassen sind:
+
+→ wiederverwendbar
+→ flexibler
+→ besitzen geringere Spezifität
+
+
+IDs können trotzdem als CSS-Selektoren verwendet werden.
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Klasse:
+
+.info
+
+HTML:
+
+class="info"
+
+
+ID:
+
+#info
+
+HTML:
+
+id="info"
+
+
+============================================================
+6. UNIVERSALSELEKTOR
+============================================================
+
+Syntax:
+
+* {
+    box-sizing: border-box;
+}
+
+
+* bedeutet:
+
+→ grundsätzlich alle Elemente auswählen
+
+
+Beispiel:
+
+* {
+    margin: 0;
+}
+
+
+------------------------------------------------------------
+WANN NUTZEN?
+------------------------------------------------------------
+
+Zum Beispiel:
+
+→ globale Regeln
+→ CSS-Resets
+→ box-sizing
+→ bestimmte allgemeine Einstellungen
+
+
+Sehr bekannt:
+
+* {
+    box-sizing: border-box;
+}
+
+
+------------------------------------------------------------
+ACHTUNG
+------------------------------------------------------------
+
+Nicht unnötig für jede Formatierung verwenden.
+
+Beispiel:
+
+* {
+    color: red;
+}
+
+würde sehr viele Elemente betreffen.
+
+
+============================================================
+7. SELEKTORLISTE / GRUPPIERUNG
+============================================================
+
+Mehrere Selektoren können dieselbe CSS-Regel erhalten.
+
+
+Beispiel:
+
+h1,
+h2,
+h3 {
+    color: blue;
+}
+
+
+Bedeutung:
+
+→ h1 auswählen
+ODER
+→ h2 auswählen
+ODER
+→ h3 auswählen
+
+
+Auch möglich:
+
+h1, p, .info {
+    color: blue;
+}
+
+
+------------------------------------------------------------
+VORTEIL
+------------------------------------------------------------
+
+Man vermeidet Wiederholungen.
+
+
+STATT:
+
+h1 {
+    color: blue;
+}
+
+h2 {
+    color: blue;
+}
+
+h3 {
+    color: blue;
+}
+
+
+BESSER:
+
+h1, h2, h3 {
+    color: blue;
+}
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Komma = ODER / mehrere Selektoren
+
+
+h1, h2, h3
+
+→ h1 ODER h2 ODER h3
+
+
+============================================================
+8. NACHFAHRENKOMBINATOR
+============================================================
+
+Syntax:
+
+nav a {
+    color: red;
+}
+
+
+Zwischen nav und a befindet sich ein LEERZEICHEN.
+
+
+Bedeutung:
+
+→ Wähle alle <a>-Elemente,
+  die sich irgendwo innerhalb eines <nav> befinden.
+
+
+HTML:
+
+<nav>
+
+    <a href="#">Start</a>
+
+    <div>
+        <a href="#">Kontakt</a>
+    </div>
+
+</nav>
+
+
+BEIDE Links werden ausgewählt.
+
+
+Warum?
+
+Beide <a> sind Nachfahren von <nav>.
+
+
+------------------------------------------------------------
+WANN NUTZEN?
+------------------------------------------------------------
+
+Wenn Elemente innerhalb eines bestimmten
+Bereichs angesprochen werden sollen.
+
+
+Beispiel:
+
+article p {
+    color: gray;
+}
+
+→ alle p innerhalb von article
+
+
+.card img {
+    width: 100%;
+}
+
+→ alle Bilder innerhalb von .card
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Leerzeichen = irgendwo DARIN
+
+
+nav a
+
+→ alle a innerhalb von nav
+
+
+============================================================
+9. KINDKOMBINATOR >
+============================================================
+
+Syntax:
+
+nav > a {
+    color: red;
+}
+
+
+> bedeutet:
+
+→ direktes Kind
+
+
+HTML:
+
+<nav>
+
+    <a href="#">Start</a>
+
+    <div>
+        <a href="#">Kontakt</a>
+    </div>
+
+</nav>
+
+
+nav > a
+
+wählt nur:
+
+<a href="#">Start</a>
+
+
+Der zweite Link wird NICHT ausgewählt.
+
+Warum?
+
+Der zweite Link ist direktes Kind von <div>,
+nicht direktes Kind von <nav>.
+
+
+------------------------------------------------------------
+UNTERSCHIED
+------------------------------------------------------------
+
+nav a
+
+→ ALLE a irgendwo innerhalb von nav
+
+
+nav > a
+
+→ nur DIREKTE a-Kinder von nav
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+Leerzeichen:
+
+A B
+
+→ B irgendwo innerhalb von A
+
+
+Größerzeichen:
+
+A > B
+
+→ B direktes Kind von A
+
+
+============================================================
+10. DIREKT BENACHBARTES GESCHWISTER +
+============================================================
+
+Syntax:
+
+h2 + p {
+    color: red;
+}
+
+
++ bedeutet:
+
+→ direkt folgendes Geschwisterelement
+
+
+HTML:
+
+<h2>Überschrift</h2>
+
+<p>Absatz 1</p>
+
+<p>Absatz 2</p>
+
+
+CSS:
+
+h2 + p {
+    color: red;
+}
+
+
+Ergebnis:
+
+Absatz 1 → ROT
+Absatz 2 → nicht betroffen
+
+
+Warum?
+
+Nur Absatz 1 folgt DIREKT auf h2.
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+A + B
+
+→ B muss DIREKT nach A kommen
+
+
+============================================================
+11. ALLGEMEINER GESCHWISTERKOMBINATOR ~
+============================================================
+
+Syntax:
+
+h2 ~ p {
+    color: red;
+}
+
+
+~ bedeutet:
+
+→ folgende passende Geschwister
+
+
+HTML:
+
+<h2>Überschrift</h2>
+
+<p>Absatz 1</p>
+
+<div>Box</div>
+
+<p>Absatz 2</p>
+
+
+CSS:
+
+h2 ~ p {
+    color: red;
+}
+
+
+Ergebnis:
+
+Absatz 1 → ROT
+Absatz 2 → ROT
+
+
+Beide sind nachfolgende Geschwister von h2.
+
+
+------------------------------------------------------------
+UNTERSCHIED
+------------------------------------------------------------
+
+h2 + p
+
+→ direkt folgendes p
+
+
+h2 ~ p
+
+→ folgende p-Geschwister
+
+
+============================================================
+12. ATTRIBUTSELEKTOR
+============================================================
+
+Elemente können anhand ihrer HTML-Attribute
+ausgewählt werden.
+
+
+Beispiel:
+
+input[type="text"] {
+    border: 1px solid black;
+}
+
+
+HTML:
+
+<input type="text">
+<input type="password">
+
+
+Nur:
+
+<input type="text">
+
+wird ausgewählt.
+
+
+============================================================
+13. WICHTIGE ATTRIBUTSELEKTOREN
+============================================================
+
+Attribut vorhanden:
+
+[disabled] {
+    opacity: 0.5;
+}
+
+
+→ Elemente mit disabled
+
+
+----------------------------------------
+
+
+Exakter Wert:
+
+input[type="email"] {
+}
+
+
+→ type muss genau "email" sein
+
+
+----------------------------------------
+
+
+Beginnt mit:
+
+a[href^="https"] {
+}
+
+
+^=
+
+→ beginnt mit
+
+
+----------------------------------------
+
+
+Endet mit:
+
+a[href$=".pdf"] {
+}
+
+
+$=
+
+→ endet mit
+
+
+----------------------------------------
+
+
+Enthält Zeichenfolge:
+
+a[href*="example"] {
+}
+
+
+*=
+
+→ enthält
+
+
+------------------------------------------------------------
+MERKSATZ
+------------------------------------------------------------
+
+[attribut]
+
+→ Attribut vorhanden
+
+
+[attribut="wert"]
+
+→ exakt dieser Wert
+
+
+^=
+
+→ beginnt mit
+
+
+$=
+
+→ endet mit
+
+
+*=
+
+→ enthält
+
+
+============================================================
+14. PSEUDOKLASSEN
+============================================================
+
+Pseudoklassen sprechen Elemente anhand eines
+bestimmten Zustands oder einer strukturellen
+Eigenschaft an.
+
+
+Syntax:
+
+selektor:pseudoklasse
+
+
+Beispiel:
+
+a:hover {
+    color: red;
+}
+
+
+:hover
+
+→ Element wird gerade mit dem Mauszeiger überfahren.
+
+
+============================================================
+15. WICHTIGE PSEUDOKLASSEN
+============================================================
+
+:hover
+
+button:hover {
+    background-color: gray;
+}
+
+→ Maus befindet sich über dem Element
+
+
+----------------------------------------
+
+
+:focus
+
+input:focus {
+    border-color: blue;
+}
+
+→ Element besitzt Fokus
+
+
+Wichtig z. B. bei:
+
+→ Eingabefeldern
+→ Buttons
+→ Links
+→ Tastaturbedienung
+
+
+----------------------------------------
+
+
+:active
+
+button:active {
+    transform: scale(0.98);
+}
+
+→ Element befindet sich im Aktivierungszustand
+
+
+----------------------------------------
+
+
+:checked
+
+input:checked {
+}
+
+→ Checkbox / Radio-Button ist ausgewählt
+
+
+----------------------------------------
+
+
+:disabled
+
+button:disabled {
+    opacity: 0.5;
+}
+
+→ Element ist deaktiviert
+
+
+----------------------------------------
+
+
+:required
+
+input:required {
+}
+
+→ Eingabefeld besitzt required
+
+
+----------------------------------------
+
+
+:first-child
+
+li:first-child {
+    font-weight: bold;
+}
+
+→ li, wenn es das erste Kind seines Elternelements ist
+
+
+----------------------------------------
+
+
+:last-child
+
+li:last-child {
+    font-weight: bold;
+}
+
+→ li, wenn es das letzte Kind seines Elternelements ist
+
+
+----------------------------------------
+
+
+:nth-child()
+
+Beispiel:
+
+li:nth-child(2) {
+    color: red;
+}
+
+→ Element, wenn es das zweite Kind ist
+
+
+Beispiel:
+
+li:nth-child(odd) {
+}
+
+→ ungerade Positionen
+
+
+Beispiel:
+
+li:nth-child(even) {
+}
+
+→ gerade Positionen
+
+
+============================================================
+16. PSEUDOELEMENTE
+============================================================
+
+Pseudoelemente sprechen einen bestimmten Teil
+eines Elements an oder erzeugen eine
+CSS-formatierbare Box.
+
+
+Typische Schreibweise:
+
+::
+
+
+Beispiel:
+
+p::first-letter {
+    font-size: 30px;
+}
+
+
+→ erster Buchstabe eines Absatzes
+
+
+============================================================
+17. WICHTIGE PSEUDOELEMENTE
+============================================================
+
+::before
+
+.box::before {
+    content: "→ ";
+}
+
+
+→ erzeugt Inhalt vor dem eigentlichen Inhalt
+
+
+----------------------------------------
+
+
+::after
+
+.box::after {
+    content: " ✓";
+}
+
+
+→ erzeugt Inhalt danach
+
+
+----------------------------------------
+
+
+::first-letter
+
+p::first-letter {
+    font-size: 200%;
+}
+
+→ erster Buchstabe
+
+
+----------------------------------------
+
+
+::first-line
+
+p::first-line {
+    font-weight: bold;
+}
+
+→ erste Textzeile
+
+
+----------------------------------------
+
+
+::selection
+
+p::selection {
+    background-color: yellow;
+}
+
+→ ausgewählter / markierter Text
+
+
+============================================================
+18. PSEUDOKLASSE VS. PSEUDOELEMENT
+============================================================
+
+PSEUDOKLASSE:
+
+:
+
+Beispiel:
+
+button:hover
+
+
+→ Zustand / bestimmte Eigenschaft eines Elements
+
+
+PSEUDOELEMENT:
+
+::
+
+Beispiel:
+
+p::first-letter
+
+
+→ bestimmter Teil / erzeugte Box eines Elements
+
+
+MERKSATZ:
+
+:
+
+= Pseudoklasse
+
+
+::
+
+= Pseudoelement
+
+
+============================================================
+19. SELEKTOREN KOMBINIEREN
+============================================================
+
+Selektoren können miteinander kombiniert werden.
+
+
+Beispiel:
+
+p.info {
+    color: blue;
+}
+
+
+Bedeutung:
+
+→ p-Element
+UND
+→ besitzt Klasse "info"
+
+
+HTML:
+
+<p class="info">JA</p>
+
+<div class="info">NEIN</div>
+
+
+Nur das p wird ausgewählt.
+
+
+------------------------------------------------------------
+
+
+Beispiel:
+
+button.primary {
+}
+
+
+→ button UND Klasse primary
+
+
+------------------------------------------------------------
+
+
+Beispiel:
+
+nav a.active {
+}
+
+
+Bedeutung:
+
+→ ein a-Element
+→ innerhalb von nav
+→ mit der Klasse active
+
+
+HTML:
+
+<nav>
+    <a class="active">Start</a>
+</nav>
+
+
+============================================================
+20. MEHRERE KLASSEN IM SELEKTOR
+============================================================
+
+HTML:
+
+<div class="card active">
+</div>
+
+
+CSS:
+
+.card.active {
+    border: 2px solid green;
+}
+
+
+ACHTUNG:
+
+KEIN Leerzeichen!
+
+
+.card.active
+
+bedeutet:
+
+→ dasselbe Element besitzt
+  BEIDE Klassen
+
+
+ABER:
+
+.card .active
+
+bedeutet:
+
+→ Element mit .active befindet sich
+  INNERHALB eines Elements mit .card
+
+
+PRÜFUNGSFALLE!
+
+
+============================================================
+21. SPEZIFITÄT
+============================================================
+
+Wenn mehrere CSS-Regeln auf dasselbe Element
+passen, spielt unter anderem die Spezifität eine Rolle.
+
+
+Beispiel:
+
+p {
+    color: red;
+}
+
+.info {
+    color: blue;
+}
+
+
+HTML:
+
+<p class="info">Hallo</p>
+
+
+Ergebnis normalerweise:
+
+BLAU
+
+
+Warum?
+
+Der Klassenselektor ist spezifischer als
+der Elementselektor.
+
+
+============================================================
+22. SPEZIFITÄT – VEREINFACHT
+============================================================
+
+Grobe Reihenfolge:
+
+Element
+<
+Klasse / Attribut / Pseudoklasse
+<
+ID
+<
+Inline-Style
+
+
+Beispiele:
+
+
+ELEMENT:
+
+p {
+}
+
+
+KLASSE:
+
+.info {
+}
+
+
+ATTRIBUT:
+
+[type="text"] {
+}
+
+
+PSEUDOKLASSE:
+
+:hover {
+}
+
+
+ID:
+
+#info {
+}
+
+
+INLINE:
+
+style="color:red;"
+
+
+------------------------------------------------------------
+WICHTIG
+------------------------------------------------------------
+
+Das ist eine vereinfachte Merkhilfe.
+
+Die echte CSS-Cascade berücksichtigt zusätzlich:
+
+→ Herkunft der Styles
+→ Cascade Layers
+→ !important
+→ Spezifität
+→ Scoping-Nähe in entsprechenden Fällen
+→ Reihenfolge
+
+
+============================================================
+23. SPEZIFITÄT BEI KOMBINATIONEN
+============================================================
+
+Beispiel:
+
+p {
+}
+
+→ Element
+
+
+.info {
+}
+
+→ Klasse
+
+
+p.info {
+}
+
+→ Element + Klasse
+
+
+#content .info {
+}
+
+→ ID + Klasse
+
+
+Je mehr relevante spezifische Bestandteile,
+desto höher kann die Spezifität sein.
+
+
+ACHTUNG:
+
+Nicht einfach nur "Zeichen zählen"!
+
+Die verschiedenen Selektorarten besitzen
+unterschiedliche Gewichtungen.
+
+
+============================================================
+24. !IMPORTANT
+============================================================
+
+Beispiel:
+
+p {
+    color: red !important;
+}
+
+
+!important verändert die normale Cascade.
+
+
+ABER:
+
+Nicht unnötig verwenden!
+
+
+Warum?
+
+→ CSS wird schwerer wartbar
+→ Regeln werden schwieriger zu überschreiben
+→ kann zu unnötigen !important-Ketten führen
+
+
+MERKSATZ:
+
+!important ist keine normale Methode,
+um schlechte Selektoren zu reparieren.
+
+
+============================================================
+25. WANN NUTZE ICH WELCHEN SELEKTOR?
+============================================================
+
+ELEMENTSELEKTOR
+
+p { }
+
+Nutzen:
+
+→ wenn alle Elemente eines Typs
+  gestaltet werden sollen
+
+
+Beispiel:
+
+p {
+    line-height: 1.5;
+}
+
+
+----------------------------------------
+
+
+KLASSE
+
+.info { }
+
+Nutzen:
+
+→ wiederverwendbare Styles
+→ Komponenten
+→ Zustände
+→ verschiedene Elemente
+
+SEHR HÄUFIG VERWENDEN
+
+
+----------------------------------------
+
+
+ID
+
+#navigation { }
+
+Nutzen:
+
+→ eindeutige Identifikation
+
+Für reines Styling meistens nicht notwendig,
+Klassen sind häufig flexibler.
+
+
+----------------------------------------
+
+
+UNIVERSAL
+
+* { }
+
+Nutzen:
+
+→ globale Regeln
+
+Beispiel:
+
+* {
+    box-sizing: border-box;
+}
+
+
+----------------------------------------
+
+
+ATTRIBUT
+
+input[type="email"] { }
+
+Nutzen:
+
+→ Elemente anhand ihrer Attribute auswählen
+
+Besonders praktisch bei:
+
+→ Formularen
+→ Links
+→ Statusattributen
+
+
+----------------------------------------
+
+
+NACHFAHRE
+
+nav a { }
+
+Nutzen:
+
+→ Elemente innerhalb eines bestimmten Bereichs
+
+
+----------------------------------------
+
+
+KIND
+
+nav > a { }
+
+Nutzen:
+
+→ nur direkte Kinder
+
+
+----------------------------------------
+
+
++
+
+h2 + p { }
+
+Nutzen:
+
+→ direkt folgendes Geschwister
+
+
+----------------------------------------
+
+
+~
+
+h2 ~ p { }
+
+Nutzen:
+
+→ folgende passende Geschwister
+
+
+----------------------------------------
+
+
+PSEUDOKLASSE
+
+button:hover { }
+
+Nutzen:
+
+→ Zustände / Position / Struktur
+
+
+----------------------------------------
+
+
+PSEUDOELEMENT
+
+p::first-letter { }
+
+Nutzen:
+
+→ Teile eines Elements / erzeugte Boxen
+
+
+============================================================
+26. SCHNELLE ÜBERSICHT
+============================================================
+
+p
+→ alle p-Elemente
+
+
+.info
+→ alle Elemente mit class="info"
+
+
+#info
+→ Element mit id="info"
+
+
+*
+→ alle Elemente
+
+
+h1, h2
+→ h1 ODER h2
+
+
+nav a
+→ alle a irgendwo innerhalb von nav
+
+
+nav > a
+→ direkte a-Kinder von nav
+
+
+h2 + p
+→ direkt folgendes p-Geschwister
+
+
+h2 ~ p
+→ folgende p-Geschwister
+
+
+[type="text"]
+→ Elemente mit type="text"
+
+
+:hover
+→ Zustand beim Darüberfahren
+
+
+:focus
+→ Element besitzt Fokus
+
+
+:first-child
+→ erstes Kind
+
+
+:last-child
+→ letztes Kind
+
+
+:nth-child(...)
+→ bestimmte Kindposition
+
+
+::before
+→ erzeugte Box vor dem Inhalt
+
+
+::after
+→ erzeugte Box nach dem Inhalt
+
+
+::first-letter
+→ erster Buchstabe
+
+
+============================================================
+27. IHK – TYPISCHE PRÜFUNGSFRAGEN
+============================================================
+
+FRAGE:
+
+Wie werden alle Absätze angesprochen?
+
+ANTWORT:
+
+p {
+}
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Wie wird die Klasse "info" angesprochen?
+
+ANTWORT:
+
+.info {
+}
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Wie wird die ID "info" angesprochen?
+
+ANTWORT:
+
+#info {
+}
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet der Punkt?
+
+ANTWORT:
+
+Klassenselektor
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet #?
+
+ANTWORT:
+
+ID-Selektor
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet *?
+
+ANTWORT:
+
+Universalselektor
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet:
+
+nav a
+
+ANTWORT:
+
+Alle a-Elemente, die Nachfahren eines
+nav-Elements sind.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet:
+
+nav > a
+
+ANTWORT:
+
+Alle a-Elemente, die direkte Kinder
+eines nav-Elements sind.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet:
+
+h2 + p
+
+ANTWORT:
+
+Ein p, das direkt auf ein h2
+als Geschwisterelement folgt.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Was bedeutet:
+
+h2 ~ p
+
+ANTWORT:
+
+Nachfolgende p-Geschwister eines h2.
+
+
+------------------------------------------------------------
+
+FRAGE:
+
+Unterschied :hover und ::before?
+
+ANTWORT:
+
+:hover
+
+→ Pseudoklasse
+→ beschreibt einen Zustand
+
+
+::before
+
+→ Pseudoelement
+→ erzeugt eine Box vor dem Inhalt
+
+
+============================================================
+28. TYPISCHE PRÜFUNGSFALLEN
+============================================================
+
+FALLE 1:
+
+class="info"
+
+
+FALSCH:
+
+#info {
+}
+
+
+RICHTIG:
+
+.info {
+}
+
+
+------------------------------------------------------------
+
+FALLE 2:
+
+id="info"
+
+
+FALSCH:
+
+.info {
+}
+
+
+RICHTIG:
+
+#info {
+}
+
+
+------------------------------------------------------------
+
+FALLE 3:
+
+nav a
+
+ist NICHT dasselbe wie:
+
+nav > a
+
+
+nav a
+
+→ beliebig tief innerhalb von nav
+
+
+nav > a
+
+→ direktes Kind
+
+
+------------------------------------------------------------
+
+FALLE 4:
+
+.card.active
+
+ist NICHT dasselbe wie:
+
+.card .active
+
+
+.card.active
+
+→ EIN Element besitzt beide Klassen
+
+
+.card .active
+
+→ .active befindet sich INNERHALB von .card
+
+
+------------------------------------------------------------
+
+FALLE 5:
+
+Komma und Leerzeichen nicht verwechseln!
+
+
+h1, p
+
+→ h1 ODER p
+
+
+h1 p
+
+→ p INNERHALB von h1
+
+
+============================================================
+29. HTML-BAUM VERSTEHEN
+============================================================
+
+Beispiel:
+
+<body>
+
+    <main>
+
+        <section>
+
+            <h2>Titel</h2>
+
+            <p>Text</p>
+
+        </section>
+
+    </main>
+
+</body>
+
+
+Beziehungen:
+
+
+body
+└── main
+    └── section
+        ├── h2
+        └── p
+
+
+main > section
+
+→ section ist direktes Kind von main
+
+
+main section
+
+→ section ist Nachfahre von main
+
+
+section > p
+
+→ p ist direktes Kind von section
+
+
+h2 + p
+
+→ p folgt direkt auf h2
+
+
+h2 und p
+
+→ sind Geschwister
+
+
+Das Verständnis des HTML-Baums ist SEHR wichtig
+für CSS-Selektoren.
+
+
+============================================================
+30. FAKTENCHECK / MODERNES CSS
+============================================================
+
+Neben den klassischen Selektoren gibt es heute
+weitere leistungsfähige Selektoren/Pseudoklassen.
+
+Zum Beispiel:
+
+
+:is()
+
+:is(h1, h2, h3) {
+    color: blue;
+}
+
+→ Auswahl aus mehreren Möglichkeiten
+
+
+----------------------------------------
+
+
+:not()
+
+button:not(.primary) {
+}
+
+→ Buttons, die NICHT .primary besitzen
+
+
+----------------------------------------
+
+
+:where()
+
+:where(header, main, footer) p {
+}
+
+→ ähnlich praktisch zum Gruppieren,
+  besitzt aber bewusst eine Spezifität von 0
+
+
+----------------------------------------
+
+
+:has()
+
+.card:has(img) {
+}
+
+→ .card auswählen, wenn sie ein passendes
+  Element enthält
+
+
+Beispiel:
+
+form:has(input:invalid) {
+    border: 2px solid red;
+}
+
+
+:has() wird von modernen Browsern unterstützt
+und gehört zum aktuellen CSS-Selektoren-Standard.
+
+
+============================================================
+31. :NOT()
+============================================================
+
+:not()
+
+bedeutet:
+
+→ NICHT
+
+
+Beispiel:
+
+p:not(.info) {
+    color: gray;
+}
+
+
+Bedeutung:
+
+→ alle p
+→ außer p mit Klasse "info"
+
+
+============================================================
+32. :IS()
+============================================================
+
+Beispiel:
+
+:is(h1, h2, h3) {
+    font-family: sans-serif;
+}
+
+
+Kann Selektoren übersichtlicher machen.
+
+
+Statt beispielsweise:
+
+article h1,
+article h2,
+article h3 {
+}
+
+
+kann man schreiben:
+
+article :is(h1, h2, h3) {
+}
+
+
+============================================================
+33. :HAS()
+============================================================
+
+:has() kann Elemente abhängig davon auswählen,
+welche passenden Elemente/Beziehungen vorhanden sind.
+
+
+Beispiel:
+
+.card:has(img) {
+    padding: 20px;
+}
+
+
+Bedeutung vereinfacht:
+
+→ Wähle .card,
+  wenn darin ein passendes img vorhanden ist.
+
+
+Sehr mächtiger moderner Selektor.
+
+
+============================================================
+34. ULTRAKURZ – AUSWENDIG LERNEN
+============================================================
+
+Element:
+
+p
+
+
+Klasse:
+
+.info
+
+
+ID:
+
+#info
+
+
+Alle:
+
+*
+
+
+ODER / Liste:
+
+h1, h2
+
+
+Nachfahre:
+
+nav a
+
+
+Direktes Kind:
+
+nav > a
+
+
+Direkt folgendes Geschwister:
+
+h2 + p
+
+
+Folgende Geschwister:
+
+h2 ~ p
+
+
+Attribut:
+
+[type="text"]
+
+
+Pseudoklasse:
+
+:hover
+
+
+Pseudoelement:
+
+::before
+
+
+============================================================
+35. DIE WICHTIGSTEN ZEICHEN
+============================================================
+
+.       = Klasse
+
+#       = ID
+
+*       = Universal
+
+,       = Selektorliste / ODER
+
+Leerzeichen
+        = Nachfahre
+
+>       = direktes Kind
+
++       = direkt folgendes Geschwister
+
+~       = folgende Geschwister
+
+[ ]     = Attributselektor
+
+:       = Pseudoklasse
+
+::      = Pseudoelement
+
+
+============================================================
+36. 10-SEKUNDEN-IHK-MERKSATZ
+============================================================
+
+.       Klasse
+
+#       ID
+
+*       Alle
+
+,       ODER
+
+A B     B irgendwo in A
+
+A > B   B direktes Kind von A
+
+A + B   B direkt nach A
+
+A ~ B   folgende B-Geschwister von A
+
+[ ]     Attribut
+
+:       Pseudoklasse / Zustand
+
+::      Pseudoelement / Teil eines Elements
+
+
+============================================================
+37. WAS SOLLTE ICH FÜR DIE PRÜFUNG SICHER KÖNNEN?
+============================================================
+
+SEHR WICHTIG:
+
+[ ] Elementselektor verstehen
+
+[ ] .class verstehen
+
+[ ] #id verstehen
+
+[ ] Unterschied class / id kennen
+
+[ ] * kennen
+
+[ ] Selektorlisten mit , verstehen
+
+[ ] Leerzeichen verstehen
+
+[ ] > verstehen
+
+[ ] + verstehen
+
+[ ] ~ verstehen
+
+[ ] Attributselektoren erkennen
+
+[ ] :hover kennen
+
+[ ] :focus kennen
+
+[ ] :first-child kennen
+
+[ ] :nth-child() grundsätzlich verstehen
+
+[ ] ::before / ::after erkennen
+
+[ ] Pseudoklasse vs. Pseudoelement unterscheiden
+
+[ ] Spezifität grundsätzlich verstehen
+
+[ ] HTML-Eltern / Kinder / Geschwister verstehen
+
+
+BESONDERS GUT MERKEN:
+
+.class
+→ wiederverwendbares Styling
+
+#id
+→ eindeutige Identifikation
+
+nav a
+→ irgendwo darin
+
+nav > a
+→ direktes Kind
+
+A + B
+→ direkt danach
+
+A ~ B
+→ folgende Geschwister
+
+
+============================================================
+38. MINI-PRÜFUNGSBEISPIEL
+============================================================
+
+HTML:
+
+<nav id="main-nav">
+
+    <a class="active" href="#">
+        Start
+    </a>
+
+    <a href="#">
+        Produkte
+    </a>
+
+</nav>
+
+
+FRAGE:
+
+Alle Links auswählen:
+
+nav a {
+}
+
+
+----------------------------------------
+
+Nur aktive Links:
+
+.active {
+}
+
+
+oder genauer:
+
+nav a.active {
+}
+
+
+----------------------------------------
+
+Navigation über ID:
+
+#main-nav {
+}
+
+
+----------------------------------------
+
+Direkte Links innerhalb nav:
+
+nav > a {
+}
+
+
+----------------------------------------
+
+Link beim Darüberfahren:
+
+nav a:hover {
+}
+
+
+============================================================
+ENDE – CSS-SELEKTOREN
+============================================================

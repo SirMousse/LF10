@@ -1,0 +1,67 @@
+/* ==========================================================
+   FIAE CSS CHALLENGE – LÖSUNG
+   ========================================================== */
+
+
+/* AUFGABE 1 – KLASSENSELEKTOR */
+
+.begriff {
+    font-weight: normal;
+}
+
+
+/* AUFGABE 2 – FRONTEND */
+
+#frontend {
+    color: blue;
+}
+
+
+/* AUFGABE 3 – DATENBANK */
+
+#database {
+    color: green;
+}
+
+
+/* AUFGABE 4 – DEBUGGING */
+
+#debugging {
+    color: orange;
+}
+
+
+/* AUFGABE 5 – BUG */
+
+#bug {
+    color: red;
+}
+
+
+/* AUFGABE 6 – BACKEND */
+
+#backend {
+    color: yellow;
+}
+
+
+/* AUFGABE 7 – ELEMENTSELEKTOR */
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+
+/* BONUS */
+
+img {
+    border-radius: 10px;
+}
+
+/* Alle Bilder */
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
