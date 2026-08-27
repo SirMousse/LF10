@@ -1,0 +1,988 @@
+SQL-ABENTEUER TEIL 4: DER ANGRIFF VON BOBBY TABLES
+==================================================
+
+Willkommen zurück, Datenbank-Paläontologe!
+
+Das Dinosaurier-Forschungszentrum ist in Gefahr.
+
+In der Nacht wurde eine seltsame Nachricht
+im Forschungsarchiv gefunden:
+
+    Robert'); DROP TABLE dinosaurier;--
+
+Die Forschungsleitung wird blass.
+
+"Das kann nur einer gewesen sein..."
+
+Bobby Tables.
+
+Der berüchtigte Datenbank-Saboteur versucht,
+die Datenbank des Forschungszentrums zu manipulieren.
+
+Um ihn aufzuhalten, musst du neue SQL-Techniken lernen.
+
+
+In diesem Abenteuer lernst du:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+Außerdem erfährst du am Ende, warum SQL Injection
+gefährlich ist.
+
+
+--------------------------------------------------
+DIE DATENBANK DES FORSCHUNGSZENTRUMS
+--------------------------------------------------
+
+TABELLE: dinosaurier
+
+id | name    | art                | gewicht | alter | status
+---|---------|--------------------|---------|-------|---------
+1  | Rexi    | Tyrannosaurus Rex  | 8000    | 12    | aktiv
+2  | Spike   | Triceratops        | 6000    | 9     | aktiv
+3  | Blue    | Velociraptor       | 90      | 6     | aktiv
+4  | Bruno   | Brachiosaurus      | 30000   | 18    | krank
+5  | Stegi   | Stegosaurus        | 5000    | 11    | aktiv
+6  | Tiny    | Compsognathus      | 3       | 3     | schläft
+7  | Raptor  | Velociraptor       | 85      | 7     | aktiv
+8  | Hörnchen| Triceratops        | 5500    | 8     | aktiv
+
+
+TABELLE: missionen
+
+id | titel                         | schwierigkeit | belohnung | dinosaurier_id
+---|-------------------------------|----------------|-----------|---------------
+1  | Spuren am Nordzaun            | leicht         | 50        | 2
+2  | Jagd im Dschungel             | schwer         | 300       | 1
+3  | Das verschwundene Dino-Ei     | mittel         | 150       | 5
+4  | Alarm am Fleischlager         | schwer         | 400       | 1
+5  | Fußspuren am Fluss            | leicht         | 40        | 3
+6  | Das Geheimnis der Höhle       | mittel         | 120       | NULL
+7  | Seltsame Spuren im Sumpf      | mittel         | 200       | NULL
+
+
+TABELLE: fossilien
+
+id | name                         | typ     | wert | dinosaurier_id
+---|------------------------------|---------|------|---------------
+1  | Riesiger Tyrannosaurus-Zahn  | Zahn    | 900  | 1
+2  | Triceratops-Horn             | Horn    | 700  | 2
+3  | Raptor-Kralle                | Kralle  | 600  | 3
+4  | Brachiosaurus-Knochen        | Knochen | 1000 | 4
+5  | Unbekanntes Dino-Ei          | Ei      | 300  | NULL
+
+
+--------------------------------------------------
+QUEST 1 - DISTINCT
+--------------------------------------------------
+
+Die Forschungsleitung möchte wissen:
+
+Welche verschiedenen Schwierigkeitsstufen gibt es
+bei den Missionen?
+
+Wenn du einfach schreibst:
+
+    SELECT schwierigkeit
+    FROM missionen;
+
+bekommst du Werte mehrfach angezeigt.
+
+Zum Beispiel:
+
+    leicht
+    schwer
+    mittel
+    schwer
+    leicht
+    mittel
+    mittel
+
+
+Mit DISTINCT kannst du doppelte Ergebnisse entfernen.
+
+
+Beispiel:
+
+    SELECT DISTINCT schwierigkeit
+    FROM missionen;
+
+
+Das Ergebnis wäre:
+
+    leicht
+    mittel
+    schwer
+
+
+SQL-WISSEN:
+
+DISTINCT bedeutet:
+
+    Zeige jeden unterschiedlichen Wert nur einmal.
+
+
+AUFGABE:
+
+Finde mit DISTINCT heraus, welche verschiedenen
+Statuswerte bei den Dinosauriern vorkommen.
+
+
+--------------------------------------------------
+QUEST 2 - DIE SUCHE MIT LIKE
+--------------------------------------------------
+
+Ein Forscher erinnert sich nur noch daran,
+dass eine Mission irgendetwas mit "Spuren" im Titel hatte.
+
+Mit LIKE kannst du nach Textmustern suchen.
+
+
+Beispiel:
+
+    SELECT *
+    FROM missionen
+    WHERE titel LIKE '%Spuren%';
+
+
+Das Prozentzeichen % ist ein Platzhalter.
+
+Es bedeutet:
+
+    Hier können beliebig viele Zeichen stehen.
+
+
+Beispiele:
+
+    LIKE 'Das%'
+
+Bedeutet:
+
+    Der Text beginnt mit "Das".
+
+
+    LIKE '%Sumpf'
+
+Bedeutet:
+
+    Der Text endet mit "Sumpf".
+
+
+    LIKE '%Spuren%'
+
+Bedeutet:
+
+    Irgendwo im Text steht "Spuren".
+
+
+AUFGABE:
+
+Finde alle Missionen, deren Titel mit "Das" beginnt.
+
+
+BONUS:
+
+Finde alle Fossilien, deren Name irgendwo
+das Wort "Dino" enthält.
+
+
+--------------------------------------------------
+QUEST 3 - IN
+--------------------------------------------------
+
+Die Forschungsleitung sucht Dinosaurier bestimmter Arten:
+
+    Velociraptor
+    Triceratops
+    Stegosaurus
+
+
+Du könntest schreiben:
+
+    WHERE art = 'Velociraptor'
+    OR art = 'Triceratops'
+    OR art = 'Stegosaurus';
+
+
+Das funktioniert.
+
+Aber SQL bietet eine kürzere Möglichkeit:
+
+    IN
+
+
+Beispiel:
+
+    SELECT *
+    FROM dinosaurier
+    WHERE art IN ('Velociraptor', 'Triceratops', 'Stegosaurus');
+
+
+SQL-WISSEN:
+
+IN prüft, ob ein Wert in einer Liste vorkommt.
+
+
+AUFGABE:
+
+Zeige alle Dinosaurier mit folgendem Status:
+
+    aktiv
+    krank
+
+
+Verwende dafür IN.
+
+
+--------------------------------------------------
+QUEST 4 - BETWEEN
+--------------------------------------------------
+
+Für eine neue Untersuchung werden Dinosaurier gesucht,
+die zwischen 5 und 10 Jahre alt sind.
+
+Dafür gibt es BETWEEN.
+
+
+Beispiel:
+
+    SELECT *
+    FROM dinosaurier
+    WHERE alter BETWEEN 5 AND 10;
+
+
+SQL-WISSEN:
+
+BETWEEN prüft einen Bereich.
+
+Die Grenzwerte gehören normalerweise dazu.
+
+
+BETWEEN 5 AND 10 bedeutet also:
+
+    5
+    6
+    7
+    8
+    9
+    10
+
+
+AUFGABE:
+
+Finde alle Fossilien, deren Wert zwischen
+300 und 800 liegt.
+
+
+--------------------------------------------------
+QUEST 5 - ALIASES MIT AS
+--------------------------------------------------
+
+Die Forschungsleitung beschwert sich über die Berichte.
+
+"Was soll dinosaurier_id bedeuten?
+Ich will verständliche Überschriften!"
+
+
+Mit AS kannst du Spalten im Ergebnis
+einen anderen Namen geben.
+
+
+Beispiel:
+
+    SELECT
+        name AS Dinosaurier,
+        art AS Art,
+        alter AS Alter
+    FROM dinosaurier;
+
+
+WICHTIG:
+
+AS verändert nicht den echten Namen der Spalte
+in der Datenbank.
+
+Es verändert nur die Anzeige des Ergebnisses.
+
+
+AUFGABE:
+
+Zeige:
+
+    name
+    art
+    gewicht
+
+
+Verwende folgende Anzeigenamen:
+
+    Dinosaurier
+    Dinoart
+    Gewicht_kg
+
+
+--------------------------------------------------
+QUEST 6 - UPDATE MIT BERECHNUNGEN
+--------------------------------------------------
+
+Alle Dinosaurier werden erneut untersucht.
+
+Die Forscher erhöhen das gespeicherte Alter
+aller Dinosaurier um 1.
+
+Du könntest jeden Wert einzeln ändern.
+
+Das wäre aber ziemlich umständlich.
+
+SQL kann direkt rechnen.
+
+
+Beispiel:
+
+    UPDATE dinosaurier
+    SET alter = alter + 1;
+
+
+Wenn Rexi vorher 12 Jahre alt war:
+
+    12 + 1 = 13
+
+
+AUFGABE:
+
+Das Gewicht aller Dinosaurier soll um 10 erhöht werden.
+
+Schreibe einen UPDATE-Befehl, der bei jedem Dinosaurier
+den Wert von "gewicht" um 10 erhöht.
+
+
+ZUSATZAUFGABE:
+
+Nur aktive Dinosaurier erhalten weitere 5 Gewichtseinheiten.
+
+
+Hinweis:
+
+    UPDATE dinosaurier
+    SET ...
+    WHERE ...;
+
+
+--------------------------------------------------
+QUEST 7 - CASE WHEN
+--------------------------------------------------
+
+Die Forschungsleitung möchte die Dinosaurier automatisch
+nach ihrem Alter bewerten.
+
+
+Die Regeln:
+
+    Alter 0 bis 4   = Jungtier
+    Alter 5 bis 9   = Jung
+    Alter 10 bis 14 = Ausgewachsen
+    Alter 15+       = Uralt
+
+
+Dafür gibt es CASE WHEN.
+
+
+Beispiel:
+
+    SELECT
+        name,
+        alter,
+        CASE
+            WHEN alter <= 4 THEN 'Jungtier'
+            WHEN alter <= 9 THEN 'Jung'
+            WHEN alter <= 14 THEN 'Ausgewachsen'
+            ELSE 'Uralt'
+        END AS altersklasse
+    FROM dinosaurier;
+
+
+SQL-WISSEN:
+
+CASE funktioniert ähnlich wie:
+
+    Wenn Bedingung A stimmt, dann Wert A.
+    Wenn Bedingung B stimmt, dann Wert B.
+    Sonst ein anderer Wert.
+
+
+AUFGABE:
+
+Bewerte das Gewicht der Dinosaurier.
+
+
+Regeln:
+
+    unter 100 kg
+    = Leicht
+
+    100 bis 4999 kg
+    = Mittel
+
+    5000 bis 9999 kg
+    = Schwer
+
+    ab 10000 kg
+    = Gigantisch
+
+
+Gib aus:
+
+    name
+    gewicht
+    gewichtsklasse
+
+
+--------------------------------------------------
+QUEST 8 - MEHRERE JOINS
+--------------------------------------------------
+
+Jetzt wird es ernst.
+
+Die Forschungsleitung möchte gleichzeitig wissen:
+
+Welcher Dinosaurier gehört zu welcher Mission
+und welches Fossil ist ihm zugeordnet?
+
+
+Wir müssen jetzt drei Tabellen verbinden:
+
+    dinosaurier
+    missionen
+    fossilien
+
+
+Beispiel:
+
+    SELECT
+        dinosaurier.name,
+        missionen.titel,
+        fossilien.name
+    FROM dinosaurier
+    JOIN missionen
+    ON dinosaurier.id = missionen.dinosaurier_id
+    JOIN fossilien
+    ON dinosaurier.id = fossilien.dinosaurier_id;
+
+
+SQL-WISSEN:
+
+Du kannst mehrere JOINs in einer Abfrage verwenden.
+
+
+AUFGABE:
+
+Erstelle einen Bericht mit:
+
+    Name des Dinosauriers
+    Art
+    Mission
+    Belohnung
+    Fossil
+    Wert des Fossils
+
+
+--------------------------------------------------
+QUEST 9 - TABELLEN-ALIASES
+--------------------------------------------------
+
+Unsere Abfragen werden langsam ziemlich lang.
+
+Statt ständig:
+
+    dinosaurier.name
+    missionen.titel
+    fossilien.name
+
+zu schreiben, können Tabellen ebenfalls
+Aliases bekommen.
+
+
+Beispiel:
+
+    SELECT
+        d.name,
+        m.titel
+    FROM dinosaurier AS d
+    JOIN missionen AS m
+    ON d.id = m.dinosaurier_id;
+
+
+Jetzt steht:
+
+    d
+
+für:
+
+    dinosaurier
+
+
+Und:
+
+    m
+
+für:
+
+    missionen
+
+
+AUFGABE:
+
+Verbinde alle drei Tabellen erneut.
+
+
+Verwende:
+
+    d = dinosaurier
+    m = missionen
+    f = fossilien
+
+
+Gib aus:
+
+    d.name
+    m.titel
+    f.name
+
+
+--------------------------------------------------
+QUEST 10 - TRANSAKTIONEN
+--------------------------------------------------
+
+Die Forschungsleitung muss eine größere Änderung
+an der Datenbank durchführen.
+
+Alle aktiven Dinosaurier sollen ein Jahr älter werden.
+
+Doch was passiert, wenn dabei ein Fehler gemacht wird?
+
+
+Dafür gibt es Transaktionen.
+
+
+Ein vereinfachtes Beispiel:
+
+    START TRANSACTION;
+
+    UPDATE dinosaurier
+    SET alter = alter + 1
+    WHERE status = 'aktiv';
+
+
+Jetzt wurde die Änderung innerhalb der
+Transaktion durchgeführt.
+
+Sie kann bestätigt werden mit:
+
+    COMMIT;
+
+
+Oder rückgängig gemacht werden mit:
+
+    ROLLBACK;
+
+
+SQL-WISSEN:
+
+COMMIT bedeutet:
+
+    Änderungen endgültig bestätigen.
+
+
+ROLLBACK bedeutet:
+
+    Änderungen der aktuellen Transaktion
+    rückgängig machen.
+
+
+WICHTIG:
+
+Die genaue Syntax für Transaktionen kann je nach
+Datenbanksystem etwas unterschiedlich sein.
+
+
+--------------------------------------------------
+QUEST 11 - DER FEHLER DES FORSCHERS
+--------------------------------------------------
+
+Ein Forscher möchte Tiny ein Jahr älter machen.
+
+Er schreibt:
+
+    START TRANSACTION;
+
+    UPDATE dinosaurier
+    SET alter = alter + 1
+    WHERE name = 'Tiny';
+
+
+Dann bemerkt er:
+
+Tiny sollte gar nicht verändert werden.
+
+
+FRAGE:
+
+Welchen SQL-Befehl sollte er jetzt verwenden?
+
+
+    COMMIT
+
+oder
+
+    ROLLBACK?
+
+
+--------------------------------------------------
+BOSS-QUEST - DER ANGRIFF VON BOBBY TABLES
+--------------------------------------------------
+
+Plötzlich erscheint Bobby Tables im Forschungsarchiv.
+
+Er hat die wertvollsten Fossilien gestohlen.
+
+Die Forschungsleitung benötigt einen Bericht über alle
+Dinosaurier, die für die Suche wichtig sind.
+
+
+Die Anforderungen:
+
+Der Dinosaurier muss mindestens 5 Jahre alt sein.
+
+Der Status muss entweder:
+
+    aktiv
+
+oder:
+
+    krank
+
+sein.
+
+Dem Dinosaurier muss ein Fossil zugeordnet sein.
+
+Das Fossil muss mindestens 300 wert sein.
+
+
+Zeige:
+
+    Name
+    Art
+    Alter
+    Status
+    Fossil
+    Fossilwert
+
+
+Verwende sinnvolle Aliases.
+
+Sortiere nach dem Wert des Fossils.
+
+Das wertvollste Fossil soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    AS
+    FROM
+    JOIN
+    ON
+    WHERE
+    IN
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+SUPER-BOSS-QUEST - DIE DINO-RANGLISTE
+--------------------------------------------------
+
+Die Forschungsleitung möchte einen Bericht mit:
+
+    Name
+    Alter
+    Gewicht
+    Rang
+
+
+Der Rang soll automatisch mit CASE berechnet werden.
+
+
+Regeln:
+
+    Alter unter 5
+    = Jungtier
+
+    Alter 5 bis 8
+    = Nachwuchs-Dino
+
+    Alter 9 bis 13
+    = Erfahrener Dino
+
+    Alter 14 oder höher
+    = Urzeit-Legende
+
+
+Zeige nur Dinosaurier mit mindestens 3 Jahren.
+
+Sortiere zuerst nach Alter und danach nach Gewicht.
+
+Beide Werte sollen absteigend sortiert werden.
+
+
+Benötigte Befehle:
+
+    SELECT
+    CASE
+    WHEN
+    THEN
+    ELSE
+    END
+    AS
+    WHERE
+    ORDER BY
+    DESC
+
+
+--------------------------------------------------
+GEHEIM-QUEST - WAS IST SQL INJECTION?
+--------------------------------------------------
+
+Nach dem Angriff untersucht die Forschungsleitung
+die Nachricht von Bobby Tables.
+
+Sie sah ungefähr so aus:
+
+    Robert'); DROP TABLE dinosaurier;--
+
+
+Das ist eine Anspielung auf ein bekanntes
+Programmierer-Meme.
+
+Das Problem dahinter heißt:
+
+    SQL Injection
+
+
+SQL Injection kann entstehen, wenn ein Programm
+Benutzereingaben unsicher direkt in SQL-Befehle einfügt.
+
+
+Vereinfacht gesagt:
+
+Ein Programm erwartet zum Beispiel einen Namen.
+
+Ein Angreifer versucht stattdessen,
+Teile eines SQL-Befehls einzugeben.
+
+
+Deshalb sollte man SQL-Abfragen in echten Anwendungen
+nicht einfach durch das Zusammenkleben von
+Texteingaben bauen.
+
+
+Stattdessen verwendet man normalerweise:
+
+    Prepared Statements
+
+oder:
+
+    parametrisierte Abfragen
+
+
+Beispielidee:
+
+    SELECT *
+    FROM dinosaurier
+    WHERE name = ?;
+
+
+Das ? steht für einen Wert, der später sicher
+übergeben wird.
+
+
+WICHTIG:
+
+Wie Parameter genau geschrieben werden,
+hängt von der Programmiersprache und Datenbank ab.
+
+
+--------------------------------------------------
+NERD-WISSEN: WARUM "BOBBY TABLES"?
+--------------------------------------------------
+
+"Bobby Tables" ist ein berühmter Witz aus
+der Programmiererwelt.
+
+Dabei wird das Thema SQL Injection anhand
+eines ungewöhnlichen Namens erklärt.
+
+Die eigentliche Lektion dahinter ist ernst:
+
+Benutzereingaben dürfen nicht blind als SQL-Code
+behandelt werden.
+
+
+--------------------------------------------------
+ABSCHLUSS-QUEST
+--------------------------------------------------
+
+Ordne die SQL-Begriffe der richtigen Erklärung zu:
+
+
+    1. DISTINCT
+
+    2. LIKE
+
+    3. IN
+
+    4. BETWEEN
+
+    5. AS
+
+    6. CASE
+
+    7. COMMIT
+
+    8. ROLLBACK
+
+
+ERKLÄRUNGEN:
+
+    A = Änderungen einer Transaktion rückgängig machen
+
+    B = Werte innerhalb eines Bereichs suchen
+
+    C = doppelte Ergebnisse entfernen
+
+    D = mehrere mögliche Werte prüfen
+
+    E = Änderungen einer Transaktion bestätigen
+
+    F = Alias bzw. Anzeigenamen vergeben
+
+    G = Textmuster suchen
+
+    H = Bedingungen verwenden, um unterschiedliche
+        Werte auszugeben
+
+
+Schreibe die Lösung zum Beispiel so:
+
+    1 = ?
+    2 = ?
+    3 = ?
+    4 = ?
+    5 = ?
+    6 = ?
+    7 = ?
+    8 = ?
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt zusätzlich:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Tabellen-Aliases
+    START TRANSACTION
+    COMMIT
+    ROLLBACK
+
+
+Außerdem hast du gelernt:
+
+SQL besteht nicht nur aus SELECT-Abfragen.
+
+
+SQL kann Daten:
+
+    lesen
+    filtern
+    sortieren
+    gruppieren
+    verbinden
+    hinzufügen
+    ändern
+    löschen
+
+
+Und du hast einen ersten wichtigen Bereich
+der Datenbanksicherheit kennengelernt:
+
+    SQL Injection
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    Datenbank-Paläontologe
+
+
+Neuer Rang:
+
+    SQL-Dinosaurier-Meister
+
+
+Bobby Tables wurde zurückgeschlagen.
+
+Zumindest vorerst.
+
+
+NÄCHSTES ABENTEUER:
+
+    SQL-Abenteuer Teil 5:
+    Das Turnier der Query-Meister
+
+
+Mögliche neue Themen:
+
+    CREATE VIEW
+    UNION
+    UNION ALL
+    EXISTS
+    NOT EXISTS
+    COALESCE
+    CONCAT
+    Datumsfunktionen
+    Constraints
+    UNIQUE
+    DEFAULT
+    CHECK
+    komplexere Unterabfragen
+    Datenbank-Normalisierung
+
+
+Und eine große Herausforderung:
+
+    Eine eigene kleine Dinosaurier-Datenbank von Grund auf entwerfen.

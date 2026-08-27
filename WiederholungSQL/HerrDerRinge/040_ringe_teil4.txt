@@ -1,0 +1,985 @@
+SQL-ABENTEUER TEIL 4: DER ANGRIFF VON BOBBY TABLES
+==================================================
+
+Willkommen zurück, Datenbank-Zauberer von Bruchtal!
+
+Mittelerde ist in Gefahr.
+
+In der Nacht wurde eine seltsame Nachricht
+im Archiv von Bruchtal gefunden:
+
+    Robert'); DROP TABLE gefaehrten;--
+
+Elrond wird blass.
+
+"Das kann nur einer gewesen sein..."
+
+Bobby Tables.
+
+Der berüchtigte Tabellen-Nekromant versucht,
+die Datenbank von Mittelerde zu manipulieren.
+
+Um ihn aufzuhalten, musst du neue SQL-Techniken lernen.
+
+
+In diesem Abenteuer lernst du:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+Außerdem erfährst du am Ende, warum SQL Injection
+gefährlich ist.
+
+
+--------------------------------------------------
+DIE DATENBANK VON MITTELERDE
+--------------------------------------------------
+
+TABELLE: gefaehrten
+
+id | name    | volk   | level | staerke | status
+---|---------|--------|-------|---------|------------
+1  | Aragorn | Mensch | 9     | 180     | aktiv
+2  | Legolas | Elb    | 8     | 160     | aktiv
+3  | Gimli   | Zwerg  | 7     | 170     | aktiv
+4  | Frodo   | Hobbit | 5     | 90      | auf Mission
+5  | Gandalf | Maia   | 10    | 250     | aktiv
+6  | Sam     | Hobbit | 4     | 100     | aktiv
+7  | Boromir | Mensch | 7     | 175     | aktiv
+8  | Merry   | Hobbit | 4     | 85      | aktiv
+
+
+TABELLE: auftraege
+
+id | titel                         | schwierigkeit  | belohnung | gefaehrte_id
+---|-------------------------------|----------------|-----------|-------------
+1  | Orks am Pass                  | leicht         | 50        | 3
+2  | Spione aus Mordor             | schwer         | 300       | 2
+3  | Die verlorene Elbenklinge     | mittel         | 150       | 1
+4  | Der Weg zum Schicksalsberg    | schwer         | 400       | 4
+5  | Warge im Wald                 | leicht         | 40        | 2
+6  | Das Geheimnis der alten Ruine | mittel         | 120       | NULL
+7  | Die Schatten von Moria        | mittel         | 200       | NULL
+
+
+TABELLE: artefakte
+
+id | name                 | typ     | wert | gefaehrte_id
+---|----------------------|---------|------|-------------
+1  | Andúril              | Schwert | 900  | 1
+2  | Bogen von Lothlórien | Bogen   | 700  | 2
+3  | Axt aus Erebor       | Axt     | 600  | 3
+4  | Gandalfs Stab        | Stab    | 1000 | 5
+5  | Unbekannter Ring     | Ring    | 300  | NULL
+
+
+--------------------------------------------------
+QUEST 1 - DISTINCT
+--------------------------------------------------
+
+Elrond möchte wissen:
+
+Welche verschiedenen Schwierigkeitsstufen gibt es
+bei den Aufträgen?
+
+Wenn du einfach schreibst:
+
+    SELECT schwierigkeit
+    FROM auftraege;
+
+bekommst du Werte mehrfach angezeigt.
+
+Zum Beispiel:
+
+    leicht
+    schwer
+    mittel
+    schwer
+    leicht
+    mittel
+    mittel
+
+
+Mit DISTINCT kannst du doppelte Ergebnisse entfernen.
+
+
+Beispiel:
+
+    SELECT DISTINCT schwierigkeit
+    FROM auftraege;
+
+
+Das Ergebnis wäre:
+
+    leicht
+    mittel
+    schwer
+
+
+SQL-WISSEN:
+
+DISTINCT bedeutet:
+
+    Zeige jeden unterschiedlichen Wert nur einmal.
+
+
+AUFGABE:
+
+Finde mit DISTINCT heraus, welche verschiedenen
+Völker bei den Gefährten vorkommen.
+
+
+--------------------------------------------------
+QUEST 2 - DIE SUCHE MIT LIKE
+--------------------------------------------------
+
+Elrond erinnert sich nur noch daran,
+dass ein Auftrag irgendetwas mit "Mordor" im Titel hatte.
+
+Mit LIKE kannst du nach Textmustern suchen.
+
+
+Beispiel:
+
+    SELECT *
+    FROM auftraege
+    WHERE titel LIKE '%Mordor%';
+
+
+Das Prozentzeichen % ist ein Platzhalter.
+
+Es bedeutet:
+
+    Hier können beliebig viele Zeichen stehen.
+
+
+Beispiele:
+
+    LIKE 'Die%'
+
+Bedeutet:
+
+    Der Text beginnt mit "Die".
+
+
+    LIKE '%Moria'
+
+Bedeutet:
+
+    Der Text endet mit "Moria".
+
+
+    LIKE '%Mordor%'
+
+Bedeutet:
+
+    Irgendwo im Text steht "Mordor".
+
+
+AUFGABE:
+
+Finde alle Aufträge, deren Titel mit "Die" beginnt.
+
+
+BONUS:
+
+Finde alle Artefakte, deren Name irgendwo
+das Wort "von" enthält.
+
+
+--------------------------------------------------
+QUEST 3 - IN
+--------------------------------------------------
+
+Elrond sucht Gefährten bestimmter Völker:
+
+    Mensch
+    Elb
+    Zwerg
+
+
+Du könntest schreiben:
+
+    WHERE volk = 'Mensch'
+    OR volk = 'Elb'
+    OR volk = 'Zwerg';
+
+
+Das funktioniert.
+
+Aber SQL bietet eine kürzere Möglichkeit:
+
+    IN
+
+
+Beispiel:
+
+    SELECT *
+    FROM gefaehrten
+    WHERE volk IN ('Mensch', 'Elb', 'Zwerg');
+
+
+SQL-WISSEN:
+
+IN prüft, ob ein Wert in einer Liste vorkommt.
+
+
+AUFGABE:
+
+Zeige alle Gefährten mit folgendem Status:
+
+    aktiv
+    auf Mission
+
+
+Verwende dafür IN.
+
+
+--------------------------------------------------
+QUEST 4 - BETWEEN
+--------------------------------------------------
+
+Für eine neue Mission werden Gefährten gesucht,
+die zwischen Level 5 und Level 9 liegen.
+
+Dafür gibt es BETWEEN.
+
+
+Beispiel:
+
+    SELECT *
+    FROM gefaehrten
+    WHERE level BETWEEN 5 AND 9;
+
+
+SQL-WISSEN:
+
+BETWEEN prüft einen Bereich.
+
+Die Grenzwerte gehören normalerweise dazu.
+
+
+BETWEEN 5 AND 9 bedeutet also:
+
+    5
+    6
+    7
+    8
+    9
+
+
+AUFGABE:
+
+Finde alle Artefakte, deren Wert zwischen
+300 und 800 liegt.
+
+
+--------------------------------------------------
+QUEST 5 - ALIASES MIT AS
+--------------------------------------------------
+
+Der Rat von Elrond beschwert sich über die Berichte.
+
+"Wir wollen verständliche Überschriften!"
+
+
+Mit AS kannst du Spalten im Ergebnis
+einen anderen Namen geben.
+
+
+Beispiel:
+
+    SELECT
+        name AS Gefaehrte,
+        volk AS Volk,
+        level AS Stufe
+    FROM gefaehrten;
+
+
+WICHTIG:
+
+AS verändert nicht den echten Namen der Spalte
+in der Datenbank.
+
+Es verändert nur die Anzeige des Ergebnisses.
+
+
+AUFGABE:
+
+Zeige:
+
+    name
+    volk
+    staerke
+
+
+Verwende folgende Anzeigenamen:
+
+    Held
+    Herkunft
+    Staerke
+
+
+--------------------------------------------------
+QUEST 6 - UPDATE MIT BERECHNUNGEN
+--------------------------------------------------
+
+Alle Gefährten werden nach einer großen Schlacht stärker.
+
+Du könntest jeden Wert einzeln ändern.
+
+Das wäre aber ziemlich umständlich.
+
+SQL kann direkt rechnen.
+
+
+Beispiel:
+
+    UPDATE gefaehrten
+    SET staerke = staerke + 10;
+
+
+Wenn Aragorn vorher 180 Stärke hatte:
+
+    180 + 10 = 190
+
+
+AUFGABE:
+
+Alle Gefährten steigen um ein Level auf.
+
+Schreibe einen UPDATE-Befehl, der bei jedem Gefährten
+das Level um 1 erhöht.
+
+
+ZUSATZAUFGABE:
+
+Nur aktive Gefährten erhalten weitere 20 Stärke.
+
+
+Hinweis:
+
+    UPDATE gefaehrten
+    SET ...
+    WHERE ...;
+
+
+--------------------------------------------------
+QUEST 7 - CASE WHEN
+--------------------------------------------------
+
+Elrond möchte die Gefährten automatisch
+nach ihrem Level bewerten.
+
+
+Die Regeln:
+
+    Level 1 bis 3  = Reisender
+    Level 4 bis 6  = Gefährte
+    Level 7 bis 9  = Veteran
+    Level 10+      = Legende
+
+
+Dafür gibt es CASE WHEN.
+
+
+Beispiel:
+
+    SELECT
+        name,
+        level,
+        CASE
+            WHEN level <= 3 THEN 'Reisender'
+            WHEN level <= 6 THEN 'Gefährte'
+            WHEN level <= 9 THEN 'Veteran'
+            ELSE 'Legende'
+        END AS rang
+    FROM gefaehrten;
+
+
+SQL-WISSEN:
+
+CASE funktioniert ähnlich wie:
+
+    Wenn Bedingung A stimmt, dann Wert A.
+    Wenn Bedingung B stimmt, dann Wert B.
+    Sonst ein anderer Wert.
+
+
+AUFGABE:
+
+Bewerte die Stärke der Gefährten.
+
+
+Regeln:
+
+    unter 100 Stärke
+    = Schwach
+
+    100 bis 149 Stärke
+    = Standhaft
+
+    150 bis 199 Stärke
+    = Mächtig
+
+    ab 200 Stärke
+    = Legendär
+
+
+Gib aus:
+
+    name
+    staerke
+    staerkeklasse
+
+
+--------------------------------------------------
+QUEST 8 - MEHRERE JOINS
+--------------------------------------------------
+
+Jetzt wird es ernst.
+
+Der Rat von Elrond möchte gleichzeitig wissen:
+
+Welcher Gefährte hat welchen Auftrag
+und welches Artefakt besitzt er?
+
+
+Wir müssen jetzt drei Tabellen verbinden:
+
+    gefaehrten
+    auftraege
+    artefakte
+
+
+Beispiel:
+
+    SELECT
+        gefaehrten.name,
+        auftraege.titel,
+        artefakte.name
+    FROM gefaehrten
+    JOIN auftraege
+    ON gefaehrten.id = auftraege.gefaehrte_id
+    JOIN artefakte
+    ON gefaehrten.id = artefakte.gefaehrte_id;
+
+
+SQL-WISSEN:
+
+Du kannst mehrere JOINs in einer Abfrage verwenden.
+
+
+AUFGABE:
+
+Erstelle einen Bericht mit:
+
+    Name des Gefährten
+    Volk
+    Auftrag
+    Belohnung
+    Artefakt
+    Wert des Artefakts
+
+
+--------------------------------------------------
+QUEST 9 - TABELLEN-ALIASES
+--------------------------------------------------
+
+Unsere Abfragen werden langsam ziemlich lang.
+
+Statt ständig:
+
+    gefaehrten.name
+    auftraege.titel
+    artefakte.name
+
+zu schreiben, können Tabellen ebenfalls
+Aliases bekommen.
+
+
+Beispiel:
+
+    SELECT
+        g.name,
+        a.titel
+    FROM gefaehrten AS g
+    JOIN auftraege AS a
+    ON g.id = a.gefaehrte_id;
+
+
+Jetzt steht:
+
+    g
+
+für:
+
+    gefaehrten
+
+
+Und:
+
+    a
+
+für:
+
+    auftraege
+
+
+AUFGABE:
+
+Verbinde alle drei Tabellen erneut.
+
+
+Verwende:
+
+    g  = gefaehrten
+    au = auftraege
+    ar = artefakte
+
+
+Gib aus:
+
+    g.name
+    au.titel
+    ar.name
+
+
+--------------------------------------------------
+QUEST 10 - TRANSAKTIONEN
+--------------------------------------------------
+
+Elrond muss eine größere Änderung
+an der Datenbank durchführen.
+
+Alle aktiven Gefährten sollen 25 zusätzliche
+Stärkepunkte erhalten.
+
+Doch was passiert, wenn dabei ein Fehler gemacht wird?
+
+
+Dafür gibt es Transaktionen.
+
+
+Ein vereinfachtes Beispiel:
+
+    START TRANSACTION;
+
+    UPDATE gefaehrten
+    SET staerke = staerke + 25
+    WHERE status = 'aktiv';
+
+
+Jetzt wurde die Änderung innerhalb der
+Transaktion durchgeführt.
+
+Sie kann bestätigt werden mit:
+
+    COMMIT;
+
+
+Oder rückgängig gemacht werden mit:
+
+    ROLLBACK;
+
+
+SQL-WISSEN:
+
+COMMIT bedeutet:
+
+    Änderungen endgültig bestätigen.
+
+
+ROLLBACK bedeutet:
+
+    Änderungen der aktuellen Transaktion
+    rückgängig machen.
+
+
+WICHTIG:
+
+Die genaue Syntax für Transaktionen kann je nach
+Datenbanksystem etwas unterschiedlich sein.
+
+
+--------------------------------------------------
+QUEST 11 - DER FEHLER VON GANDALF
+--------------------------------------------------
+
+Gandalf möchte Sam 50 zusätzliche Stärkepunkte geben.
+
+Er schreibt:
+
+    START TRANSACTION;
+
+    UPDATE gefaehrten
+    SET staerke = staerke + 50
+    WHERE name = 'Sam';
+
+
+Dann bemerkt er:
+
+Sam sollte gar keine 50 zusätzlichen Punkte bekommen.
+
+
+FRAGE:
+
+Welchen SQL-Befehl sollte er jetzt verwenden?
+
+
+    COMMIT
+
+oder
+
+    ROLLBACK?
+
+
+--------------------------------------------------
+BOSS-QUEST - DER ANGRIFF VON BOBBY TABLES
+--------------------------------------------------
+
+Plötzlich erscheint Bobby Tables im Archiv von Bruchtal.
+
+Er hat die mächtigsten Artefakte gestohlen.
+
+Elrond benötigt einen Bericht über alle Gefährten,
+die für die Jagd geeignet sind.
+
+
+Die Anforderungen:
+
+Der Gefährte muss mindestens Level 5 sein.
+
+Der Status muss entweder:
+
+    aktiv
+
+oder:
+
+    auf Mission
+
+sein.
+
+Der Gefährte muss ein Artefakt besitzen.
+
+Das Artefakt muss mindestens 300 wert sein.
+
+
+Zeige:
+
+    Name
+    Volk
+    Level
+    Status
+    Artefakt
+    Artefaktwert
+
+
+Verwende sinnvolle Aliases.
+
+Sortiere nach dem Artefaktwert.
+
+Das wertvollste Artefakt soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    AS
+    FROM
+    JOIN
+    ON
+    WHERE
+    IN
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+SUPER-BOSS-QUEST - DIE RANGLISTE VON MITTELERDE
+--------------------------------------------------
+
+Elrond möchte einen Bericht mit:
+
+    Name
+    Level
+    Stärke
+    Rang
+
+
+Der Rang soll automatisch mit CASE berechnet werden.
+
+
+Regeln:
+
+    Level unter 4
+    = Reisender
+
+    Level 4 bis 6
+    = Gefährte
+
+    Level 7 bis 9
+    = Elite
+
+    Level 10 oder höher
+    = Legende von Mittelerde
+
+
+Zeige nur Gefährten mit mindestens Level 3.
+
+Sortiere zuerst nach Level und danach nach Stärke.
+
+Beide Werte sollen absteigend sortiert werden.
+
+
+Benötigte Befehle:
+
+    SELECT
+    CASE
+    WHEN
+    THEN
+    ELSE
+    END
+    AS
+    WHERE
+    ORDER BY
+    DESC
+
+
+--------------------------------------------------
+GEHEIM-QUEST - WAS IST SQL INJECTION?
+--------------------------------------------------
+
+Nach dem Angriff untersucht Elrond
+die Nachricht von Bobby Tables.
+
+Sie sah ungefähr so aus:
+
+    Robert'); DROP TABLE gefaehrten;--
+
+
+Das ist eine Anspielung auf ein bekanntes
+Programmierer-Meme.
+
+Das Problem dahinter heißt:
+
+    SQL Injection
+
+
+SQL Injection kann entstehen, wenn ein Programm
+Benutzereingaben unsicher direkt in SQL-Befehle einfügt.
+
+
+Vereinfacht gesagt:
+
+Ein Programm erwartet zum Beispiel einen Namen.
+
+Ein Angreifer versucht stattdessen,
+Teile eines SQL-Befehls einzugeben.
+
+
+Deshalb sollte man SQL-Abfragen in echten Anwendungen
+nicht einfach durch das Zusammenkleben von
+Texteingaben bauen.
+
+
+Stattdessen verwendet man normalerweise:
+
+    Prepared Statements
+
+oder:
+
+    parametrisierte Abfragen
+
+
+Beispielidee:
+
+    SELECT *
+    FROM gefaehrten
+    WHERE name = ?;
+
+
+Das ? steht für einen Wert, der später sicher
+übergeben wird.
+
+
+WICHTIG:
+
+Wie Parameter genau geschrieben werden,
+hängt von der Programmiersprache und Datenbank ab.
+
+
+--------------------------------------------------
+NERD-WISSEN: WARUM "BOBBY TABLES"?
+--------------------------------------------------
+
+"Bobby Tables" ist ein berühmter Witz aus
+der Programmiererwelt.
+
+Dabei wird das Thema SQL Injection anhand
+eines ungewöhnlichen Namens erklärt.
+
+Die eigentliche Lektion dahinter ist ernst:
+
+Benutzereingaben dürfen nicht blind als SQL-Code
+behandelt werden.
+
+
+--------------------------------------------------
+ABSCHLUSS-QUEST
+--------------------------------------------------
+
+Ordne die SQL-Begriffe der richtigen Erklärung zu:
+
+
+    1. DISTINCT
+
+    2. LIKE
+
+    3. IN
+
+    4. BETWEEN
+
+    5. AS
+
+    6. CASE
+
+    7. COMMIT
+
+    8. ROLLBACK
+
+
+ERKLÄRUNGEN:
+
+    A = Änderungen einer Transaktion rückgängig machen
+
+    B = Werte innerhalb eines Bereichs suchen
+
+    C = doppelte Ergebnisse entfernen
+
+    D = mehrere mögliche Werte prüfen
+
+    E = Änderungen einer Transaktion bestätigen
+
+    F = Alias bzw. Anzeigenamen vergeben
+
+    G = Textmuster suchen
+
+    H = Bedingungen verwenden, um unterschiedliche
+        Werte auszugeben
+
+
+Schreibe die Lösung zum Beispiel so:
+
+    1 = ?
+    2 = ?
+    3 = ?
+    4 = ?
+    5 = ?
+    6 = ?
+    7 = ?
+    8 = ?
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt zusätzlich:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Tabellen-Aliases
+    START TRANSACTION
+    COMMIT
+    ROLLBACK
+
+
+Außerdem hast du gelernt:
+
+SQL besteht nicht nur aus SELECT-Abfragen.
+
+
+SQL kann Daten:
+
+    lesen
+    filtern
+    sortieren
+    gruppieren
+    verbinden
+    hinzufügen
+    ändern
+    löschen
+
+
+Und du hast einen ersten wichtigen Bereich
+der Datenbanksicherheit kennengelernt:
+
+    SQL Injection
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    Datenbank-Zauberer von Bruchtal
+
+
+Neuer Rang:
+
+    SQL-Erzmagier von Mittelerde
+
+
+Bobby Tables wurde zurückgeschlagen.
+
+Zumindest vorerst.
+
+
+NÄCHSTES ABENTEUER:
+
+    SQL-Abenteuer Teil 5:
+    Das Turnier der Query-Meister
+
+
+Mögliche neue Themen:
+
+    CREATE VIEW
+    UNION
+    UNION ALL
+    EXISTS
+    NOT EXISTS
+    COALESCE
+    CONCAT
+    Datumsfunktionen
+    Constraints
+    UNIQUE
+    DEFAULT
+    CHECK
+    komplexere Unterabfragen
+    Datenbank-Normalisierung
+
+
+Und eine große Herausforderung:
+
+    Eine eigene kleine Mittelerde-Datenbank
+    von Grund auf entwerfen.

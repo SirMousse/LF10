@@ -1,0 +1,367 @@
+SQL-Abenteuer Teil 2: Die Aufträge der Eisernen Eule
+
+Willkommen zurück, SQL-Novize!
+
+Nach deinem erfolgreichen Kampf gegen den Datenbankdrachen Nullpointerax
+hat der Gildenmeister beschlossen, dir mehr Verantwortung zu übertragen.
+
+Bisher hast du nur mit der Tabelle "abenteurer" gearbeitet.
+
+Doch eine echte Abenteurergilde braucht natürlich auch Aufträge.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander verbunden werden.
+
+
+AUSGANGSLAGE
+
+Unsere bekannte Tabelle:
+
+abenteurer
+
+id | name   | klasse   | level | gold | status
+1  | Arin   | Krieger  | 5     | 120  | aktiv
+2  | Lyra   | Magierin | 8     | 340  | aktiv
+3  | Borin  | Zwerg    | 3     | 75   | verletzt
+4  | Nyx    | Schurkin | 7     | 260  | aktiv
+5  | Eldrin | Magier   | 10    | 500  | auf Mission
+6  | Pip    | Barde    | 3     | 45   | aktiv
+
+
+NEUE TABELLE: AUFTRAEGE
+
+CREATE TABLE auftraege (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    abenteurer_id INT
+);
+
+
+Folgende Aufträge befinden sich im Gildenarchiv:
+
+id | titel                         | schwierigkeit | belohnung | abenteurer_id
+1  | Goblins im Kartoffelkeller    | leicht        | 50        | 1
+2  | Der Fluch des Segmentation    | schwer        | 300       | 2
+3  | Die verschwundene Taverne     | mittel        | 150       | 4
+4  | Angriff der Nullpointer       | schwer        | 400       | 5
+5  | Ratten im Serverraum          | leicht        | 40        | 1
+6  | Das verlorene Passwort        | mittel        | 120       | NULL
+
+
+Was bedeutet "abenteurer_id"?
+
+Die Spalte "abenteurer_id" zeigt, welcher Abenteurer einen Auftrag übernommen hat.
+
+Beispiel:
+
+abenteurer_id = 1
+
+bedeutet:
+
+Der Abenteurer mit der id 1 hat diesen Auftrag übernommen.
+
+Das ist Arin.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DIE AUFTRAGSTAFEL
+
+Zeige alle Aufträge der Gilde an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+SELECT *
+FROM auftraege;
+
+
+QUEST 2 - NUR FÜR ERFAHRENE HELDEN
+
+Der Gildenmeister möchte alle schweren Aufträge sehen.
+
+Zeige alle Aufträge, deren Schwierigkeit "schwer" ist.
+
+SQL-Wissen:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache
+Anführungszeichen geschrieben.
+
+Beispiel:
+
+WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE BESTBEZAHLTEN AUFTRÄGE
+
+Zeige:
+
+titel
+schwierigkeit
+belohnung
+
+Sortiere die Aufträge nach ihrer Belohnung.
+
+Der Auftrag mit der höchsten Belohnung soll zuerst erscheinen.
+
+SQL-Wissen:
+
+ORDER BY belohnung DESC;
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+
+Jetzt wird es interessanter.
+
+Der Gildenmeister möchte nicht nur die Aufträge sehen.
+
+Er möchte auch wissen, welcher Abenteurer den jeweiligen Auftrag übernommen hat.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+Beispiel:
+
+SELECT abenteurer.name, auftraege.titel
+FROM abenteurer
+JOIN auftraege
+ON abenteurer.id = auftraege.abenteurer_id;
+
+
+SQL-Wissen:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+ON abenteurer.id = auftraege.abenteurer_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+Name des Abenteurers
+Klasse des Abenteurers
+Titel des Auftrags
+Belohnung
+
+
+QUEST 5 - WER VERDIENT AM MEISTEN?
+
+Zeige alle Abenteurer zusammen mit ihren Aufträgen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+Du benötigst dafür:
+
+SELECT
+FROM
+JOIN
+ON
+ORDER BY
+DESC
+
+
+QUEST 6 - DER MYSTERIÖSE NULL-WERT
+
+Beim Auftrag "Das verlorene Passwort" steht:
+
+abenteurer_id = NULL
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+Es ist kein Wert vorhanden.
+
+Das bedeutet in unserem Beispiel:
+
+Noch kein Abenteurer hat diesen Auftrag angenommen.
+
+
+Wichtig:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+WHERE abenteurer_id = NULL
+
+Stattdessen verwendet SQL:
+
+WHERE abenteurer_id IS NULL;
+
+
+AUFGABE
+
+Finde alle Aufträge, die noch keinem Abenteurer zugewiesen wurden.
+
+
+QUEST 7 - WIE VIELE AUFTRÄGE GIBT ES?
+
+Der Gildenmeister hat den Überblick verloren.
+
+Er möchte wissen, wie viele Aufträge aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+Beispiel:
+
+SELECT COUNT(*)
+FROM auftraege;
+
+
+SQL-Wissen:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+Zähle alle Zeilen.
+
+
+QUEST 8 - DER REICHSTE AUFTRAGSTYP
+
+Der Gildenmeister möchte wissen, wie hoch die durchschnittliche
+Belohnung aller Aufträge ist.
+
+Dafür gibt es AVG().
+
+Beispiel:
+
+SELECT AVG(belohnung)
+FROM auftraege;
+
+
+Weitere Aggregatfunktionen:
+
+SUM()   = Summe
+AVG()   = Durchschnitt
+MIN()   = kleinster Wert
+MAX()   = größter Wert
+COUNT() = Anzahl
+
+
+BOSS-QUEST - DER GILDENBERICHT
+
+Der König verlangt einen Bericht über alle vergebenen Aufträge.
+
+Er möchte folgende Informationen sehen:
+
+Name des Abenteurers
+Klasse
+Level
+Titel des Auftrags
+Schwierigkeit
+Belohnung
+
+Dabei sollen nur Aufträge angezeigt werden, deren Belohnung
+mindestens 100 Gold beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+SELECT
+FROM
+JOIN
+ON
+WHERE
+ORDER BY
+DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+
+Der Gildenmeister stellt eine neue Frage:
+
+Wie viele Aufträge hat jeder Abenteurer übernommen?
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+GROUP BY
+
+Beispiel:
+
+SELECT abenteurer.name, COUNT(auftraege.id)
+FROM abenteurer
+JOIN auftraege
+ON abenteurer.id = auftraege.abenteurer_id
+GROUP BY abenteurer.name;
+
+
+SQL-Wissen:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+Wie viele Aufträge hat jeder Abenteurer?
+
+Wie viel Gold bringt jede Schwierigkeitsstufe?
+
+Wie viele Abenteurer gehören zu jeder Klasse?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+
+Finde heraus, wie viel Gold jeder Abenteurer insgesamt durch seine
+Aufträge verdienen kann.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name | gesamtbelohnung
+
+Dafür musst du zwei Dinge kombinieren:
+
+GROUP BY
+SUM()
+
+
+GELERNTES SQL-WISSEN
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+JOIN
+ON
+IS NULL
+COUNT()
+AVG()
+GROUP BY
+SUM()
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise nicht alle
+in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+Quest abgeschlossen.
+
+Neuer Rang:
+JOIN-Beschwörer der Eisernen Eule
+
+Nächster Rang:
+Datenbank-Magier
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+INSERT
+DELETE
+LEFT JOIN
+HAVING
+PRIMARY KEY
+FOREIGN KEY
+Unterabfragen

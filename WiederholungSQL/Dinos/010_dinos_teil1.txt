@@ -1,0 +1,154 @@
+SQL-Abenteuer: Die Datenbank der Dinosaurier
+
+Willkommen, Datenbank-Forscher!
+
+Du bist neuer Datenhüter im Jurassic-Forschungszentrum. Deine Aufgabe
+ist es, mit SQL Ordnung in die Dinosaurier-Datenbank zu bringen.
+
+AUSGANGSLAGE
+
+Das Forschungszentrum speichert alle Dinosaurier in einer Tabelle namens
+“dinosaurier”.
+
+CREATE TABLE dinosaurier ( id INT PRIMARY KEY, name VARCHAR(50), art
+VARCHAR(50), gewicht INT, alter INT, status VARCHAR(20) );
+
+Folgende Dinosaurier befinden sich in der Datenbank:
+
+id | name  | art               | gewicht | alter | status 
+1  | Rexi  | Tyrannosaurus Rex | 8000    | 12    | aktiv 
+2  | Spike | Triceratops       | 6000    | 9     | aktiv 
+3  | Blue  | Velociraptor      | 90      | 6     | aktiv 
+4  | Bruno | Brachiosaurus     | 30000   | 18    | krank 
+5  | Stegi | Stegosaurus       | 5000    | 11    | aktiv 
+6  | Tiny  | Compsognathus     | 3       | 2     | schläft
+
+QUEST 1 - DAS DINOSAURIER-ARCHIV
+
+Zeige alle Dinosaurier des Forschungszentrums an.
+
+SQL-Wissen: Mit SELECT wählst du Daten aus einer Tabelle aus.
+
+Beispiel:
+
+SELECT * FROM dinosaurier;
+
+Das * bedeutet: Zeige alle Spalten an.
+
+QUEST 2 - DIE FORSCHER SUCHEN ALTE DINOSAURIER
+
+Zeige alle Dinosaurier, die mindestens 10 Jahre alt sind.
+
+Versuche zuerst selbst eine Abfrage zu schreiben.
+
+Hinweis:
+
+WHERE alter >= 10
+
+SQL-Wissen: Mit WHERE kannst du Datensätze filtern.
+
+Wichtige Vergleichsoperatoren:
+
+= gleich > größer als < kleiner als >= größer oder gleich <= kleiner
+oder gleich != ungleich
+
+QUEST 3 - WER IST DER SCHWERSTE DINOSAURIER?
+
+Zeige nur die Spalten:
+
+name art gewicht
+
+Sortiere die Dinosaurier nach ihrem Gewicht. Der schwerste Dinosaurier
+soll ganz oben stehen.
+
+SQL-Wissen:
+
+ORDER BY gewicht DESC
+
+DESC bedeutet “descending”, also absteigend. ASC bedeutet “ascending”,
+also aufsteigend.
+
+QUEST 4 - DIE FORSCHER BRAUCHEN AKTIVE RIESEN
+
+Zeige alle Dinosaurier, die:
+
+-   den Status “aktiv” haben
+-   mindestens 5000 kg wiegen
+
+SQL-Wissen: Mehrere Bedingungen kannst du mit AND verbinden.
+
+Beispiel:
+
+WHERE status = ‘aktiv’ AND gewicht >= 5000;
+
+Mit OR müsste dagegen nur eine der Bedingungen erfüllt sein.
+
+QUEST 5 - TINY WIRD ÄLTER
+
+Tiny hat Geburtstag!
+
+Er wird von 2 Jahren auf 3 Jahre gesetzt.
+
+Schreibe eine SQL-Abfrage, die Tinys Alter verändert.
+
+SQL-Wissen: Mit UPDATE kannst du bestehende Daten verändern.
+
+Beispiel:
+
+UPDATE dinosaurier SET alter = 3 WHERE name = ‘Tiny’;
+
+Wichtig: Ein UPDATE ohne WHERE kann alle Datensätze der Tabelle
+verändern.
+
+BOSS-QUEST - DER AUSBRUCH IM JURASSIC-PARK
+
+Ein schweres Unwetter beschädigt die Sicherheitszäune.
+
+Nur besonders gefährliche Dinosaurier müssen sofort überwacht werden.
+
+Gesucht werden Dinosaurier, die:
+
+-   mindestens 6 Jahre alt sind
+-   den Status “aktiv” haben
+-   mindestens 5000 kg wiegen
+
+Gib nur folgende Spalten aus:
+
+name art alter gewicht
+
+Sortiere die Dinosaurier anschließend vom schwersten zum leichtesten.
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+Du wirst wahrscheinlich folgende SQL-Befehle benötigen:
+
+SELECT FROM WHERE AND ORDER BY DESC
+
+BONUS-QUEST - STATISTIK FÜR DIE FORSCHUNGSLEITUNG
+
+Die Forschungsleitung möchte wissen:
+
+Wie viel wiegen alle Dinosaurier zusammen?
+
+Dafür gibt es in SQL sogenannte Aggregatfunktionen.
+
+Beispiel:
+
+SUM(gewicht)
+
+Weitere nützliche Funktionen:
+
+COUNT() AVG() MIN() MAX()
+
+Damit kannst du Datensätze zählen, Durchschnittswerte berechnen oder den kleinsten und größten Wert finden.
+
+GELERNTES SQL-WISSEN
+
+Nach Abschluss der Aufgaben kennst du unter anderem:
+
+SELECT FROM WHERE AND OR ORDER BY UPDATE SUM()
+
+Damit kannst du Daten anzeigen, filtern, sortieren, verändern und auswerten.
+
+Quest abgeschlossen. Rang: SQL-Dino-Forscher Nächster Rang:
+JOIN-Jurassic-Meister

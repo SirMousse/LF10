@@ -1,0 +1,983 @@
+SQL-ABENTEUER TEIL 4: DER ANGRIFF VON BOBBY TABLES
+==================================================
+
+Willkommen zurück, Datenbank-Erzmagier!
+
+Hogwarts ist in Gefahr.
+
+In der Nacht wurde eine seltsame Nachricht
+im magischen Archiv gefunden:
+
+    Robert'); DROP TABLE zauberschueler;--
+
+Professor Dumbledore wird blass.
+
+"Das kann nur einer gewesen sein..."
+
+Bobby Tables.
+
+Der berüchtigte Datenbank-Dunkelmagier versucht,
+die Hogwarts-Datenbank zu manipulieren.
+
+Um ihn aufzuhalten, musst du neue SQL-Techniken lernen.
+
+
+In diesem Abenteuer lernst du:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+Außerdem erfährst du am Ende, warum SQL Injection
+gefährlich ist.
+
+
+--------------------------------------------------
+DIE DATENBANK VON HOGWARTS
+--------------------------------------------------
+
+TABELLE: zauberschueler
+
+id | name    | haus       | jahrgang | punkte | status
+---|---------|------------|----------|--------|------------------
+1  | Harry   | Gryffindor | 5        | 120    | aktiv
+2  | Hermine | Gryffindor | 5        | 180    | aktiv
+3  | Ron     | Gryffindor | 5        | 95     | aktiv
+4  | Draco   | Slytherin  | 5        | 110    | aktiv
+5  | Luna    | Ravenclaw  | 4        | 140    | aktiv
+6  | Neville | Gryffindor | 5        | 100    | im Krankenflügel
+7  | Cedric  | Hufflepuff | 6        | 160    | aktiv
+8  | Ginny   | Gryffindor | 4        | 130    | aktiv
+
+
+TABELLE: auftraege
+
+id | titel                                | schwierigkeit  | belohnung | schueler_id
+---|--------------------------------------|----------------|-----------|------------
+1  | Die verschwundenen Zaubertränke      | leicht         | 50        | 2
+2  | Das Geheimnis des Verbotenen Walds   | schwer         | 300       | 1
+3  | Die verlorene Eule                   | mittel         | 150       | 5
+4  | Gefahr in der Kammer                 | schwer         | 400       | 1
+5  | Das Rätsel der Bibliothek            | leicht         | 40        | 2
+6  | Der unbekannte Zauberstab            | mittel         | 120       | NULL
+7  | Das Rätsel des verschwundenen Besens | mittel         | 200       | NULL
+
+
+TABELLE: gegenstaende
+
+id | name                       | typ        | wert | schueler_id
+---|----------------------------|------------|------|------------
+1  | Tarnumhang                 | Umhang     | 900  | 1
+2  | Zeitumkehrer               | Artefakt   | 1000 | 2
+3  | Deluminator                | Werkzeug   | 500  | 3
+4  | Quidditch-Besen            | Besen      | 700  | 4
+5  | Unbekannter Zauberstab     | Zauberstab | 300  | NULL
+
+
+--------------------------------------------------
+QUEST 1 - DISTINCT
+--------------------------------------------------
+
+Professor Dumbledore möchte wissen:
+
+Welche verschiedenen Schwierigkeitsstufen gibt es
+bei den Aufträgen?
+
+Wenn du einfach schreibst:
+
+    SELECT schwierigkeit
+    FROM auftraege;
+
+bekommst du Werte mehrfach angezeigt.
+
+Zum Beispiel:
+
+    leicht
+    schwer
+    mittel
+    schwer
+    leicht
+    mittel
+    mittel
+
+
+Mit DISTINCT kannst du doppelte Ergebnisse entfernen.
+
+
+Beispiel:
+
+    SELECT DISTINCT schwierigkeit
+    FROM auftraege;
+
+
+Das Ergebnis wäre:
+
+    leicht
+    mittel
+    schwer
+
+
+SQL-WISSEN:
+
+DISTINCT bedeutet:
+
+    Zeige jeden unterschiedlichen Wert nur einmal.
+
+
+AUFGABE:
+
+Finde mit DISTINCT heraus, welche verschiedenen
+Häuser bei den Zauberschülern vorkommen.
+
+
+--------------------------------------------------
+QUEST 2 - DIE SUCHE MIT LIKE
+--------------------------------------------------
+
+Professor Dumbledore erinnert sich nur noch daran,
+dass ein Auftrag irgendetwas mit "Zauber" im Titel hatte.
+
+Mit LIKE kannst du nach Textmustern suchen.
+
+
+Beispiel:
+
+    SELECT *
+    FROM auftraege
+    WHERE titel LIKE '%Zauber%';
+
+
+Das Prozentzeichen % ist ein Platzhalter.
+
+Es bedeutet:
+
+    Hier können beliebig viele Zeichen stehen.
+
+
+Beispiele:
+
+    LIKE 'Das%'
+
+Bedeutet:
+
+    Der Text beginnt mit "Das".
+
+
+    LIKE '%Kammer'
+
+Bedeutet:
+
+    Der Text endet mit "Kammer".
+
+
+    LIKE '%Zauber%'
+
+Bedeutet:
+
+    Irgendwo im Text steht "Zauber".
+
+
+AUFGABE:
+
+Finde alle Aufträge, deren Titel mit "Das" beginnt.
+
+
+BONUS:
+
+Finde alle magischen Gegenstände, deren Name irgendwo
+das Wort "Zauber" enthält.
+
+
+--------------------------------------------------
+QUEST 3 - IN
+--------------------------------------------------
+
+Professor Dumbledore sucht Zauberschüler aus bestimmten Häusern:
+
+    Gryffindor
+    Ravenclaw
+    Hufflepuff
+
+
+Du könntest schreiben:
+
+    WHERE haus = 'Gryffindor'
+    OR haus = 'Ravenclaw'
+    OR haus = 'Hufflepuff';
+
+
+Das funktioniert.
+
+Aber SQL bietet eine kürzere Möglichkeit:
+
+    IN
+
+
+Beispiel:
+
+    SELECT *
+    FROM zauberschueler
+    WHERE haus IN ('Gryffindor', 'Ravenclaw', 'Hufflepuff');
+
+
+SQL-WISSEN:
+
+IN prüft, ob ein Wert in einer Liste vorkommt.
+
+
+AUFGABE:
+
+Zeige alle Zauberschüler mit folgendem Status:
+
+    aktiv
+    im Krankenflügel
+
+
+Verwende dafür IN.
+
+
+--------------------------------------------------
+QUEST 4 - BETWEEN
+--------------------------------------------------
+
+Für einen neuen magischen Auftrag werden Zauberschüler gesucht,
+die zwischen Jahrgang 4 und Jahrgang 6 sind.
+
+Dafür gibt es BETWEEN.
+
+
+Beispiel:
+
+    SELECT *
+    FROM zauberschueler
+    WHERE jahrgang BETWEEN 4 AND 6;
+
+
+SQL-WISSEN:
+
+BETWEEN prüft einen Bereich.
+
+Die Grenzwerte gehören normalerweise dazu.
+
+
+BETWEEN 4 AND 6 bedeutet also:
+
+    4
+    5
+    6
+
+
+AUFGABE:
+
+Finde alle magischen Gegenstände, deren Wert zwischen
+300 und 800 liegt.
+
+
+--------------------------------------------------
+QUEST 5 - ALIASES MIT AS
+--------------------------------------------------
+
+Der Schulleiter beschwert sich über die Berichte.
+
+"Was soll schueler_id bedeuten?
+Ich will verständliche Überschriften!"
+
+
+Mit AS kannst du Spalten im Ergebnis
+einen anderen Namen geben.
+
+
+Beispiel:
+
+    SELECT
+        name AS Schueler,
+        haus AS Haus,
+        punkte AS Hauspunkte
+    FROM zauberschueler;
+
+
+WICHTIG:
+
+AS verändert nicht den echten Namen der Spalte
+in der Datenbank.
+
+Es verändert nur die Anzeige des Ergebnisses.
+
+
+AUFGABE:
+
+Zeige:
+
+    name
+    haus
+    jahrgang
+
+
+Verwende folgende Anzeigenamen:
+
+    Zauberschueler
+    Hogwarts_Haus
+    Schuljahr
+
+
+--------------------------------------------------
+QUEST 6 - UPDATE MIT BERECHNUNGEN
+--------------------------------------------------
+
+Alle Zauberschüler erhalten 10 Hauspunkte
+für ihre Hilfe bei der Verteidigung von Hogwarts.
+
+Du könntest jeden Wert einzeln ändern.
+
+Das wäre aber ziemlich umständlich.
+
+SQL kann direkt rechnen.
+
+
+Beispiel:
+
+    UPDATE zauberschueler
+    SET punkte = punkte + 10;
+
+
+Wenn Harry vorher 120 Punkte hatte:
+
+    120 + 10 = 130
+
+
+AUFGABE:
+
+Alle Zauberschüler steigen um einen Jahrgang auf.
+
+Schreibe einen UPDATE-Befehl, der bei jedem Zauberschüler
+den Wert von "jahrgang" um 1 erhöht.
+
+
+ZUSATZAUFGABE:
+
+Nur aktive Zauberschüler erhalten weitere 20 Punkte.
+
+
+Hinweis:
+
+    UPDATE zauberschueler
+    SET ...
+    WHERE ...;
+
+
+--------------------------------------------------
+QUEST 7 - CASE WHEN
+--------------------------------------------------
+
+Professor Dumbledore möchte die Zauberschüler automatisch
+nach ihrer Punktzahl bewerten.
+
+
+Die Regeln:
+
+    unter 100 Punkte   = Anfänger
+    100 bis 129 Punkte = Fortgeschritten
+    130 bis 159 Punkte = Talentiert
+    ab 160 Punkte      = Meisterhaft
+
+
+Dafür gibt es CASE WHEN.
+
+
+Beispiel:
+
+    SELECT
+        name,
+        punkte,
+        CASE
+            WHEN punkte < 100 THEN 'Anfänger'
+            WHEN punkte < 130 THEN 'Fortgeschritten'
+            WHEN punkte < 160 THEN 'Talentiert'
+            ELSE 'Meisterhaft'
+        END AS rang
+    FROM zauberschueler;
+
+
+SQL-WISSEN:
+
+CASE funktioniert ähnlich wie:
+
+    Wenn Bedingung A stimmt, dann Wert A.
+    Wenn Bedingung B stimmt, dann Wert B.
+    Sonst ein anderer Wert.
+
+
+AUFGABE:
+
+Bewerte die Jahrgänge der Zauberschüler.
+
+
+Regeln:
+
+    Jahrgang 1 bis 2
+    = Anfänger
+
+    Jahrgang 3 bis 4
+    = Fortgeschritten
+
+    Jahrgang 5 bis 6
+    = Erfahren
+
+    Jahrgang 7
+    = Abschlussklasse
+
+
+Gib aus:
+
+    name
+    jahrgang
+    erfahrungsstufe
+
+
+--------------------------------------------------
+QUEST 8 - MEHRERE JOINS
+--------------------------------------------------
+
+Jetzt wird es ernst.
+
+Professor Dumbledore möchte gleichzeitig wissen:
+
+Welcher Zauberschüler hat welchen Auftrag
+und welchen magischen Gegenstand besitzt er?
+
+
+Wir müssen jetzt drei Tabellen verbinden:
+
+    zauberschueler
+    auftraege
+    gegenstaende
+
+
+Beispiel:
+
+    SELECT
+        zauberschueler.name,
+        auftraege.titel,
+        gegenstaende.name
+    FROM zauberschueler
+    JOIN auftraege
+    ON zauberschueler.id = auftraege.schueler_id
+    JOIN gegenstaende
+    ON zauberschueler.id = gegenstaende.schueler_id;
+
+
+SQL-WISSEN:
+
+Du kannst mehrere JOINs in einer Abfrage verwenden.
+
+
+AUFGABE:
+
+Erstelle einen Bericht mit:
+
+    Name des Zauberschülers
+    Haus
+    Auftrag
+    Belohnung
+    Magischer Gegenstand
+    Wert des Gegenstands
+
+
+--------------------------------------------------
+QUEST 9 - TABELLEN-ALIASES
+--------------------------------------------------
+
+Unsere Abfragen werden langsam ziemlich lang.
+
+Statt ständig:
+
+    zauberschueler.name
+    auftraege.titel
+    gegenstaende.name
+
+zu schreiben, können Tabellen ebenfalls
+Aliases bekommen.
+
+
+Beispiel:
+
+    SELECT
+        z.name,
+        a.titel
+    FROM zauberschueler AS z
+    JOIN auftraege AS a
+    ON z.id = a.schueler_id;
+
+
+Jetzt steht:
+
+    z
+
+für:
+
+    zauberschueler
+
+
+Und:
+
+    a
+
+für:
+
+    auftraege
+
+
+AUFGABE:
+
+Verbinde alle drei Tabellen erneut.
+
+
+Verwende:
+
+    z = zauberschueler
+    a = auftraege
+    g = gegenstaende
+
+
+Gib aus:
+
+    z.name
+    a.titel
+    g.name
+
+
+--------------------------------------------------
+QUEST 10 - TRANSAKTIONEN
+--------------------------------------------------
+
+Professor Dumbledore muss eine größere Änderung
+an der Datenbank durchführen.
+
+Alle aktiven Zauberschüler sollen 50 zusätzliche Punkte erhalten.
+
+Doch was passiert, wenn dabei ein Fehler gemacht wird?
+
+
+Dafür gibt es Transaktionen.
+
+
+Ein vereinfachtes Beispiel:
+
+    START TRANSACTION;
+
+    UPDATE zauberschueler
+    SET punkte = punkte + 50
+    WHERE status = 'aktiv';
+
+
+Jetzt wurde die Änderung innerhalb der
+Transaktion durchgeführt.
+
+Sie kann bestätigt werden mit:
+
+    COMMIT;
+
+
+Oder rückgängig gemacht werden mit:
+
+    ROLLBACK;
+
+
+SQL-WISSEN:
+
+COMMIT bedeutet:
+
+    Änderungen endgültig bestätigen.
+
+
+ROLLBACK bedeutet:
+
+    Änderungen der aktuellen Transaktion
+    rückgängig machen.
+
+
+WICHTIG:
+
+Die genaue Syntax für Transaktionen kann je nach
+Datenbanksystem etwas unterschiedlich sein.
+
+
+--------------------------------------------------
+QUEST 11 - DER FEHLER VON PROFESSOR SNAPE
+--------------------------------------------------
+
+Professor Snape möchte Ron 50 Punkte abziehen.
+
+Er schreibt:
+
+    START TRANSACTION;
+
+    UPDATE zauberschueler
+    SET punkte = punkte - 50
+    WHERE name = 'Ron';
+
+
+Dann bemerkt er:
+
+Ron sollte gar keine 50 Punkte verlieren.
+
+
+FRAGE:
+
+Welchen SQL-Befehl sollte er jetzt verwenden?
+
+
+    COMMIT
+
+oder
+
+    ROLLBACK?
+
+
+--------------------------------------------------
+BOSS-QUEST - DER ANGRIFF VON BOBBY TABLES
+--------------------------------------------------
+
+Plötzlich erscheint Bobby Tables im Hogwarts-Archiv.
+
+Er hat die wertvollsten magischen Gegenstände gestohlen.
+
+Professor Dumbledore benötigt einen Bericht über alle
+Zauberschüler, die für die Suche geeignet sind.
+
+
+Die Anforderungen:
+
+Der Zauberschüler muss mindestens im 4. Jahrgang sein.
+
+Der Status muss entweder:
+
+    aktiv
+
+oder:
+
+    im Krankenflügel
+
+sein.
+
+Der Zauberschüler muss einen magischen Gegenstand besitzen.
+
+Der Gegenstand muss mindestens 300 wert sein.
+
+
+Zeige:
+
+    Name
+    Haus
+    Jahrgang
+    Status
+    Gegenstand
+    Gegenstandswert
+
+
+Verwende sinnvolle Aliases.
+
+Sortiere nach dem Wert des Gegenstands.
+
+Der wertvollste Gegenstand soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    AS
+    FROM
+    JOIN
+    ON
+    WHERE
+    IN
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+SUPER-BOSS-QUEST - DIE HOGWARTS-RANGLISTE
+--------------------------------------------------
+
+Professor Dumbledore möchte einen Bericht mit:
+
+    Name
+    Jahrgang
+    Punkte
+    Rang
+
+
+Der Rang soll automatisch mit CASE berechnet werden.
+
+
+Regeln:
+
+    Jahrgang unter 3
+    = Nachwuchszauberer
+
+    Jahrgang 3 bis 4
+    = Zauberschüler
+
+    Jahrgang 5 bis 6
+    = Fortgeschrittener Zauberer
+
+    Jahrgang 7 oder höher
+    = Hogwarts-Legende
+
+
+Zeige nur Zauberschüler mit mindestens Jahrgang 3.
+
+Sortiere zuerst nach Jahrgang und danach nach Punkten.
+
+Beide Werte sollen absteigend sortiert werden.
+
+
+Benötigte Befehle:
+
+    SELECT
+    CASE
+    WHEN
+    THEN
+    ELSE
+    END
+    AS
+    WHERE
+    ORDER BY
+    DESC
+
+
+--------------------------------------------------
+GEHEIM-QUEST - WAS IST SQL INJECTION?
+--------------------------------------------------
+
+Nach dem Angriff untersucht Professor Dumbledore
+die Nachricht von Bobby Tables.
+
+Sie sah ungefähr so aus:
+
+    Robert'); DROP TABLE zauberschueler;--
+
+
+Das ist eine Anspielung auf ein bekanntes
+Programmierer-Meme.
+
+Das Problem dahinter heißt:
+
+    SQL Injection
+
+
+SQL Injection kann entstehen, wenn ein Programm
+Benutzereingaben unsicher direkt in SQL-Befehle einfügt.
+
+
+Vereinfacht gesagt:
+
+Ein Programm erwartet zum Beispiel einen Namen.
+
+Ein Angreifer versucht stattdessen,
+Teile eines SQL-Befehls einzugeben.
+
+
+Deshalb sollte man SQL-Abfragen in echten Anwendungen
+nicht einfach durch das Zusammenkleben von
+Texteingaben bauen.
+
+
+Stattdessen verwendet man normalerweise:
+
+    Prepared Statements
+
+oder:
+
+    parametrisierte Abfragen
+
+
+Beispielidee:
+
+    SELECT *
+    FROM zauberschueler
+    WHERE name = ?;
+
+
+Das ? steht für einen Wert, der später sicher
+übergeben wird.
+
+
+WICHTIG:
+
+Wie Parameter genau geschrieben werden,
+hängt von der Programmiersprache und Datenbank ab.
+
+
+--------------------------------------------------
+NERD-WISSEN: WARUM "BOBBY TABLES"?
+--------------------------------------------------
+
+"Bobby Tables" ist ein berühmter Witz aus
+der Programmiererwelt.
+
+Dabei wird das Thema SQL Injection anhand
+eines ungewöhnlichen Namens erklärt.
+
+Die eigentliche Lektion dahinter ist ernst:
+
+Benutzereingaben dürfen nicht blind als SQL-Code
+behandelt werden.
+
+
+--------------------------------------------------
+ABSCHLUSS-QUEST
+--------------------------------------------------
+
+Ordne die SQL-Begriffe der richtigen Erklärung zu:
+
+
+    1. DISTINCT
+
+    2. LIKE
+
+    3. IN
+
+    4. BETWEEN
+
+    5. AS
+
+    6. CASE
+
+    7. COMMIT
+
+    8. ROLLBACK
+
+
+ERKLÄRUNGEN:
+
+    A = Änderungen einer Transaktion rückgängig machen
+
+    B = Werte innerhalb eines Bereichs suchen
+
+    C = doppelte Ergebnisse entfernen
+
+    D = mehrere mögliche Werte prüfen
+
+    E = Änderungen einer Transaktion bestätigen
+
+    F = Alias bzw. Anzeigenamen vergeben
+
+    G = Textmuster suchen
+
+    H = Bedingungen verwenden, um unterschiedliche
+        Werte auszugeben
+
+
+Schreibe die Lösung zum Beispiel so:
+
+    1 = ?
+    2 = ?
+    3 = ?
+    4 = ?
+    5 = ?
+    6 = ?
+    7 = ?
+    8 = ?
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt zusätzlich:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Tabellen-Aliases
+    START TRANSACTION
+    COMMIT
+    ROLLBACK
+
+
+Außerdem hast du gelernt:
+
+SQL besteht nicht nur aus SELECT-Abfragen.
+
+
+SQL kann Daten:
+
+    lesen
+    filtern
+    sortieren
+    gruppieren
+    verbinden
+    hinzufügen
+    ändern
+    löschen
+
+
+Und du hast einen ersten wichtigen Bereich
+der Datenbanksicherheit kennengelernt:
+
+    SQL Injection
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    Datenbank-Erzmagier
+
+
+Neuer Rang:
+
+    SQL-Großmeister von Hogwarts
+
+
+Bobby Tables wurde zurückgeschlagen.
+
+Zumindest vorerst.
+
+
+NÄCHSTES ABENTEUER:
+
+    SQL-Abenteuer Teil 5:
+    Das Turnier der Query-Meister
+
+
+Mögliche neue Themen:
+
+    CREATE VIEW
+    UNION
+    UNION ALL
+    EXISTS
+    NOT EXISTS
+    COALESCE
+    CONCAT
+    Datumsfunktionen
+    Constraints
+    UNIQUE
+    DEFAULT
+    CHECK
+    komplexere Unterabfragen
+    Datenbank-Normalisierung
+
+
+Und eine große Herausforderung:
+
+    Eine eigene kleine Hogwarts-Datenbank von Grund auf entwerfen.

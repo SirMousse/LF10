@@ -1,0 +1,417 @@
+SQL-ABENTEUER TEIL 2: DIE FÄLLE DER DETEKTIVE
+=============================================
+
+Willkommen zurück, SQL-Spurensucher!
+
+Nach deinen erfolgreichen ersten Ermittlungen hat der
+Chefermittler beschlossen, dir mehr Verantwortung zu übertragen.
+
+Bisher hast du nur mit der Tabelle "detektive" gearbeitet.
+
+Doch ein echtes Detektivbüro braucht natürlich auch Fälle.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander
+verbunden werden.
+
+
+AUSGANGSLAGE
+------------
+
+Unsere bekannte Tabelle:
+
+detektive
+
+id | name  | spezialgebiet | faelle | erfolge | status
+---|-------|----------------|--------|---------|-----------
+1  | Mira  | Spurensuche    | 12     | 9       | aktiv
+2  | Jonas | Verhöre        | 18     | 15      | aktiv
+3  | Tessa | Technik        | 7      | 5       | im Urlaub
+4  | Malik | Observation    | 15     | 12      | aktiv
+5  | Clara | Analyse        | 22     | 20      | im Einsatz
+6  | Ben   | Recherche      | 5      | 4       | aktiv
+
+
+NEUE TABELLE: ERMITTLUNGEN
+--------------------------
+
+CREATE TABLE ermittlungen (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    detektiv_id INT
+);
+
+
+Folgende Ermittlungen befinden sich im Archiv:
+
+id | titel                          | schwierigkeit | belohnung | detektiv_id
+---|--------------------------------|----------------|-----------|------------
+1  | Der verschwundene Schlüssel   | leicht         | 50        | 1
+2  | Das Phantom im Museum          | schwer         | 300       | 4
+3  | Die gestohlene Halskette       | mittel         | 150       | 2
+4  | Der Diamantenraub              | schwer         | 400       | 5
+5  | Spuren im alten Lagerhaus      | leicht         | 40        | 1
+6  | Der mysteriöse Brief           | mittel         | 120       | NULL
+
+
+WAS BEDEUTET "detektiv_id"?
+---------------------------
+
+Die Spalte "detektiv_id" zeigt, welcher Detektiv eine
+Ermittlung übernommen hat.
+
+Beispiel:
+
+    detektiv_id = 1
+
+bedeutet:
+
+Der Detektiv mit der ID 1 hat diese Ermittlung übernommen.
+
+Das ist Mira.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DIE FALLAKTEN
+-----------------------
+
+Zeige alle Ermittlungen des Detektivbüros an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+    SELECT *
+    FROM ermittlungen;
+
+
+QUEST 2 - NUR FÜR ERFAHRENE ERMITTLER
+-------------------------------------
+
+Der Chefermittler möchte alle schweren Ermittlungen sehen.
+
+Zeige alle Ermittlungen, deren Schwierigkeit "schwer" ist.
+
+
+SQL-WISSEN:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache
+Anführungszeichen geschrieben.
+
+Beispiel:
+
+    WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE BESTBEZAHLTEN FÄLLE
+---------------------------------
+
+Zeige:
+
+    titel
+    schwierigkeit
+    belohnung
+
+Sortiere die Ermittlungen nach ihrer Belohnung.
+
+Die Ermittlung mit der höchsten Belohnung soll zuerst erscheinen.
+
+
+SQL-WISSEN:
+
+    ORDER BY belohnung DESC;
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+----------------------------
+
+Jetzt wird es interessanter.
+
+Der Chefermittler möchte nicht nur die Ermittlungen sehen.
+
+Er möchte auch wissen, welcher Detektiv den jeweiligen Fall
+übernommen hat.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+
+Beispiel:
+
+    SELECT detektive.name, ermittlungen.titel
+    FROM detektive
+    JOIN ermittlungen
+    ON detektive.id = ermittlungen.detektiv_id;
+
+
+SQL-WISSEN:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+    ON detektive.id = ermittlungen.detektiv_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE:
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+    Name des Detektivs
+    Spezialgebiet des Detektivs
+    Titel der Ermittlung
+    Belohnung
+
+
+QUEST 5 - WER VERDIENT AM MEISTEN?
+----------------------------------
+
+Zeige alle Detektive zusammen mit ihren Ermittlungen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst dafür:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    ORDER BY
+    DESC
+
+
+QUEST 6 - DER MYSTERIÖSE NULL-WERT
+----------------------------------
+
+Bei der Ermittlung "Der mysteriöse Brief" steht:
+
+    detektiv_id = NULL
+
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+    Es ist kein Wert vorhanden.
+
+
+Das bedeutet in unserem Beispiel:
+
+Noch kein Detektiv hat diese Ermittlung übernommen.
+
+
+WICHTIG:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+    WHERE detektiv_id = NULL
+
+
+Stattdessen verwendet SQL:
+
+    WHERE detektiv_id IS NULL;
+
+
+AUFGABE:
+
+Finde alle Ermittlungen, die noch keinem Detektiv
+zugewiesen wurden.
+
+
+QUEST 7 - WIE VIELE ERMITTLUNGEN GIBT ES?
+-----------------------------------------
+
+Der Chefermittler hat den Überblick verloren.
+
+Er möchte wissen, wie viele Ermittlungen aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+
+Beispiel:
+
+    SELECT COUNT(*)
+    FROM ermittlungen;
+
+
+SQL-WISSEN:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+    Zähle alle Zeilen.
+
+
+QUEST 8 - DIE DURCHSCHNITTLICHE BELOHNUNG
+-----------------------------------------
+
+Der Chefermittler möchte wissen, wie hoch die durchschnittliche
+Belohnung aller Ermittlungen ist.
+
+Dafür gibt es AVG().
+
+
+Beispiel:
+
+    SELECT AVG(belohnung)
+    FROM ermittlungen;
+
+
+Weitere Aggregatfunktionen:
+
+    SUM()   = Summe
+    AVG()   = Durchschnitt
+    MIN()   = kleinster Wert
+    MAX()   = größter Wert
+    COUNT() = Anzahl
+
+
+BOSS-QUEST - DER GROSSE ERMITTLUNGSBERICHT
+------------------------------------------
+
+Der Polizeichef verlangt einen Bericht über alle
+vergebenen Ermittlungen.
+
+Er möchte folgende Informationen sehen:
+
+    Name des Detektivs
+    Spezialgebiet
+    Anzahl der Fälle
+    Titel der Ermittlung
+    Schwierigkeit
+    Belohnung
+
+
+Dabei sollen nur Ermittlungen angezeigt werden, deren Belohnung
+mindestens 100 beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    WHERE
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+----------------------
+
+Der Chefermittler stellt eine neue Frage:
+
+Wie viele Ermittlungen hat jeder Detektiv übernommen?
+
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT detektive.name, COUNT(ermittlungen.id)
+    FROM detektive
+    JOIN ermittlungen
+    ON detektive.id = ermittlungen.detektiv_id
+    GROUP BY detektive.name;
+
+
+SQL-WISSEN:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+    Wie viele Ermittlungen hat jeder Detektiv?
+
+    Wie hoch ist die gesamte Belohnung
+    jeder Schwierigkeitsstufe?
+
+    Wie viele Detektive gehören zu jedem Spezialgebiet?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+---------------------------
+
+Finde heraus, wie viel Geld jeder Detektiv insgesamt durch
+seine Ermittlungen verdienen kann.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name  | gesamtbelohnung
+------|----------------
+Mira  | ...
+Jonas | ...
+Malik | ...
+
+
+Dafür musst du zwei Dinge kombinieren:
+
+    GROUP BY
+    SUM()
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+    JOIN
+    ON
+    IS NULL
+    COUNT()
+    AVG()
+    GROUP BY
+    SUM()
+
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise
+nicht alle in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Neuer Rang:
+
+    JOIN-Meisterdetektiv
+
+
+Nächster Rang:
+
+    Datenbank-Kommissar
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    HAVING
+    PRIMARY KEY
+    FOREIGN KEY
+    Unterabfragen

@@ -1,0 +1,718 @@
+SQL-ABENTEUER TEIL 3: DIE VERBOTENEN ARCHIVE DER DETEKTIVE
+==========================================================
+
+Willkommen zurück, JOIN-Meisterdetektiv!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits der nächste schwierige Fall auf dich.
+
+Tief unter dem Detektivbüro befindet sich das geheime Fallarchiv.
+
+Dort werden neue Detektive registriert, alte Ermittlungen gelöscht
+und wichtige Beweisstücke verwaltet.
+
+Der Chefermittler überreicht dir den Schlüssel zum Archiv.
+
+
+Deine heutigen SQL-Fähigkeiten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    FOREIGN KEY
+    HAVING
+    Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: detektive
+
+id | name  | spezialgebiet | faelle | erfolge | status
+---|-------|----------------|--------|---------|-----------
+1  | Mira  | Spurensuche    | 12     | 9       | aktiv
+2  | Jonas | Verhöre        | 18     | 15      | aktiv
+3  | Tessa | Technik        | 7      | 5       | im Urlaub
+4  | Malik | Observation    | 15     | 12      | aktiv
+5  | Clara | Analyse        | 22     | 20      | im Einsatz
+6  | Ben   | Recherche      | 5      | 4       | aktiv
+
+
+TABELLE: ermittlungen
+
+id | titel                        | schwierigkeit | belohnung | detektiv_id
+---|------------------------------|----------------|-----------|------------
+1  | Der verschwundene Schlüssel | leicht         | 50        | 1
+2  | Das Phantom im Museum        | schwer         | 300       | 4
+3  | Die gestohlene Halskette     | mittel         | 150       | 2
+4  | Der Diamantenraub            | schwer         | 400       | 5
+5  | Spuren im alten Lagerhaus    | leicht         | 40        | 1
+6  | Der mysteriöse Brief         | mittel         | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUER DETEKTIV BETRITT DAS BÜRO
+--------------------------------------------------
+
+Ein neuer Detektiv wurde eingestellt.
+
+Sein Name ist:
+
+    Viktor
+
+Seine Daten:
+
+    Spezialgebiet: Forensik
+    Fälle: 9
+    Erfolge: 7
+    Status: aktiv
+
+Der Chefermittler möchte ihn in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+    INSERT INTO detektive
+    (id, name, spezialgebiet, faelle, erfolge, status)
+    VALUES
+    (7, 'Viktor', 'Forensik', 9, 7, 'aktiv');
+
+
+SQL-WISSEN:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge eine weitere Detektivin hinzu:
+
+    id: 8
+    name: Sophie
+    spezialgebiet: Verhöre
+    faelle: 11
+    erfolge: 8
+    status: aktiv
+
+
+--------------------------------------------------
+QUEST 2 - EIN NEUER MYSTERIÖSER FALL
+--------------------------------------------------
+
+Am frühen Morgen liegt eine neue Fallakte
+auf dem Schreibtisch des Chefermittlers.
+
+Titel:
+
+    Der Einbruch ohne Spuren
+
+Schwierigkeit:
+
+    mittel
+
+Belohnung:
+
+    200
+
+Noch wurde dieser Ermittlung kein Detektiv zugewiesen.
+
+
+AUFGABE:
+
+Füge diese Ermittlung mit INSERT INTO in die Tabelle
+"ermittlungen" ein.
+
+Verwende:
+
+    id = 7
+
+Da noch kein Detektiv zugewiesen wurde, soll gelten:
+
+    detektiv_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER GEFÄHRLICHE DELETE-BEFEHL
+--------------------------------------------------
+
+Eine alte Ermittlung wurde versehentlich doppelt eingetragen.
+
+Der Chefermittler sagt:
+
+    "Diese Fallakte muss aus dem Archiv verschwinden!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+    DELETE FROM ermittlungen
+    WHERE id = 5;
+
+
+SQL-WISSEN:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+    DELETE FROM ermittlungen;
+
+würde ALLE Ermittlungen löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur die Ermittlung
+mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+    id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+    id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+---|-------
+1  | Mira
+1  | Jonas
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-WISSEN:
+
+Ein PRIMARY KEY sollte:
+
+    - eindeutig sein
+    - nicht NULL sein
+    - einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "ermittlungen" besitzt:
+
+    detektiv_id
+
+
+Diese Spalte verweist auf:
+
+    detektive.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY
+abgesichert werden.
+
+
+Beispiel:
+
+    CREATE TABLE ermittlungen (
+        id INT PRIMARY KEY,
+        titel VARCHAR(100),
+        schwierigkeit VARCHAR(20),
+        belohnung INT,
+        detektiv_id INT,
+        FOREIGN KEY (detektiv_id)
+            REFERENCES detektive(id)
+    );
+
+
+SQL-WISSEN:
+
+PRIMARY KEY:
+
+    Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+    Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+    JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Detektiven,
+die noch keine Ermittlung haben?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+    SELECT detektive.name, ermittlungen.titel
+    FROM detektive
+    LEFT JOIN ermittlungen
+    ON detektive.id = ermittlungen.detektiv_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten
+Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+    detektive     = linke Tabelle
+    ermittlungen  = rechte Tabelle
+
+
+Hat ein Detektiv keine Ermittlung, steht beim Titel
+möglicherweise:
+
+    NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+    name
+    spezialgebiet
+    titel
+
+für alle Detektive.
+
+Auch Detektive ohne Ermittlung sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE DETEKTIVE OHNE ERMITTLUNG
+--------------------------------------------------
+
+Der Chefermittler entdeckt ein Problem.
+
+Einige Detektive warten im Büro und haben
+noch keinen Fall übernommen.
+
+Finde alle Detektive ohne Ermittlung.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+    LEFT JOIN
+
+und
+
+    IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+    WHERE ermittlungen.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+    name
+    spezialgebiet
+    faelle
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Der Chefermittler möchte wissen:
+
+Welche Detektive haben MEHR ALS EINE Ermittlung übernommen?
+
+
+Wir kennen bereits:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT detektive.name, COUNT(ermittlungen.id)
+    FROM detektive
+    JOIN ermittlungen
+    ON detektive.id = ermittlungen.detektiv_id
+    GROUP BY detektive.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+    HAVING
+
+
+Beispiel:
+
+    SELECT detektive.name, COUNT(ermittlungen.id)
+    FROM detektive
+    JOIN ermittlungen
+    ON detektive.id = ermittlungen.detektiv_id
+    GROUP BY detektive.name
+    HAVING COUNT(ermittlungen.id) > 1;
+
+
+SQL-WISSEN:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+    WHERE kommt normalerweise vor GROUP BY.
+
+    HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Der Chefermittler stellt eine schwierige Frage:
+
+Welche Detektive haben mehr Erfolge als
+der durchschnittliche Detektiv?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+    SELECT AVG(erfolge)
+    FROM detektive;
+
+
+Aber wir können diese Abfrage auch in eine andere
+Abfrage einbauen.
+
+
+Beispiel:
+
+    SELECT name, erfolge
+    FROM detektive
+    WHERE erfolge > (
+        SELECT AVG(erfolge)
+        FROM detektive
+    );
+
+
+Das nennt man:
+
+    Unterabfrage
+
+oder:
+
+    Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+    SELECT AVG(erfolge)
+    FROM detektive;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+
+Finde alle Detektive, deren Anzahl an Fällen über der
+durchschnittlichen Anzahl aller Fälle liegt.
+
+
+--------------------------------------------------
+QUEST 10 - DER ERFOLGREICHSTE DETEKTIV
+--------------------------------------------------
+
+Der Chefermittler möchte wissen:
+
+Welcher Detektiv besitzt die meisten Erfolge?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+    MAX(erfolge)
+
+
+AUFGABE:
+
+Vervollständige:
+
+    SELECT name, erfolge
+    FROM detektive
+    WHERE erfolge = (
+        ...
+    );
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE FALLARCHIV
+--------------------------------------------------
+
+Eine unbekannte Person hat versucht,
+die Datenbank des Detektivbüros zu manipulieren.
+
+Der Chefermittler braucht einen vollständigen Bericht.
+
+
+Finde alle Detektive, die:
+
+    - mindestens 5 Erfolge besitzen
+    - mindestens eine Ermittlung übernommen haben
+    - insgesamt mehr als 100 Belohnungspunkte
+      durch Ermittlungen verdienen können
+
+
+Zeige:
+
+    name
+    spezialgebiet
+    erfolge
+    Anzahl der Ermittlungen
+    gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    JOIN
+    ON
+    WHERE
+    GROUP BY
+    HAVING
+    COUNT()
+    SUM()
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE BEWEISMITTEL-DATENBANK
+--------------------------------------------------
+
+Das Detektivbüro besitzt inzwischen so viele Beweisstücke,
+dass eine neue Tabelle benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+    beweismittel
+
+
+Sie soll folgende Spalten besitzen:
+
+    id
+    name
+    typ
+    wert
+    detektiv_id
+
+
+Beispieldaten:
+
+id | name                     | typ          | wert | detektiv_id
+---|--------------------------|--------------|------|------------
+1  | Fingerabdruck            | Spur         | 500  | 1
+2  | Geheime Tonaufnahme      | Aufnahme     | 900  | 2
+3  | Verdächtiger USB-Stick   | Digital      | 600  | 3
+4  | Zerrissene Handschuhe    | Gegenstand   | 700  | 4
+5  | Unbekannter Schlüssel    | Gegenstand   | 300  | NULL
+
+
+AUFGABE 1:
+
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+
+Verbinde "detektiv_id" über einen FOREIGN KEY mit:
+
+    detektive(id)
+
+
+AUFGABE 4:
+
+Zeige anschließend alle Beweismittel zusammen mit
+dem Namen des zugehörigen Detektivs an.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Der Chefermittler möchte wissen:
+
+Welchem Detektiv ist das wertvollste Beweismittel
+zugeordnet?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+    JOIN
+    MAX()
+    Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+    INSERT INTO
+    VALUES
+    DELETE
+    PRIMARY KEY
+    FOREIGN KEY
+    LEFT JOIN
+    GROUP BY
+    HAVING
+    Unterabfragen
+    MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen:
+
+    JOIN
+    und
+    LEFT JOIN
+
+
+JOIN:
+
+    Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN:
+
+    Zeigt alle Datensätze der linken Tabelle,
+    auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE:
+
+    Filtert Datensätze.
+
+
+HAVING:
+
+    Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    JOIN-Meisterdetektiv
+
+
+Neuer Rang:
+
+    Datenbank-Kommissar
+
+
+Nächster Rang:
+
+    SQL-Meisterermittler
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    UPDATE mit Berechnungen
+    CASE WHEN
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    Aliases mit AS
+    mehrere JOINs gleichzeitig
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+
+Und natürlich:
+
+    Ein neuer Fall.
+
+    Der gefürchtete Datenbank-Verbrecher
+    Bobby Tables.

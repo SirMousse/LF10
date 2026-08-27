@@ -1,0 +1,419 @@
+SQL-ABENTEUER TEIL 2: DIE MISSIONEN DER DINOSAURIER
+===================================================
+
+Willkommen zurück, SQL-Dino-Forscher!
+
+Nach deinen erfolgreichen ersten Abfragen hat die
+Forschungsleitung beschlossen, dir mehr Verantwortung
+zu übertragen.
+
+Bisher hast du nur mit der Tabelle "dinosaurier" gearbeitet.
+
+Doch ein großes Dinosaurier-Forschungszentrum hat natürlich
+auch Forschungsmissionen.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander
+verbunden werden.
+
+
+AUSGANGSLAGE
+------------
+
+Unsere bekannte Tabelle:
+
+dinosaurier
+
+id | name  | art                | gewicht | alter | status
+---|-------|--------------------|---------|-------|---------
+1  | Rexi  | Tyrannosaurus Rex | 8000    | 12    | aktiv
+2  | Spike | Triceratops        | 6000    | 9     | aktiv
+3  | Blue  | Velociraptor       | 90      | 6     | aktiv
+4  | Bruno | Brachiosaurus      | 30000   | 18    | krank
+5  | Stegi | Stegosaurus        | 5000    | 11    | aktiv
+6  | Tiny  | Compsognathus      | 3       | 3     | schläft
+
+
+NEUE TABELLE: MISSIONEN
+-----------------------
+
+CREATE TABLE missionen (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    dinosaurier_id INT
+);
+
+
+Folgende Missionen befinden sich im Forschungsarchiv:
+
+id | titel                         | schwierigkeit | belohnung | dinosaurier_id
+---|-------------------------------|----------------|-----------|---------------
+1  | Spuren am Nordzaun            | leicht         | 50        | 2
+2  | Jagd im Dschungel             | schwer         | 300       | 1
+3  | Das verschwundene Dino-Ei     | mittel         | 150       | 5
+4  | Alarm am Fleischlager         | schwer         | 400       | 1
+5  | Fußspuren am Fluss            | leicht         | 40        | 3
+6  | Das Geheimnis der Höhle       | mittel         | 120       | NULL
+
+
+WAS BEDEUTET "dinosaurier_id"?
+------------------------------
+
+Die Spalte "dinosaurier_id" zeigt, welcher Dinosaurier
+zu einer Mission gehört.
+
+Beispiel:
+
+    dinosaurier_id = 1
+
+bedeutet:
+
+Der Dinosaurier mit der ID 1 gehört zu dieser Mission.
+
+Das ist Rexi.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DIE MISSIONSTAFEL
+---------------------------
+
+Zeige alle Missionen des Forschungszentrums an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+    SELECT *
+    FROM missionen;
+
+
+QUEST 2 - NUR FÜR MUTIGE FORSCHER
+---------------------------------
+
+Die Forschungsleitung möchte alle schweren Missionen sehen.
+
+Zeige alle Missionen, deren Schwierigkeit "schwer" ist.
+
+
+SQL-WISSEN:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache
+Anführungszeichen geschrieben.
+
+Beispiel:
+
+    WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE BESTBEZAHLTEN MISSIONEN
+-------------------------------------
+
+Zeige:
+
+    titel
+    schwierigkeit
+    belohnung
+
+Sortiere die Missionen nach ihrer Belohnung.
+
+Die Mission mit der höchsten Belohnung soll zuerst erscheinen.
+
+
+SQL-WISSEN:
+
+    ORDER BY belohnung DESC;
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+----------------------------
+
+Jetzt wird es interessanter.
+
+Die Forschungsleitung möchte nicht nur die Missionen sehen.
+
+Sie möchte auch wissen, welcher Dinosaurier zur jeweiligen
+Mission gehört.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+
+Beispiel:
+
+    SELECT dinosaurier.name, missionen.titel
+    FROM dinosaurier
+    JOIN missionen
+    ON dinosaurier.id = missionen.dinosaurier_id;
+
+
+SQL-WISSEN:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+    ON dinosaurier.id = missionen.dinosaurier_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE:
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+    Name des Dinosauriers
+    Art des Dinosauriers
+    Titel der Mission
+    Belohnung
+
+
+QUEST 5 - WELCHE MISSION LOHNT SICH AM MEISTEN?
+-----------------------------------------------
+
+Zeige alle Dinosaurier zusammen mit ihren Missionen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst dafür:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    ORDER BY
+    DESC
+
+
+QUEST 6 - DER MYSTERIÖSE NULL-WERT
+----------------------------------
+
+Bei der Mission "Das Geheimnis der Höhle" steht:
+
+    dinosaurier_id = NULL
+
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+    Es ist kein Wert vorhanden.
+
+
+Das bedeutet in unserem Beispiel:
+
+Noch kein Dinosaurier wurde dieser Mission zugeordnet.
+
+
+WICHTIG:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+    WHERE dinosaurier_id = NULL
+
+
+Stattdessen verwendet SQL:
+
+    WHERE dinosaurier_id IS NULL;
+
+
+AUFGABE:
+
+Finde alle Missionen, denen noch kein Dinosaurier
+zugeordnet wurde.
+
+
+QUEST 7 - WIE VIELE MISSIONEN GIBT ES?
+--------------------------------------
+
+Die Forschungsleitung hat den Überblick verloren.
+
+Sie möchte wissen, wie viele Missionen aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+
+Beispiel:
+
+    SELECT COUNT(*)
+    FROM missionen;
+
+
+SQL-WISSEN:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+    Zähle alle Zeilen.
+
+
+QUEST 8 - DIE DURCHSCHNITTLICHE BELOHNUNG
+-----------------------------------------
+
+Die Forschungsleitung möchte wissen, wie hoch die
+durchschnittliche Belohnung aller Missionen ist.
+
+Dafür gibt es AVG().
+
+
+Beispiel:
+
+    SELECT AVG(belohnung)
+    FROM missionen;
+
+
+Weitere Aggregatfunktionen:
+
+    SUM()   = Summe
+    AVG()   = Durchschnitt
+    MIN()   = kleinster Wert
+    MAX()   = größter Wert
+    COUNT() = Anzahl
+
+
+BOSS-QUEST - DER GROSSE PARKBERICHT
+-----------------------------------
+
+Die Leitung des Dinosaurierparks verlangt einen Bericht
+über alle vergebenen Missionen.
+
+Sie möchte folgende Informationen sehen:
+
+    Name des Dinosauriers
+    Art
+    Alter
+    Titel der Mission
+    Schwierigkeit
+    Belohnung
+
+
+Dabei sollen nur Missionen angezeigt werden, deren Belohnung
+mindestens 100 beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    WHERE
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+----------------------
+
+Die Forschungsleitung stellt eine neue Frage:
+
+Wie viele Missionen gehören zu jedem Dinosaurier?
+
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT dinosaurier.name, COUNT(missionen.id)
+    FROM dinosaurier
+    JOIN missionen
+    ON dinosaurier.id = missionen.dinosaurier_id
+    GROUP BY dinosaurier.name;
+
+
+SQL-WISSEN:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+    Wie viele Missionen gehören zu jedem Dinosaurier?
+
+    Wie hoch ist die gesamte Belohnung
+    jeder Schwierigkeitsstufe?
+
+    Wie viele Dinosaurier gehören zu jeder Art?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+---------------------------
+
+Finde heraus, wie viele Belohnungspunkte jeder Dinosaurier
+insgesamt durch seine Missionen sammeln kann.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name  | gesamtbelohnung
+------|----------------
+Rexi  | ...
+Spike | ...
+Blue  | ...
+
+
+Dafür musst du zwei Dinge kombinieren:
+
+    GROUP BY
+    SUM()
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+    JOIN
+    ON
+    IS NULL
+    COUNT()
+    AVG()
+    GROUP BY
+    SUM()
+
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise
+nicht alle in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Neuer Rang:
+
+    JOIN-Dino-Forscher
+
+
+Nächster Rang:
+
+    Datenbank-Paläontologe
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    HAVING
+    PRIMARY KEY
+    FOREIGN KEY
+    Unterabfragen

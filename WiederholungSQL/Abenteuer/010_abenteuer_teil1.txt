@@ -1,0 +1,199 @@
+SQL-Abenteuer: Die Datenbank der Eisernen Eule
+
+Willkommen, Datenbank-Novize!
+
+Du bist neuer Archivmagier der Abenteurergilde "Die Eiserne Eule".
+Deine Aufgabe ist es, mit SQL Ordnung in das Gildenarchiv zu bringen.
+
+
+AUSGANGSLAGE
+
+Die Gilde speichert alle Mitglieder in einer Tabelle namens "abenteurer".
+
+CREATE TABLE abenteurer (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    klasse VARCHAR(30),
+    level INT,
+    gold INT,
+    status VARCHAR(20)
+);
+
+Folgende Abenteurer befinden sich im Archiv:
+
+id | name   | klasse   | level | gold | status
+1  | Arin   | Krieger  | 5     | 120  | aktiv
+2  | Lyra   | Magierin | 8     | 340  | aktiv
+3  | Borin  | Zwerg    | 3     | 75   | verletzt
+4  | Nyx    | Schurkin | 7     | 260  | aktiv
+5  | Eldrin | Magier   | 10    | 500  | auf Mission
+6  | Pip    | Barde    | 2     | 45   | aktiv
+
+
+QUEST 1 - DAS GILDENARCHIV
+
+Zeige alle Abenteurer der Gilde an.
+
+SQL-Wissen:
+Mit SELECT wählst du Daten aus einer Tabelle aus.
+
+Beispiel:
+
+SELECT *
+FROM abenteurer;
+
+Das * bedeutet: Zeige alle Spalten an.
+
+
+QUEST 2 - DER ERZMAGIER SUCHT ERFAHRENE HELDEN
+
+Zeige alle Abenteurer, die mindestens Level 5 erreicht haben.
+
+Versuche zuerst selbst eine Abfrage zu schreiben.
+
+Hinweis:
+
+WHERE level >= 5
+
+SQL-Wissen:
+Mit WHERE kannst du Datensätze filtern.
+
+Wichtige Vergleichsoperatoren:
+
+=   gleich
+>   größer als
+<   kleiner als
+>=  größer oder gleich
+<=  kleiner oder gleich
+!=  ungleich
+
+
+QUEST 3 - WER HAT DIE DICKSTEN GOLDBEUTEL?
+
+Zeige nur die Spalten:
+
+name
+klasse
+gold
+
+Sortiere die Abenteurer nach ihrem Gold.
+Der reichste Abenteurer soll ganz oben stehen.
+
+SQL-Wissen:
+
+ORDER BY gold DESC
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE GILDE BRAUCHT AKTIVE KÄMPFER
+
+Zeige alle Abenteurer, die:
+
+- den Status "aktiv" haben
+- mindestens Level 5 sind
+
+SQL-Wissen:
+Mehrere Bedingungen kannst du mit AND verbinden.
+
+Beispiel:
+
+WHERE status = 'aktiv'
+AND level >= 5;
+
+Mit OR müsste dagegen nur eine der Bedingungen erfüllt sein.
+
+
+QUEST 5 - DER TRANK DER ERFAHRUNG
+
+Die Gilde hat einen seltenen Erfahrungstrank gefunden.
+
+Der Abenteurer Pip steigt dadurch von Level 2 auf Level 3.
+
+Schreibe eine SQL-Abfrage, die Pips Level verändert.
+
+SQL-Wissen:
+Mit UPDATE kannst du bestehende Daten verändern.
+
+Beispiel:
+
+UPDATE abenteurer
+SET level = 3
+WHERE name = 'Pip';
+
+Wichtig:
+Ein UPDATE ohne WHERE kann alle Datensätze der Tabelle verändern.
+
+
+BOSS-QUEST - DER DATENBANKDRACHE
+
+Der Datenbankdrache Nullpointerax bedroht die Gilde.
+
+Nur Abenteurer dürfen gegen ihn antreten, die:
+
+- mindestens Level 7 sind
+- den Status "aktiv" haben
+- mindestens 200 Gold besitzen
+
+Gib nur folgende Spalten aus:
+
+name
+klasse
+level
+gold
+
+Sortiere die Helden anschließend vom höchsten zum niedrigsten Level.
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+Du wirst wahrscheinlich folgende SQL-Befehle benötigen:
+
+SELECT
+FROM
+WHERE
+AND
+ORDER BY
+DESC
+
+
+BONUS-QUEST - STATISTIK FÜR DEN GILDENMEISTER
+
+Der Gildenmeister möchte wissen:
+
+Wie viel Gold besitzen alle Abenteurer zusammen?
+
+Dafür gibt es in SQL sogenannte Aggregatfunktionen.
+
+Beispiel:
+
+SUM(gold)
+
+Weitere nützliche Funktionen:
+
+COUNT()
+AVG()
+MIN()
+MAX()
+
+Damit kannst du Datensätze zählen, Durchschnittswerte berechnen oder den kleinsten und größten Wert finden.
+
+
+GELERNTES SQL-WISSEN
+
+Nach Abschluss der Aufgaben kennst du unter anderem:
+
+SELECT
+FROM
+WHERE
+AND
+OR
+ORDER BY
+UPDATE
+SUM()
+
+Damit kannst du Daten anzeigen, filtern, sortieren, verändern und auswerten.
+
+Quest abgeschlossen.
+Rang: SQL-Novize der Eisernen Eule
+Nächster Rang: JOIN-Beschwörer

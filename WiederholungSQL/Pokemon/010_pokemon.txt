@@ -1,0 +1,249 @@
+SQL-ABENTEUER: DIE DATENBANK DER POKÉMON
+=========================================
+
+Willkommen, Datenbank-Trainer!
+
+Du bist neuer Datenhüter im Pokémon-Forschungszentrum.
+Deine Aufgabe ist es, mit SQL Ordnung in das Pokémon-Archiv zu bringen.
+
+
+AUSGANGSLAGE
+------------
+
+Das Forschungszentrum speichert alle Pokémon in einer Tabelle namens "pokemon".
+
+CREATE TABLE pokemon (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    typ VARCHAR(30),
+    level INT,
+    staerke INT,
+    status VARCHAR(20)
+);
+
+Folgende Pokémon befinden sich im Archiv:
+
+ID: 1
+Name: Pikachu
+Typ: Elektro
+Level: 6
+Stärke: 120
+Status: aktiv
+
+ID: 2
+Name: Glurak
+Typ: Feuer
+Level: 10
+Stärke: 220
+Status: aktiv
+
+ID: 3
+Name: Schiggy
+Typ: Wasser
+Level: 4
+Stärke: 80
+Status: aktiv
+
+ID: 4
+Name: Bisasam
+Typ: Pflanze
+Level: 5
+Stärke: 95
+Status: verletzt
+
+ID: 5
+Name: Gengar
+Typ: Geist
+Level: 8
+Stärke: 180
+Status: aktiv
+
+ID: 6
+Name: Evoli
+Typ: Normal
+Level: 3
+Stärke: 65
+Status: aktiv
+
+
+QUEST 1 - DER POKÉDEX
+---------------------
+
+Zeige alle Pokémon aus dem Archiv an.
+
+SQL-Wissen:
+Mit SELECT wählst du Daten aus einer Tabelle aus.
+
+Beispiel:
+
+    SELECT *
+    FROM pokemon;
+
+Das * bedeutet: Zeige alle Spalten an.
+
+
+QUEST 2 - PROFESSOR EICH SUCHT ERFAHRENE POKÉMON
+------------------------------------------------
+
+Zeige alle Pokémon, die mindestens Level 5 erreicht haben.
+
+Versuche zuerst selbst eine Abfrage zu schreiben.
+
+Hinweis:
+
+    WHERE level >= 5
+
+SQL-Wissen:
+Mit WHERE kannst du Datensätze filtern.
+
+Wichtige Vergleichsoperatoren:
+
+    =   gleich
+    >   größer als
+    <   kleiner als
+    >=  größer oder gleich
+    <=  kleiner oder gleich
+    !=  ungleich
+
+
+QUEST 3 - WER IST DAS STÄRKSTE POKÉMON?
+---------------------------------------
+
+Zeige nur die Spalten:
+
+    name
+    typ
+    staerke
+
+Sortiere die Pokémon nach ihrer Stärke.
+
+Das stärkste Pokémon soll ganz oben stehen.
+
+SQL-Wissen:
+
+    ORDER BY staerke DESC
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DER TRAINER BRAUCHT KAMPFBEREITE POKÉMON
+--------------------------------------------------
+
+Zeige alle Pokémon, die:
+
+    - den Status "aktiv" haben
+    - mindestens Level 5 sind
+
+SQL-Wissen:
+Mehrere Bedingungen kannst du mit AND verbinden.
+
+Beispiel:
+
+    WHERE status = 'aktiv'
+    AND level >= 5;
+
+Mit OR müsste dagegen nur eine der Bedingungen erfüllt sein.
+
+
+QUEST 5 - EVOLIS TRAINING
+-------------------------
+
+Evoli hat fleißig trainiert.
+
+Sein Level steigt von 3 auf 4.
+
+Schreibe eine SQL-Abfrage, die Evolis Level verändert.
+
+SQL-Wissen:
+Mit UPDATE kannst du bestehende Daten verändern.
+
+Beispiel:
+
+    UPDATE pokemon
+    SET level = 4
+    WHERE name = 'Evoli';
+
+Wichtig:
+Ein UPDATE ohne WHERE kann alle Datensätze der Tabelle verändern.
+
+
+BOSS-QUEST - DIE POKÉMON-LIGA
+-----------------------------
+
+Die Pokémon-Liga beginnt!
+
+Nur erfahrene und starke Pokémon dürfen im entscheidenden Kampf antreten.
+
+Gesucht werden Pokémon, die:
+
+    - mindestens Level 6 sind
+    - den Status "aktiv" haben
+    - mindestens 120 Stärke besitzen
+
+Gib nur folgende Spalten aus:
+
+    name
+    typ
+    level
+    staerke
+
+Sortiere die Pokémon anschließend vom höchsten zum niedrigsten Level.
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+Du wirst wahrscheinlich folgende SQL-Befehle benötigen:
+
+    SELECT
+    FROM
+    WHERE
+    AND
+    ORDER BY
+    DESC
+
+
+BONUS-QUEST - STATISTIK FÜR PROFESSOR EICH
+------------------------------------------
+
+Professor Eich möchte wissen:
+
+Wie viel Stärke besitzen alle Pokémon zusammen?
+
+Dafür gibt es in SQL sogenannte Aggregatfunktionen.
+
+Beispiel:
+
+    SUM(staerke)
+
+Weitere nützliche Funktionen:
+
+    COUNT()
+    AVG()
+    MIN()
+    MAX()
+
+Damit kannst du Datensätze zählen, Durchschnittswerte berechnen oder den kleinsten und größten Wert finden.
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach Abschluss der Aufgaben kennst du unter anderem:
+
+    SELECT
+    FROM
+    WHERE
+    AND
+    OR
+    ORDER BY
+    UPDATE
+    SUM()
+
+Damit kannst du Daten anzeigen, filtern, sortieren, verändern und auswerten.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Rang: SQL-Pokémon-Trainer
+Nächster Rang: JOIN-Pokémon-Meister

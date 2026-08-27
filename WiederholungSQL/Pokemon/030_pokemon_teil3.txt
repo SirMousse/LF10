@@ -1,0 +1,717 @@
+SQL-ABENTEUER TEIL 3: DIE VERBOTENEN ARCHIVE DER POKÉMON-WELT
+=============================================================
+
+Willkommen zurück, JOIN-Pokémon-Trainer!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits die nächste Aufgabe auf dich.
+
+Tief unter dem Pokémon-Forschungszentrum befindet sich ein
+geheimes Datenarchiv.
+
+Dort werden neue Pokémon registriert, alte Missionen gelöscht
+und seltene Items verwaltet.
+
+Professor Eich überreicht dir den Schlüssel zum Archiv.
+
+
+Deine heutigen SQL-Fähigkeiten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    FOREIGN KEY
+    HAVING
+    Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: pokemon
+
+id | name    | typ      | level | staerke | status
+---|---------|----------|-------|---------|----------
+1  | Pikachu | Elektro  | 6     | 120     | aktiv
+2  | Glurak  | Feuer    | 10    | 220     | aktiv
+3  | Schiggy | Wasser   | 4     | 80      | aktiv
+4  | Bisasam | Pflanze  | 5     | 95      | verletzt
+5  | Gengar  | Geist    | 8     | 180     | aktiv
+6  | Evoli   | Normal   | 4     | 65      | aktiv
+
+
+TABELLE: missionen
+
+id | titel                           | schwierigkeit | belohnung | pokemon_id
+---|---------------------------------|----------------|-----------|-----------
+1  | Die verschwundenen Beeren      | leicht         | 50        | 1
+2  | Das Geheimnis der Geisterhöhle | schwer         | 300       | 5
+3  | Rettung am Wasserfall           | mittel         | 150       | 3
+4  | Kampf am Vulkan                 | schwer         | 400       | 2
+5  | Die Suche im hohen Gras         | leicht         | 40        | 1
+6  | Das geheimnisvolle Pokémon-Ei  | mittel         | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUES POKÉMON WIRD ENTDECKT
+--------------------------------------------------
+
+Professor Eich hat ein neues Pokémon registriert.
+
+Sein Name ist:
+
+    Relaxo
+
+Seine Daten:
+
+    Typ: Normal
+    Level: 7
+    Stärke: 160
+    Status: aktiv
+
+Professor Eich möchte es in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+    INSERT INTO pokemon
+    (id, name, typ, level, staerke, status)
+    VALUES
+    (7, 'Relaxo', 'Normal', 7, 160, 'aktiv');
+
+
+SQL-WISSEN:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge ein weiteres Pokémon hinzu:
+
+    id: 8
+    name: Enton
+    typ: Wasser
+    level: 5
+    staerke: 90
+    status: aktiv
+
+
+--------------------------------------------------
+QUEST 2 - EINE NEUE MISSION
+--------------------------------------------------
+
+Am Schwarzen Brett des Forschungszentrums erscheint
+eine neue Mission.
+
+Titel:
+
+    Das Rätsel im Kraftwerk
+
+Schwierigkeit:
+
+    mittel
+
+Belohnung:
+
+    200
+
+Noch wurde dieser Mission kein Pokémon zugewiesen.
+
+
+AUFGABE:
+
+Füge diese Mission mit INSERT INTO in die Tabelle
+"missionen" ein.
+
+Verwende:
+
+    id = 7
+
+Da noch kein Pokémon zugewiesen wurde, soll gelten:
+
+    pokemon_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER GEFÄHRLICHE DELETE-BEFEHL
+--------------------------------------------------
+
+Eine alte Mission wurde versehentlich doppelt eingetragen.
+
+Professor Eich sagt:
+
+    "Dieser Eintrag muss aus dem Archiv verschwinden!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+    DELETE FROM missionen
+    WHERE id = 5;
+
+
+SQL-WISSEN:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+    DELETE FROM missionen;
+
+würde ALLE Missionen löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur die Mission
+mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+    id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+    id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+---|---------
+1  | Pikachu
+1  | Glurak
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-WISSEN:
+
+Ein PRIMARY KEY sollte:
+
+    - eindeutig sein
+    - nicht NULL sein
+    - einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "missionen" besitzt:
+
+    pokemon_id
+
+
+Diese Spalte verweist auf:
+
+    pokemon.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY
+abgesichert werden.
+
+
+Beispiel:
+
+    CREATE TABLE missionen (
+        id INT PRIMARY KEY,
+        titel VARCHAR(100),
+        schwierigkeit VARCHAR(20),
+        belohnung INT,
+        pokemon_id INT,
+        FOREIGN KEY (pokemon_id)
+            REFERENCES pokemon(id)
+    );
+
+
+SQL-WISSEN:
+
+PRIMARY KEY:
+
+    Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+    Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+    JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Pokémon,
+die noch keine Mission haben?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+    SELECT pokemon.name, missionen.titel
+    FROM pokemon
+    LEFT JOIN missionen
+    ON pokemon.id = missionen.pokemon_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten
+Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+    pokemon   = linke Tabelle
+    missionen = rechte Tabelle
+
+
+Hat ein Pokémon keine Mission, steht beim Titel möglicherweise:
+
+    NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+    name
+    typ
+    titel
+
+für alle Pokémon.
+
+Auch Pokémon ohne Mission sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE POKÉMON OHNE MISSION
+--------------------------------------------------
+
+Professor Eich entdeckt ein Problem.
+
+Einige Pokémon warten im Forschungszentrum und haben
+noch keine Mission.
+
+Finde alle Pokémon ohne Mission.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+    LEFT JOIN
+
+und
+
+    IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+    WHERE missionen.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+    name
+    typ
+    level
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Professor Eich möchte wissen:
+
+Welche Pokémon haben MEHR ALS EINE Mission?
+
+
+Wir kennen bereits:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT pokemon.name, COUNT(missionen.id)
+    FROM pokemon
+    JOIN missionen
+    ON pokemon.id = missionen.pokemon_id
+    GROUP BY pokemon.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+    HAVING
+
+
+Beispiel:
+
+    SELECT pokemon.name, COUNT(missionen.id)
+    FROM pokemon
+    JOIN missionen
+    ON pokemon.id = missionen.pokemon_id
+    GROUP BY pokemon.name
+    HAVING COUNT(missionen.id) > 1;
+
+
+SQL-WISSEN:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+    WHERE kommt normalerweise vor GROUP BY.
+
+    HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Professor Eich stellt eine schwierige Frage:
+
+Welche Pokémon besitzen eine höhere Stärke als
+das durchschnittliche Pokémon?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+    SELECT AVG(staerke)
+    FROM pokemon;
+
+
+Aber wir können diese Abfrage auch in eine andere
+Abfrage einbauen.
+
+
+Beispiel:
+
+    SELECT name, staerke
+    FROM pokemon
+    WHERE staerke > (
+        SELECT AVG(staerke)
+        FROM pokemon
+    );
+
+
+Das nennt man:
+
+    Unterabfrage
+
+oder:
+
+    Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+    SELECT AVG(staerke)
+    FROM pokemon;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+
+Finde alle Pokémon, deren Level über dem
+durchschnittlichen Level aller Pokémon liegt.
+
+
+--------------------------------------------------
+QUEST 10 - DAS STÄRKSTE POKÉMON
+--------------------------------------------------
+
+Professor Eich möchte wissen:
+
+Welches Pokémon besitzt die höchste Stärke?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+    MAX(staerke)
+
+
+AUFGABE:
+
+Vervollständige:
+
+    SELECT name, staerke
+    FROM pokemon
+    WHERE staerke = (
+        ...
+    );
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE POKÉMON-ARCHIV
+--------------------------------------------------
+
+Jemand hat versucht, die Datenbank des
+Forschungszentrums zu manipulieren.
+
+Professor Eich braucht einen vollständigen Bericht.
+
+
+Finde alle Pokémon, die:
+
+    - mindestens Level 5 sind
+    - mindestens eine Mission besitzen
+    - insgesamt mehr als 100 Belohnungspunkte
+      durch Missionen verdienen können
+
+
+Zeige:
+
+    name
+    typ
+    level
+    Anzahl der Missionen
+    gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    JOIN
+    ON
+    WHERE
+    GROUP BY
+    HAVING
+    COUNT()
+    SUM()
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE ITEM-DATENBANK
+--------------------------------------------------
+
+Das Forschungszentrum besitzt inzwischen so viele
+Pokémon-Items, dass eine neue Tabelle benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+    items
+
+
+Sie soll folgende Spalten besitzen:
+
+    id
+    name
+    typ
+    wert
+    pokemon_id
+
+
+Beispieldaten:
+
+id | name             | typ         | wert | pokemon_id
+---|------------------|-------------|------|-----------
+1  | Donnerstein      | Stein       | 500  | 1
+2  | Glutstein        | Stein       | 900  | 2
+3  | Zauberwasser     | Verstärker  | 350  | 3
+4  | Bannsticker      | Verstärker  | 700  | 5
+5  | Seltsamer Pokéball| Pokéball   | 20   | NULL
+
+
+AUFGABE 1:
+
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+
+Verbinde "pokemon_id" über einen FOREIGN KEY mit:
+
+    pokemon(id)
+
+
+AUFGABE 4:
+
+Zeige anschließend alle Items zusammen mit dem Namen
+des Pokémon an, dem das Item zugeordnet ist.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Professor Eich möchte wissen:
+
+Welches Pokémon besitzt das wertvollste Item?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+    JOIN
+    MAX()
+    Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+    INSERT INTO
+    VALUES
+    DELETE
+    PRIMARY KEY
+    FOREIGN KEY
+    LEFT JOIN
+    GROUP BY
+    HAVING
+    Unterabfragen
+    MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen:
+
+    JOIN
+    und
+    LEFT JOIN
+
+
+JOIN:
+
+    Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN:
+
+    Zeigt alle Datensätze der linken Tabelle,
+    auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE:
+
+    Filtert Datensätze.
+
+
+HAVING:
+
+    Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    JOIN-Pokémon-Trainer
+
+
+Neuer Rang:
+
+    Datenbank-Pokémon-Meister
+
+
+Nächster Rang:
+
+    SQL-Pokémon-Champion
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    UPDATE mit Berechnungen
+    CASE WHEN
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    Aliases mit AS
+    mehrere JOINs gleichzeitig
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+
+Und natürlich:
+
+    Ein neuer Gegner.
+
+    Der gefürchtete Datenbank-Trainer
+    Bobby Tables.

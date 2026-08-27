@@ -1,0 +1,135 @@
+/*Grundeinstellungen*/
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.6;
+    margin: 16px;
+}
+
+/*Grundeinstellung für Grid*/
+.grid{
+    border: 2px solid #eee;
+    padding: 12px;
+    text-align: center;
+}
+
+.cell{
+    border: 2px solid #ccc;
+    padding: 10px;
+    background-color: #f7f7f7;
+    margin: 10px 0;
+}
+
+/* Grid einschalten*/
+.basic-grid{
+    display: grid;
+}
+
+/* Spalten*/
+.three-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+.spalten{
+    background-color: yellowgreen;
+}
+
+.three-col1{
+    display: grid;
+    grid-template-columns: 4fr 2fr 1fr;
+    gap: 8px;
+}
+
+.spalte{
+    background-color: yellow;
+}
+
+/* Reihen*/
+.rows{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 120px;
+    gap: 8px;
+}
+
+.row{
+    background-color: steelblue;
+    
+    /*Variante zum Zentrieren*/
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+/* Abstände mit gap*/
+.grid-gap{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.gg{
+    background-color: seagreen;
+}
+
+/*Platzierung*/
+.place-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.span-2{
+    grid-column: span 2;
+    background-color: tomato;
+}
+
+.tall{
+    grid-row: span 2;
+    background-color: aquamarine;
+}
+
+.item{
+    background-color: skyblue;
+}
+
+/*Seitenlayout*/
+.page-grid{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+        "header header"
+        "nav    main"
+        "nav    aside"
+        "footer footer";
+    gap: 8px;
+}
+
+.pg-header{
+    grid-area: header;
+}
+
+.pg-nav{
+    grid-area: nav;
+}
+
+.pg-main{
+    grid-area: main;
+}
+
+.pg-aside{
+    grid-area: aside;
+}
+
+.pg-footer{
+    grid-area: footer;
+}
+
+.pg-header, .pg-nav, 
+.pg-aside, .pg-main,
+.pg-footer{
+    border: 2px solid #ccc;
+    padding: 10px;
+    background-color: darkseagreen;
+}

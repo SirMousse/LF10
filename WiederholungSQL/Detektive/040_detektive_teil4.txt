@@ -1,0 +1,988 @@
+SQL-ABENTEUER TEIL 4: DER ANGRIFF VON BOBBY TABLES
+==================================================
+
+Willkommen zurück, Datenbank-Kommissar!
+
+Das Detektivbüro ist in Gefahr.
+
+In der Nacht wurde eine seltsame Nachricht im Fallarchiv gefunden:
+
+    Robert'); DROP TABLE detektive;--
+
+Der Chefermittler wird blass.
+
+"Das kann nur einer gewesen sein..."
+
+Bobby Tables.
+
+Der berüchtigte Datenbank-Verbrecher versucht,
+die Datenbank des Detektivbüros zu manipulieren.
+
+Um ihn aufzuhalten, musst du neue SQL-Techniken lernen.
+
+
+In diesem Abenteuer lernst du:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+Außerdem erfährst du am Ende, warum SQL Injection
+gefährlich ist.
+
+
+--------------------------------------------------
+DIE DATENBANK DES DETEKTIVBÜROS
+--------------------------------------------------
+
+TABELLE: detektive
+
+id | name   | spezialgebiet  | faelle | erfolge | status
+---|--------|----------------|--------|---------|------------
+1  | Mira   | Spurensuche    | 12     | 9       | aktiv
+2  | Jonas  | Verhöre        | 18     | 15      | aktiv
+3  | Tessa  | Technik        | 7      | 5       | im Urlaub
+4  | Malik  | Observation    | 15     | 12      | aktiv
+5  | Clara  | Analyse        | 22     | 20      | im Einsatz
+6  | Ben    | Recherche      | 5      | 4       | aktiv
+7  | Viktor | Forensik       | 9      | 7       | aktiv
+8  | Sophie | Verhöre        | 11     | 8       | aktiv
+
+
+TABELLE: ermittlungen
+
+id | titel                         | schwierigkeit  | belohnung | detektiv_id
+---|-------------------------------|----------------|-----------|------------
+1  | Der verschwundene Schlüssel   | leicht         | 50        | 1
+2  | Das Phantom im Museum         | schwer         | 300       | 4
+3  | Die gestohlene Halskette      | mittel         | 150       | 2
+4  | Der Diamantenraub             | schwer         | 400       | 5
+5  | Spuren im alten Lagerhaus     | leicht         | 40        | 1
+6  | Der mysteriöse Brief          | mittel         | 120       | NULL
+7  | Der Einbruch ohne Spuren      | mittel         | 200       | NULL
+
+
+TABELLE: beweismittel
+
+id | name                    | typ        | wert | detektiv_id
+---|-------------------------|------------|------|------------
+1  | Fingerabdruck           | Spur       | 500  | 1
+2  | Geheime Tonaufnahme     | Aufnahme   | 900  | 2
+3  | Verdächtiger USB-Stick  | Digital    | 600  | 3
+4  | Zerrissene Handschuhe   | Gegenstand | 700  | 4
+5  | Unbekannter Schlüssel   | Gegenstand | 300  | NULL
+
+
+--------------------------------------------------
+QUEST 1 - DISTINCT
+--------------------------------------------------
+
+Der Chefermittler möchte wissen:
+
+Welche verschiedenen Schwierigkeitsstufen gibt es
+bei den Ermittlungen?
+
+Wenn du einfach schreibst:
+
+    SELECT schwierigkeit
+    FROM ermittlungen;
+
+bekommst du Werte mehrfach angezeigt.
+
+Zum Beispiel:
+
+    leicht
+    schwer
+    mittel
+    schwer
+    leicht
+    mittel
+    mittel
+
+
+Mit DISTINCT kannst du doppelte Ergebnisse entfernen.
+
+
+Beispiel:
+
+    SELECT DISTINCT schwierigkeit
+    FROM ermittlungen;
+
+
+Das Ergebnis wäre:
+
+    leicht
+    mittel
+    schwer
+
+
+SQL-WISSEN:
+
+DISTINCT bedeutet:
+
+    Zeige jeden unterschiedlichen Wert nur einmal.
+
+
+AUFGABE:
+
+Finde mit DISTINCT heraus, welche verschiedenen
+Statuswerte bei den Detektiven vorkommen.
+
+
+--------------------------------------------------
+QUEST 2 - DIE SUCHE MIT LIKE
+--------------------------------------------------
+
+Der Chefermittler erinnert sich nur noch daran,
+dass ein Fall irgendetwas mit "Spuren" im Titel hatte.
+
+Mit LIKE kannst du nach Textmustern suchen.
+
+
+Beispiel:
+
+    SELECT *
+    FROM ermittlungen
+    WHERE titel LIKE '%Spuren%';
+
+
+Das Prozentzeichen % ist ein Platzhalter.
+
+Es bedeutet:
+
+    Hier können beliebig viele Zeichen stehen.
+
+
+Beispiele:
+
+    LIKE 'Der%'
+
+Bedeutet:
+
+    Der Text beginnt mit "Der".
+
+
+    LIKE '%Museum'
+
+Bedeutet:
+
+    Der Text endet mit "Museum".
+
+
+    LIKE '%Spuren%'
+
+Bedeutet:
+
+    Irgendwo im Text steht "Spuren".
+
+
+AUFGABE:
+
+Finde alle Ermittlungen, deren Titel mit "Der" beginnt.
+
+
+BONUS:
+
+Finde alle Beweismittel, deren Name irgendwo
+das Wort "er" enthält.
+
+
+--------------------------------------------------
+QUEST 3 - IN
+--------------------------------------------------
+
+Der Chefermittler sucht Detektive aus bestimmten
+Spezialgebieten:
+
+    Verhöre
+    Analyse
+    Forensik
+
+
+Du könntest schreiben:
+
+    WHERE spezialgebiet = 'Verhöre'
+    OR spezialgebiet = 'Analyse'
+    OR spezialgebiet = 'Forensik';
+
+
+Das funktioniert.
+
+Aber SQL bietet eine kürzere Möglichkeit:
+
+    IN
+
+
+Beispiel:
+
+    SELECT *
+    FROM detektive
+    WHERE spezialgebiet IN ('Verhöre', 'Analyse', 'Forensik');
+
+
+SQL-WISSEN:
+
+IN prüft, ob ein Wert in einer Liste vorkommt.
+
+
+AUFGABE:
+
+Zeige alle Detektive mit folgendem Status:
+
+    aktiv
+    im Einsatz
+
+
+Verwende dafür IN.
+
+
+--------------------------------------------------
+QUEST 4 - BETWEEN
+--------------------------------------------------
+
+Für einen schwierigen Fall werden Detektive gesucht,
+die zwischen 7 und 15 Fälle bearbeitet haben.
+
+Dafür gibt es BETWEEN.
+
+
+Beispiel:
+
+    SELECT *
+    FROM detektive
+    WHERE faelle BETWEEN 7 AND 15;
+
+
+SQL-WISSEN:
+
+BETWEEN prüft einen Bereich.
+
+Die Grenzwerte gehören normalerweise dazu.
+
+
+BETWEEN 7 AND 15 bedeutet also:
+
+    7
+    8
+    9
+    ...
+    15
+
+
+AUFGABE:
+
+Finde alle Beweismittel, deren Wert zwischen
+300 und 800 liegt.
+
+
+--------------------------------------------------
+QUEST 5 - ALIASES MIT AS
+--------------------------------------------------
+
+Der Polizeichef beschwert sich über die Berichte.
+
+"Was soll spezialgebiet bedeuten?
+Ich will verständliche Überschriften!"
+
+
+Mit AS kannst du Spalten im Ergebnis
+einen anderen Namen geben.
+
+
+Beispiel:
+
+    SELECT
+        name AS Detektiv,
+        erfolge AS Erfolge,
+        faelle AS Bearbeitete_Faelle
+    FROM detektive;
+
+
+WICHTIG:
+
+AS verändert nicht den echten Namen der Spalte
+in der Datenbank.
+
+Es verändert nur die Anzeige des Ergebnisses.
+
+
+AUFGABE:
+
+Zeige:
+
+    name
+    spezialgebiet
+    erfolge
+
+
+Verwende folgende Anzeigenamen:
+
+    Ermittler
+    Fachgebiet
+    Erfolge
+
+
+--------------------------------------------------
+QUEST 6 - UPDATE MIT BERECHNUNGEN
+--------------------------------------------------
+
+Alle Detektive erhalten nach einer großen
+Ermittlung einen zusätzlichen Erfolgspunkt.
+
+Du könntest jeden Wert einzeln ändern.
+
+Das wäre aber ziemlich umständlich.
+
+SQL kann direkt rechnen.
+
+
+Beispiel:
+
+    UPDATE detektive
+    SET erfolge = erfolge + 1;
+
+
+Wenn Mira vorher 9 Erfolge hatte:
+
+    9 + 1 = 10
+
+
+AUFGABE:
+
+Alle Detektive erhalten einen weiteren bearbeiteten Fall.
+
+Schreibe einen UPDATE-Befehl, der bei jedem Detektiv
+den Wert von "faelle" um 1 erhöht.
+
+
+ZUSATZAUFGABE:
+
+Nur aktive Detektive erhalten einen zusätzlichen Erfolg.
+
+
+Hinweis:
+
+    UPDATE detektive
+    SET ...
+    WHERE ...;
+
+
+--------------------------------------------------
+QUEST 7 - CASE WHEN
+--------------------------------------------------
+
+Der Chefermittler möchte die Detektive automatisch
+nach ihrer Erfahrung bewerten.
+
+
+Die Regeln:
+
+    0 bis 5 Erfolge   = Anfänger
+    6 bis 10 Erfolge  = Ermittler
+    11 bis 15 Erfolge = Profi
+    16+ Erfolge       = Meisterdetektiv
+
+
+Dafür gibt es CASE WHEN.
+
+
+Beispiel:
+
+    SELECT
+        name,
+        erfolge,
+        CASE
+            WHEN erfolge <= 5 THEN 'Anfänger'
+            WHEN erfolge <= 10 THEN 'Ermittler'
+            WHEN erfolge <= 15 THEN 'Profi'
+            ELSE 'Meisterdetektiv'
+        END AS rang
+    FROM detektive;
+
+
+SQL-WISSEN:
+
+CASE funktioniert ähnlich wie:
+
+    Wenn Bedingung A stimmt, dann Wert A.
+    Wenn Bedingung B stimmt, dann Wert B.
+    Sonst ein anderer Wert.
+
+
+AUFGABE:
+
+Bewerte die Anzahl bearbeiteter Fälle.
+
+
+Regeln:
+
+    unter 8 Fälle
+    = Neuling
+
+    8 bis 12 Fälle
+    = Erfahren
+
+    13 bis 17 Fälle
+    = Veteran
+
+    ab 18 Fälle
+    = Legende
+
+
+Gib aus:
+
+    name
+    faelle
+    erfahrungsklasse
+
+
+--------------------------------------------------
+QUEST 8 - MEHRERE JOINS
+--------------------------------------------------
+
+Jetzt wird es ernst.
+
+Der Polizeichef möchte gleichzeitig wissen:
+
+Welcher Detektiv bearbeitet welche Ermittlung
+und welches Beweismittel ist ihm zugeordnet?
+
+
+Wir müssen jetzt drei Tabellen verbinden:
+
+    detektive
+    ermittlungen
+    beweismittel
+
+
+Beispiel:
+
+    SELECT
+        detektive.name,
+        ermittlungen.titel,
+        beweismittel.name
+    FROM detektive
+    JOIN ermittlungen
+    ON detektive.id = ermittlungen.detektiv_id
+    JOIN beweismittel
+    ON detektive.id = beweismittel.detektiv_id;
+
+
+SQL-WISSEN:
+
+Du kannst mehrere JOINs in einer Abfrage verwenden.
+
+
+AUFGABE:
+
+Erstelle einen Bericht mit:
+
+    Name des Detektivs
+    Spezialgebiet
+    Ermittlung
+    Belohnung
+    Beweismittel
+    Wert des Beweismittels
+
+
+--------------------------------------------------
+QUEST 9 - TABELLEN-ALIASES
+--------------------------------------------------
+
+Unsere Abfragen werden langsam ziemlich lang.
+
+Statt ständig:
+
+    detektive.name
+    ermittlungen.titel
+    beweismittel.name
+
+zu schreiben, können Tabellen ebenfalls
+Aliases bekommen.
+
+
+Beispiel:
+
+    SELECT
+        d.name,
+        e.titel
+    FROM detektive AS d
+    JOIN ermittlungen AS e
+    ON d.id = e.detektiv_id;
+
+
+Jetzt steht:
+
+    d
+
+für:
+
+    detektive
+
+
+Und:
+
+    e
+
+für:
+
+    ermittlungen
+
+
+AUFGABE:
+
+Verbinde alle drei Tabellen erneut.
+
+
+Verwende:
+
+    d = detektive
+    e = ermittlungen
+    b = beweismittel
+
+
+Gib aus:
+
+    d.name
+    e.titel
+    b.name
+
+
+--------------------------------------------------
+QUEST 10 - TRANSAKTIONEN
+--------------------------------------------------
+
+Der Chefermittler muss eine größere Änderung
+an der Datenbank durchführen.
+
+Alle aktiven Detektive sollen einen zusätzlichen
+Erfolg bekommen.
+
+Doch was passiert, wenn dabei ein Fehler gemacht wird?
+
+
+Dafür gibt es Transaktionen.
+
+
+Ein vereinfachtes Beispiel:
+
+    START TRANSACTION;
+
+    UPDATE detektive
+    SET erfolge = erfolge + 1
+    WHERE status = 'aktiv';
+
+
+Jetzt wurde die Änderung innerhalb der
+Transaktion durchgeführt.
+
+Sie kann bestätigt werden mit:
+
+    COMMIT;
+
+
+Oder rückgängig gemacht werden mit:
+
+    ROLLBACK;
+
+
+SQL-WISSEN:
+
+COMMIT bedeutet:
+
+    Änderungen endgültig bestätigen.
+
+
+ROLLBACK bedeutet:
+
+    Änderungen der aktuellen Transaktion
+    rückgängig machen.
+
+
+WICHTIG:
+
+Die genaue Syntax für Transaktionen kann je nach
+Datenbanksystem etwas unterschiedlich sein.
+
+
+--------------------------------------------------
+QUEST 11 - DER FEHLER DES CHEFERMITTLERS
+--------------------------------------------------
+
+Der Chefermittler möchte Ben einen zusätzlichen
+Erfolg geben.
+
+Er schreibt:
+
+    START TRANSACTION;
+
+    UPDATE detektive
+    SET erfolge = erfolge + 1
+    WHERE name = 'Ben';
+
+
+Dann bemerkt er:
+
+Ben sollte gar keinen zusätzlichen Erfolg bekommen.
+
+
+FRAGE:
+
+Welchen SQL-Befehl sollte er jetzt verwenden?
+
+
+    COMMIT
+
+oder
+
+    ROLLBACK?
+
+
+--------------------------------------------------
+BOSS-QUEST - DER ANGRIFF VON BOBBY TABLES
+--------------------------------------------------
+
+Plötzlich erscheint Bobby Tables im Fallarchiv.
+
+Er hat die wertvollsten Beweismittel gestohlen.
+
+Der Chefermittler benötigt einen Bericht über alle
+Detektive, die für die Jagd geeignet sind.
+
+
+Die Anforderungen:
+
+Der Detektiv muss mindestens 8 Erfolge besitzen.
+
+Der Status muss entweder:
+
+    aktiv
+
+oder:
+
+    im Einsatz
+
+sein.
+
+Der Detektiv muss ein Beweismittel besitzen.
+
+Das Beweismittel muss mindestens 300 wert sein.
+
+
+Zeige:
+
+    Name
+    Spezialgebiet
+    Erfolge
+    Status
+    Beweismittel
+    Beweismittelwert
+
+
+Verwende sinnvolle Aliases.
+
+Sortiere nach dem Wert des Beweismittels.
+
+Das wertvollste Beweismittel soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    AS
+    FROM
+    JOIN
+    ON
+    WHERE
+    IN
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+SUPER-BOSS-QUEST - DIE RANGLISTE
+--------------------------------------------------
+
+Der Chefermittler möchte einen Bericht mit:
+
+    Name
+    Fälle
+    Erfolge
+    Rang
+
+
+Der Rang soll automatisch mit CASE berechnet werden.
+
+
+Regeln:
+
+    weniger als 6 Erfolge
+    = Nachwuchsdetektiv
+
+    6 bis 10 Erfolge
+    = Ermittler
+
+    11 bis 15 Erfolge
+    = Elite-Ermittler
+
+    16 oder mehr Erfolge
+    = Meisterdetektiv
+
+
+Zeige nur Detektive mit mindestens 5 Erfolgen.
+
+Sortiere zuerst nach Erfolgen und danach nach Fällen.
+
+Beide Werte sollen absteigend sortiert werden.
+
+
+Benötigte Befehle:
+
+    SELECT
+    CASE
+    WHEN
+    THEN
+    ELSE
+    END
+    AS
+    WHERE
+    ORDER BY
+    DESC
+
+
+--------------------------------------------------
+GEHEIM-QUEST - WAS IST SQL INJECTION?
+--------------------------------------------------
+
+Nach dem Kampf untersucht der Chefermittler
+die Nachricht von Bobby Tables.
+
+Sie sah ungefähr so aus:
+
+    Robert'); DROP TABLE detektive;--
+
+
+Das ist eine Anspielung auf ein bekanntes
+Programmierer-Meme.
+
+Das Problem dahinter heißt:
+
+    SQL Injection
+
+
+SQL Injection kann entstehen, wenn ein Programm
+Benutzereingaben unsicher direkt in SQL-Befehle einfügt.
+
+
+Vereinfacht gesagt:
+
+Ein Programm erwartet zum Beispiel einen Namen.
+
+Ein Angreifer versucht stattdessen,
+Teile eines SQL-Befehls einzugeben.
+
+
+Deshalb sollte man SQL-Abfragen in echten Anwendungen
+nicht einfach durch das Zusammenkleben von
+Texteingaben bauen.
+
+
+Stattdessen verwendet man normalerweise:
+
+    Prepared Statements
+
+oder:
+
+    parametrisierte Abfragen
+
+
+Beispielidee:
+
+    SELECT *
+    FROM detektive
+    WHERE name = ?;
+
+
+Das ? steht für einen Wert, der später sicher
+übergeben wird.
+
+
+WICHTIG:
+
+Wie Parameter genau geschrieben werden,
+hängt von der Programmiersprache und Datenbank ab.
+
+
+--------------------------------------------------
+NERD-WISSEN: WARUM "BOBBY TABLES"?
+--------------------------------------------------
+
+"Bobby Tables" ist ein berühmter Witz aus
+der Programmiererwelt.
+
+Dabei wird das Thema SQL Injection anhand
+eines ungewöhnlichen Namens erklärt.
+
+Die eigentliche Lektion dahinter ist ernst:
+
+Benutzereingaben dürfen nicht blind als SQL-Code
+behandelt werden.
+
+
+--------------------------------------------------
+ABSCHLUSS-QUEST
+--------------------------------------------------
+
+Ordne die SQL-Begriffe der richtigen Erklärung zu:
+
+
+    1. DISTINCT
+
+    2. LIKE
+
+    3. IN
+
+    4. BETWEEN
+
+    5. AS
+
+    6. CASE
+
+    7. COMMIT
+
+    8. ROLLBACK
+
+
+ERKLÄRUNGEN:
+
+    A = Änderungen einer Transaktion rückgängig machen
+
+    B = Werte innerhalb eines Bereichs suchen
+
+    C = doppelte Ergebnisse entfernen
+
+    D = mehrere mögliche Werte prüfen
+
+    E = Änderungen einer Transaktion bestätigen
+
+    F = Alias bzw. Anzeigenamen vergeben
+
+    G = Textmuster suchen
+
+    H = Bedingungen verwenden, um unterschiedliche
+        Werte auszugeben
+
+
+Schreibe die Lösung zum Beispiel so:
+
+    1 = ?
+    2 = ?
+    3 = ?
+    4 = ?
+    5 = ?
+    6 = ?
+    7 = ?
+    8 = ?
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt zusätzlich:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Tabellen-Aliases
+    START TRANSACTION
+    COMMIT
+    ROLLBACK
+
+
+Außerdem hast du gelernt:
+
+SQL besteht nicht nur aus SELECT-Abfragen.
+
+
+SQL kann Daten:
+
+    lesen
+    filtern
+    sortieren
+    gruppieren
+    verbinden
+    hinzufügen
+    ändern
+    löschen
+
+
+Und du hast einen ersten wichtigen Bereich
+der Datenbanksicherheit kennengelernt:
+
+    SQL Injection
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    Datenbank-Kommissar
+
+
+Neuer Rang:
+
+    SQL-Meisterermittler
+
+
+Bobby Tables wurde zurückgeschlagen.
+
+Zumindest vorerst.
+
+
+NÄCHSTES ABENTEUER:
+
+    SQL-Abenteuer Teil 5:
+    Das Turnier der Query-Meister
+
+
+Mögliche neue Themen:
+
+    CREATE VIEW
+    UNION
+    UNION ALL
+    EXISTS
+    NOT EXISTS
+    COALESCE
+    CONCAT
+    Datumsfunktionen
+    Constraints
+    UNIQUE
+    DEFAULT
+    CHECK
+    komplexere Unterabfragen
+    Datenbank-Normalisierung
+
+
+Und eine große Herausforderung:
+
+    Eine eigene kleine Detektiv-Datenbank
+    von Grund auf entwerfen.

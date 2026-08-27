@@ -1,0 +1,662 @@
+SQL-Abenteuer Teil 3: Die verbotenen Archive der Eisernen Eule
+
+Willkommen zurück, JOIN-Beschwörer!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits die nächste Aufgabe auf dich.
+
+Tief unter der Gildenhalle befinden sich die verbotenen Archive.
+
+Dort werden neue Abenteurer registriert, alte Aufträge gelöscht
+und mächtige Artefakte verwaltet.
+
+Der Gildenmeister überreicht dir den Schlüssel zum Archiv.
+
+Deine heutigen SQL-Fähigkeiten:
+
+INSERT
+DELETE
+LEFT JOIN
+FOREIGN KEY
+HAVING
+Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: abenteurer
+
+id | name   | klasse   | level | gold | status
+1  | Arin   | Krieger  | 5     | 120  | aktiv
+2  | Lyra   | Magierin | 8     | 340  | aktiv
+3  | Borin  | Zwerg    | 3     | 75   | verletzt
+4  | Nyx    | Schurkin | 7     | 260  | aktiv
+5  | Eldrin | Magier   | 10    | 500  | auf Mission
+6  | Pip    | Barde    | 3     | 45   | aktiv
+
+
+TABELLE: auftraege
+
+id | titel                      | schwierigkeit | belohnung | abenteurer_id
+1  | Goblins im Kartoffelkeller | leicht        | 50        | 1
+2  | Der Fluch des Segmentation | schwer        | 300       | 2
+3  | Die verschwundene Taverne  | mittel        | 150       | 4
+4  | Angriff der Nullpointer     | schwer        | 400       | 5
+5  | Ratten im Serverraum       | leicht        | 40        | 1
+6  | Das verlorene Passwort     | mittel        | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUER HELD BETRITT DIE GILDE
+--------------------------------------------------
+
+Vor der Gildenhalle steht ein neuer Abenteurer.
+
+Sein Name ist:
+
+Thorin.exe
+
+Seine Daten:
+
+Klasse: Technomant
+Level: 4
+Gold: 90
+Status: aktiv
+
+Der Gildenmeister möchte ihn in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+INSERT INTO abenteurer
+(id, name, klasse, level, gold, status)
+VALUES
+(7, 'Thorin.exe', 'Technomant', 4, 90, 'aktiv');
+
+
+SQL-Wissen:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge einen weiteren Abenteurer hinzu:
+
+id: 8
+name: Zelda
+klasse: Waldläuferin
+level: 6
+gold: 180
+status: aktiv
+
+
+--------------------------------------------------
+QUEST 2 - EIN NEUER AUFTRAG
+--------------------------------------------------
+
+In der Nacht erscheint ein mysteriöser Auftrag an der Auftragstafel.
+
+Titel:
+
+Der Bug im Dungeon
+
+Schwierigkeit:
+
+mittel
+
+Belohnung:
+
+200 Gold
+
+Noch kein Abenteurer hat den Auftrag angenommen.
+
+
+AUFGABE:
+
+Füge diesen Auftrag mit INSERT INTO in die Tabelle "auftraege" ein.
+
+Verwende:
+
+id = 7
+
+Da noch kein Abenteurer den Auftrag angenommen hat, soll gelten:
+
+abenteurer_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER VERBOTENE DELETE-BEFEHL
+--------------------------------------------------
+
+Ein alter Auftrag wurde versehentlich doppelt eingetragen.
+
+Der Gildenmeister befiehlt:
+
+"Lösche ihn aus dem Archiv!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+DELETE FROM auftraege
+WHERE id = 5;
+
+
+SQL-Wissen:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+DELETE FROM auftraege;
+
+würde ALLE Aufträge löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur den Auftrag mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+1  | Arin
+1  | Gandalf
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-Wissen:
+
+Ein PRIMARY KEY sollte:
+
+- eindeutig sein
+- nicht NULL sein
+- einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "auftraege" besitzt:
+
+abenteurer_id
+
+
+Diese Spalte verweist auf:
+
+abenteurer.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY abgesichert werden.
+
+
+Beispiel:
+
+CREATE TABLE auftraege (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    abenteurer_id INT,
+    FOREIGN KEY (abenteurer_id)
+        REFERENCES abenteurer(id)
+);
+
+
+SQL-Wissen:
+
+PRIMARY KEY:
+
+Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Abenteurern,
+die noch keinen Auftrag haben?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+SELECT abenteurer.name, auftraege.titel
+FROM abenteurer
+LEFT JOIN auftraege
+ON abenteurer.id = auftraege.abenteurer_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+abenteurer = linke Tabelle
+auftraege = rechte Tabelle
+
+
+Hat ein Abenteurer keinen Auftrag, steht beim Auftrag möglicherweise:
+
+NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+name
+klasse
+titel
+
+für alle Abenteurer.
+
+Auch Abenteurer ohne Auftrag sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE HELDEN OHNE AUFTRAG
+--------------------------------------------------
+
+Der Gildenmeister entdeckt ein Problem.
+
+Einige Abenteurer sitzen seit Tagen in der Taverne und haben keinen Auftrag.
+
+Finde alle Abenteurer ohne Auftrag.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+LEFT JOIN
+
+und
+
+IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+WHERE auftraege.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+name
+klasse
+level
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Der Gildenmeister möchte wissen:
+Welche Abenteurer haben MEHR ALS EINEN Auftrag?
+
+
+Wir kennen bereits:
+
+GROUP BY
+
+
+Beispiel:
+
+SELECT abenteurer.name, COUNT(auftraege.id)
+FROM abenteurer
+JOIN auftraege
+ON abenteurer.id = auftraege.abenteurer_id
+GROUP BY abenteurer.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+HAVING
+
+
+Beispiel:
+
+SELECT abenteurer.name, COUNT(auftraege.id)
+FROM abenteurer
+JOIN auftraege
+ON abenteurer.id = auftraege.abenteurer_id
+GROUP BY abenteurer.name
+HAVING COUNT(auftraege.id) > 1;
+
+
+SQL-Wissen:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+WHERE kommt normalerweise vor GROUP BY.
+
+HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Der Gildenmeister stellt eine schwierige Frage:
+
+Welche Abenteurer besitzen mehr Gold als der durchschnittliche Abenteurer?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+SELECT AVG(gold)
+FROM abenteurer;
+
+
+Aber wir können diese Abfrage auch in eine andere Abfrage einbauen.
+
+
+Beispiel:
+
+SELECT name, gold
+FROM abenteurer
+WHERE gold > (
+    SELECT AVG(gold)
+    FROM abenteurer
+);
+
+
+Das nennt man:
+
+Unterabfrage
+
+oder:
+
+Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+SELECT AVG(gold)
+FROM abenteurer;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+Finde alle Abenteurer, deren Level über dem durchschnittlichen Level der Gilde liegt.
+
+
+--------------------------------------------------
+QUEST 10 - DER REICHSTE HELD
+--------------------------------------------------
+
+Der Gildenmeister möchte wissen:
+Wer besitzt das meiste Gold?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+MAX(gold)
+
+
+AUFGABE:
+
+Vervollständige:
+
+SELECT name, gold
+FROM abenteurer
+WHERE gold = (
+    ...
+);
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE ARCHIV
+--------------------------------------------------
+
+Ein verdächtiger Abenteurer hat versucht, die Gildendatenbank zu manipulieren.
+
+Der Gildenmeister braucht einen vollständigen Bericht.
+
+
+Finde alle Abenteurer, die:
+
+- mindestens Level 5 sind
+- mindestens einen Auftrag besitzen
+- insgesamt mehr als 100 Gold durch Aufträge verdienen können
+
+
+Zeige:
+
+name
+klasse
+level
+Anzahl der Aufträge
+gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+SELECT
+JOIN
+ON
+WHERE
+GROUP BY
+HAVING
+COUNT()
+SUM()
+ORDER BY
+DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE ARTEFAKT-DATENBANK
+--------------------------------------------------
+
+Die Gilde besitzt inzwischen so viele magische Gegenstände, dass eine neue Tabelle benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+artefakte
+
+
+Sie soll folgende Spalten besitzen:
+
+id
+name
+typ
+wert
+abenteurer_id
+
+
+Beispieldaten:
+
+1 | Schwert von Stackoverflow | Schwert | 500 | 1
+2 | Stab der Rekursion        | Stab    | 900 | 2
+3 | Ring des Debuggers        | Ring    | 350 | 4
+4 | Amulett von Git           | Amulett | 700 | 5
+5 | Verfluchter USB-Stick     | Relikt  | 20  | NULL
+
+
+AUFGABE 1:
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+Verbinde "abenteurer_id" über einen FOREIGN KEY mit: abenteurer(id)
+
+
+AUFGABE 4:
+Zeige anschließend alle Artefakte zusammen mit dem Namen ihres Besitzers an.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Der Gildenmeister möchte wissen: Welcher Abenteurer besitzt das wertvollste Artefakt?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+JOIN
+MAX()
+Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+INSERT INTO
+VALUES
+DELETE
+PRIMARY KEY
+FOREIGN KEY
+LEFT JOIN
+GROUP BY
+HAVING
+Unterabfragen
+MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen: JOIN und LEFT JOIN
+
+
+JOIN: Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN: Zeigt alle Datensätze der linken Tabelle, auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE: Filtert Datensätze.
+
+
+HAVING: Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang: JOIN-Beschwörer
+
+Neuer Rang: Datenbank-Magier der Eisernen Eule
+
+Nächster Rang: SQL-Erzmagier
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+UPDATE mit Berechnungen
+CASE WHEN
+DISTINCT
+LIKE
+IN
+BETWEEN
+Aliases mit AS
+mehrere JOINs gleichzeitig
+Transaktionen
+COMMIT
+ROLLBACK
+
+Und natürlich:
+
+Ein neuer Gegner.
+
+Der gefürchtete Tabellen-Nekromant Bobby Tables.

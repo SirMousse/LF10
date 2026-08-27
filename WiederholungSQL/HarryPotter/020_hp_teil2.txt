@@ -1,0 +1,418 @@
+SQL-ABENTEUER TEIL 2: DIE AUFTRÄGE VON HOGWARTS
+===============================================
+
+Willkommen zurück, SQL-Zauberschüler!
+
+Nach deinen erfolgreichen ersten Abfragen hat Professor Dumbledore
+beschlossen, dir mehr Verantwortung zu übertragen.
+
+Bisher hast du nur mit der Tabelle "zauberschueler" gearbeitet.
+
+Doch eine große Zauberschule braucht natürlich auch Aufgaben,
+Missionen und magische Aufträge.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander
+verbunden werden.
+
+
+AUSGANGSLAGE
+------------
+
+Unsere bekannte Tabelle:
+
+zauberschueler
+
+id | name    | haus       | jahrgang | punkte | status
+---|---------|------------|----------|--------|------------------
+1  | Harry   | Gryffindor | 5        | 120    | aktiv
+2  | Hermine | Gryffindor | 5        | 180    | aktiv
+3  | Ron     | Gryffindor | 5        | 95     | aktiv
+4  | Draco   | Slytherin  | 5        | 110    | aktiv
+5  | Luna    | Ravenclaw  | 4        | 140    | aktiv
+6  | Neville | Gryffindor | 5        | 100    | im Krankenflügel
+
+
+NEUE TABELLE: AUFTRAEGE
+-----------------------
+
+CREATE TABLE auftraege (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    schueler_id INT
+);
+
+
+Folgende Aufträge befinden sich im Hogwarts-Archiv:
+
+id | titel                              | schwierigkeit | belohnung | schueler_id
+---|------------------------------------|----------------|-----------|------------
+1  | Die verschwundenen Zaubertränke   | leicht         | 50        | 2
+2  | Das Geheimnis des Verbotenen Walds| schwer         | 300       | 1
+3  | Die verlorene Eule                 | mittel         | 150       | 5
+4  | Gefahr in der Kammer               | schwer         | 400       | 1
+5  | Das Rätsel der Bibliothek          | leicht         | 40        | 2
+6  | Der unbekannte Zauberstab          | mittel         | 120       | NULL
+
+
+WAS BEDEUTET "schueler_id"?
+---------------------------
+
+Die Spalte "schueler_id" zeigt, welcher Zauberschüler
+einen Auftrag übernommen hat.
+
+Beispiel:
+
+    schueler_id = 1
+
+bedeutet:
+
+Der Zauberschüler mit der ID 1 hat diesen Auftrag übernommen.
+
+Das ist Harry.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DAS SCHWARZE BRETT VON HOGWARTS
+-----------------------------------------
+
+Zeige alle Aufträge von Hogwarts an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+    SELECT *
+    FROM auftraege;
+
+
+QUEST 2 - NUR FÜR ERFAHRENE ZAUBERSCHÜLER
+-----------------------------------------
+
+Professor Dumbledore möchte alle schweren Aufträge sehen.
+
+Zeige alle Aufträge, deren Schwierigkeit "schwer" ist.
+
+
+SQL-WISSEN:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache
+Anführungszeichen geschrieben.
+
+Beispiel:
+
+    WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE BESTBELOHNTEN AUFTRÄGE
+------------------------------------
+
+Zeige:
+
+    titel
+    schwierigkeit
+    belohnung
+
+Sortiere die Aufträge nach ihrer Belohnung.
+
+Der Auftrag mit der höchsten Belohnung soll zuerst erscheinen.
+
+
+SQL-WISSEN:
+
+    ORDER BY belohnung DESC;
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+----------------------------
+
+Jetzt wird es interessanter.
+
+Professor Dumbledore möchte nicht nur die Aufträge sehen.
+
+Er möchte auch wissen, welcher Zauberschüler den jeweiligen
+Auftrag übernommen hat.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+
+Beispiel:
+
+    SELECT zauberschueler.name, auftraege.titel
+    FROM zauberschueler
+    JOIN auftraege
+    ON zauberschueler.id = auftraege.schueler_id;
+
+
+SQL-WISSEN:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+    ON zauberschueler.id = auftraege.schueler_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE:
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+    Name des Zauberschülers
+    Haus des Zauberschülers
+    Titel des Auftrags
+    Belohnung
+
+
+QUEST 5 - WER SAMMELT DIE MEISTEN BELOHNUNGEN?
+----------------------------------------------
+
+Zeige alle Zauberschüler zusammen mit ihren Aufträgen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst dafür:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    ORDER BY
+    DESC
+
+
+QUEST 6 - DER MYSTERIÖSE NULL-WERT
+----------------------------------
+
+Beim Auftrag "Der unbekannte Zauberstab" steht:
+
+    schueler_id = NULL
+
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+    Es ist kein Wert vorhanden.
+
+
+Das bedeutet in unserem Beispiel:
+
+Noch kein Zauberschüler hat diesen Auftrag übernommen.
+
+
+WICHTIG:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+    WHERE schueler_id = NULL
+
+
+Stattdessen verwendet SQL:
+
+    WHERE schueler_id IS NULL;
+
+
+AUFGABE:
+
+Finde alle Aufträge, die noch keinem Zauberschüler
+zugewiesen wurden.
+
+
+QUEST 7 - WIE VIELE AUFTRÄGE GIBT ES?
+-------------------------------------
+
+Professor Dumbledore hat den Überblick verloren.
+
+Er möchte wissen, wie viele Aufträge aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+
+Beispiel:
+
+    SELECT COUNT(*)
+    FROM auftraege;
+
+
+SQL-WISSEN:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+    Zähle alle Zeilen.
+
+
+QUEST 8 - DIE DURCHSCHNITTLICHE BELOHNUNG
+-----------------------------------------
+
+Professor Dumbledore möchte wissen, wie hoch die durchschnittliche
+Belohnung aller Aufträge ist.
+
+Dafür gibt es AVG().
+
+
+Beispiel:
+
+    SELECT AVG(belohnung)
+    FROM auftraege;
+
+
+Weitere Aggregatfunktionen:
+
+    SUM()   = Summe
+    AVG()   = Durchschnitt
+    MIN()   = kleinster Wert
+    MAX()   = größter Wert
+    COUNT() = Anzahl
+
+
+BOSS-QUEST - DER GROSSE HOGWARTS-BERICHT
+----------------------------------------
+
+Professor Dumbledore verlangt einen Bericht über alle
+vergebenen Aufträge.
+
+Er möchte folgende Informationen sehen:
+
+    Name des Zauberschülers
+    Haus
+    Jahrgang
+    Titel des Auftrags
+    Schwierigkeit
+    Belohnung
+
+
+Dabei sollen nur Aufträge angezeigt werden, deren Belohnung
+mindestens 100 beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    WHERE
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+----------------------
+
+Professor Dumbledore stellt eine neue Frage:
+
+Wie viele Aufträge hat jeder Zauberschüler übernommen?
+
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT zauberschueler.name, COUNT(auftraege.id)
+    FROM zauberschueler
+    JOIN auftraege
+    ON zauberschueler.id = auftraege.schueler_id
+    GROUP BY zauberschueler.name;
+
+
+SQL-WISSEN:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+    Wie viele Aufträge hat jeder Zauberschüler?
+
+    Wie hoch ist die gesamte Belohnung
+    jeder Schwierigkeitsstufe?
+
+    Wie viele Zauberschüler gehören zu jedem Haus?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+---------------------------
+
+Finde heraus, wie viele Belohnungspunkte jeder Zauberschüler
+insgesamt durch seine Aufträge sammeln kann.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name    | gesamtbelohnung
+--------|----------------
+Harry   | ...
+Hermine | ...
+Luna    | ...
+
+
+Dafür musst du zwei Dinge kombinieren:
+
+    GROUP BY
+    SUM()
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+    JOIN
+    ON
+    IS NULL
+    COUNT()
+    AVG()
+    GROUP BY
+    SUM()
+
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise
+nicht alle in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Neuer Rang:
+
+    JOIN-Zaubermeister
+
+
+Nächster Rang:
+
+    Datenbank-Erzmagier
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    HAVING
+    PRIMARY KEY
+    FOREIGN KEY
+    Unterabfragen

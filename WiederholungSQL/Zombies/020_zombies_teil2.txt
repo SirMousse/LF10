@@ -1,0 +1,417 @@
+SQL-ABENTEUER TEIL 2: DIE MISSIONEN DER ZOMBIE-APOKALYPSE
+=========================================================
+
+Willkommen zurück, SQL-Zombie-Jäger!
+
+Nach deinen erfolgreichen ersten Abfragen hat die Lagerleitung
+beschlossen, dir mehr Verantwortung zu übertragen.
+
+Bisher hast du nur mit der Tabelle "zombies" gearbeitet.
+
+Doch in einer Zombie-Apokalypse gibt es natürlich auch
+gefährliche Missionen.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander
+verbunden werden.
+
+
+AUSGANGSLAGE
+------------
+
+Unsere bekannte Tabelle:
+
+zombies
+
+id | name    | typ       | gefahr | entfernung | status
+---|---------|-----------|--------|------------|---------------
+1  | Grunz   | Beißer    | 5      | 120        | unterwegs
+2  | Kratzer | Läufer    | 8      | 60         | unterwegs
+3  | Matsch  | Schlurfer | 3      | 300        | gesichtet
+4  | Brüller | Mutant    | 10     | 40         | unterwegs
+5  | Knochen | Beißer    | 7      | 90         | unterwegs
+6  | Stinker | Schlurfer | 2      | 450        | gesichtet
+
+
+NEUE TABELLE: MISSIONEN
+-----------------------
+
+CREATE TABLE missionen (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    zombie_id INT
+);
+
+
+Folgende Missionen befinden sich im Lagerarchiv:
+
+id | titel                         | schwierigkeit | belohnung | zombie_id
+---|-------------------------------|----------------|-----------|----------
+1  | Vorräte aus dem Supermarkt   | leicht         | 50        | 1
+2  | Flucht durch die Innenstadt  | schwer         | 300       | 2
+3  | Medizin aus dem Krankenhaus  | mittel         | 150       | 5
+4  | Der Mutant am Haupttor       | schwer         | 400       | 4
+5  | Benzin von der Tankstelle    | leicht         | 40        | 1
+6  | Das verlassene Labor         | mittel         | 120       | NULL
+
+
+WAS BEDEUTET "zombie_id"?
+-------------------------
+
+Die Spalte "zombie_id" zeigt, welcher Zombie bei einer
+Mission eine Gefahr darstellt.
+
+Beispiel:
+
+    zombie_id = 1
+
+bedeutet:
+
+Der Zombie mit der ID 1 gehört zu dieser Mission.
+
+Das ist Grunz.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DIE MISSIONSTAFEL
+---------------------------
+
+Zeige alle Missionen des Überlebendenlagers an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+    SELECT *
+    FROM missionen;
+
+
+QUEST 2 - NUR FÜR MUTIGE ÜBERLEBENDE
+------------------------------------
+
+Die Lagerleitung möchte alle schweren Missionen sehen.
+
+Zeige alle Missionen, deren Schwierigkeit "schwer" ist.
+
+
+SQL-WISSEN:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache
+Anführungszeichen geschrieben.
+
+Beispiel:
+
+    WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE BESTBEZAHLTEN MISSIONEN
+-------------------------------------
+
+Zeige:
+
+    titel
+    schwierigkeit
+    belohnung
+
+Sortiere die Missionen nach ihrer Belohnung.
+
+Die Mission mit der höchsten Belohnung soll zuerst erscheinen.
+
+
+SQL-WISSEN:
+
+    ORDER BY belohnung DESC;
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+----------------------------
+
+Jetzt wird es interessanter.
+
+Die Lagerleitung möchte nicht nur die Missionen sehen.
+
+Sie möchte auch wissen, welcher Zombie bei der jeweiligen
+Mission eine Gefahr darstellt.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+
+Beispiel:
+
+    SELECT zombies.name, missionen.titel
+    FROM zombies
+    JOIN missionen
+    ON zombies.id = missionen.zombie_id;
+
+
+SQL-WISSEN:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+    ON zombies.id = missionen.zombie_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE:
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+    Name des Zombies
+    Typ des Zombies
+    Titel der Mission
+    Belohnung
+
+
+QUEST 5 - WELCHE MISSION LOHNT SICH AM MEISTEN?
+-----------------------------------------------
+
+Zeige alle Zombies zusammen mit den zugehörigen Missionen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst dafür:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    ORDER BY
+    DESC
+
+
+QUEST 6 - DER MYSTERIÖSE NULL-WERT
+----------------------------------
+
+Bei der Mission "Das verlassene Labor" steht:
+
+    zombie_id = NULL
+
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+    Es ist kein Wert vorhanden.
+
+
+Das bedeutet in unserem Beispiel:
+
+Dieser Mission wurde noch kein Zombie zugeordnet.
+
+
+WICHTIG:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+    WHERE zombie_id = NULL
+
+
+Stattdessen verwendet SQL:
+
+    WHERE zombie_id IS NULL;
+
+
+AUFGABE:
+
+Finde alle Missionen, denen noch kein Zombie zugeordnet wurde.
+
+
+QUEST 7 - WIE VIELE MISSIONEN GIBT ES?
+--------------------------------------
+
+Die Lagerleitung hat den Überblick verloren.
+
+Sie möchte wissen, wie viele Missionen aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+
+Beispiel:
+
+    SELECT COUNT(*)
+    FROM missionen;
+
+
+SQL-WISSEN:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+    Zähle alle Zeilen.
+
+
+QUEST 8 - DIE DURCHSCHNITTLICHE BELOHNUNG
+-----------------------------------------
+
+Die Lagerleitung möchte wissen, wie hoch die durchschnittliche
+Belohnung aller Missionen ist.
+
+Dafür gibt es AVG().
+
+
+Beispiel:
+
+    SELECT AVG(belohnung)
+    FROM missionen;
+
+
+Weitere Aggregatfunktionen:
+
+    SUM()   = Summe
+    AVG()   = Durchschnitt
+    MIN()   = kleinster Wert
+    MAX()   = größter Wert
+    COUNT() = Anzahl
+
+
+BOSS-QUEST - DER GROSSE ÜBERLEBENSBERICHT
+-----------------------------------------
+
+Der Anführer des Überlebendenlagers verlangt einen Bericht
+über alle Missionen mit bekannten Zombie-Gefahren.
+
+Er möchte folgende Informationen sehen:
+
+    Name des Zombies
+    Typ
+    Gefahrenstufe
+    Titel der Mission
+    Schwierigkeit
+    Belohnung
+
+
+Dabei sollen nur Missionen angezeigt werden, deren Belohnung
+mindestens 100 beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    WHERE
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+----------------------
+
+Die Lagerleitung stellt eine neue Frage:
+
+Wie viele Missionen sind jedem Zombie zugeordnet?
+
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT zombies.name, COUNT(missionen.id)
+    FROM zombies
+    JOIN missionen
+    ON zombies.id = missionen.zombie_id
+    GROUP BY zombies.name;
+
+
+SQL-WISSEN:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+    Wie viele Missionen sind jedem Zombie zugeordnet?
+
+    Wie hoch ist die gesamte Belohnung
+    jeder Schwierigkeitsstufe?
+
+    Wie viele Zombies gehören zu jedem Typ?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+---------------------------
+
+Finde heraus, wie hoch die gesamte Belohnung aller Missionen
+ist, die jedem Zombie zugeordnet sind.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name    | gesamtbelohnung
+--------|----------------
+Grunz   | ...
+Kratzer | ...
+Brüller | ...
+
+
+Dafür musst du zwei Dinge kombinieren:
+
+    GROUP BY
+    SUM()
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+    JOIN
+    ON
+    IS NULL
+    COUNT()
+    AVG()
+    GROUP BY
+    SUM()
+
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise
+nicht alle in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Neuer Rang:
+
+    JOIN-Zombie-Jäger
+
+
+Nächster Rang:
+
+    Datenbank-Überlebender
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    HAVING
+    PRIMARY KEY
+    FOREIGN KEY
+    Unterabfragen

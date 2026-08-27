@@ -1,0 +1,418 @@
+SQL-ABENTEUER TEIL 2: DIE AUFTRÄGE VON MITTELERDE
+=================================================
+
+Willkommen zurück, SQL-Gefährte!
+
+Nach deinen erfolgreichen ersten Abfragen hat Elrond
+beschlossen, dir mehr Verantwortung zu übertragen.
+
+Bisher hast du nur mit der Tabelle "gefaehrten" gearbeitet.
+
+Doch die Gefährten von Mittelerde müssen natürlich auch
+gefährliche Aufträge und Missionen erfüllen.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander
+verbunden werden.
+
+
+AUSGANGSLAGE
+------------
+
+Unsere bekannte Tabelle:
+
+gefaehrten
+
+id | name    | volk   | level | staerke | status
+---|---------|--------|-------|---------|------------
+1  | Aragorn | Mensch | 9     | 180     | aktiv
+2  | Legolas | Elb    | 8     | 160     | aktiv
+3  | Gimli   | Zwerg  | 7     | 170     | aktiv
+4  | Frodo   | Hobbit | 5     | 90      | auf Mission
+5  | Gandalf | Maia   | 10    | 250     | aktiv
+6  | Sam     | Hobbit | 4     | 100     | aktiv
+
+
+NEUE TABELLE: AUFTRAEGE
+-----------------------
+
+CREATE TABLE auftraege (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    gefaehrte_id INT
+);
+
+
+Folgende Aufträge befinden sich im Archiv von Bruchtal:
+
+id | titel                         | schwierigkeit | belohnung | gefaehrte_id
+---|-------------------------------|----------------|-----------|-------------
+1  | Orks am Pass                  | leicht         | 50        | 3
+2  | Spione aus Mordor             | schwer         | 300       | 2
+3  | Die verlorene Elbenklinge     | mittel         | 150       | 1
+4  | Der Weg zum Schicksalsberg    | schwer         | 400       | 4
+5  | Warge im Wald                 | leicht         | 40        | 2
+6  | Das Geheimnis der alten Ruine | mittel         | 120       | NULL
+
+
+WAS BEDEUTET "gefaehrte_id"?
+----------------------------
+
+Die Spalte "gefaehrte_id" zeigt, welcher Gefährte einen
+Auftrag übernommen hat.
+
+Beispiel:
+
+    gefaehrte_id = 1
+
+bedeutet:
+
+Der Gefährte mit der ID 1 hat diesen Auftrag übernommen.
+
+Das ist Aragorn.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DIE AUFTRAGSTAFEL VON BRUCHTAL
+----------------------------------------
+
+Zeige alle Aufträge aus dem Archiv an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+    SELECT *
+    FROM auftraege;
+
+
+QUEST 2 - NUR FÜR ERFAHRENE GEFÄHRTEN
+-------------------------------------
+
+Elrond möchte alle schweren Aufträge sehen.
+
+Zeige alle Aufträge, deren Schwierigkeit "schwer" ist.
+
+
+SQL-WISSEN:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache
+Anführungszeichen geschrieben.
+
+Beispiel:
+
+    WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE WERTVOLLSTEN AUFTRÄGE
+-----------------------------------
+
+Zeige:
+
+    titel
+    schwierigkeit
+    belohnung
+
+Sortiere die Aufträge nach ihrer Belohnung.
+
+Der Auftrag mit der höchsten Belohnung soll zuerst erscheinen.
+
+
+SQL-WISSEN:
+
+    ORDER BY belohnung DESC;
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+----------------------------
+
+Jetzt wird es interessanter.
+
+Elrond möchte nicht nur die Aufträge sehen.
+
+Er möchte auch wissen, welcher Gefährte den jeweiligen
+Auftrag übernommen hat.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+
+Beispiel:
+
+    SELECT gefaehrten.name, auftraege.titel
+    FROM gefaehrten
+    JOIN auftraege
+    ON gefaehrten.id = auftraege.gefaehrte_id;
+
+
+SQL-WISSEN:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+    ON gefaehrten.id = auftraege.gefaehrte_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE:
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+    Name des Gefährten
+    Volk des Gefährten
+    Titel des Auftrags
+    Belohnung
+
+
+QUEST 5 - WER ERHÄLT DIE HÖCHSTE BELOHNUNG?
+-------------------------------------------
+
+Zeige alle Gefährten zusammen mit ihren Aufträgen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst dafür:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    ORDER BY
+    DESC
+
+
+QUEST 6 - DER MYSTERIÖSE NULL-WERT
+----------------------------------
+
+Beim Auftrag "Das Geheimnis der alten Ruine" steht:
+
+    gefaehrte_id = NULL
+
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+    Es ist kein Wert vorhanden.
+
+
+Das bedeutet in unserem Beispiel:
+
+Noch kein Gefährte hat diesen Auftrag übernommen.
+
+
+WICHTIG:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+    WHERE gefaehrte_id = NULL
+
+
+Stattdessen verwendet SQL:
+
+    WHERE gefaehrte_id IS NULL;
+
+
+AUFGABE:
+
+Finde alle Aufträge, die noch keinem Gefährten
+zugewiesen wurden.
+
+
+QUEST 7 - WIE VIELE AUFTRÄGE GIBT ES?
+-------------------------------------
+
+Elrond hat den Überblick über die vielen Missionen verloren.
+
+Er möchte wissen, wie viele Aufträge aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+
+Beispiel:
+
+    SELECT COUNT(*)
+    FROM auftraege;
+
+
+SQL-WISSEN:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+    Zähle alle Zeilen.
+
+
+QUEST 8 - DIE DURCHSCHNITTLICHE BELOHNUNG
+-----------------------------------------
+
+Elrond möchte wissen, wie hoch die durchschnittliche
+Belohnung aller Aufträge ist.
+
+Dafür gibt es AVG().
+
+
+Beispiel:
+
+    SELECT AVG(belohnung)
+    FROM auftraege;
+
+
+Weitere Aggregatfunktionen:
+
+    SUM()   = Summe
+    AVG()   = Durchschnitt
+    MIN()   = kleinster Wert
+    MAX()   = größter Wert
+    COUNT() = Anzahl
+
+
+BOSS-QUEST - DER GROSSE BERICHT VON MITTELERDE
+----------------------------------------------
+
+Der Rat von Elrond verlangt einen Bericht über alle
+vergebenen Aufträge.
+
+Er möchte folgende Informationen sehen:
+
+    Name des Gefährten
+    Volk
+    Level
+    Titel des Auftrags
+    Schwierigkeit
+    Belohnung
+
+
+Dabei sollen nur Aufträge angezeigt werden, deren Belohnung
+mindestens 100 beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    WHERE
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+----------------------
+
+Elrond stellt eine neue Frage:
+
+Wie viele Aufträge hat jeder Gefährte übernommen?
+
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT gefaehrten.name, COUNT(auftraege.id)
+    FROM gefaehrten
+    JOIN auftraege
+    ON gefaehrten.id = auftraege.gefaehrte_id
+    GROUP BY gefaehrten.name;
+
+
+SQL-WISSEN:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+    Wie viele Aufträge hat jeder Gefährte?
+
+    Wie hoch ist die gesamte Belohnung
+    jeder Schwierigkeitsstufe?
+
+    Wie viele Gefährten gehören zu jedem Volk?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+---------------------------
+
+Finde heraus, wie viel Belohnung jeder Gefährte insgesamt
+durch seine Aufträge verdienen kann.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name    | gesamtbelohnung
+--------|----------------
+Aragorn | ...
+Legolas | ...
+Gimli   | ...
+
+
+Dafür musst du zwei Dinge kombinieren:
+
+    GROUP BY
+    SUM()
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+    JOIN
+    ON
+    IS NULL
+    COUNT()
+    AVG()
+    GROUP BY
+    SUM()
+
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise
+nicht alle in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Neuer Rang:
+
+    JOIN-Hüter von Mittelerde
+
+
+Nächster Rang:
+
+    Datenbank-Zauberer von Bruchtal
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    HAVING
+    PRIMARY KEY
+    FOREIGN KEY
+    Unterabfragen

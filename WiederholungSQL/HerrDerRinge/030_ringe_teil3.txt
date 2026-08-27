@@ -1,0 +1,720 @@
+SQL-ABENTEUER TEIL 3: DIE VERBOTENEN ARCHIVE VON MITTELERDE
+===========================================================
+
+Willkommen zurück, JOIN-Hüter von Mittelerde!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits die nächste Aufgabe auf dich.
+
+Tief unter Bruchtal befinden sich die verbotenen Archive.
+
+Dort werden neue Gefährten registriert, alte Aufträge gelöscht
+und mächtige Artefakte verwaltet.
+
+Elrond überreicht dir den Schlüssel zum Archiv.
+
+
+Deine heutigen SQL-Fähigkeiten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    FOREIGN KEY
+    HAVING
+    Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: gefaehrten
+
+id | name    | volk   | level | staerke | status
+---|---------|--------|-------|---------|------------
+1  | Aragorn | Mensch | 9     | 180     | aktiv
+2  | Legolas | Elb    | 8     | 160     | aktiv
+3  | Gimli   | Zwerg  | 7     | 170     | aktiv
+4  | Frodo   | Hobbit | 5     | 90      | auf Mission
+5  | Gandalf | Maia   | 10    | 250     | aktiv
+6  | Sam     | Hobbit | 4     | 100     | aktiv
+
+
+TABELLE: auftraege
+
+id | titel                         | schwierigkeit | belohnung | gefaehrte_id
+---|-------------------------------|----------------|-----------|-------------
+1  | Orks am Pass                  | leicht         | 50        | 3
+2  | Spione aus Mordor             | schwer         | 300       | 2
+3  | Die verlorene Elbenklinge     | mittel         | 150       | 1
+4  | Der Weg zum Schicksalsberg    | schwer         | 400       | 4
+5  | Warge im Wald                 | leicht         | 40        | 2
+6  | Das Geheimnis der alten Ruine | mittel         | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUER GEFÄHRTE BETRITT BRUCHTAL
+--------------------------------------------------
+
+Vor den Toren von Bruchtal erscheint ein neuer Gefährte.
+
+Sein Name ist:
+
+    Boromir
+
+Seine Daten:
+
+    Volk: Mensch
+    Level: 7
+    Stärke: 175
+    Status: aktiv
+
+Elrond möchte ihn in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+    INSERT INTO gefaehrten
+    (id, name, volk, level, staerke, status)
+    VALUES
+    (7, 'Boromir', 'Mensch', 7, 175, 'aktiv');
+
+
+SQL-WISSEN:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge einen weiteren Gefährten hinzu:
+
+    id: 8
+    name: Merry
+    volk: Hobbit
+    level: 4
+    staerke: 85
+    status: aktiv
+
+
+--------------------------------------------------
+QUEST 2 - EIN NEUER AUFTRAG
+--------------------------------------------------
+
+In der Nacht erreicht ein Bote Bruchtal.
+
+Er bringt einen neuen Auftrag.
+
+Titel:
+
+    Die Schatten von Moria
+
+Schwierigkeit:
+
+    mittel
+
+Belohnung:
+
+    200
+
+Noch kein Gefährte hat den Auftrag angenommen.
+
+
+AUFGABE:
+
+Füge diesen Auftrag mit INSERT INTO in die Tabelle
+"auftraege" ein.
+
+Verwende:
+
+    id = 7
+
+Da noch kein Gefährte den Auftrag angenommen hat,
+soll gelten:
+
+    gefaehrte_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER VERBOTENE DELETE-BEFEHL
+--------------------------------------------------
+
+Ein alter Auftrag wurde versehentlich doppelt eingetragen.
+
+Elrond befiehlt:
+
+    "Entferne ihn aus dem Archiv!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+    DELETE FROM auftraege
+    WHERE id = 5;
+
+
+SQL-WISSEN:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+    DELETE FROM auftraege;
+
+würde ALLE Aufträge löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur den Auftrag
+mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+    id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+    id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+---|--------
+1  | Aragorn
+1  | Gandalf
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-WISSEN:
+
+Ein PRIMARY KEY sollte:
+
+    - eindeutig sein
+    - nicht NULL sein
+    - einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "auftraege" besitzt:
+
+    gefaehrte_id
+
+
+Diese Spalte verweist auf:
+
+    gefaehrten.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY
+abgesichert werden.
+
+
+Beispiel:
+
+    CREATE TABLE auftraege (
+        id INT PRIMARY KEY,
+        titel VARCHAR(100),
+        schwierigkeit VARCHAR(20),
+        belohnung INT,
+        gefaehrte_id INT,
+        FOREIGN KEY (gefaehrte_id)
+            REFERENCES gefaehrten(id)
+    );
+
+
+SQL-WISSEN:
+
+PRIMARY KEY:
+
+    Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+    Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+    JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Gefährten,
+die noch keinen Auftrag haben?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+    SELECT gefaehrten.name, auftraege.titel
+    FROM gefaehrten
+    LEFT JOIN auftraege
+    ON gefaehrten.id = auftraege.gefaehrte_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten
+Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+    gefaehrten = linke Tabelle
+    auftraege  = rechte Tabelle
+
+
+Hat ein Gefährte keinen Auftrag, steht beim Titel
+möglicherweise:
+
+    NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+    name
+    volk
+    titel
+
+für alle Gefährten.
+
+Auch Gefährten ohne Auftrag sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE GEFÄHRTEN OHNE AUFTRAG
+--------------------------------------------------
+
+Elrond entdeckt ein Problem.
+
+Einige Gefährten sitzen in Bruchtal und haben
+noch keinen Auftrag.
+
+Finde alle Gefährten ohne Auftrag.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+    LEFT JOIN
+
+und
+
+    IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+    WHERE auftraege.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+    name
+    volk
+    level
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Elrond möchte wissen:
+
+Welche Gefährten haben MEHR ALS EINEN Auftrag?
+
+
+Wir kennen bereits:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT gefaehrten.name, COUNT(auftraege.id)
+    FROM gefaehrten
+    JOIN auftraege
+    ON gefaehrten.id = auftraege.gefaehrte_id
+    GROUP BY gefaehrten.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+    HAVING
+
+
+Beispiel:
+
+    SELECT gefaehrten.name, COUNT(auftraege.id)
+    FROM gefaehrten
+    JOIN auftraege
+    ON gefaehrten.id = auftraege.gefaehrte_id
+    GROUP BY gefaehrten.name
+    HAVING COUNT(auftraege.id) > 1;
+
+
+SQL-WISSEN:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+    WHERE kommt normalerweise vor GROUP BY.
+
+    HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Elrond stellt eine schwierige Frage:
+
+Welche Gefährten besitzen eine höhere Stärke als
+der durchschnittliche Gefährte?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+    SELECT AVG(staerke)
+    FROM gefaehrten;
+
+
+Aber wir können diese Abfrage auch in eine andere
+Abfrage einbauen.
+
+
+Beispiel:
+
+    SELECT name, staerke
+    FROM gefaehrten
+    WHERE staerke > (
+        SELECT AVG(staerke)
+        FROM gefaehrten
+    );
+
+
+Das nennt man:
+
+    Unterabfrage
+
+oder:
+
+    Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+    SELECT AVG(staerke)
+    FROM gefaehrten;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+
+Finde alle Gefährten, deren Level über dem
+durchschnittlichen Level der Gruppe liegt.
+
+
+--------------------------------------------------
+QUEST 10 - DER STÄRKSTE GEFÄHRTE
+--------------------------------------------------
+
+Elrond möchte wissen:
+
+Wer besitzt die höchste Stärke?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+    MAX(staerke)
+
+
+AUFGABE:
+
+Vervollständige:
+
+    SELECT name, staerke
+    FROM gefaehrten
+    WHERE staerke = (
+        ...
+    );
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE ARCHIV VON BRUCHTAL
+--------------------------------------------------
+
+Ein Spion aus Mordor hat versucht,
+die Datenbank von Bruchtal zu manipulieren.
+
+Elrond braucht einen vollständigen Bericht.
+
+
+Finde alle Gefährten, die:
+
+    - mindestens Level 5 sind
+    - mindestens einen Auftrag besitzen
+    - insgesamt mehr als 100 Belohnungspunkte
+      durch Aufträge verdienen können
+
+
+Zeige:
+
+    name
+    volk
+    level
+    Anzahl der Aufträge
+    gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    JOIN
+    ON
+    WHERE
+    GROUP BY
+    HAVING
+    COUNT()
+    SUM()
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE ARTEFAKT-DATENBANK
+--------------------------------------------------
+
+In Bruchtal werden inzwischen so viele mächtige
+Gegenstände aufbewahrt, dass eine neue Tabelle
+benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+    artefakte
+
+
+Sie soll folgende Spalten besitzen:
+
+    id
+    name
+    typ
+    wert
+    gefaehrte_id
+
+
+Beispieldaten:
+
+id | name                         | typ       | wert | gefaehrte_id
+---|------------------------------|-----------|------|-------------
+1  | Andúril                      | Schwert   | 900  | 1
+2  | Bogen von Lothlórien         | Bogen     | 700  | 2
+3  | Axt aus Erebor               | Axt       | 600  | 3
+4  | Gandalfs Stab                | Stab      | 1000 | 5
+5  | Unbekannter Ring             | Ring      | 300  | NULL
+
+
+AUFGABE 1:
+
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+
+Verbinde "gefaehrte_id" über einen FOREIGN KEY mit:
+
+    gefaehrten(id)
+
+
+AUFGABE 4:
+
+Zeige anschließend alle Artefakte zusammen mit
+dem Namen ihres Besitzers an.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Elrond möchte wissen:
+
+Welcher Gefährte besitzt das wertvollste Artefakt?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+    JOIN
+    MAX()
+    Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+    INSERT INTO
+    VALUES
+    DELETE
+    PRIMARY KEY
+    FOREIGN KEY
+    LEFT JOIN
+    GROUP BY
+    HAVING
+    Unterabfragen
+    MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen:
+
+    JOIN
+    und
+    LEFT JOIN
+
+
+JOIN:
+
+    Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN:
+
+    Zeigt alle Datensätze der linken Tabelle,
+    auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE:
+
+    Filtert Datensätze.
+
+
+HAVING:
+
+    Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    JOIN-Hüter von Mittelerde
+
+
+Neuer Rang:
+
+    Datenbank-Zauberer von Bruchtal
+
+
+Nächster Rang:
+
+    SQL-Erzmagier von Mittelerde
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    UPDATE mit Berechnungen
+    CASE WHEN
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    Aliases mit AS
+    mehrere JOINs gleichzeitig
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+
+Und natürlich:
+
+    Ein neuer Gegner.
+
+    Der gefürchtete Tabellen-Nekromant
+    Bobby Tables.

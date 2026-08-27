@@ -1,0 +1,719 @@
+SQL-ABENTEUER TEIL 3: DIE VERBOTENEN ARCHIVE DER DINOSAURIER
+============================================================
+
+Willkommen zurück, JOIN-Dino-Forscher!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits die nächste Aufgabe auf dich.
+
+Tief unter dem Dinosaurier-Forschungszentrum befindet sich ein
+geheimes Datenarchiv.
+
+Dort werden neue Dinosaurier registriert, alte Missionen gelöscht
+und wertvolle Fossilien und Ausrüstungsgegenstände verwaltet.
+
+Die Forschungsleitung überreicht dir den Schlüssel zum Archiv.
+
+
+Deine heutigen SQL-Fähigkeiten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    FOREIGN KEY
+    HAVING
+    Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: dinosaurier
+
+id | name  | art                | gewicht | alter | status
+---|-------|--------------------|---------|-------|---------
+1  | Rexi  | Tyrannosaurus Rex | 8000    | 12    | aktiv
+2  | Spike | Triceratops        | 6000    | 9     | aktiv
+3  | Blue  | Velociraptor       | 90      | 6     | aktiv
+4  | Bruno | Brachiosaurus      | 30000   | 18    | krank
+5  | Stegi | Stegosaurus        | 5000    | 11    | aktiv
+6  | Tiny  | Compsognathus      | 3       | 3     | schläft
+
+
+TABELLE: missionen
+
+id | titel                         | schwierigkeit | belohnung | dinosaurier_id
+---|-------------------------------|----------------|-----------|---------------
+1  | Spuren am Nordzaun            | leicht         | 50        | 2
+2  | Jagd im Dschungel             | schwer         | 300       | 1
+3  | Das verschwundene Dino-Ei     | mittel         | 150       | 5
+4  | Alarm am Fleischlager         | schwer         | 400       | 1
+5  | Fußspuren am Fluss            | leicht         | 40        | 3
+6  | Das Geheimnis der Höhle       | mittel         | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUER DINOSAURIER WIRD ENTDECKT
+--------------------------------------------------
+
+Die Forscher haben einen neuen Dinosaurier entdeckt.
+
+Sein Name ist:
+
+    Raptor
+
+Seine Daten:
+
+    Art: Velociraptor
+    Gewicht: 85
+    Alter: 7
+    Status: aktiv
+
+Die Forschungsleitung möchte ihn in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+    INSERT INTO dinosaurier
+    (id, name, art, gewicht, alter, status)
+    VALUES
+    (7, 'Raptor', 'Velociraptor', 85, 7, 'aktiv');
+
+
+SQL-WISSEN:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge einen weiteren Dinosaurier hinzu:
+
+    id: 8
+    name: Hörnchen
+    art: Triceratops
+    gewicht: 5500
+    alter: 8
+    status: aktiv
+
+
+--------------------------------------------------
+QUEST 2 - EINE NEUE MISSION
+--------------------------------------------------
+
+Am Morgen erreicht die Forschungsstation eine neue Meldung.
+
+Titel:
+
+    Seltsame Spuren im Sumpf
+
+Schwierigkeit:
+
+    mittel
+
+Belohnung:
+
+    200
+
+Noch wurde dieser Mission kein Dinosaurier zugeordnet.
+
+
+AUFGABE:
+
+Füge diese Mission mit INSERT INTO in die Tabelle
+"missionen" ein.
+
+Verwende:
+
+    id = 7
+
+Da noch kein Dinosaurier zugeordnet wurde, soll gelten:
+
+    dinosaurier_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER GEFÄHRLICHE DELETE-BEFEHL
+--------------------------------------------------
+
+Eine alte Mission wurde versehentlich doppelt eingetragen.
+
+Die Forschungsleitung sagt:
+
+    "Dieser Eintrag muss aus dem Archiv verschwinden!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+    DELETE FROM missionen
+    WHERE id = 5;
+
+
+SQL-WISSEN:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+    DELETE FROM missionen;
+
+würde ALLE Missionen löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur die Mission
+mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+    id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+    id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+---|-------
+1  | Rexi
+1  | Spike
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-WISSEN:
+
+Ein PRIMARY KEY sollte:
+
+    - eindeutig sein
+    - nicht NULL sein
+    - einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "missionen" besitzt:
+
+    dinosaurier_id
+
+
+Diese Spalte verweist auf:
+
+    dinosaurier.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY
+abgesichert werden.
+
+
+Beispiel:
+
+    CREATE TABLE missionen (
+        id INT PRIMARY KEY,
+        titel VARCHAR(100),
+        schwierigkeit VARCHAR(20),
+        belohnung INT,
+        dinosaurier_id INT,
+        FOREIGN KEY (dinosaurier_id)
+            REFERENCES dinosaurier(id)
+    );
+
+
+SQL-WISSEN:
+
+PRIMARY KEY:
+
+    Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+    Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+    JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Dinosauriern,
+denen keine Mission zugeordnet wurde?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+    SELECT dinosaurier.name, missionen.titel
+    FROM dinosaurier
+    LEFT JOIN missionen
+    ON dinosaurier.id = missionen.dinosaurier_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten
+Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+    dinosaurier = linke Tabelle
+    missionen   = rechte Tabelle
+
+
+Hat ein Dinosaurier keine Mission, steht beim Titel
+möglicherweise:
+
+    NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+    name
+    art
+    titel
+
+für alle Dinosaurier.
+
+Auch Dinosaurier ohne Mission sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE DINOSAURIER OHNE MISSION
+--------------------------------------------------
+
+Die Forschungsleitung entdeckt ein Problem.
+
+Einige Dinosaurier wurden registriert,
+tauchen aber bei keiner Mission auf.
+
+Finde alle Dinosaurier ohne Mission.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+    LEFT JOIN
+
+und
+
+    IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+    WHERE missionen.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+    name
+    art
+    alter
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Die Forschungsleitung möchte wissen:
+
+Welche Dinosaurier kommen in MEHR ALS EINER Mission vor?
+
+
+Wir kennen bereits:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT dinosaurier.name, COUNT(missionen.id)
+    FROM dinosaurier
+    JOIN missionen
+    ON dinosaurier.id = missionen.dinosaurier_id
+    GROUP BY dinosaurier.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+    HAVING
+
+
+Beispiel:
+
+    SELECT dinosaurier.name, COUNT(missionen.id)
+    FROM dinosaurier
+    JOIN missionen
+    ON dinosaurier.id = missionen.dinosaurier_id
+    GROUP BY dinosaurier.name
+    HAVING COUNT(missionen.id) > 1;
+
+
+SQL-WISSEN:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+    WHERE kommt normalerweise vor GROUP BY.
+
+    HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Die Forschungsleitung stellt eine schwierige Frage:
+
+Welche Dinosaurier sind schwerer als der
+durchschnittliche Dinosaurier?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+    SELECT AVG(gewicht)
+    FROM dinosaurier;
+
+
+Aber wir können diese Abfrage auch in eine andere
+Abfrage einbauen.
+
+
+Beispiel:
+
+    SELECT name, gewicht
+    FROM dinosaurier
+    WHERE gewicht > (
+        SELECT AVG(gewicht)
+        FROM dinosaurier
+    );
+
+
+Das nennt man:
+
+    Unterabfrage
+
+oder:
+
+    Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+    SELECT AVG(gewicht)
+    FROM dinosaurier;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+
+Finde alle Dinosaurier, deren Alter über dem
+durchschnittlichen Alter aller Dinosaurier liegt.
+
+
+--------------------------------------------------
+QUEST 10 - DER SCHWERSTE DINOSAURIER
+--------------------------------------------------
+
+Die Forschungsleitung möchte wissen:
+
+Welcher Dinosaurier besitzt das höchste Gewicht?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+    MAX(gewicht)
+
+
+AUFGABE:
+
+Vervollständige:
+
+    SELECT name, gewicht
+    FROM dinosaurier
+    WHERE gewicht = (
+        ...
+    );
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE DINO-ARCHIV
+--------------------------------------------------
+
+Eine unbekannte Person hat versucht,
+die Datenbank des Forschungszentrums zu manipulieren.
+
+Die Forschungsleitung braucht einen vollständigen Bericht.
+
+
+Finde alle Dinosaurier, die:
+
+    - mindestens 5 Jahre alt sind
+    - mindestens einer Mission zugeordnet sind
+    - insgesamt Missionen mit mehr als 100 Belohnungspunkten
+      besitzen
+
+
+Zeige:
+
+    name
+    art
+    alter
+    Anzahl der Missionen
+    gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    JOIN
+    ON
+    WHERE
+    GROUP BY
+    HAVING
+    COUNT()
+    SUM()
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE FOSSILIEN-DATENBANK
+--------------------------------------------------
+
+Das Forschungszentrum besitzt inzwischen so viele
+Fossilien und Fundstücke, dass eine neue Tabelle
+benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+    fossilien
+
+
+Sie soll folgende Spalten besitzen:
+
+    id
+    name
+    typ
+    wert
+    dinosaurier_id
+
+
+Beispieldaten:
+
+id | name                     | typ        | wert | dinosaurier_id
+---|--------------------------|------------|------|---------------
+1  | Riesiger Tyrannosaurus-Zahn | Zahn    | 900  | 1
+2  | Triceratops-Horn         | Horn       | 700  | 2
+3  | Raptor-Kralle            | Kralle     | 600  | 3
+4  | Brachiosaurus-Knochen    | Knochen    | 1000 | 4
+5  | Unbekanntes Dino-Ei      | Ei         | 300  | NULL
+
+
+AUFGABE 1:
+
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+
+Verbinde "dinosaurier_id" über einen FOREIGN KEY mit:
+
+    dinosaurier(id)
+
+
+AUFGABE 4:
+
+Zeige anschließend alle Fossilien zusammen mit
+dem Namen des zugehörigen Dinosauriers an.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Die Forschungsleitung möchte wissen:
+
+Welchem Dinosaurier ist das wertvollste Fossil
+zugeordnet?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+    JOIN
+    MAX()
+    Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+    INSERT INTO
+    VALUES
+    DELETE
+    PRIMARY KEY
+    FOREIGN KEY
+    LEFT JOIN
+    GROUP BY
+    HAVING
+    Unterabfragen
+    MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen:
+
+    JOIN
+    und
+    LEFT JOIN
+
+
+JOIN:
+
+    Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN:
+
+    Zeigt alle Datensätze der linken Tabelle,
+    auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE:
+
+    Filtert Datensätze.
+
+
+HAVING:
+
+    Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    JOIN-Dino-Forscher
+
+
+Neuer Rang:
+
+    Datenbank-Paläontologe
+
+
+Nächster Rang:
+
+    SQL-Dinosaurier-Meister
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    UPDATE mit Berechnungen
+    CASE WHEN
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    Aliases mit AS
+    mehrere JOINs gleichzeitig
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+
+Und natürlich:
+
+    Ein neuer Gegner.
+
+    Der gefürchtete Datenbank-Raptor
+    Bobby Bites.

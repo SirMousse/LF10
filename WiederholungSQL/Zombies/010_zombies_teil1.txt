@@ -1,0 +1,249 @@
+SQL-ABENTEUER: DIE DATENBANK DER ZOMBIES
+=========================================
+
+Willkommen, Datenbank-Überlebender!
+
+Du bist neuer Datenwächter im Überlebendenlager "Letzte Hoffnung".
+Deine Aufgabe ist es, mit SQL Ordnung in das Zombie-Archiv zu bringen.
+
+
+AUSGANGSLAGE
+------------
+
+Das Lager speichert alle gesichteten Zombies in einer Tabelle namens "zombies".
+
+CREATE TABLE zombies (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    typ VARCHAR(30),
+    gefahr INT,
+    entfernung INT,
+    status VARCHAR(20)
+);
+
+Folgende Zombies befinden sich im Archiv:
+
+ID: 1
+Name: Grunz
+Typ: Beißer
+Gefahr: 5
+Entfernung: 120
+Status: unterwegs
+
+ID: 2
+Name: Kratzer
+Typ: Läufer
+Gefahr: 8
+Entfernung: 60
+Status: unterwegs
+
+ID: 3
+Name: Matsch
+Typ: Schlurfer
+Gefahr: 3
+Entfernung: 300
+Status: gesichtet
+
+ID: 4
+Name: Brüller
+Typ: Mutant
+Gefahr: 10
+Entfernung: 40
+Status: unterwegs
+
+ID: 5
+Name: Knochen
+Typ: Beißer
+Gefahr: 7
+Entfernung: 90
+Status: ausgeschaltet
+
+ID: 6
+Name: Stinker
+Typ: Schlurfer
+Gefahr: 2
+Entfernung: 450
+Status: gesichtet
+
+
+QUEST 1 - DAS ZOMBIE-ARCHIV
+---------------------------
+
+Zeige alle Zombies aus dem Archiv an.
+
+SQL-Wissen:
+Mit SELECT wählst du Daten aus einer Tabelle aus.
+
+Beispiel:
+
+    SELECT *
+    FROM zombies;
+
+Das * bedeutet: Zeige alle Spalten an.
+
+
+QUEST 2 - GEFÄHRLICHE ZOMBIES
+-----------------------------
+
+Zeige alle Zombies, die mindestens Gefahrenstufe 7 haben.
+
+Versuche zuerst selbst eine Abfrage zu schreiben.
+
+Hinweis:
+
+    WHERE gefahr >= 7
+
+SQL-Wissen:
+Mit WHERE kannst du Datensätze filtern.
+
+Wichtige Vergleichsoperatoren:
+
+    =   gleich
+    >   größer als
+    <   kleiner als
+    >=  größer oder gleich
+    <=  kleiner oder gleich
+    !=  ungleich
+
+
+QUEST 3 - WER IST AM NÄCHSTEN?
+------------------------------
+
+Zeige nur die Spalten:
+
+    name
+    typ
+    entfernung
+
+Sortiere die Zombies nach ihrer Entfernung.
+
+Der Zombie mit der kleinsten Entfernung soll ganz oben stehen.
+
+SQL-Wissen:
+
+    ORDER BY entfernung ASC
+
+ASC bedeutet "ascending", also aufsteigend.
+DESC bedeutet "descending", also absteigend.
+
+
+QUEST 4 - GEFAHR FÜR DAS LAGER
+------------------------------
+
+Zeige alle Zombies, die:
+
+    - den Status "unterwegs" haben
+    - mindestens Gefahrenstufe 7 besitzen
+
+SQL-Wissen:
+Mehrere Bedingungen kannst du mit AND verbinden.
+
+Beispiel:
+
+    WHERE status = 'unterwegs'
+    AND gefahr >= 7;
+
+Mit OR müsste dagegen nur eine der Bedingungen erfüllt sein.
+
+
+QUEST 5 - KNOCHEN IST WIEDER UNTERWEGS
+--------------------------------------
+
+Knochen wurde wieder gesichtet.
+
+Sein Status ändert sich von "ausgeschaltet" auf "unterwegs".
+
+Schreibe eine SQL-Abfrage, die den Status verändert.
+
+SQL-Wissen:
+Mit UPDATE kannst du bestehende Daten verändern.
+
+Beispiel:
+
+    UPDATE zombies
+    SET status = 'unterwegs'
+    WHERE name = 'Knochen';
+
+Wichtig:
+Ein UPDATE ohne WHERE kann alle Datensätze der Tabelle verändern.
+
+
+BOSS-QUEST - DIE ZOMBIE-HORDE
+----------------------------
+
+Eine große Zombie-Horde nähert sich dem Lager!
+
+Die Wachen müssen herausfinden, welche Zombies die größte Gefahr darstellen.
+
+Gesucht werden Zombies, die:
+
+    - mindestens Gefahrenstufe 7 besitzen
+    - den Status "unterwegs" haben
+    - höchstens 100 Meter entfernt sind
+
+Gib nur folgende Spalten aus:
+
+    name
+    typ
+    gefahr
+    entfernung
+
+Sortiere die Zombies anschließend von der höchsten zur niedrigsten Gefahrenstufe.
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+Du wirst wahrscheinlich folgende SQL-Befehle benötigen:
+
+    SELECT
+    FROM
+    WHERE
+    AND
+    ORDER BY
+    DESC
+
+
+BONUS-QUEST - STATISTIK FÜR DAS LAGER
+-------------------------------------
+
+Die Lagerleitung möchte wissen:
+
+Wie hoch ist die Summe aller Gefahrenstufen?
+
+Dafür gibt es in SQL sogenannte Aggregatfunktionen.
+
+Beispiel:
+
+    SUM(gefahr)
+
+Weitere nützliche Funktionen:
+
+    COUNT()
+    AVG()
+    MIN()
+    MAX()
+
+Damit kannst du Datensätze zählen, Durchschnittswerte berechnen oder den kleinsten und größten Wert finden.
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach Abschluss der Aufgaben kennst du unter anderem:
+
+    SELECT
+    FROM
+    WHERE
+    AND
+    OR
+    ORDER BY
+    UPDATE
+    SUM()
+
+Damit kannst du Daten anzeigen, filtern, sortieren, verändern und auswerten.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Rang: SQL-Zombie-Jäger
+Nächster Rang: JOIN-Überlebender

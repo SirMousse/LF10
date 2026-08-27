@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>CSS Farbverläufe (Gradients)</title>
+    </head>
+    
+    <body>
+        <header>
+            <h1>CSS Farbverläufe (Gradients)</h1>
+            <p>
+                Mit CSS kannst du Farbverläufe als Hintergrund verwenden. Farbverläufe sind 
+                <strong>keine Bilder</strong>, sondern werden direkt von CSS erzeugt.
+            </p>
+        </header>
+
+        <hr>
+
+        <main>
+            <h2>Die wichtigsten Farbverläufe:</h2>
+            <ol>
+                <li><strong>Linear Gradient</strong> = Verlauf in eine Richtung</li>
+                <li><strong>Radial Gradient</strong> = Verlauf von der Mitte nach außen</li>
+                <li><strong>Conic Gradient</strong> = kreisförmiger Verlauf</li>
+            </ol>
+
+            <section>
+                <h3>1. Linear Gradient <code>linear-gradient</code>
+
+                </h3>
+                <p>
+                    Ein linearer Verlauf, geht in eine Richtung (z.B. von oben nach unten).
+                </p>
+
+                <div class="box linear-basic">
+                    linear-gradient (oben nach unten)
+                </div>
+
+                <pre>
+                    .linear-basic{
+                        background: linear-gradient(#00a8ff, crimson);
+                    }
+                </pre>
+
+                <hr>
+
+                <p>
+                    Du kannst auch eine Richtung angeben:
+                </p>
+
+                <div class="box linear-direction">
+                    linear-gradient (nach links)
+                </div>
+
+                <pre>
+                    .linear-direction{
+                        background: linear-gradient(to left, #6465a5, #f05837);
+                    }
+                </pre>
+
+                <hr>
+
+                <p>
+                    Wir können auch einen Winkel benutzen: 
+                </p>
+
+                <div class="box linear-angle">
+                    linear-gradient(420deg)
+                </div>
+
+                <pre>
+                    .linear-angle{
+                        background: linear-gradient(45deg, #00743f, #f2a104);
+                    }
+                </pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h3>2. Radial Gradient (radial-gradient)</h3>
+                <p>
+                    Der Farbverlauf geht von der Mitte nach außen (kreisförmig)
+                </p>
+
+                <div class="box radial-basic">
+                    radial-gradient
+                </div>
+
+                <pre>
+                    .radial-basic{
+                        background: radial-gradient(circle, #c0334d, #f1931b);
+                    }
+                </pre>
+
+                <hr>
+
+                <p>
+                    Du kannst die Form beeinflussen:
+                </p>
+
+                <div class="box radial-ellipse">
+                    radial-gradient(ellipse)
+                </div>
+
+                <pre>
+                    .radial-ellipse{
+                        background: radial-gradient(ellipse, #212027, #f22f08);
+                    }
+                </pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h3>3. Conic Gradient (conic-gradient)</h3>
+                <p>
+                    Ein conic-gradient ist ein kreisförmiger Verlauf um einen Mittelpunkt. 
+                    Er eignet sich gut für z.B. Diagramme und Deko.
+                </p>
+
+                <div class="box conic-basic">
+                    conic-gradient
+                </div>
+
+                <pre>
+                    .conic-basic{
+                        background: conic-gradient(#003d73, #edd170, #1ecfd6, #c05640, #0878a4);
+                    }
+                </pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h3>4. Mehrere Farben und Farbstopps</h3>
+                <p>
+                    Du kannst mehr als nur zwei Farben benutzen und auch Prozentwerte(Stops) angeben:
+                </p>
+
+                <div class="box linear-stops">
+                    Mehrere Farbstopps
+                </div>
+
+                <pre>
+                    .linear-stops{
+                        background: linear-gradient(to right,
+                        #8a8604 0%,
+                        #383140 50%,
+                        #cac7d7 90%);
+                    }
+                </pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h3>5. Typische Einsatzfälle:</h3>
+                <ul>
+                    <li>Header Hintergrund</li>
+                    <li>Karten/ Boxen</li>
+                    <li>Buttons (dezent!)</li>
+                    <li>Hintergründe bei Sektionen</li>
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>

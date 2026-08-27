@@ -1,0 +1,953 @@
+SQL-ABENTEUER TEIL 4: DER ANGRIFF VON BOBBY TABLES
+==================================================
+
+Willkommen zurück, Datenbank-Pokémon-Meister!
+
+Die Pokémon-Welt ist in Gefahr.
+
+In der Nacht wurde eine seltsame Nachricht
+im Archiv des Pokémon-Forschungszentrums gefunden:
+
+    Robert'); DROP TABLE pokemon;--
+
+Professor Eich wird blass.
+
+"Das kann nur einer gewesen sein..."
+
+Bobby Tables.
+
+Der berüchtigte Datenbank-Saboteur versucht,
+die Pokémon-Datenbank zu manipulieren.
+
+Um ihn aufzuhalten, musst du neue SQL-Techniken lernen.
+
+
+In diesem Abenteuer lernst du:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+Außerdem erfährst du am Ende, warum SQL Injection
+gefährlich ist.
+
+
+--------------------------------------------------
+DIE DATENBANK DES POKÉMON-FORSCHUNGSZENTRUMS
+--------------------------------------------------
+
+TABELLE: pokemon
+
+id | name    | typ     | level | staerke | status
+---|---------|---------|-------|---------|----------
+1  | Pikachu | Elektro | 6     | 120     | aktiv
+2  | Glurak  | Feuer   | 10    | 220     | aktiv
+3  | Schiggy | Wasser  | 4     | 80      | aktiv
+4  | Bisasam | Pflanze | 5     | 95      | verletzt
+5  | Gengar  | Geist   | 8     | 180     | aktiv
+6  | Evoli   | Normal  | 4     | 65      | aktiv
+7  | Relaxo  | Normal  | 7     | 160     | aktiv
+8  | Enton   | Wasser  | 5     | 90      | aktiv
+
+
+TABELLE: missionen
+
+id | titel                           | schwierigkeit | belohnung | pokemon_id
+---|---------------------------------|----------------|-----------|-----------
+1  | Die verschwundenen Beeren      | leicht         | 50        | 1
+2  | Das Geheimnis der Geisterhöhle | schwer         | 300       | 5
+3  | Rettung am Wasserfall          | mittel         | 150       | 3
+4  | Kampf am Vulkan                | schwer         | 400       | 2
+5  | Die Suche im hohen Gras        | leicht         | 40        | 1
+6  | Das geheimnisvolle Pokémon-Ei  | mittel         | 120       | NULL
+7  | Das Rätsel im Kraftwerk        | mittel         | 200       | NULL
+
+
+TABELLE: items
+
+id | name               | typ        | wert | pokemon_id
+---|--------------------|------------|------|-----------
+1  | Donnerstein        | Stein      | 500  | 1
+2  | Feuerstein         | Stein      | 900  | 2
+3  | Zauberwasser       | Verstärker | 350  | 3
+4  | Bannsticker        | Verstärker | 700  | 5
+5  | Seltsamer Pokéball | Pokéball   | 20   | NULL
+
+
+--------------------------------------------------
+QUEST 1 - DISTINCT
+--------------------------------------------------
+
+Professor Eich möchte wissen:
+
+Welche verschiedenen Schwierigkeitsstufen gibt es
+bei den Missionen?
+
+Wenn du einfach schreibst:
+
+    SELECT schwierigkeit
+    FROM missionen;
+
+bekommst du Werte mehrfach angezeigt.
+
+
+Mit DISTINCT kannst du doppelte Ergebnisse entfernen.
+
+
+Beispiel:
+
+    SELECT DISTINCT schwierigkeit
+    FROM missionen;
+
+
+Das Ergebnis wäre:
+
+    leicht
+    mittel
+    schwer
+
+
+SQL-WISSEN:
+
+DISTINCT bedeutet:
+
+    Zeige jeden unterschiedlichen Wert nur einmal.
+
+
+AUFGABE:
+
+Finde mit DISTINCT heraus, welche verschiedenen
+Pokémon-Typen in der Datenbank vorkommen.
+
+
+--------------------------------------------------
+QUEST 2 - DIE SUCHE MIT LIKE
+--------------------------------------------------
+
+Professor Eich erinnert sich nur noch daran,
+dass eine Mission irgendetwas mit "Geheimnis"
+im Titel hatte.
+
+Mit LIKE kannst du nach Textmustern suchen.
+
+
+Beispiel:
+
+    SELECT *
+    FROM missionen
+    WHERE titel LIKE '%Geheimnis%';
+
+
+Das Prozentzeichen % ist ein Platzhalter.
+
+Es bedeutet:
+
+    Hier können beliebig viele Zeichen stehen.
+
+
+Beispiele:
+
+    LIKE 'Das%'
+
+Bedeutet:
+
+    Der Text beginnt mit "Das".
+
+
+    LIKE '%Vulkan'
+
+Bedeutet:
+
+    Der Text endet mit "Vulkan".
+
+
+    LIKE '%Geheimnis%'
+
+Bedeutet:
+
+    Irgendwo im Text steht "Geheimnis".
+
+
+AUFGABE:
+
+Finde alle Missionen, deren Titel mit "Das" beginnt.
+
+
+BONUS:
+
+Finde alle Items, deren Name irgendwo
+das Wort "stein" enthält.
+
+
+--------------------------------------------------
+QUEST 3 - IN
+--------------------------------------------------
+
+Professor Eich sucht Pokémon bestimmter Typen:
+
+    Elektro
+    Feuer
+    Wasser
+
+
+Du könntest schreiben:
+
+    WHERE typ = 'Elektro'
+    OR typ = 'Feuer'
+    OR typ = 'Wasser';
+
+
+Das funktioniert.
+
+Aber SQL bietet eine kürzere Möglichkeit:
+
+    IN
+
+
+Beispiel:
+
+    SELECT *
+    FROM pokemon
+    WHERE typ IN ('Elektro', 'Feuer', 'Wasser');
+
+
+SQL-WISSEN:
+
+IN prüft, ob ein Wert in einer Liste vorkommt.
+
+
+AUFGABE:
+
+Zeige alle Pokémon mit folgendem Status:
+
+    aktiv
+    verletzt
+
+
+Verwende dafür IN.
+
+
+--------------------------------------------------
+QUEST 4 - BETWEEN
+--------------------------------------------------
+
+Professor Eich sucht Pokémon,
+die zwischen Level 5 und Level 8 sind.
+
+Dafür gibt es BETWEEN.
+
+
+Beispiel:
+
+    SELECT *
+    FROM pokemon
+    WHERE level BETWEEN 5 AND 8;
+
+
+SQL-WISSEN:
+
+BETWEEN prüft einen Bereich.
+
+Die Grenzwerte gehören normalerweise dazu.
+
+
+BETWEEN 5 AND 8 bedeutet also:
+
+    5
+    6
+    7
+    8
+
+
+AUFGABE:
+
+Finde alle Items, deren Wert zwischen
+300 und 800 liegt.
+
+
+--------------------------------------------------
+QUEST 5 - ALIASES MIT AS
+--------------------------------------------------
+
+Professor Eich beschwert sich über die Berichte.
+
+"Ich möchte verständliche Überschriften!"
+
+
+Mit AS kannst du Spalten im Ergebnis
+einen anderen Namen geben.
+
+
+Beispiel:
+
+    SELECT
+        name AS Pokemon,
+        typ AS Pokemon_Typ,
+        level AS Level
+    FROM pokemon;
+
+
+WICHTIG:
+
+AS verändert nicht den echten Namen der Spalte
+in der Datenbank.
+
+Es verändert nur die Anzeige des Ergebnisses.
+
+
+AUFGABE:
+
+Zeige:
+
+    name
+    typ
+    staerke
+
+
+Verwende folgende Anzeigenamen:
+
+    Pokemon
+    Typ
+    Kampfkraft
+
+
+--------------------------------------------------
+QUEST 6 - UPDATE MIT BERECHNUNGEN
+--------------------------------------------------
+
+Alle Pokémon haben erfolgreich trainiert.
+
+Deshalb erhalten sie 10 zusätzliche Stärkepunkte.
+
+SQL kann direkt rechnen.
+
+
+Beispiel:
+
+    UPDATE pokemon
+    SET staerke = staerke + 10;
+
+
+Wenn Pikachu vorher 120 Stärke hatte:
+
+    120 + 10 = 130
+
+
+AUFGABE:
+
+Alle Pokémon steigen um ein Level auf.
+
+Schreibe einen UPDATE-Befehl, der bei jedem Pokémon
+das Level um 1 erhöht.
+
+
+ZUSATZAUFGABE:
+
+Nur aktive Pokémon erhalten weitere 20 Stärkepunkte.
+
+
+Hinweis:
+
+    UPDATE pokemon
+    SET ...
+    WHERE ...;
+
+
+--------------------------------------------------
+QUEST 7 - CASE WHEN
+--------------------------------------------------
+
+Professor Eich möchte die Pokémon automatisch
+nach ihrem Level bewerten.
+
+
+Die Regeln:
+
+    Level 1 bis 3  = Anfänger
+    Level 4 bis 5  = Nachwuchs
+    Level 6 bis 8  = Erfahren
+    Level 9+       = Meister
+
+
+Dafür gibt es CASE WHEN.
+
+
+Beispiel:
+
+    SELECT
+        name,
+        level,
+        CASE
+            WHEN level <= 3 THEN 'Anfänger'
+            WHEN level <= 5 THEN 'Nachwuchs'
+            WHEN level <= 8 THEN 'Erfahren'
+            ELSE 'Meister'
+        END AS rang
+    FROM pokemon;
+
+
+SQL-WISSEN:
+
+CASE funktioniert ähnlich wie:
+
+    Wenn Bedingung A stimmt, dann Wert A.
+    Wenn Bedingung B stimmt, dann Wert B.
+    Sonst ein anderer Wert.
+
+
+AUFGABE:
+
+Bewerte die Stärke der Pokémon.
+
+
+Regeln:
+
+    unter 80 Stärke
+    = Schwach
+
+    80 bis 119 Stärke
+    = Trainiert
+
+    120 bis 179 Stärke
+    = Stark
+
+    ab 180 Stärke
+    = Legendär
+
+
+Gib aus:
+
+    name
+    staerke
+    staerkeklasse
+
+
+--------------------------------------------------
+QUEST 8 - MEHRERE JOINS
+--------------------------------------------------
+
+Jetzt wird es ernst.
+
+Professor Eich möchte gleichzeitig wissen:
+
+Welches Pokémon hat welche Mission
+und welches Item ist ihm zugeordnet?
+
+
+Wir müssen jetzt drei Tabellen verbinden:
+
+    pokemon
+    missionen
+    items
+
+
+Beispiel:
+
+    SELECT
+        pokemon.name,
+        missionen.titel,
+        items.name
+    FROM pokemon
+    JOIN missionen
+    ON pokemon.id = missionen.pokemon_id
+    JOIN items
+    ON pokemon.id = items.pokemon_id;
+
+
+SQL-WISSEN:
+
+Du kannst mehrere JOINs in einer Abfrage verwenden.
+
+
+AUFGABE:
+
+Erstelle einen Bericht mit:
+
+    Name des Pokémon
+    Typ
+    Mission
+    Belohnung
+    Item
+    Wert des Items
+
+
+--------------------------------------------------
+QUEST 9 - TABELLEN-ALIASES
+--------------------------------------------------
+
+Unsere Abfragen werden langsam ziemlich lang.
+
+Statt ständig:
+
+    pokemon.name
+    missionen.titel
+    items.name
+
+zu schreiben, können Tabellen ebenfalls
+Aliases bekommen.
+
+
+Beispiel:
+
+    SELECT
+        p.name,
+        m.titel
+    FROM pokemon AS p
+    JOIN missionen AS m
+    ON p.id = m.pokemon_id;
+
+
+Jetzt steht:
+
+    p
+
+für:
+
+    pokemon
+
+
+Und:
+
+    m
+
+für:
+
+    missionen
+
+
+AUFGABE:
+
+Verbinde alle drei Tabellen erneut.
+
+
+Verwende:
+
+    p = pokemon
+    m = missionen
+    i = items
+
+
+Gib aus:
+
+    p.name
+    m.titel
+    i.name
+
+
+--------------------------------------------------
+QUEST 10 - TRANSAKTIONEN
+--------------------------------------------------
+
+Professor Eich muss eine größere Änderung
+an der Datenbank durchführen.
+
+Alle aktiven Pokémon sollen 25 zusätzliche
+Stärkepunkte erhalten.
+
+Doch was passiert, wenn dabei ein Fehler gemacht wird?
+
+
+Dafür gibt es Transaktionen.
+
+
+Ein vereinfachtes Beispiel:
+
+    START TRANSACTION;
+
+    UPDATE pokemon
+    SET staerke = staerke + 25
+    WHERE status = 'aktiv';
+
+
+Jetzt wurde die Änderung innerhalb der
+Transaktion durchgeführt.
+
+Sie kann bestätigt werden mit:
+
+    COMMIT;
+
+
+Oder rückgängig gemacht werden mit:
+
+    ROLLBACK;
+
+
+SQL-WISSEN:
+
+COMMIT bedeutet:
+
+    Änderungen endgültig bestätigen.
+
+
+ROLLBACK bedeutet:
+
+    Änderungen der aktuellen Transaktion
+    rückgängig machen.
+
+
+WICHTIG:
+
+Die genaue Syntax für Transaktionen kann je nach
+Datenbanksystem etwas unterschiedlich sein.
+
+
+--------------------------------------------------
+QUEST 11 - DER FEHLER VON PROFESSOR EICH
+--------------------------------------------------
+
+Professor Eich möchte Enton 50 zusätzliche
+Stärkepunkte geben.
+
+Er schreibt:
+
+    START TRANSACTION;
+
+    UPDATE pokemon
+    SET staerke = staerke + 50
+    WHERE name = 'Enton';
+
+
+Dann bemerkt er:
+
+Enton sollte gar keine 50 zusätzlichen
+Stärkepunkte bekommen.
+
+
+FRAGE:
+
+Welchen SQL-Befehl sollte er jetzt verwenden?
+
+
+    COMMIT
+
+oder
+
+    ROLLBACK?
+
+
+--------------------------------------------------
+BOSS-QUEST - DER ANGRIFF VON BOBBY TABLES
+--------------------------------------------------
+
+Plötzlich erscheint Bobby Tables im
+Pokémon-Forschungszentrum.
+
+Er hat die wertvollsten Items gestohlen.
+
+Professor Eich benötigt einen Bericht über alle Pokémon,
+die für die Suche geeignet sind.
+
+
+Die Anforderungen:
+
+Das Pokémon muss mindestens Level 5 sein.
+
+Der Status muss entweder:
+
+    aktiv
+
+oder:
+
+    verletzt
+
+sein.
+
+Dem Pokémon muss ein Item zugeordnet sein.
+
+Das Item muss mindestens 300 wert sein.
+
+
+Zeige:
+
+    Name
+    Typ
+    Level
+    Status
+    Item
+    Itemwert
+
+
+Verwende sinnvolle Aliases.
+
+Sortiere nach dem Wert des Items.
+
+Das wertvollste Item soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    AS
+    FROM
+    JOIN
+    ON
+    WHERE
+    IN
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+SUPER-BOSS-QUEST - DIE POKÉMON-RANGLISTE
+--------------------------------------------------
+
+Professor Eich möchte einen Bericht mit:
+
+    Name
+    Level
+    Stärke
+    Rang
+
+
+Der Rang soll automatisch mit CASE berechnet werden.
+
+
+Regeln:
+
+    Level unter 4
+    = Anfänger-Pokémon
+
+    Level 4 bis 5
+    = Nachwuchs-Pokémon
+
+    Level 6 bis 8
+    = Elite-Pokémon
+
+    Level 9 oder höher
+    = Pokémon-Legende
+
+
+Zeige nur Pokémon mit mindestens Level 3.
+
+Sortiere zuerst nach Level und danach nach Stärke.
+
+Beide Werte sollen absteigend sortiert werden.
+
+
+Benötigte Befehle:
+
+    SELECT
+    CASE
+    WHEN
+    THEN
+    ELSE
+    END
+    AS
+    WHERE
+    ORDER BY
+    DESC
+
+
+--------------------------------------------------
+GEHEIM-QUEST - WAS IST SQL INJECTION?
+--------------------------------------------------
+
+Nach dem Angriff untersucht Professor Eich
+die Nachricht von Bobby Tables.
+
+Sie sah ungefähr so aus:
+
+    Robert'); DROP TABLE pokemon;--
+
+
+Das Problem dahinter heißt:
+
+    SQL Injection
+
+
+SQL Injection kann entstehen, wenn ein Programm
+Benutzereingaben unsicher direkt in SQL-Befehle einfügt.
+
+
+Vereinfacht gesagt:
+
+Ein Programm erwartet zum Beispiel einen Namen.
+
+Ein Angreifer versucht stattdessen,
+Teile eines SQL-Befehls einzugeben.
+
+
+Deshalb sollte man SQL-Abfragen in echten Anwendungen
+nicht einfach durch das Zusammenkleben von
+Texteingaben bauen.
+
+
+Stattdessen verwendet man normalerweise:
+
+    Prepared Statements
+
+oder:
+
+    parametrisierte Abfragen
+
+
+Beispielidee:
+
+    SELECT *
+    FROM pokemon
+    WHERE name = ?;
+
+
+Das ? steht für einen Wert, der später sicher
+übergeben wird.
+
+
+WICHTIG:
+
+Wie Parameter genau geschrieben werden,
+hängt von der Programmiersprache und Datenbank ab.
+
+
+--------------------------------------------------
+ABSCHLUSS-QUEST
+--------------------------------------------------
+
+Ordne die SQL-Begriffe der richtigen Erklärung zu:
+
+
+    1. DISTINCT
+
+    2. LIKE
+
+    3. IN
+
+    4. BETWEEN
+
+    5. AS
+
+    6. CASE
+
+    7. COMMIT
+
+    8. ROLLBACK
+
+
+ERKLÄRUNGEN:
+
+    A = Änderungen einer Transaktion rückgängig machen
+
+    B = Werte innerhalb eines Bereichs suchen
+
+    C = doppelte Ergebnisse entfernen
+
+    D = mehrere mögliche Werte prüfen
+
+    E = Änderungen einer Transaktion bestätigen
+
+    F = Alias bzw. Anzeigenamen vergeben
+
+    G = Textmuster suchen
+
+    H = Bedingungen verwenden, um unterschiedliche
+        Werte auszugeben
+
+
+Schreibe die Lösung zum Beispiel so:
+
+    1 = ?
+    2 = ?
+    3 = ?
+    4 = ?
+    5 = ?
+    6 = ?
+    7 = ?
+    8 = ?
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt zusätzlich:
+
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    AS
+    CASE WHEN
+    UPDATE mit Berechnungen
+    mehrere JOINs
+    Tabellen-Aliases
+    START TRANSACTION
+    COMMIT
+    ROLLBACK
+
+
+Außerdem hast du gelernt:
+
+SQL kann Daten:
+
+    lesen
+    filtern
+    sortieren
+    gruppieren
+    verbinden
+    hinzufügen
+    ändern
+    löschen
+
+
+Und du hast einen ersten wichtigen Bereich
+der Datenbanksicherheit kennengelernt:
+
+    SQL Injection
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    Datenbank-Pokémon-Meister
+
+
+Neuer Rang:
+
+    SQL-Pokémon-Champion
+
+
+Bobby Tables wurde zurückgeschlagen.
+
+Zumindest vorerst.
+
+
+NÄCHSTES ABENTEUER:
+
+    SQL-Abenteuer Teil 5:
+    Das Turnier der Query-Meister
+
+
+Mögliche neue Themen:
+
+    CREATE VIEW
+    UNION
+    UNION ALL
+    EXISTS
+    NOT EXISTS
+    COALESCE
+    CONCAT
+    Datumsfunktionen
+    Constraints
+    UNIQUE
+    DEFAULT
+    CHECK
+    komplexere Unterabfragen
+    Datenbank-Normalisierung
+
+
+Und eine große Herausforderung:
+
+    Eine eigene kleine Pokémon-Datenbank von Grund auf entwerfen.

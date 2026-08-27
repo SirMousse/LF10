@@ -1,0 +1,924 @@
+SQL-Abenteuer Teil 4: Der Angriff von Bobby Tables
+
+Willkommen zurück, Datenbank-Magier!
+
+Die Gilde der Eisernen Eule ist in Gefahr.
+
+In der Nacht wurde eine seltsame Nachricht auf der Auftragstafel
+gefunden:
+
+Robert'); DROP TABLE abenteurer;--
+
+Der Archivmeister wird blass.
+
+"Das kann nur einer gewesen sein..."
+
+Bobby Tables.
+
+Der berüchtigte Tabellen-Nekromant versucht, die Datenbank der
+Gilde zu manipulieren.
+
+Um ihn aufzuhalten, musst du neue SQL-Techniken lernen.
+
+In diesem Abenteuer lernst du:
+
+DISTINCT
+LIKE
+IN
+BETWEEN
+AS
+CASE WHEN
+UPDATE mit Berechnungen
+mehrere JOINs
+Transaktionen
+COMMIT
+ROLLBACK
+
+Außerdem erfährst du am Ende, warum SQL Injection gefährlich ist.
+
+
+--------------------------------------------------
+DIE DATENBANK DER GILDE
+--------------------------------------------------
+
+TABELLE: abenteurer
+
+id | name       | klasse       | level | gold | status
+1  | Arin       | Krieger      | 5     | 120  | aktiv
+2  | Lyra       | Magierin     | 8     | 340  | aktiv
+3  | Borin      | Zwerg        | 3     | 75   | verletzt
+4  | Nyx        | Schurkin     | 7     | 260  | aktiv
+5  | Eldrin     | Magier       | 10    | 500  | auf Mission
+6  | Pip        | Barde        | 3     | 45   | aktiv
+7  | Thorin.exe | Technomant   | 4     | 90   | aktiv
+8  | Zelda      | Waldläuferin | 6     | 180  | aktiv
+
+
+TABELLE: auftraege
+
+id | titel                      | schwierigkeit | belohnung | abenteurer_id
+1  | Goblins im Kartoffelkeller | leicht        | 50        | 1
+2  | Der Fluch des Segmentation | schwer        | 300       | 2
+3  | Die verschwundene Taverne  | mittel        | 150       | 4
+4  | Angriff der Nullpointer    | schwer        | 400       | 5
+5  | Ratten im Serverraum       | leicht        | 40        | 1
+6  | Das verlorene Passwort     | mittel        | 120       | NULL
+7  | Der Bug im Dungeon         | mittel        | 200       | NULL
+
+
+TABELLE: artefakte
+
+id | name                     | typ     | wert | abenteurer_id
+1  | Schwert von Stackoverflow| Schwert | 500  | 1
+2  | Stab der Rekursion       | Stab    | 900  | 2
+3  | Ring des Debuggers       | Ring    | 350  | 4
+4  | Amulett von Git          | Amulett | 700  | 5
+5  | Verfluchter USB-Stick    | Relikt  | 20   | NULL
+
+
+--------------------------------------------------
+QUEST 1 - DISTINCT
+--------------------------------------------------
+
+Der Gildenmeister möchte wissen:
+
+Welche verschiedenen Schwierigkeitsstufen gibt es bei den Aufträgen?
+
+Wenn du einfach schreibst:
+
+SELECT schwierigkeit
+FROM auftraege;
+
+bekommst du Werte mehrfach angezeigt.
+
+Zum Beispiel:
+
+leicht
+schwer
+mittel
+schwer
+leicht
+mittel
+mittel
+
+
+Mit DISTINCT kannst du doppelte Ergebnisse entfernen.
+
+
+Beispiel:
+
+SELECT DISTINCT schwierigkeit
+FROM auftraege;
+
+
+Das Ergebnis wäre:
+
+leicht
+mittel
+schwer
+
+
+SQL-Wissen:
+
+DISTINCT bedeutet:
+Zeige jeden unterschiedlichen Wert nur einmal.
+
+
+AUFGABE:
+
+Finde mit DISTINCT heraus, welche verschiedenen Statuswerte bei den Abenteurern vorkommen.
+
+
+--------------------------------------------------
+QUEST 2 - DIE SUCHE MIT LIKE
+--------------------------------------------------
+
+Der Bibliothekar erinnert sich nur noch daran, dass ein Auftrag irgendetwas mit "Bug" im Namen hatte.
+
+Mit LIKE kannst du nach Textmustern suchen.
+
+
+Beispiel:
+
+SELECT *
+FROM auftraege
+WHERE titel LIKE '%Bug%';
+
+
+Das Prozentzeichen % ist ein Platzhalter.
+
+Es bedeutet:
+Hier können beliebig viele Zeichen stehen.
+
+
+Beispiele:
+LIKE 'Der%'
+
+Bedeutet:
+Der Text beginnt mit "Der".
+
+
+LIKE '%Dungeon'
+
+Bedeutet:
+Der Text endet mit "Dungeon".
+
+
+LIKE '%Bug%'
+
+Bedeutet:
+Irgendwo im Text steht "Bug".
+
+
+AUFGABE:
+Finde alle Aufträge, deren Titel mit "Der" beginnt.
+
+
+BONUS:
+Finde alle Artefakte, deren Name irgendwo das Wort "der" enthält.
+
+
+--------------------------------------------------
+QUEST 3 - IN
+--------------------------------------------------
+
+Der Gildenmeister sucht:
+
+Magier
+Magierinnen
+Technomanten
+
+Du könntest schreiben:
+
+WHERE klasse = 'Magier'
+OR klasse = 'Magierin'
+OR klasse = 'Technomant';
+
+
+Das funktioniert.
+
+Aber SQL bietet eine kürzere Möglichkeit:
+
+IN
+
+
+Beispiel:
+
+SELECT *
+FROM abenteurer
+WHERE klasse IN ('Magier', 'Magierin', 'Technomant');
+
+
+SQL-Wissen:
+IN prüft, ob ein Wert in einer Liste vorkommt.
+
+
+AUFGABE:
+Zeige alle Abenteurer mit folgendem Status:
+
+aktiv
+auf Mission
+
+
+Verwende dafür IN.
+
+
+--------------------------------------------------
+QUEST 4 - BETWEEN
+--------------------------------------------------
+
+Für einen neuen Auftrag werden Abenteurer gesucht, die zwischen Level 4 und Level 8 liegen.
+
+Dafür gibt es BETWEEN.
+
+
+Beispiel:
+
+SELECT *
+FROM abenteurer
+WHERE level BETWEEN 4 AND 8;
+
+
+SQL-Wissen:
+
+BETWEEN prüft einen Bereich.
+
+Die Grenzwerte gehören normalerweise dazu.
+
+BETWEEN 4 AND 8 bedeutet also:
+
+4
+5
+6
+7
+8
+
+
+AUFGABE:
+
+Finde alle Artefakte, deren Wert zwischen 300 und 800 Gold liegt.
+
+
+--------------------------------------------------
+QUEST 5 - ALIASES MIT AS
+--------------------------------------------------
+
+Der König beschwert sich über die Berichte.
+
+"Was soll abenteurer_id bedeuten? Ich will verständliche Namen!"
+
+Mit AS kannst du Spalten im Ergebnis einen anderen Namen geben.
+
+
+Beispiel:
+
+SELECT
+    name AS Held,
+    level AS Stufe,
+    gold AS Goldmuenzen
+FROM abenteurer;
+
+
+Wichtig:
+
+AS verändert nicht den echten Namen der Spalte in der Datenbank.
+
+Es verändert nur die Anzeige des Ergebnisses.
+
+
+AUFGABE:
+
+Zeige:
+
+name
+klasse
+level
+
+Verwende folgende Anzeigenamen:
+
+Abenteurer
+Beruf
+Stufe
+
+
+--------------------------------------------------
+QUEST 6 - UPDATE MIT BERECHNUNGEN
+--------------------------------------------------
+
+Alle Abenteurer erhalten 50 Gold als Belohnung für die Verteidigung der Gildenhalle.
+
+Du könntest jeden Wert einzeln ändern.
+
+Das wäre aber ziemlich nervig.
+
+SQL kann direkt rechnen.
+
+
+Beispiel:
+
+UPDATE abenteurer
+SET gold = gold + 50;
+
+
+Wenn Arin vorher 120 Gold hatte:
+
+120 + 50 = 170
+
+
+AUFGABE:
+
+Alle Abenteurer steigen um ein Level auf.
+
+Schreibe einen UPDATE-Befehl, der bei jedem Abenteurer das Level um 1 erhöht.
+
+
+ZUSATZAUFGABE:
+
+Nur aktive Abenteurer erhalten weitere 25 Gold.
+
+
+Hinweis:
+
+UPDATE abenteurer
+SET ...
+WHERE ...;
+
+
+--------------------------------------------------
+QUEST 7 - CASE WHEN
+--------------------------------------------------
+
+Der Gildenmeister möchte Abenteurer automatisch bewerten.
+
+Die Regeln:
+
+Level 1 bis 3  = Anfänger
+Level 4 bis 6  = Erfahren
+Level 7 bis 9  = Veteran
+Level 10+      = Legende
+
+
+Dafür gibt es CASE WHEN.
+
+
+Beispiel:
+
+SELECT
+    name,
+    level,
+    CASE
+        WHEN level <= 3 THEN 'Anfänger'
+        WHEN level <= 6 THEN 'Erfahren'
+        WHEN level <= 9 THEN 'Veteran'
+        ELSE 'Legende'
+    END AS rang
+FROM abenteurer;
+
+
+SQL-Wissen:
+
+CASE funktioniert ähnlich wie:
+
+Wenn Bedingung A stimmt, dann Wert A.
+Wenn Bedingung B stimmt, dann Wert B.
+Sonst ein anderer Wert.
+
+
+AUFGABE:
+
+Bewerte die Goldvorräte der Abenteurer.
+
+Regeln:
+
+unter 100 Gold
+= Pleite
+
+100 bis 299 Gold
+= Solide
+
+300 bis 499 Gold
+= Reich
+
+ab 500 Gold
+= Drachenhort
+
+
+Gib aus:
+
+name
+gold
+vermoegensklasse
+
+
+--------------------------------------------------
+QUEST 8 - MEHRERE JOINS
+--------------------------------------------------
+
+Jetzt wird es ernst.
+
+Der König möchte gleichzeitig wissen:
+
+Welcher Abenteurer besitzt welches Artefakt und welchen Auftrag hat er?
+
+
+Wir müssen jetzt drei Tabellen verbinden:
+
+abenteurer
+auftraege
+artefakte
+
+
+Beispiel:
+
+SELECT
+    abenteurer.name,
+    auftraege.titel,
+    artefakte.name
+FROM abenteurer
+JOIN auftraege
+ON abenteurer.id = auftraege.abenteurer_id
+JOIN artefakte
+ON abenteurer.id = artefakte.abenteurer_id;
+
+
+SQL-Wissen:
+
+Du kannst mehrere JOINs in einer Abfrage verwenden.
+
+
+AUFGABE:
+
+Erstelle einen Bericht mit:
+
+Name des Abenteurers
+Klasse
+Auftrag
+Belohnung
+Artefakt
+Wert des Artefakts
+
+
+--------------------------------------------------
+QUEST 9 - TABELLEN-ALIASES
+--------------------------------------------------
+
+Unsere Abfragen werden langsam ziemlich lang.
+
+Statt ständig:
+
+abenteurer.name
+auftraege.titel
+artefakte.name
+
+zu schreiben, können Tabellen ebenfalls Aliases bekommen.
+
+
+Beispiel:
+
+SELECT
+    a.name,
+    au.titel
+FROM abenteurer AS a
+JOIN auftraege AS au
+ON a.id = au.abenteurer_id;
+
+
+Jetzt steht:
+
+a
+
+für:
+
+abenteurer
+
+
+Und:
+
+au
+
+für:
+
+auftraege
+
+
+AUFGABE:
+
+Verbinde alle drei Tabellen erneut.
+
+Verwende:
+
+a  = abenteurer
+au = auftraege
+ar = artefakte
+
+
+Gib aus:
+
+a.name
+au.titel
+ar.name
+
+
+--------------------------------------------------
+QUEST 10 - TRANSAKTIONEN
+--------------------------------------------------
+
+Der Schatzmeister muss große Änderungen durchführen.
+
+Er möchte allen aktiven Abenteurern 100 Gold geben.
+
+Doch was passiert, wenn er einen Fehler macht?
+
+
+Dafür gibt es Transaktionen.
+
+
+Ein vereinfachtes Beispiel:
+
+START TRANSACTION;
+
+UPDATE abenteurer
+SET gold = gold + 100
+WHERE status = 'aktiv';
+
+
+Jetzt wurde die Änderung innerhalb der Transaktion durchgeführt.
+
+Sie kann bestätigt werden mit:
+
+COMMIT;
+
+
+Oder rückgängig gemacht werden mit:
+
+ROLLBACK;
+
+
+SQL-Wissen:
+
+COMMIT
+
+bedeutet:
+
+Änderungen endgültig bestätigen.
+
+
+ROLLBACK
+
+bedeutet:
+
+Änderungen der aktuellen Transaktion rückgängig machen.
+
+
+Wichtig:
+
+Die genaue Syntax für Transaktionen kann je nach Datenbanksystem etwas unterschiedlich sein.
+
+
+--------------------------------------------------
+QUEST 11 - DER FEHLER DES SCHATZMEISTERS
+--------------------------------------------------
+
+Der Schatzmeister möchte Pip 100 Gold geben.
+
+Er schreibt:
+
+START TRANSACTION;
+
+UPDATE abenteurer
+SET gold = gold + 100
+WHERE name = 'Pip';
+
+
+Dann bemerkt er:
+Pip sollte gar keine 100 Gold bekommen.
+
+
+FRAGE:
+Welchen SQL-Befehl sollte er jetzt verwenden?
+
+
+COMMIT
+
+oder
+
+ROLLBACK?
+
+
+--------------------------------------------------
+BOSS-QUEST - DER ANGRIFF VON BOBBY TABLES
+--------------------------------------------------
+
+Plötzlich erscheint Bobby Tables im Archiv.
+
+Er hat die mächtigsten Artefakte der Gilde gestohlen.
+
+Der Gildenmeister benötigt einen Bericht über alle Abenteurer, die für die Jagd geeignet sind.
+
+
+Die Anforderungen:
+
+Der Abenteurer muss mindestens Level 5 sein.
+
+Der Status muss entweder:
+
+aktiv
+
+oder
+
+auf Mission
+
+sein.
+
+Der Abenteurer muss ein Artefakt besitzen.
+
+Das Artefakt muss mindestens 300 Gold wert sein.
+
+
+Zeige:
+
+Name
+Klasse
+Level
+Status
+Artefakt
+Artefaktwert
+
+
+Verwende sinnvolle Aliases.
+
+Sortiere nach dem Artefaktwert.
+
+Das wertvollste Artefakt soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+SELECT
+AS
+FROM
+JOIN
+ON
+WHERE
+IN
+ORDER BY
+DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+SUPER-BOSS-QUEST - DIE RANGLISTE
+--------------------------------------------------
+
+Der Gildenmeister möchte einen Bericht mit:
+
+Name
+Level
+Gold
+Rang
+
+
+Der Rang soll automatisch mit CASE berechnet werden.
+
+
+Regeln:
+
+Level unter 4
+= Rekrut
+
+Level 4 bis 6
+= Abenteurer
+
+Level 7 bis 9
+= Elite
+
+Level 10 oder höher
+= Gildenlegende
+
+
+Zeige nur Abenteurer mit mindestens Level 3.
+
+Sortiere zuerst nach Level und danach nach Gold.
+
+Beide Werte sollen absteigend sortiert werden.
+
+
+Benötigte Befehle:
+
+SELECT
+CASE
+WHEN
+THEN
+ELSE
+END
+AS
+WHERE
+ORDER BY
+DESC
+
+
+--------------------------------------------------
+GEHEIM-QUEST - WAS IST SQL INJECTION?
+--------------------------------------------------
+
+Nach dem Kampf untersucht der Archivmeister die Nachricht von Bobby Tables.
+
+Sie sah ungefähr so aus:
+
+Robert'); DROP TABLE abenteurer;--
+
+
+Das ist eine Anspielung auf ein bekanntes Programmierer-Meme.
+
+Das Problem dahinter heißt:
+
+SQL Injection
+
+
+SQL Injection kann entstehen, wenn ein Programm Benutzereingaben unsicher direkt in SQL-Befehle einfügt.
+
+
+Vereinfacht gesagt:
+
+Ein Programm erwartet einen Namen.
+
+Ein Angreifer versucht stattdessen, Teile eines SQL-Befehls einzugeben.
+
+
+Deshalb sollte man SQL-Abfragen in echten Anwendungen nicht einfach durch das Zusammenkleben von Texteingaben bauen.
+
+
+Stattdessen verwendet man normalerweise:
+
+Prepared Statements
+
+oder:
+
+parametrisierte Abfragen
+
+
+Beispielidee:
+
+SELECT *
+FROM abenteurer
+WHERE name = ?;
+
+
+Das ? steht für einen Wert, der später sicher übergeben wird.
+
+
+Wichtig:
+
+Wie Parameter genau geschrieben werden, hängt von der Programmiersprache und Datenbank ab.
+
+
+--------------------------------------------------
+NERD-WISSEN: WARUM "BOBBY TABLES"?
+--------------------------------------------------
+
+"Bobby Tables" ist ein berühmter Witz aus der Programmiererwelt.
+
+Dabei wird das Thema SQL Injection anhand eines ungewöhnlichen Namens erklärt.
+
+Die eigentliche Lektion dahinter ist ernst:
+Benutzereingaben dürfen nicht blind als SQL-Code behandelt werden.
+
+
+--------------------------------------------------
+ABSCHLUSS-QUEST
+--------------------------------------------------
+
+Ordne die SQL-Begriffe der richtigen Erklärung zu:
+
+
+1. DISTINCT
+
+2. LIKE
+
+3. IN
+
+4. BETWEEN
+
+5. AS
+
+6. CASE
+
+7. COMMIT
+
+8. ROLLBACK
+
+
+ERKLÄRUNGEN:
+
+A = Änderungen einer Transaktion rückgängig machen
+
+B = Werte innerhalb eines Bereichs suchen
+
+C = doppelte Ergebnisse entfernen
+
+D = mehrere mögliche Werte prüfen
+
+E = Änderungen einer Transaktion bestätigen
+
+F = Alias bzw. Anzeigenamen vergeben
+
+G = Textmuster suchen
+
+H = Bedingungen verwenden, um unterschiedliche Werte auszugeben
+
+
+Schreibe die Lösung zum Beispiel so:
+
+1 = ?
+2 = ?
+3 = ?
+...
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt zusätzlich:
+
+DISTINCT
+LIKE
+IN
+BETWEEN
+AS
+CASE WHEN
+UPDATE mit Berechnungen
+mehrere JOINs
+Tabellen-Aliases
+START TRANSACTION
+COMMIT
+ROLLBACK
+
+
+Außerdem hast du gelernt:
+SQL besteht nicht nur aus SELECT-Abfragen.
+
+SQL kann Daten:
+
+lesen
+filtern
+sortieren
+gruppieren
+verbinden
+hinzufügen
+ändern
+löschen
+
+
+Und du hast einen ersten wichtigen Bereich der Datenbanksicherheit kennengelernt:
+
+SQL Injection
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+Datenbank-Magier
+
+
+Neuer Rang:
+
+SQL-Erzmagier der Eisernen Eule
+
+
+Bobby Tables wurde zurückgeschlagen.
+
+Zumindest vorerst.
+
+
+NÄCHSTES ABENTEUER:
+
+SQL-Abenteuer Teil 5:
+Das Turnier der Query-Meister
+
+
+Mögliche neue Themen:
+
+CREATE VIEW
+UNION
+UNION ALL
+EXISTS
+NOT EXISTS
+COALESCE
+CONCAT
+Datumsfunktionen
+Constraints
+UNIQUE
+DEFAULT
+CHECK
+komplexere Unterabfragen
+Datenbank-Normalisierung
+
+Und eine große Herausforderung:
+
+Eine eigene kleine Gilden-Datenbank von Grund auf entwerfen.

@@ -1,0 +1,717 @@
+SQL-ABENTEUER TEIL 3: DIE VERBOTENEN ARCHIVE DER ZOMBIE-APOKALYPSE
+==================================================================
+
+Willkommen zurück, JOIN-Zombie-Jäger!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits die nächste Aufgabe auf dich.
+
+Tief unter dem Überlebendenlager "Letzte Hoffnung" befindet sich
+das geheime Datenarchiv.
+
+Dort werden neue Zombies registriert, alte Missionen gelöscht
+und wertvolle Ausrüstungsgegenstände verwaltet.
+
+Die Lagerleitung überreicht dir den Schlüssel zum Archiv.
+
+
+Deine heutigen SQL-Fähigkeiten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    FOREIGN KEY
+    HAVING
+    Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: zombies
+
+id | name    | typ       | gefahr | entfernung | status
+---|---------|-----------|--------|------------|------------
+1  | Grunz   | Beißer    | 5      | 120        | unterwegs
+2  | Kratzer | Läufer    | 8      | 60         | unterwegs
+3  | Matsch  | Schlurfer | 3      | 300        | gesichtet
+4  | Brüller | Mutant    | 10     | 40         | unterwegs
+5  | Knochen | Beißer    | 7      | 90         | unterwegs
+6  | Stinker | Schlurfer | 2      | 450        | gesichtet
+
+
+TABELLE: missionen
+
+id | titel                         | schwierigkeit | belohnung | zombie_id
+---|-------------------------------|----------------|-----------|----------
+1  | Vorräte aus dem Supermarkt   | leicht         | 50        | 1
+2  | Flucht durch die Innenstadt  | schwer         | 300       | 2
+3  | Medizin aus dem Krankenhaus  | mittel         | 150       | 5
+4  | Der Mutant am Haupttor       | schwer         | 400       | 4
+5  | Benzin von der Tankstelle    | leicht         | 40        | 1
+6  | Das verlassene Labor         | mittel         | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUER ZOMBIE WIRD GESICHTET
+--------------------------------------------------
+
+Vor dem Überlebendenlager wurde ein neuer Zombie entdeckt.
+
+Sein Name ist:
+
+    Kieferknacker
+
+Seine Daten:
+
+    Typ: Läufer
+    Gefahr: 6
+    Entfernung: 180
+    Status: gesichtet
+
+Die Lagerleitung möchte ihn in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+    INSERT INTO zombies
+    (id, name, typ, gefahr, entfernung, status)
+    VALUES
+    (7, 'Kieferknacker', 'Läufer', 6, 180, 'gesichtet');
+
+
+SQL-WISSEN:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge einen weiteren Zombie hinzu:
+
+    id: 8
+    name: Faulzahn
+    typ: Beißer
+    gefahr: 7
+    entfernung: 210
+    status: gesichtet
+
+
+--------------------------------------------------
+QUEST 2 - EINE NEUE MISSION
+--------------------------------------------------
+
+In der Nacht erreicht das Lager ein neuer Notruf.
+
+Titel:
+
+    Rettung aus der Polizeistation
+
+Schwierigkeit:
+
+    mittel
+
+Belohnung:
+
+    200
+
+Noch wurde dieser Mission kein Zombie zugeordnet.
+
+
+AUFGABE:
+
+Füge diese Mission mit INSERT INTO in die Tabelle
+"missionen" ein.
+
+Verwende:
+
+    id = 7
+
+Da noch kein Zombie zugeordnet wurde, soll gelten:
+
+    zombie_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER GEFÄHRLICHE DELETE-BEFEHL
+--------------------------------------------------
+
+Eine alte Mission wurde versehentlich doppelt eingetragen.
+
+Die Lagerleitung befiehlt:
+
+    "Lösche sie aus dem Archiv!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+    DELETE FROM missionen
+    WHERE id = 5;
+
+
+SQL-WISSEN:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+    DELETE FROM missionen;
+
+würde ALLE Missionen löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur die Mission
+mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+    id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+    id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+---|--------
+1  | Grunz
+1  | Brüller
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-WISSEN:
+
+Ein PRIMARY KEY sollte:
+
+    - eindeutig sein
+    - nicht NULL sein
+    - einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "missionen" besitzt:
+
+    zombie_id
+
+
+Diese Spalte verweist auf:
+
+    zombies.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY
+abgesichert werden.
+
+
+Beispiel:
+
+    CREATE TABLE missionen (
+        id INT PRIMARY KEY,
+        titel VARCHAR(100),
+        schwierigkeit VARCHAR(20),
+        belohnung INT,
+        zombie_id INT,
+        FOREIGN KEY (zombie_id)
+            REFERENCES zombies(id)
+    );
+
+
+SQL-WISSEN:
+
+PRIMARY KEY:
+
+    Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+    Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+    JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Zombies,
+denen keine Mission zugeordnet wurde?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+    SELECT zombies.name, missionen.titel
+    FROM zombies
+    LEFT JOIN missionen
+    ON zombies.id = missionen.zombie_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten
+Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+    zombies   = linke Tabelle
+    missionen = rechte Tabelle
+
+
+Hat ein Zombie keine Mission, steht beim Titel möglicherweise:
+
+    NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+    name
+    typ
+    titel
+
+für alle Zombies.
+
+Auch Zombies ohne Mission sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE ZOMBIES OHNE MISSION
+--------------------------------------------------
+
+Die Lagerleitung entdeckt ein Problem.
+
+Einige Zombies wurden zwar gesichtet,
+tauchen aber bei keiner Mission auf.
+
+Finde alle Zombies ohne Mission.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+    LEFT JOIN
+
+und
+
+    IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+    WHERE missionen.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+    name
+    typ
+    gefahr
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Die Lagerleitung möchte wissen:
+
+Welche Zombies kommen in MEHR ALS EINER Mission vor?
+
+
+Wir kennen bereits:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT zombies.name, COUNT(missionen.id)
+    FROM zombies
+    JOIN missionen
+    ON zombies.id = missionen.zombie_id
+    GROUP BY zombies.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+    HAVING
+
+
+Beispiel:
+
+    SELECT zombies.name, COUNT(missionen.id)
+    FROM zombies
+    JOIN missionen
+    ON zombies.id = missionen.zombie_id
+    GROUP BY zombies.name
+    HAVING COUNT(missionen.id) > 1;
+
+
+SQL-WISSEN:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+    WHERE kommt normalerweise vor GROUP BY.
+
+    HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Die Lagerleitung stellt eine schwierige Frage:
+
+Welche Zombies besitzen eine höhere Gefahrenstufe
+als der durchschnittliche Zombie?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+    SELECT AVG(gefahr)
+    FROM zombies;
+
+
+Aber wir können diese Abfrage auch in eine andere
+Abfrage einbauen.
+
+
+Beispiel:
+
+    SELECT name, gefahr
+    FROM zombies
+    WHERE gefahr > (
+        SELECT AVG(gefahr)
+        FROM zombies
+    );
+
+
+Das nennt man:
+
+    Unterabfrage
+
+oder:
+
+    Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+    SELECT AVG(gefahr)
+    FROM zombies;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+
+Finde alle Zombies, deren Entfernung kleiner ist als
+die durchschnittliche Entfernung aller Zombies.
+
+
+--------------------------------------------------
+QUEST 10 - DER GEFÄHRLICHSTE ZOMBIE
+--------------------------------------------------
+
+Die Lagerleitung möchte wissen:
+
+Welcher Zombie besitzt die höchste Gefahrenstufe?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+    MAX(gefahr)
+
+
+AUFGABE:
+
+Vervollständige:
+
+    SELECT name, gefahr
+    FROM zombies
+    WHERE gefahr = (
+        ...
+    );
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE ARCHIV
+--------------------------------------------------
+
+Ein unbekannter Überlebender hat versucht,
+die Lagerdatenbank zu manipulieren.
+
+Die Lagerleitung braucht einen vollständigen Bericht.
+
+
+Finde alle Zombies, die:
+
+    - mindestens Gefahrenstufe 5 besitzen
+    - mindestens einer Mission zugeordnet sind
+    - insgesamt Missionen mit mehr als 100 Belohnungspunkten
+      besitzen
+
+
+Zeige:
+
+    name
+    typ
+    gefahr
+    Anzahl der Missionen
+    gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    JOIN
+    ON
+    WHERE
+    GROUP BY
+    HAVING
+    COUNT()
+    SUM()
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE AUSRÜSTUNGS-DATENBANK
+--------------------------------------------------
+
+Das Überlebendenlager besitzt inzwischen so viele
+Ausrüstungsgegenstände, dass eine neue Tabelle benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+    ausruestung
+
+
+Sie soll folgende Spalten besitzen:
+
+    id
+    name
+    typ
+    wert
+    zombie_id
+
+
+Beispieldaten:
+
+id | name                         | typ         | wert | zombie_id
+---|------------------------------|-------------|------|----------
+1  | Verstärkte Baseballkeule    | Waffe       | 500  | 1
+2  | Taktische Armbrust          | Waffe       | 900  | 2
+3  | Schutzweste                 | Rüstung     | 350  | 5
+4  | Militärischer Flammenwerfer | Waffe       | 700  | 4
+5  | Kaputte Taschenlampe        | Ausrüstung  | 20   | NULL
+
+
+AUFGABE 1:
+
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+
+Verbinde "zombie_id" über einen FOREIGN KEY mit:
+
+    zombies(id)
+
+
+AUFGABE 4:
+
+Zeige anschließend alle Ausrüstungsgegenstände zusammen
+mit dem Namen des zugehörigen Zombies an.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Die Lagerleitung möchte wissen:
+
+Welchem Zombie ist der wertvollste Ausrüstungsgegenstand
+zugeordnet?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+    JOIN
+    MAX()
+    Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+    INSERT INTO
+    VALUES
+    DELETE
+    PRIMARY KEY
+    FOREIGN KEY
+    LEFT JOIN
+    GROUP BY
+    HAVING
+    Unterabfragen
+    MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen:
+
+    JOIN
+    und
+    LEFT JOIN
+
+
+JOIN:
+
+    Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN:
+
+    Zeigt alle Datensätze der linken Tabelle,
+    auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE:
+
+    Filtert Datensätze.
+
+
+HAVING:
+
+    Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    JOIN-Zombie-Jäger
+
+
+Neuer Rang:
+
+    Datenbank-Überlebender
+
+
+Nächster Rang:
+
+    SQL-Apokalypse-Meister
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    UPDATE mit Berechnungen
+    CASE WHEN
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    Aliases mit AS
+    mehrere JOINs gleichzeitig
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+
+Und natürlich:
+
+    Ein neuer Gegner.
+
+    Der gefürchtete Datenbank-Zombie
+    Bobby Bites.

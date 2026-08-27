@@ -1,0 +1,407 @@
+SQL-ABENTEUER TEIL 2: DIE MISSIONEN DER POKÉMON
+===============================================
+
+Willkommen zurück, SQL-Pokémon-Trainer!
+
+Nach deinen erfolgreichen ersten Abfragen hat Professor Eich beschlossen, dir mehr Verantwortung zu übertragen.
+
+Bisher hast du nur mit der Tabelle "pokemon" gearbeitet.
+
+Doch ein echter Pokémon-Trainer braucht natürlich auch Missionen.
+
+Heute lernst du deshalb, wie mehrere Tabellen miteinander verbunden werden.
+
+
+AUSGANGSLAGE
+------------
+
+Unsere bekannte Tabelle:
+
+pokemon
+
+id | name    | typ      | level | staerke | status
+---|---------|----------|-------|---------|----------
+1  | Pikachu | Elektro  | 6     | 120     | aktiv
+2  | Glurak  | Feuer    | 10    | 220     | aktiv
+3  | Schiggy | Wasser   | 4     | 80      | aktiv
+4  | Bisasam | Pflanze  | 5     | 95      | verletzt
+5  | Gengar  | Geist    | 8     | 180     | aktiv
+6  | Evoli   | Normal   | 4     | 65      | aktiv
+
+
+NEUE TABELLE: MISSIONEN
+-----------------------
+
+CREATE TABLE missionen (
+    id INT PRIMARY KEY,
+    titel VARCHAR(100),
+    schwierigkeit VARCHAR(20),
+    belohnung INT,
+    pokemon_id INT
+);
+
+
+Folgende Missionen befinden sich im Archiv:
+
+id | titel                           | schwierigkeit  | belohnung | pokemon_id
+---|---------------------------------|----------------|-----------|-----------
+1  | Die verschwundenen Beeren       | leicht         | 50        | 1
+2  | Das Geheimnis der Geisterhöhle  | schwer         | 300       | 5
+3  | Rettung am Wasserfall           | mittel         | 150       | 3
+4  | Kampf am Vulkan                 | schwer         | 400       | 2
+5  | Die Suche im hohen Gras         | leicht         | 40        | 1
+6  | Das geheimnisvolle Pokémon-Ei   | mittel         | 120       | NULL
+
+
+WAS BEDEUTET "pokemon_id"?
+--------------------------
+
+Die Spalte "pokemon_id" zeigt, welches Pokémon einer Mission
+zugewiesen wurde.
+
+Beispiel:
+
+    pokemon_id = 1
+
+bedeutet:
+
+Das Pokémon mit der ID 1 wurde dieser Mission zugewiesen.
+
+Das ist Pikachu.
+
+Die Tabellen sind also miteinander verbunden.
+
+
+QUEST 1 - DIE MISSIONSTAFEL
+---------------------------
+
+Zeige alle Missionen an.
+
+Versuche die Abfrage selbst zu schreiben.
+
+Hinweis:
+
+    SELECT *
+    FROM missionen;
+
+
+QUEST 2 - NUR FÜR ERFAHRENE POKÉMON
+-----------------------------------
+
+Professor Eich möchte alle schweren Missionen sehen.
+
+Zeige alle Missionen, deren Schwierigkeit "schwer" ist.
+
+
+SQL-WISSEN:
+
+Texte werden bei SQL-Abfragen normalerweise in einfache Anführungszeichen geschrieben.
+
+Beispiel:
+
+    WHERE schwierigkeit = 'schwer';
+
+
+QUEST 3 - DIE BESTBEZAHLTEN MISSIONEN
+-------------------------------------
+
+Zeige:
+
+    titel
+    schwierigkeit
+    belohnung
+
+Sortiere die Missionen nach ihrer Belohnung.
+
+Die Mission mit der höchsten Belohnung soll zuerst erscheinen.
+
+
+SQL-WISSEN:
+
+    ORDER BY belohnung DESC;
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DIE MAGIE DES JOIN
+----------------------------
+
+Jetzt wird es interessanter.
+
+Professor Eich möchte nicht nur die Missionen sehen.
+
+Er möchte auch wissen, welches Pokémon der jeweiligen Mission zugewiesen wurde.
+
+Dafür müssen wir zwei Tabellen miteinander verbinden.
+
+In SQL verwendet man dafür JOIN.
+
+
+Beispiel:
+
+    SELECT pokemon.name, missionen.titel
+    FROM pokemon
+    JOIN missionen
+    ON pokemon.id = missionen.pokemon_id;
+
+
+SQL-WISSEN:
+
+JOIN verbindet Datensätze aus mehreren Tabellen.
+
+Der entscheidende Teil ist:
+
+    ON pokemon.id = missionen.pokemon_id
+
+SQL sucht also nach passenden IDs in beiden Tabellen.
+
+
+AUFGABE:
+
+Erstelle eine Abfrage, die folgende Informationen anzeigt:
+
+    Name des Pokémon
+    Typ des Pokémon
+    Titel der Mission
+    Belohnung
+
+
+QUEST 5 - WER VERDIENT AM MEISTEN?
+----------------------------------
+
+Zeige alle Pokémon zusammen mit ihren Missionen.
+
+Sortiere das Ergebnis anschließend nach der Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst dafür:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    ORDER BY
+    DESC
+
+
+QUEST 6 - DAS MYSTERIÖSE NULL
+-----------------------------
+
+Bei der Mission "Das geheimnisvolle Pokémon-Ei" steht:
+
+    pokemon_id = NULL
+
+
+Was bedeutet NULL?
+
+NULL bedeutet in SQL:
+
+    Es ist kein Wert vorhanden.
+
+
+Das bedeutet in unserem Beispiel:
+
+Noch kein Pokémon wurde dieser Mission zugewiesen.
+
+
+WICHTIG:
+
+Folgende Abfrage funktioniert nicht richtig:
+
+    WHERE pokemon_id = NULL
+
+
+Stattdessen verwendet SQL:
+
+    WHERE pokemon_id IS NULL;
+
+
+AUFGABE:
+
+Finde alle Missionen, denen noch kein Pokémon zugewiesen wurde.
+
+
+QUEST 7 - WIE VIELE MISSIONEN GIBT ES?
+--------------------------------------
+
+Professor Eich hat den Überblick verloren.
+
+Er möchte wissen, wie viele Missionen aktuell im Archiv stehen.
+
+Dafür kannst du COUNT() verwenden.
+
+
+Beispiel:
+
+    SELECT COUNT(*)
+    FROM missionen;
+
+
+SQL-WISSEN:
+
+COUNT() zählt Datensätze.
+
+COUNT(*) bedeutet:
+
+    Zähle alle Zeilen.
+
+
+QUEST 8 - DIE DURCHSCHNITTLICHE BELOHNUNG
+-----------------------------------------
+
+Professor Eich möchte wissen, wie hoch die durchschnittliche Belohnung aller Missionen ist.
+
+Dafür gibt es AVG().
+
+
+Beispiel:
+
+    SELECT AVG(belohnung)
+    FROM missionen;
+
+
+Weitere Aggregatfunktionen:
+
+    SUM()   = Summe
+    AVG()   = Durchschnitt
+    MIN()   = kleinster Wert
+    MAX()   = größter Wert
+    COUNT() = Anzahl
+
+
+BOSS-QUEST - DER BERICHT FÜR DIE POKÉMON-LIGA
+---------------------------------------------
+
+Die Pokémon-Liga verlangt einen Bericht über alle vergebenen Missionen.
+
+Sie möchte folgende Informationen sehen:
+
+    Name des Pokémon
+    Typ
+    Level
+    Titel der Mission
+    Schwierigkeit
+    Belohnung
+
+
+Dabei sollen nur Missionen angezeigt werden, deren Belohnung mindestens 100 beträgt.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    FROM
+    JOIN
+    ON
+    WHERE
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+BONUS-QUEST - GROUP BY
+----------------------
+
+Professor Eich stellt eine neue Frage:
+
+Wie viele Missionen hat jedes Pokémon übernommen?
+
+
+Hier kommt ein neuer SQL-Befehl ins Spiel:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT pokemon.name, COUNT(missionen.id)
+    FROM pokemon
+    JOIN missionen
+    ON pokemon.id = missionen.pokemon_id
+    GROUP BY pokemon.name;
+
+
+SQL-WISSEN:
+
+GROUP BY fasst Datensätze zu Gruppen zusammen.
+
+Dadurch können wir zum Beispiel herausfinden:
+
+    Wie viele Missionen hat jedes Pokémon?
+
+    Wie hoch ist die gesamte Belohnung
+    jeder Schwierigkeitsstufe?
+
+    Wie viele Pokémon gehören zu jedem Typ?
+
+
+OPTIONALE SUPER-BONUS-QUEST
+---------------------------
+
+Finde heraus, wie viele Belohnungspunkte jedes Pokémon insgesamt durch seine Missionen verdienen kann.
+
+Das Ergebnis soll ungefähr so aussehen:
+
+name    | gesamtbelohnung
+--------|----------------
+Pikachu | ...
+Glurak  | ...
+Schiggy | ...
+
+
+Dafür musst du zwei Dinge kombinieren:
+
+    GROUP BY
+    SUM()
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach diesem Abenteuer kennst du zusätzlich:
+
+    JOIN
+    ON
+    IS NULL
+    COUNT()
+    AVG()
+    GROUP BY
+    SUM()
+
+
+Besonders wichtig ist JOIN.
+
+In echten Datenbanken liegen Informationen normalerweise nicht alle in einer einzigen Tabelle.
+
+Stattdessen werden mehrere Tabellen miteinander verbunden.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Neuer Rang:
+
+    JOIN-Pokémon-Trainer
+
+
+Nächster Rang:
+
+    Datenbank-Pokémon-Meister
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    HAVING
+    PRIMARY KEY
+    FOREIGN KEY
+    Unterabfragen

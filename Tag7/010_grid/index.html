@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>CSS Grid - Grundlagen</title>
+    </head>
+    <body>
+        <header>
+            <h1>CSS Grid - Grundlagen</h1>
+
+            <p>
+                2D Layout: Reihen(Rows) und Spalten(Columns) können einfach gebaut werden.
+                Es ist unser Grundgerüst.
+            </p>
+        </header>
+
+        <main>
+            <h2>1. Grid einschalten</h2>
+
+            <p>
+                Grid wird auf dem <strong>Eltern Element</strong> aktiviert: <code>display:
+                grid</code>. Die direkten Kinder, werden sogenannte "Grid-Items".
+            </p>
+
+            <section class="grid basic-grid">
+                <article class="cell">1</article>
+                <article class="cell">2</article>
+                <article class="cell">3</article>
+                <article class="cell">4</article>
+            </section>
+
+            <pre>
+                .basic-grid{
+                    display: grid;  -> Startet Grid
+                }
+            </pre>
+
+            <hr>
+
+            <h2>2. Spalten definieren: <code>grid-template-columns</code></h2>
+
+            <p>
+                Bestimmt, wie viele Spalten es gibt und wie breit sie sind.
+            </p>
+
+            <section class="grid three-col">
+                <article class="cell spalten">A</article>
+                <article class="cell spalten">B</article>
+                <article class="cell spalten">C</article>
+                <article class="cell spalten">D</article>
+                <article class="cell spalten">E</article>
+                <article class="cell spalten">F</article>
+            </section>
+
+            <pre>
+                .three-col{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;     -> 3 gleich große Spalten
+                    gap: 8px;
+                }
+            </pre>
+
+            <dl>
+                <dt>fr</dt>
+                <dd>... steht für fraction, zu dt. Anteil</dd>
+            </dl>
+
+            <section class="grid three-col1">
+                <article class="cell spalte">A</article>
+                <article class="cell spalte">B</article>
+                <article class="cell spalte">C</article>
+                <article class="cell spalte">D</article>
+                <article class="cell spalte">E</article>
+                <article class="cell spalte">F</article>
+            </section>
+
+            <pre>
+                .three-col1{
+                    display: grid;
+                    grid-template-columns: 4fr 2fr 1fr; -> Spalte A+D = 4 Anteile | B+E = 2 Anteile | C+F = 1 Anteil
+                    gap: 8px;
+                }
+            </pre>
+
+            <hr>
+
+            <h2>3. Reihe definieren: <code>grid-template-rows</code></h2>
+
+            <p>
+                Bestimmt die Höhe jeder Reihe.
+            </p>
+
+            <section class="grid rows">
+                <article class="cell row">1</article>
+                <article class="cell row">2</article>
+                <article class="cell row">3</article>
+                <article class="cell row">4</article>
+            </section>
+
+            <pre>
+                .rows{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 60px 120px; -> Reihe 1 = 60px hoch | Reihe 2 = 120px hoch
+                    gap: 8px;
+                }
+            </pre>
+
+            <p>
+                <strong>MERKE:</strong><br>
+                <code>grid-template-columns</code> bezieht sich auf die Breite und 
+                <code>grid-template-rows</code> bezieht sich auf die Höhe!!!
+            </p>
+
+            <hr>
+
+            <h2>4. Abstände in Grid: <code>gap</code></h2>
+
+            <p>
+                Mit <code>gap</code> bekommen wir Abstände zwischen den Zeilen.
+            </p>
+
+            <section class="grid grid-gap">
+                <article class="cell gg">1</article>
+                <article class="cell gg">2</article>
+                <article class="cell gg">3</article>
+                <article class="cell gg">4</article>
+            </section>
+
+            <pre>
+                .grid-gap{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr); ->repeat(x, yfr) = x gibt an wie viele Spalten es geben soll 
+                                                                            | y gibt an wie groß die Spalten sein sollen
+                    gap: 8px;
+                }
+            </pre>
+
+            <hr>
+
+            <h2>5. Items plazieren: <code>grid-column</code> und <code>grid-row</code></h2>
+            <p>
+                Wir können einzelne Elemente über mehrere Spalten bzw. Reihen ziehen.
+            </p>
+
+            <section class="grid place-grid">
+                <article class="cell span-2">Spannt zwei Spalten</article>
+                <article class="cell item">2</article>
+                <article class="cell item">3</article>
+                <article class="cell tall">Spannt zwei Reihen</article>
+                <article class="cell item">5</article>
+                <article class="cell item">6</article>
+                <article class="cell item">7</article>
+            </section>
+
+            <pre>
+                .place-grid{
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 8px;
+                }
+
+                .span-2{
+                    grid-column: span 2;        -> gibt die Spanne an für die Breite
+                    background-color: tomato;
+                }
+
+                .tall{
+                    grid-row: span 2;           -> gibt die Spanne an für die Höhe
+                    background-color: aquamarine;
+                }
+            </pre>
+
+            <hr>
+
+            <h2>6. Typische Seitenlayout mit Grid</h2>
+
+            <p>
+                Header - Nav - Main - Sidebar - Footer <br>
+                in einem Grid:
+            </p>
+
+            <section class="grid page-grid ">
+                <header class="pg-header">Header</header>
+                <nav class="pg-nav">Navigation</nav>
+                <main class="pg-main">Main</main>
+                <aside class="pg-aside">Sidebar</aside>
+                <footer class="pg-footer">Footer</footer>
+            </section>
+        </main>
+    </body>
+</html>

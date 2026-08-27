@@ -1,0 +1,250 @@
+SQL-ABENTEUER: DIE DATENBANK DER DETEKTIVE
+=============================================
+
+Willkommen, Datenbank-Detektiv!
+
+Du bist neuer Ermittler im Detektivbüro "Die Schlaue Lupe".
+Deine Aufgabe ist es, mit SQL Ordnung in das Ermittlungsarchiv zu bringen.
+
+
+AUSGANGSLAGE
+------------
+
+Das Detektivbüro speichert alle Detektive in einer Tabelle namens "detektive".
+
+CREATE TABLE detektive (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    spezialgebiet VARCHAR(40),
+    faelle INT,
+    erfolge INT,
+    status VARCHAR(20)
+);
+
+Folgende Detektive befinden sich im Archiv:
+
+ID: 1
+Name: Mira
+Spezialgebiet: Spurensuche
+Fälle: 12
+Erfolge: 9
+Status: aktiv
+
+ID: 2
+Name: Jonas
+Spezialgebiet: Verhöre
+Fälle: 18
+Erfolge: 15
+Status: aktiv
+
+ID: 3
+Name: Tessa
+Spezialgebiet: Technik
+Fälle: 7
+Erfolge: 5
+Status: im Urlaub
+
+ID: 4
+Name: Malik
+Spezialgebiet: Observation
+Fälle: 15
+Erfolge: 12
+Status: aktiv
+
+ID: 5
+Name: Clara
+Spezialgebiet: Analyse
+Fälle: 22
+Erfolge: 20
+Status: im Einsatz
+
+ID: 6
+Name: Ben
+Spezialgebiet: Recherche
+Fälle: 5
+Erfolge: 3
+Status: aktiv
+
+
+QUEST 1 - DAS ERMITTLUNGSARCHIV
+-------------------------------
+
+Zeige alle Detektive des Detektivbüros an.
+
+SQL-Wissen:
+Mit SELECT wählst du Daten aus einer Tabelle aus.
+
+Beispiel:
+
+    SELECT *
+    FROM detektive;
+
+Das * bedeutet: Zeige alle Spalten an.
+
+
+QUEST 2 - DIE POLIZEI SUCHT ERFAHRENE ERMITTLER
+------------------------------------------------
+
+Zeige alle Detektive, die mindestens 10 Fälle bearbeitet haben.
+
+Versuche zuerst selbst eine Abfrage zu schreiben.
+
+Hinweis:
+
+    WHERE faelle >= 10
+
+SQL-Wissen:
+Mit WHERE kannst du Datensätze filtern.
+
+Wichtige Vergleichsoperatoren:
+
+    =   gleich
+    >   größer als
+    <   kleiner als
+    >=  größer oder gleich
+    <=  kleiner oder gleich
+    !=  ungleich
+
+
+QUEST 3 - WER HAT DIE MEISTEN FÄLLE GELÖST?
+--------------------------------------------
+
+Zeige nur die Spalten:
+
+    name
+    spezialgebiet
+    erfolge
+
+Sortiere die Detektive nach ihren Erfolgen.
+Der Detektiv mit den meisten Erfolgen soll ganz oben stehen.
+
+SQL-Wissen:
+
+    ORDER BY erfolge DESC
+
+DESC bedeutet "descending", also absteigend.
+ASC bedeutet "ascending", also aufsteigend.
+
+
+QUEST 4 - DAS BÜRO BRAUCHT AKTIVE PROFIS
+-----------------------------------------
+
+Zeige alle Detektive, die:
+
+    - den Status "aktiv" haben
+    - mindestens 10 Fälle bearbeitet haben
+
+SQL-Wissen:
+Mehrere Bedingungen kannst du mit AND verbinden.
+
+Beispiel:
+
+    WHERE status = 'aktiv'
+    AND faelle >= 10;
+
+Mit OR müsste dagegen nur eine der Bedingungen erfüllt sein.
+
+
+QUEST 5 - BENS NEUER FALL
+-------------------------
+
+Ben hat einen weiteren Fall erfolgreich abgeschlossen.
+Seine Anzahl an Erfolgen steigt dadurch von 3 auf 4.
+
+Schreibe eine SQL-Abfrage, die Bens Erfolge verändert.
+
+SQL-Wissen:
+Mit UPDATE kannst du bestehende Daten verändern.
+
+Beispiel:
+
+    UPDATE detektive
+    SET erfolge = 4
+    WHERE name = 'Ben';
+
+Wichtig:
+Ein UPDATE ohne WHERE kann alle Datensätze der Tabelle verändern.
+
+
+BOSS-QUEST - DER FALL DES VERSCHWUNDENEN DIAMANTEN
+---------------------------------------------------
+
+Ein wertvoller Diamant wurde aus einem Museum gestohlen.
+
+Nur erfahrene Detektive dürfen an diesem schwierigen Fall arbeiten.
+
+Gesucht werden Detektive, die:
+
+    - mindestens 10 Fälle bearbeitet haben
+    - den Status "aktiv" haben
+    - mindestens 9 Erfolge besitzen
+
+Gib nur folgende Spalten aus:
+
+    name
+    spezialgebiet
+    faelle
+    erfolge
+
+Sortiere die Detektive anschließend von den meisten
+zu den wenigsten Erfolgen.
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+Du wirst wahrscheinlich folgende SQL-Befehle benötigen:
+
+    SELECT
+    FROM
+    WHERE
+    AND
+    ORDER BY
+    DESC
+
+
+BONUS-QUEST - STATISTIK FÜR DEN CHEFERMITTLER
+----------------------------------------------
+
+Der Chefermittler möchte wissen:
+
+Wie viele Erfolge haben alle Detektive zusammen?
+
+Dafür gibt es in SQL sogenannte Aggregatfunktionen.
+
+Beispiel:
+
+    SUM(erfolge)
+
+Weitere nützliche Funktionen:
+
+    COUNT()
+    AVG()
+    MIN()
+    MAX()
+
+Damit kannst du Datensätze zählen, Durchschnittswerte berechnen
+oder den kleinsten und größten Wert finden.
+
+
+GELERNTES SQL-WISSEN
+--------------------
+
+Nach Abschluss der Aufgaben kennst du unter anderem:
+
+    SELECT
+    FROM
+    WHERE
+    AND
+    OR
+    ORDER BY
+    UPDATE
+    SUM()
+
+Damit kannst du Daten anzeigen, filtern, sortieren,
+verändern und auswerten.
+
+
+QUEST ABGESCHLOSSEN
+===================
+
+Rang: SQL-Spurensucher
+Nächster Rang: JOIN-Meisterdetektiv

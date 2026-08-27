@@ -1,0 +1,719 @@
+SQL-ABENTEUER TEIL 3: DIE VERBOTENEN ARCHIVE VON HOGWARTS
+=========================================================
+
+Willkommen zurück, JOIN-Zaubermeister!
+
+Nachdem du gelernt hast, mehrere Tabellen mit JOIN zu verbinden,
+wartet bereits die nächste Aufgabe auf dich.
+
+Tief unter Hogwarts befinden sich die verbotenen Archive.
+
+Dort werden neue Zauberschüler registriert, alte Aufträge gelöscht
+und mächtige magische Gegenstände verwaltet.
+
+Professor Dumbledore überreicht dir den Schlüssel zum Archiv.
+
+
+Deine heutigen SQL-Fähigkeiten:
+
+    INSERT
+    DELETE
+    LEFT JOIN
+    FOREIGN KEY
+    HAVING
+    Unterabfragen
+
+
+--------------------------------------------------
+DIE BISHERIGEN TABELLEN
+--------------------------------------------------
+
+TABELLE: zauberschueler
+
+id | name    | haus       | jahrgang | punkte | status
+---|---------|------------|----------|--------|------------------
+1  | Harry   | Gryffindor | 5        | 120    | aktiv
+2  | Hermine | Gryffindor | 5        | 180    | aktiv
+3  | Ron     | Gryffindor | 5        | 95     | aktiv
+4  | Draco   | Slytherin  | 5        | 110    | aktiv
+5  | Luna    | Ravenclaw  | 4        | 140    | aktiv
+6  | Neville | Gryffindor | 5        | 100    | im Krankenflügel
+
+
+TABELLE: auftraege
+
+id | titel                               | schwierigkeit | belohnung | schueler_id
+---|-------------------------------------|----------------|-----------|------------
+1  | Die verschwundenen Zaubertränke    | leicht         | 50        | 2
+2  | Das Geheimnis des Verbotenen Walds | schwer         | 300       | 1
+3  | Die verlorene Eule                  | mittel         | 150       | 5
+4  | Gefahr in der Kammer                | schwer         | 400       | 1
+5  | Das Rätsel der Bibliothek           | leicht         | 40        | 2
+6  | Der unbekannte Zauberstab           | mittel         | 120       | NULL
+
+
+--------------------------------------------------
+QUEST 1 - EIN NEUER ZAUBERSCHÜLER KOMMT NACH HOGWARTS
+--------------------------------------------------
+
+Ein neuer Zauberschüler trifft in Hogwarts ein.
+
+Sein Name ist:
+
+    Cedric
+
+Seine Daten:
+
+    Haus: Hufflepuff
+    Jahrgang: 6
+    Punkte: 160
+    Status: aktiv
+
+Professor Dumbledore möchte ihn in die Datenbank aufnehmen.
+
+Dafür gibt es INSERT INTO.
+
+
+Beispiel:
+
+    INSERT INTO zauberschueler
+    (id, name, haus, jahrgang, punkte, status)
+    VALUES
+    (7, 'Cedric', 'Hufflepuff', 6, 160, 'aktiv');
+
+
+SQL-WISSEN:
+
+INSERT INTO fügt einen neuen Datensatz in eine Tabelle ein.
+
+VALUES enthält die Werte, die gespeichert werden sollen.
+
+
+AUFGABE:
+
+Füge einen weiteren Zauberschüler hinzu:
+
+    id: 8
+    name: Ginny
+    haus: Gryffindor
+    jahrgang: 4
+    punkte: 130
+    status: aktiv
+
+
+--------------------------------------------------
+QUEST 2 - EIN NEUER MAGISCHER AUFTRAG
+--------------------------------------------------
+
+In der Nacht erscheint eine neue Nachricht
+am Schwarzen Brett von Hogwarts.
+
+Titel:
+
+    Das Rätsel des verschwundenen Besens
+
+Schwierigkeit:
+
+    mittel
+
+Belohnung:
+
+    200
+
+Noch kein Zauberschüler hat den Auftrag angenommen.
+
+
+AUFGABE:
+
+Füge diesen Auftrag mit INSERT INTO in die Tabelle
+"auftraege" ein.
+
+Verwende:
+
+    id = 7
+
+Da noch kein Zauberschüler den Auftrag angenommen hat,
+soll gelten:
+
+    schueler_id = NULL
+
+
+--------------------------------------------------
+QUEST 3 - DER VERBOTENE DELETE-BEFEHL
+--------------------------------------------------
+
+Ein alter Auftrag wurde versehentlich doppelt eingetragen.
+
+Professor Dumbledore befiehlt:
+
+    "Entferne ihn aus dem Archiv!"
+
+Mit DELETE kannst du Datensätze entfernen.
+
+
+Beispiel:
+
+    DELETE FROM auftraege
+    WHERE id = 5;
+
+
+SQL-WISSEN:
+
+DELETE FROM entfernt Datensätze aus einer Tabelle.
+
+
+ACHTUNG:
+
+    DELETE FROM auftraege;
+
+würde ALLE Aufträge löschen.
+
+Deshalb sollte man bei DELETE besonders auf WHERE achten.
+
+
+AUFGABE:
+
+Schreibe einen DELETE-Befehl, der nur den Auftrag
+mit der ID 3 löscht.
+
+
+--------------------------------------------------
+QUEST 4 - DER PRIMARY KEY
+--------------------------------------------------
+
+Du hast bereits mehrfach die Spalte "id" verwendet.
+
+Aber warum ist sie so wichtig?
+
+In unserer Tabelle steht:
+
+    id INT PRIMARY KEY
+
+
+PRIMARY KEY bedeutet:
+
+Der Wert identifiziert einen Datensatz eindeutig.
+
+
+Beispiel:
+
+    id = 1
+
+darf nur einmal vorkommen.
+
+
+Folgendes wäre also problematisch:
+
+id | name
+---|---------
+1  | Harry
+1  | Hermine
+
+
+Die Datenbank könnte nicht eindeutig erkennen,
+welcher Datensatz gemeint ist.
+
+
+SQL-WISSEN:
+
+Ein PRIMARY KEY sollte:
+
+    - eindeutig sein
+    - nicht NULL sein
+    - einen Datensatz eindeutig identifizieren
+
+
+--------------------------------------------------
+QUEST 5 - DER FOREIGN KEY
+--------------------------------------------------
+
+Unsere Tabelle "auftraege" besitzt:
+
+    schueler_id
+
+
+Diese Spalte verweist auf:
+
+    zauberschueler.id
+
+
+Eine solche Verbindung kann mit einem FOREIGN KEY
+abgesichert werden.
+
+
+Beispiel:
+
+    CREATE TABLE auftraege (
+        id INT PRIMARY KEY,
+        titel VARCHAR(100),
+        schwierigkeit VARCHAR(20),
+        belohnung INT,
+        schueler_id INT,
+        FOREIGN KEY (schueler_id)
+            REFERENCES zauberschueler(id)
+    );
+
+
+SQL-WISSEN:
+
+PRIMARY KEY:
+
+    Identifiziert einen Datensatz.
+
+
+FOREIGN KEY:
+
+    Verweist auf einen Datensatz in einer anderen Tabelle.
+
+
+Dadurch entstehen Beziehungen zwischen Tabellen.
+
+
+--------------------------------------------------
+QUEST 6 - DAS GEHEIMNIS DES LEFT JOIN
+--------------------------------------------------
+
+Du kennst bereits:
+
+    JOIN
+
+
+Ein normaler JOIN zeigt nur Datensätze,
+für die eine passende Verbindung existiert.
+
+Aber was passiert mit Zauberschülern,
+die noch keinen Auftrag haben?
+
+
+Hier kommt LEFT JOIN ins Spiel.
+
+
+Beispiel:
+
+    SELECT zauberschueler.name, auftraege.titel
+    FROM zauberschueler
+    LEFT JOIN auftraege
+    ON zauberschueler.id = auftraege.schueler_id;
+
+
+LEFT JOIN bedeutet:
+
+Zeige ALLE Datensätze der linken Tabelle.
+
+Auch wenn kein passender Datensatz in der rechten
+Tabelle existiert.
+
+
+In diesem Beispiel ist:
+
+    zauberschueler = linke Tabelle
+    auftraege      = rechte Tabelle
+
+
+Hat ein Zauberschüler keinen Auftrag, steht beim Titel
+möglicherweise:
+
+    NULL
+
+
+AUFGABE:
+
+Zeige mit LEFT JOIN:
+
+    name
+    haus
+    titel
+
+für alle Zauberschüler.
+
+Auch Zauberschüler ohne Auftrag sollen angezeigt werden.
+
+
+--------------------------------------------------
+QUEST 7 - FINDE ZAUBERSCHÜLER OHNE AUFTRAG
+--------------------------------------------------
+
+Professor Dumbledore entdeckt ein Problem.
+
+Einige Zauberschüler haben noch keinen Auftrag.
+
+Finde alle Zauberschüler ohne Auftrag.
+
+
+Hinweis:
+
+Du kannst kombinieren:
+
+    LEFT JOIN
+
+und
+
+    IS NULL
+
+
+Ein Teil der Lösung könnte so aussehen:
+
+    WHERE auftraege.id IS NULL
+
+
+AUFGABE:
+
+Gib nur folgende Informationen aus:
+
+    name
+    haus
+    jahrgang
+
+
+--------------------------------------------------
+QUEST 8 - HAVING
+--------------------------------------------------
+
+Professor Dumbledore möchte wissen:
+
+Welche Zauberschüler haben MEHR ALS EINEN Auftrag?
+
+
+Wir kennen bereits:
+
+    GROUP BY
+
+
+Beispiel:
+
+    SELECT zauberschueler.name, COUNT(auftraege.id)
+    FROM zauberschueler
+    JOIN auftraege
+    ON zauberschueler.id = auftraege.schueler_id
+    GROUP BY zauberschueler.name;
+
+
+Aber wie filtern wir das Ergebnis von COUNT()?
+
+
+Dafür gibt es:
+
+    HAVING
+
+
+Beispiel:
+
+    SELECT zauberschueler.name, COUNT(auftraege.id)
+    FROM zauberschueler
+    JOIN auftraege
+    ON zauberschueler.id = auftraege.schueler_id
+    GROUP BY zauberschueler.name
+    HAVING COUNT(auftraege.id) > 1;
+
+
+SQL-WISSEN:
+
+WHERE filtert einzelne Datensätze.
+
+HAVING filtert Gruppen.
+
+
+Merksatz:
+
+    WHERE kommt normalerweise vor GROUP BY.
+
+    HAVING kommt nach GROUP BY.
+
+
+--------------------------------------------------
+QUEST 9 - DIE UNTERABFRAGE
+--------------------------------------------------
+
+Professor Dumbledore stellt eine schwierige Frage:
+
+Welche Zauberschüler besitzen mehr Punkte als
+der durchschnittliche Zauberschüler?
+
+
+Zuerst können wir den Durchschnitt berechnen:
+
+    SELECT AVG(punkte)
+    FROM zauberschueler;
+
+
+Aber wir können diese Abfrage auch in eine andere
+Abfrage einbauen.
+
+
+Beispiel:
+
+    SELECT name, punkte
+    FROM zauberschueler
+    WHERE punkte > (
+        SELECT AVG(punkte)
+        FROM zauberschueler
+    );
+
+
+Das nennt man:
+
+    Unterabfrage
+
+oder:
+
+    Subquery
+
+
+Die innere Abfrage berechnet zuerst:
+
+    SELECT AVG(punkte)
+    FROM zauberschueler;
+
+
+Danach verwendet die äußere Abfrage dieses Ergebnis.
+
+
+AUFGABE:
+
+Finde alle Zauberschüler, deren Jahrgang über dem
+durchschnittlichen Jahrgang aller Zauberschüler liegt.
+
+
+--------------------------------------------------
+QUEST 10 - DER PUNKTBESTE ZAUBERSCHÜLER
+--------------------------------------------------
+
+Professor Dumbledore möchte wissen:
+
+Welcher Zauberschüler besitzt die meisten Punkte?
+
+
+Natürlich könnte man mit ORDER BY arbeiten.
+
+Es geht aber auch mit einer Unterabfrage.
+
+
+Hinweis:
+
+    MAX(punkte)
+
+
+AUFGABE:
+
+Vervollständige:
+
+    SELECT name, punkte
+    FROM zauberschueler
+    WHERE punkte = (
+        ...
+    );
+
+
+--------------------------------------------------
+BOSS-QUEST - DAS VERBOTENE ARCHIV VON HOGWARTS
+--------------------------------------------------
+
+Eine unbekannte Person hat versucht,
+die Hogwarts-Datenbank zu manipulieren.
+
+Professor Dumbledore braucht einen vollständigen Bericht.
+
+
+Finde alle Zauberschüler, die:
+
+    - mindestens im 5. Jahrgang sind
+    - mindestens einen Auftrag besitzen
+    - insgesamt mehr als 100 Belohnungspunkte
+      durch Aufträge verdienen können
+
+
+Zeige:
+
+    name
+    haus
+    jahrgang
+    Anzahl der Aufträge
+    gesamte Belohnung
+
+
+Sortiere das Ergebnis nach der gesamten Belohnung.
+
+Die höchste Belohnung soll zuerst erscheinen.
+
+
+Du benötigst wahrscheinlich:
+
+    SELECT
+    JOIN
+    ON
+    WHERE
+    GROUP BY
+    HAVING
+    COUNT()
+    SUM()
+    ORDER BY
+    DESC
+
+
+Schreibe die vollständige SQL-Abfrage selbst.
+
+
+--------------------------------------------------
+BONUS-QUEST - DIE MAGISCHE GEGENSTANDS-DATENBANK
+--------------------------------------------------
+
+Hogwarts besitzt inzwischen so viele magische Gegenstände,
+dass eine neue Tabelle benötigt wird.
+
+
+Erstelle eine Tabelle namens:
+
+    gegenstaende
+
+
+Sie soll folgende Spalten besitzen:
+
+    id
+    name
+    typ
+    wert
+    schueler_id
+
+
+Beispieldaten:
+
+id | name                         | typ          | wert | schueler_id
+---|------------------------------|--------------|------|------------
+1  | Tarnumhang                   | Umhang       | 900  | 1
+2  | Zeitumkehrer                 | Artefakt     | 1000 | 2
+3  | Deluminator                  | Werkzeug     | 500  | 3
+4  | Quidditch-Besen             | Besen        | 700  | 4
+5  | Unbekannter Zauberstab      | Zauberstab   | 300  | NULL
+
+
+AUFGABE 1:
+
+Schreibe selbst den CREATE TABLE-Befehl.
+
+
+AUFGABE 2:
+
+Lege "id" als PRIMARY KEY fest.
+
+
+AUFGABE 3:
+
+Verbinde "schueler_id" über einen FOREIGN KEY mit:
+
+    zauberschueler(id)
+
+
+AUFGABE 4:
+
+Zeige anschließend alle magischen Gegenstände zusammen
+mit dem Namen ihres Besitzers an.
+
+
+--------------------------------------------------
+SUPER-BONUS-QUEST
+--------------------------------------------------
+
+Jetzt wird es richtig interessant.
+
+Professor Dumbledore möchte wissen:
+
+Welcher Zauberschüler besitzt den wertvollsten
+magischen Gegenstand?
+
+
+Versuche die Aufgabe mit folgenden SQL-Werkzeugen zu lösen:
+
+    JOIN
+    MAX()
+    Unterabfrage
+
+
+--------------------------------------------------
+WAS DU GELERNT HAST
+--------------------------------------------------
+
+Du kennst jetzt:
+
+    INSERT INTO
+    VALUES
+    DELETE
+    PRIMARY KEY
+    FOREIGN KEY
+    LEFT JOIN
+    GROUP BY
+    HAVING
+    Unterabfragen
+    MAX()
+
+
+Außerdem kennst du inzwischen den Unterschied zwischen:
+
+    JOIN
+    und
+    LEFT JOIN
+
+
+JOIN:
+
+    Zeigt nur passende Datensätze aus beiden Tabellen.
+
+
+LEFT JOIN:
+
+    Zeigt alle Datensätze der linken Tabelle,
+    auch wenn rechts keine Verbindung existiert.
+
+
+Du kennst außerdem:
+
+WHERE:
+
+    Filtert Datensätze.
+
+
+HAVING:
+
+    Filtert Gruppen.
+
+
+--------------------------------------------------
+QUEST ABGESCHLOSSEN
+--------------------------------------------------
+
+Alter Rang:
+
+    JOIN-Zaubermeister
+
+
+Neuer Rang:
+
+    Datenbank-Erzmagier
+
+
+Nächster Rang:
+
+    SQL-Großmeister von Hogwarts
+
+
+Im nächsten Abenteuer könnten dich erwarten:
+
+    UPDATE mit Berechnungen
+    CASE WHEN
+    DISTINCT
+    LIKE
+    IN
+    BETWEEN
+    Aliases mit AS
+    mehrere JOINs gleichzeitig
+    Transaktionen
+    COMMIT
+    ROLLBACK
+
+
+Und natürlich:
+
+    Ein neuer Gegner.
+
+    Der gefürchtete Datenbank-Dunkelmagier
+    Bobby Tables.
+    

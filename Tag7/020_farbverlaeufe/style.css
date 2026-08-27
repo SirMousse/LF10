@@ -1,0 +1,53 @@
+/*Grundeinstellungen */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 12px;
+    line-height: 1.5;
+}
+
+code{
+    font-family: monospace;
+}
+
+.box{
+    height: 80px;
+    margin: 12px 0;
+    padding: 12px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Linear Gradient*/
+.linear-basic{
+    background: linear-gradient(#00a8ff, crimson);
+}
+
+.linear-direction{
+    background: linear-gradient(to left, #6465a5, #f05837);
+}
+
+.linear-angle{
+    background: linear-gradient(45deg, #00743f, #f2a104);
+}
+
+/*Radial Gradient*/
+.radial-basic{
+    background: radial-gradient(circle, #c0334d, #f1931b);
+}
+
+.radial-ellipse{
+    background: radial-gradient(ellipse, #212027, #f22f08, #f2a104);
+}
+/*Conic Gradient */
+.conic-basic{
+    background: conic-gradient(#003d73, #edd170, #1ecfd6, #c05640, #0878a4);
+}
+
+/*Farbstopps*/
+.linear-stops{
+    background: linear-gradient(to right,
+    #8a8604 0%,
+    #383140 50%,
+    #cac7d7 90%);
+}
